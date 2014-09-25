@@ -4,7 +4,7 @@
 
 url: http://blog.michielborkent.nl
 title: Through the cracks of immutability
-subtitle: Programming blog by Michiel Borkent (borkdude)
+subtitle: Notes on Clojure, Clojurescript, Datomic and other interesting technologies.
 author: Michiel Borkent
 simple_search: https://www.google.com/search
 description:
@@ -91,7 +91,7 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name:
+disqus_short_name: ttcoi
 disqus_show_comment_count: false
 
 # Google Analytics
