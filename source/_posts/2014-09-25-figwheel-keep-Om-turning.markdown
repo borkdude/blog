@@ -6,7 +6,7 @@ comments: true
 published: true
 categories: [clojurescript, figwheel, om]
 ---
-Combining figwheel, Om and Ring in one application
+How to combine figwheel, Om and Ring in one application
 ## tl;dr
 In this article you will find a configuration of figwheel with
 Om and a Ring server in one application.
@@ -27,7 +27,7 @@ is a Clojurescript library based on the famous
 can speed up Clojurescript and Om development by reloading code in the
 browser without refreshing an entire page.
 
-[Figwheel] comes in the form of a [leiningen](http://leiningen.org/)
+Figwheel comes in the form of a [leiningen](http://leiningen.org/)
 plugin that uses
 [lein-cljsbuild](https://github.com/emezeske/lein-cljsbuild) to
 compile Clojurescript and pushes the resulting Javascript to the
