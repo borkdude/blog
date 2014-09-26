@@ -4,7 +4,7 @@ title: Figwheel keep Om turning!
 date: 2014-09-25 21:00:50 +0200
 comments: true
 published: true
-categories: [clojurescript, figwheel, om]
+categories: [clojure, clojurescript, figwheel, om]
 ---
 How to combine figwheel, Om and Ring in one application
 ## tl;dr
