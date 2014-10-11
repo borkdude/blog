@@ -360,7 +360,60 @@ Click a few times and you'll see something like this:
 Now change the text of the button in child.cljs again and save. You'll
 see that the state of the cursor is preserved, as expected.
 
-The completed code of this blog post can be viewed [here](https://github.com/borkdude/figwheel-keep-om-turning).
+## Update October 11th 2014
+
+The use of a channel to refresh a component was a little invasive and to be honest, I didn't like it much. Arne Brasseur pointed out in the comments that refreshing of Om components can be implemented simpler, because `om/root` is idempotent. This means it may be called multiple times and all will be well.
+
+I changed the code in `main.cljs` according to the suggestion of Arne:
+
+```clojure
+(ns example.client
+  (:require-macros [cljs.core.async.macros :refer (go)])
+  (:require [om.core :as om :include-macros true]
+            [om.dom :as dom :include-macros true]
+            [cljs.core.async :refer [<! chan put!]]
+            [cljs-http.client :as http]
+            [figwheel.client :as fw]
+            [example.child :refer (child)]))
+
+(enable-console-print!)
+
+(defonce app-state (atom {:text ""}))
+
+(defn main []
+  (om/root
+   (fn [app owner]
+     (reify
+       om/IRender
+       (render [_]
+         (dom/div
+          nil
+          (om/build child app)))
+       om/IWillUnmount
+       (will-unmount [_]
+         (println "I will unmount"))))
+   app-state
+   {:target (. js/document (getElementById "app"))}))
+
+(fw/watch-and-reload
+ :websocket-url "ws://localhost:3449/figwheel-ws"
+ :jsload-callback
+ (fn []
+   (println "reloaded")
+   (main)))
+
+(defonce initial-call-to-main (main))
+```
+
+The differences:
+
+- no invasive channel and call to `om/refresh!`
+- the call to `om/root` is now wrapped inside a function `main`
+- `main` is called on initial page load and will be called by figwheel upon code reload (no matter which ClojureScript file, which the point of putting the call to `main` here)
+
+Arne Brasseur is the author of the excellent [Chestnut](https://github.com/plexus/chestnut) template, that embeds Figwheel as one of its dev tools. I suggest you try it out if you haven't. David Nolen, the author of Om, just published a [demo video](https://www.youtube.com/watch?v=gI3fJKmvgq4) of Chestnut.
+
+The completed (and updated) code of this blog post can be viewed [here](https://github.com/borkdude/figwheel-keep-om-turning).
 
 If you liked my post or want to suggest an improvement, please leave a
 comment. Thanks for reading!
