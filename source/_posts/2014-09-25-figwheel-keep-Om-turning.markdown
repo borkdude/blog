@@ -105,7 +105,7 @@ should now look like this:
 
 Let's edit `client.cljs`. In the namespace declaration under
 `:require` add `[figwheel.client :as fw]`. Now we'll hook up figwheel
-so it can send changes in our project the a browser. Because we use
+so it can send changes in our project a browser. Because we use
 Ring with the Jetty adapter as an external server, we have to tell
 figwheel explicitly where it's websocket is, since it can't just
 connect to the same origin.
@@ -119,7 +119,8 @@ connect to the same origin.
 ```
 
 Start Ring and Figwheel independently, both from inside the `example`
-directory. In one terminal type `lein figwheel`. It's best to wait for
+directory. In one terminal type `lein figwheel` or optionally supply
+the name of the build: `lein figwheel example`). It's best to wait for
 the clojurescript compilation to complete before starting Ring.
 
 ```
