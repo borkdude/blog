@@ -119,7 +119,7 @@ connect to the same origin.
 ```
 
 Start Ring and Figwheel independently, both from inside the `example`
-directory. In one terminal type `lein figwheel` or optionally supply
+directory. In one terminal type `lein figwheel` (or optionally supply
 the name of the build: `lein figwheel example`). It's best to wait for
 the clojurescript compilation to complete before starting Ring.
 
