@@ -105,7 +105,7 @@ should now look like this:
 
 Let's edit `client.cljs`. In the namespace declaration under
 `:require` add `[figwheel.client :as fw]`. Now we'll hook up figwheel
-so it can send changes in our project a browser. Because we use
+so it can send changes in our project to a browser. Because we use
 Ring with the Jetty adapter as an external server, we have to tell
 figwheel explicitly where it's websocket is, since it can't just
 connect to the same origin.
