@@ -1,7 +1,7 @@
 ---
 layout: post
 title: My ClojureScript adventure at Øredev
-date: 2014-11-09 21:23:03 +0100
+date: 2014-11-16 18:00:00 +0100
 comments: true
 categories: [clojure, clojurescript, react, om, reagent]
 ---
@@ -14,7 +14,7 @@ November 6th 2014 I was given the chance to speak about ClojureScript and React 
 
 ## How I got there
 
-On October 7th I received an e-mail from the organization of Øredev. One of their speakers, [Anna Pawlicka](https://twitter.com/annapawlicka), who was going to speak about ClojureScript had cancelled (for valid private reasons). She passed them some names of people they could ask to replace her. Apparently I was on this list and received an e-mail. After some consideration I accepted this invitation. It would be my first appearance on a bigger (> 1000 participants) developer conference. So in the month leading up to this conference I was pretty nervous and excited. Luckily I could practice my preliminary talks at two local meetups and had lots of people providing me with useful feedback.
+On October 7th I received an e-mail from the organization of Øredev. One of their speakers, [Anna Pawlicka](https://twitter.com/annapawlicka), who was going to speak about ClojureScript had cancelled (for valid private reasons). She had passed them some names of people they could ask to replace her. Apparently I was on this list and received an e-mail. After some consideration I accepted this invitation. It would be my first appearance on a bigger (> 1000 participants) developer conference. So in the month leading up to this conference I was pretty nervous and excited. Luckily I could practice my preliminary talks at two local meetups and had lots of people providing me with useful feedback.
 
 ## The talks
 
@@ -45,9 +45,9 @@ The slides can be downloaded [here](http://michielborkent.nl/oredev14/ClojureScr
 ### ClojureScript interfaces to React
 
 The second talk was about using ClojureScript in combination with the
-React library. I showed two approaches: Om and Reagent. I spend more
-time and detail on Reagent, because this library is easier to explain
-in a 40 minute talk.
+React library. I showed two approaches: Om and Reagent. I have spent
+more time and detail on Reagent, because this library is easier to
+explain in a 40 minute talk.
 
 The description of the talk for the conference:
 
@@ -96,17 +96,17 @@ another. Here is a list of people and companies I would like to thank
 for their help or support:
 
 - Anders Janmyr
-- Anna Pawlicka
-- Barbara Borkent
-- David Nolen
+- [Anna Pawlicka](http://www.twitter.com/annapawlicka)
+- [Barbara Borkent](http://www.twitter.com/lalage_)
+- [David Nolen](http://www.twitter.com/swannodette)
 - Denis Fuenzalida
 - Emily Holweck
-- Finalist (company)
-- Jayway (company)
-- Martin van Amersfoorth
+- [Finalist](http://www.finalist.nl) (company)
+- [Jayway](http://www.jayway.com) (company)
+- [Martin van Amersfoorth](http://www.twitter.com/mamersfo)
 - Matthijs Steen
 - Ustun Ozgur
-- Vijay Kiran
+- [Vijay Kiran](http://www.twitter.com/vijaykiran)
 
 ## Resources
 
