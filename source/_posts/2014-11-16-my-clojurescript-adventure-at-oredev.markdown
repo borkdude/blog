@@ -14,7 +14,7 @@ November 6th 2014 I was given the chance to speak about ClojureScript and React 
 
 ## How I got there
 
-On October 7th I received an e-mail from the organization of Øredev. One of their speakers, [Anna Pawlicka](https://twitter.com/annapawlicka), who was going to speak about ClojureScript had cancelled (for valid private reasons). She had passed them some names of people they could ask to replace her. Apparently I was on this list and received an e-mail. After some consideration I accepted this invitation. It would be my first appearance on a bigger (> 1000 participants) developer conference. So in the month leading up to this conference I was pretty nervous and excited. Luckily I could practice my preliminary talks at two local meetups and had lots of people providing me with useful feedback.
+On October 7th I received an e-mail from the organization of Øredev. One of their speakers, [Anna Pawlicka](https://twitter.com/annapawlicka), who was going to speak about ClojureScript had cancelled (for urgent private reasons). She had passed them some names of people they could ask to replace her. Apparently I was on this list and received an e-mail. After some consideration I accepted this invitation. It would be my first appearance on a bigger (> 1000 participants) developer conference. So in the month leading up to this conference I was pretty nervous and excited. Luckily I could practice my preliminary talks at two local meetups and had lots of people providing me with useful feedback.
 
 ## The talks
 
@@ -118,7 +118,7 @@ interesting to study while I was preparing my talks. Have fun with those!
 - http://www.lexicallyscoped.com/2013/12/25/slice-of-reactjs-and-cljs.html
 - http://adamsolove.com/js/clojure/2014/01/06/om-experience-report.html
 - http://www.joshlehman.me/rewriting-the-react-tutorial-in-om/
-- PureScript: https://t.co/bzQcj0OsPW
+- https://t.co/bzQcj0OsPW - PureScript
 - http://2013.jsconf.eu/speakers/pete-hunt-react-rethinking-best-practices.html
 - https://www.youtube.com/watch?v=SiFwRtCnxv4 - Nolen on immutability
 - https://www.youtube.com/watch?v=-DX3vJiqxm4 - Secrets of the Virtual DOM
