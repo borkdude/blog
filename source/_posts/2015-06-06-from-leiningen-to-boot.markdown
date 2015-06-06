@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Migrating a Leiningen project to boot
-date: 2015-06-01 21:00:50 +0200
+date: 2015-06-06 17:00:50 +0200
 comments: true
 published: true
 categories: [leiningen, boot, clojure, clojurescript, figwheel]
@@ -406,7 +406,7 @@ During this blog post I ran into a couple of issues with Boot.
 
 The first issue had to do with dependency resolution and Clojure versions. This [issue](https://github.com/boot-clj/boot/issues/210) has been solved. Thanks Alan Dipert! 
 
-The next issue was that the `reload` task didn't have the concept of an `asset-path`.
+Another issue was that the `reload` task didn't have the concept of an `asset-path`.
 I needed to work around this by creating an extra route in my handler:
 
 ```clojure
@@ -419,8 +419,6 @@ I needed to work around this by creating an extra route in my handler:
 
 This problem will be solved in a future version of `reload`. See this
 [issue](https://github.com/adzerk-oss/boot-reload/issues/18).
-
-A final issue was that `(alter-var-root (var *print-length*) (fn [v] 20))` in `build.boot` broke the `jar` task. I'm not certain if I was trying something that is not supported, but I filed an issue [here](https://github.com/boot-clj/boot/issues/218). 
 
 ## Conclusion
 
