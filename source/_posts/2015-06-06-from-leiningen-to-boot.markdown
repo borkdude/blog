@@ -8,10 +8,10 @@ categories: [leiningen, boot, clojure, clojurescript, figwheel]
 ---
 
 Boot is a new build tool for Clojure. To get acquainted with it, I
-decided to port a fairly non-trivial Leiningen project boot.
+decided to migrate a fairly non-trivial Leiningen project to Boot.
 
 You can find the entire project including the Leiningen `project.clj`
-file and boot's `build.boot` file
+file and Boot's `build.boot` file
 [here](https://github.com/borkdude/lein2boot).
 
 Disclaimer: this is not a comprehensive Boot tutorial. For a detailed
@@ -130,7 +130,7 @@ line:
 
 `$ boot repl -h`
 
-or call `(doc repl)` from a boot REPL session.
+or call `(doc repl)` from a Boot REPL session.
 
 ### Global var setting
 
@@ -426,6 +426,8 @@ Leiningen is a battle tested tool and probably the safest bet if
 you're just starting with Clojure. However, Boot has certainly sparked
 my interest. It has an elegant design and a more functional feel to
 it. I'll certainly use it on a future project.
+
+Here are my recommendations based on my brief experience with Boot.
 
 Use Leiningen if you:
 
