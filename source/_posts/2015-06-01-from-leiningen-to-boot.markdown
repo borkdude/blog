@@ -148,7 +148,7 @@ user=> (println (range))
 nil
 ```
 
-In our Boot program (builds are programs in Boot!) this is simply done so:
+In Boot I attempted to do it like this:
 
 ```clojure
 (alter-var-root (var *print-length*) (fn [v] 20))
@@ -156,7 +156,13 @@ In our Boot program (builds are programs in Boot!) this is simply done so:
 
 Unfortunately this caused a
 [bug](https://github.com/boot-clj/boot/issues/218) in Boot's `jar`
-task, so I'm not sure if this is the right way to do it. 
+task. Later I [learned](https://github.com/boot-clj/boot/issues/218#issuecomment-109582851) that it's not a good idea at all to do this in Boot, because there can be multiple Clojure runtimes (pods) in one JVM. Since I was going to use this setting only in the REPL, this is a better solution:
+
+```clojure
+(task-options!
+ repl {:init-ns 'animals.server
+       :eval '(set! *print-length* 20)})
+```
 
 ### Task dependencies
 
@@ -206,13 +212,13 @@ configuration for this plugin looks as follows:
 
 ```clojure
 :cljsbuild {:builds {:dev {:source-paths ["src-cljs" "src-cljs-dev"]
-                             :Figwheel {:on-jsload "animals.main/fig-reload"}
-                             :compiler {:output-to "out/public/main.js"
-                                        :output-dir "out/public/out"
-                                        :optimizations :none
-                                        :asset-path "out"
-                                        :main "animals.main"
-                                        :source-map true}}
+                           :figwheel {:on-jsload "animals.main/fig-reload"}
+                           :compiler {:output-to "out/public/main.js"
+                                       :output-dir "out/public/out"
+                                       :optimizations :none
+                                       :asset-path "out"
+                                       :main "animals.main"
+                                       :source-map true}}
                      :prod {:source-paths ["src-cljs" "src-cljs-prod"]
                               :compiler {:output-to "out/public/main.js"
                                          :optimizations :advanced}}}}
@@ -280,7 +286,7 @@ compiler outputs JavaScript to the `out` directory.
 
 Note that using this setup, I need to run two JVMs.
 
-In Boot my development flow is one task composed of multiple tasks:
+In Boot the development flow is one task composed of multiple tasks:
 
 ```clojure
 (deftask dev []
@@ -296,12 +302,14 @@ In Boot my development flow is one task composed of multiple tasks:
    (cljs)))
 ```
 
+Only one JVM needed!
+
 There is no need to worry about cleaning directies, since each task
 outputs an immutable fileset that the next task can use. Generated
 files end up in `target` by default, which gets cleaned before a new
 fileset is committed there.
 
-The `serve` task will be the first one to be invoked. By default `serve` runs a Jetty server, but it is possible to select `http-kit`. It will reload Clojure files automatically, is able to run a Ring handler and also executes an initial function before the handler is started. Everything except the Ring handler is missing from Figwheel's built in server.
+The `serve` task will be the first one to be invoked. By default `serve` runs a Jetty server, but it is possible to select `http-kit`. It will reload Clojure files automatically, is able to run a Ring handler and also executes an initial function before the handler is started. 
 
 The next task in our Boot pipeline is `watch`. This task waits for
 file changes in any of the source or resource paths and then invokes
@@ -315,17 +323,36 @@ time for the initial fileset. An example:
     (show :fileset true)))
 ```
 
-In this example `show` prints out the fileset that it received. When
-we invoke it we see the initial fileset. When we add a file, the watch
-task will invoke `show` again and we'll see the new fileset.
+In this example `show` prints out the fileset that it received as a
+tree. When we invoke it we see the initial fileset tree. When we add a
+file, the watch task will invoke `show` again and we would see the new
+fileset tree with the added file.
 
-Back to our development pipeline. Whenever a file changes, the
-`reload` task is invoked. This will send changed assets to the browser
-via a websocket connection. The task after that, `cljs-repl` starts an
-nrepl server in which it is possible to start a ClojureScript
-REPL. This task also covers our requirement to have a normal Clojure
-REPL session with our program. Finally, the `cljs` task compile
-ClojureScript to JavaScript.
+Back to our development pipeline:
+
+```clojure
+(deftask dev []
+  (set-env!
+   :source-paths #(conj % "src-cljs-dev"))
+  (comp
+   (serve :handler 'animals.api/handler
+          :reload true
+          :init 'animals.api/init)
+   (watch)
+   (reload :on-jsload 'animals.main/fig-reload)
+   (cljs-repl)
+   (cljs)))
+```
+
+Whenever a file changes, the `reload` task is invoked. This will send
+changed assets to the browser via a websocket connection. The task
+after that, `cljs-repl` starts an nrepl server in which it is possible
+to start a ClojureScript REPL. This task also covers our requirement
+to have a normal Clojure REPL session with our program. Finally, the
+`cljs` task compile ClojureScript to JavaScript. I am not sure if it
+matters if `cljs-repl` comes before or after `watch`, but `cljs`
+surely has to come after it, since it has to see new filesets for
+incremental compilation.
 
 ### Standalone jar
 
@@ -415,6 +442,7 @@ Use Boot if you:
 - don't like to think about cleaning directories
 - need to run one JVM for the entire development process (in
   Leiningen I needed two: one for Clojure and one for ClojureScript)
+- need to perform builds tasks with mutually exclusive dependencies
 
 Thanks for reading my blogpost. Feedback is appreciated. Did I
 misunderstand something about Boot? Please let me know!
