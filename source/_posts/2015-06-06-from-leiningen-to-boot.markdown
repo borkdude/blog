@@ -7,6 +7,10 @@ published: true
 categories: [leiningen, boot, clojure, clojurescript, figwheel]
 ---
 
+Edit: this post made it to the front page of Hacker News. Thanks!
+
+{% img center /images/2015-06/hacker-news-lein2boot.png %}
+
 Boot is a new build tool for Clojure. To get acquainted with it, I
 decided to migrate a fairly non-trivial Leiningen project to Boot.
 
