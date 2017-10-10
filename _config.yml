@@ -3,8 +3,8 @@
 # ----------------------- #
 
 url: http://blog.michielborkent.nl
-title: Through the cracks of immutability
-subtitle: Notes on Clojure, Clojurescript, Datomic and other interesting technologies.
+title: REPL adventures
+subtitle: Mostly about Clojure and ClojureScript
 author: Michiel Borkent
 simple_search: https://www.google.com/search
 description:

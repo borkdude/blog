@@ -44,7 +44,7 @@ y: 456
 The problem can be subdivided into parsing and processing. When I
 solved this problem in 2015 I used good old `string/split` and
 regexes. But it can also be solved quite elegantly with
-[Spec](https://clojure.org/about/spec) as we shall see.
+[clojure.spec](https://clojure.org/guides/spec) as we shall see.
 
 I'll walk you through the circuit spec in reverse.
 
@@ -105,9 +105,9 @@ A value is either a variable name or a non-negative integer.
 ```
 
 
-Lastly, a variable name is a symbol. I could have specified this more
-by restricting the allowed characters and the length of the symbol,
-but this was not needed to succesfully parse my input.
+Lastly, a variable name is a symbol. I could have specified this in
+more detail by restricting the allowed characters and the length of
+the symbol, but this was not needed to succesfully parse my input.
 
 ``` clojure
 (s/def ::varname
@@ -115,10 +115,11 @@ but this was not needed to succesfully parse my input.
     (fn [] varname-gen)))
 ```
 
-However, to generate a variable name which looks like my input, I need
-to provide my own generator. Scanning through my input, I discovered
-that a variable name's length is either 1 or 2 and only alphabetic
-characters may be used.
+However, to generate a variable name which looks like my input, for
+the sake of playing around with spec, I need to provide my own
+generator. Scanning through my input, I discovered that a variable
+name's length is either 1 or 2 and only alphabetic characters may be
+used.
 
 ``` clojure
 (def varname-gen
@@ -147,8 +148,8 @@ We can now generate entire expressions:
 Looks good.
 
 To read the lines from the input file I cheated a little bit by using
-`edn/read-string` which parses number and symbols for me from raw
-strings:
+`edn/read-string` which parses raw strings to a vector of symbols and
+numbers for me:
 
 ``` clojure
 (defn get-lines []
@@ -163,15 +164,19 @@ strings:
         lines))
 ```
 
+I could have used `line-seq` or a text transducer to save some memory,
+but as Knuth says, if you optimize everything you will always be
+unhappy.
+
 Let's peek at the first conformed expression which corresponds to the
 line `bn RSHIFT 2 -> bo `:
 
 ``` clojure
- ;;=> {:lhs [:binary-expression {:left-operand [:name bn], :operator RSHIFT, :right-operand [:value 2]}], :arrow ->, :rhs bo}
+(first (parsed-lines (get-lines))) ;;=> {:lhs [:binary-expression {:left-operand [:name bn], :operator RSHIFT, :right-operand [:value 2]}], :arrow ->, :rhs bo}
 ```
 
-Yay! Now we have to write some code that evaluate these lines and
-calculate the values for each variable. To do this, we are going to
+Yay! Now we have to write some code that processes these lines and
+calculates the values for each variable. To do this, we are going to
 build up a map of symbols to their values:
 
 ``` clojure
@@ -194,9 +199,10 @@ evaluation of the left hand side.
 The reason we are using a `delay` for the values of the context map,
 is twofold: delaying and caching.  Firstly, not all values that the
 variable depends on are already added to the context, so we have to
-delay calculation until every expression had been processed. Secondly,
+delay calculation until every expression has been processed. Secondly,
 once a value of a variable is known, we do not want to recalculate
-it.
+it. My circuit file is 339 lines long and without caching this becomes
+terribly slow.
 
 The API we need to get the solution for our Advent of Code puzzle is a
 function from symbol to integer.
