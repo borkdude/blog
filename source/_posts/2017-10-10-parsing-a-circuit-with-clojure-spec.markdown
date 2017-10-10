@@ -123,14 +123,13 @@ used.
 
 ``` clojure
 (def varname-gen
-  (gen/fmap (fn [[i j l]]
+  (gen/fmap (fn [chars]
               (symbol
-               (str/lower-case (.substring
-                                (str i j)
-                                0 l))))
-            (gen/tuple (gen/char-alpha)
-                       (gen/char-alpha)
-                       (gen/choose 1 2))))
+               (str/lower-case
+                (apply str chars))))
+            (gen/vector (gen/char-alpha)
+                        1
+                        2)))
 ```
 
 Running the generator yields for example:
