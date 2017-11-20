@@ -163,9 +163,9 @@ numbers for me:
         lines))
 ```
 
-I could have used `line-seq` or a text transducer to save some memory,
-but as Knuth says, if you optimize everything you will always be
-unhappy.
+I could have used `line-seq` or a [text transducer](https://stackoverflow.com/a/47354316/6264)
+to save some memory, but as Knuth says, if you optimize everything you will always
+be unhappy.
 
 Let's peek at the first conformed expression which corresponds to the
 line `bn RSHIFT 2 -> bo `:
