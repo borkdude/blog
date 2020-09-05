@@ -66,7 +66,7 @@ direcly on rewrite-clj nodes in order to preserve location information. This led
 to the current implementation of the `:analyze-call` hook, documented
 [here](https://github.com/borkdude/clj-kondo/blob/master/doc/config.md#hooks).
 Additionally, some library specific example config + hook code is provided
-[here](https://github.com/borkdude/clj-kondo/tree/master/libraries), showing how
+[here](https://github.com/borkdude/clj-kondo/tree/master/examples), showing how
 to make clj-kondo understand [Rum](https://github.com/tonsky/rum)'s `defc` macro
 and [slingshot](https://github.com/scgilardi/slingshot)'s `try+` macro.
 
@@ -75,7 +75,7 @@ does provide a higher degree of linting quality while still enjoying the
 benefits of static analysis. Luckily we only have to figure out the right code
 for each library once. I urge library authors and users to contribute their
 configurations to the clj-kondo
-[repository](https://github.com/borkdude/clj-kondo/tree/master/libraries) so we
+[repository](https://github.com/borkdude/clj-kondo/tree/master/examples) so we
 can all benefit.
 
 [Clojurist Together](https://www.clojuriststogether.org/) has sponsored this
