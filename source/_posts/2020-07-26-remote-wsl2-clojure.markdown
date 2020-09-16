@@ -6,6 +6,12 @@ comments: true
 categories: [wsl2, clojure]
 ---
 
+**EDIT 2020-09-16:** this post is now also available as a talk. The slides are
+available
+[here](https://speakerdeck.com/borkdude/porting-a-macos-clojure-dev-setup-to-windows-wsl2).
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/j5jLPzBRtKI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 In the last few years I've been developing predominantly on Apple
 MacBooks. Recently I built myself a
 [new](https://tweakers.net/pricewatch/bestelkosten/2370528)
