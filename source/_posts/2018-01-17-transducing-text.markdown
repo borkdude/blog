@@ -7,7 +7,7 @@ categories: [clojure]
 ---
 
 This post highlights of one of the core ideas posted in [this
-blogpost](https://tech.grammarly.com/blog/building-etl-pipelines-with-clojure). If
+blogpost](https://www.grammarly.com/blog/engineering/building-etl-pipelines-with-clojure/). If
 you've already read it and you're intimately familiar with
 transducers, this post probably won't have anything new for you. I've
 posted this to
@@ -33,7 +33,7 @@ Given input `work.txt`:
 
 this would return `(1 2 1 6 4 4 6)`. One caveat with this approach is
 you have to realize the result inside the `with-open` macro, else the
-file would already be closed.  
+file would already be closed.
 
 What if we want to use transducers
 instead of lazy collection transformations? The ingredient you need is
@@ -61,7 +61,7 @@ and which closes the reader when you're done reducing:
 ``` clojure
     (require '[clojure.string :as str])
     (require '[clojure.java.io :as io])
- 
+
     (into []
           (comp
            (mapcat #(str/split % #";"))
@@ -113,4 +113,4 @@ or with `take-while`:
      (lines-reducible (io/reader "/tmp/work.txt")))
 ```
 
-Read https://tech.grammarly.com/blog/building-etl-pipelines-with-clojure for more details.
+Read https://www.grammarly.com/blog/engineering/building-etl-pipelines-with-clojure-and-transducers/ for more details.
