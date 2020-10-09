@@ -7,7 +7,7 @@ categories: [clojure]
 ---
 
 This post highlights of one of the core ideas posted in [this
-blogpost](https://www.grammarly.com/blog/engineering/building-etl-pipelines-with-clojure/). If
+blogpost](https://www.grammarly.com/blog/engineering/building-etl-pipelines-with-clojure-and-transducers/). If
 you've already read it and you're intimately familiar with
 transducers, this post probably won't have anything new for you. I've
 posted this to
