@@ -131,7 +131,7 @@
   (let [in-fmt (DateTimeFormatter/ofPattern "yyyy-MM-dd")
         local-date (java.time.LocalDate/parse yyyy-MM-dd in-fmt)
         fmt (DateTimeFormatter/ofPattern "yyyy-MM-dd'T'HH:mm:ssxxx")
-        now (java.time.ZonedDateTime/of (.atStartOfDay local-date) java.time.ZoneOffset/UTC)]
+        now (java.time.ZonedDateTime/of (.atTime local-date 23 59 59) java.time.ZoneOffset/UTC)]
     (.format now fmt)))
 
 (def blog-root "https://blog.michielborkent.nl/")

@@ -51,4 +51,4 @@
 {:title "Migrating this blog from Octopress to Babashka"
  :file "migrating-octopress-to-babashka.md"
  :categories #{"clojure"}
- :date "2021-10-24"}
+ :date "2021-10-25"}
