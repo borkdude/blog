@@ -19,8 +19,8 @@ up with this list of requirements / wishes:
 - Writing blog posts in a convenient format: markdown is good enough, let's keep it
 - Don't use a framework like Octopress again: it isn't worth the learning curve for me
 - Don't get stuck in a language I don't use every day. The deprecation warnings
-  in Ruby scared me and it was time consuming install or update the tooling that
-  I didn't use on a daily basis.
+  in Ruby scared me and it was time-consuming to install or update the tooling
+  that I didn't use on a daily basis.
 
 My blog has the following essential components:
 
