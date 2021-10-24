@@ -5,10 +5,9 @@ using [Octopress](http://octopress.org/) back then and have been using it for
 seven years. But in recent years I became frustrated with it since on every new
 system I had to install a version of Ruby that happened to work with Octopress,
 which wasn't always the case. When it did work, I started getting deprecation
-warnings from Ruby while compiling this blog. Octopress 1, the version I
-adopted in 2014 seemed no longer maintained and the Octopress website was
-announcing that version 3 was coming soon. At least, the website announced it in
-2015 but I haven't seen any updates since then. It felt time for me to move on.
+warnings from Ruby while compiling this blog. On top of this, Octopress seemed
+no longer maintained. The website announced version 3 in 2015 but I haven't seen
+any updates since then. It felt like time to move on.
 
 ## Requirements for replacement
 
@@ -18,7 +17,9 @@ up with this list of requirements / wishes:
 - Port the existing blog with as little effort as possible
 - Writing blog posts in a convenient format: markdown is good enough, let's keep it
 - Don't use a framework like Octopress again: it isn't worth the learning curve for me
-- Don't get stuck in a language I don't use every day (the deprecation warnings in Ruby scared me)
+- Don't get stuck in a language I don't use every day. The deprecation warnings
+  in Ruby scared me and it was time consuming install or update the tooling that
+  I didn't use on a daily basis.
 
 My blog has the following essential components:
 
@@ -29,9 +30,11 @@ My blog has the following essential components:
 - Highlighting for Clojure code snippets: not super important, but I'd like to
   at least have this back after a rewrite.
 
-The primary goal of this blog is to share some of my experiences. All other
-things, like being able to react on a blog post, a fancy design, are secondary
-and can be figured out later.
+The primary goal of this blog is to share some of my experiences. Of secondary importance:
+
+- A way for users to directly react. For now I can live with users reacting via
+  Twitter, Clojurians Slack, etc. and I can figure this out later.
+- A fancy web design.
 
 The language I am most fluent in is Clojure. [Babashka](https://babashka.org/)
 is a scripting tool that has similar startup characteristics as Ruby so it would
@@ -65,6 +68,10 @@ I removed these sections replaced them with maps in a file called `posts.edn`:
 ```
 
 The maps are top level values so I can easily append new ones programmatically.
+The `:legacy true` flag is for blog posts that existed before the rewrite so I
+can create redirect pages for them. I plan to no longer include the date in the
+direct blog post address, but I don't want to break thr web for older blog
+posts.
 
 Then I started writing the `render.clj` script which iterates over every entry
 in `posts.edn` and renders markdown files to HTML.
@@ -116,13 +123,14 @@ The tweaks:
     html))
 ```
 
-After those workaround, it was pretty straightforward to support the most
+After those workarounds, it was pretty straightforward to support the most
 essential things my Octopress blog did.
 
 ## Feeds
 
 The generation of `atom.xml` and `planetclojure.xml` (which only contains
-Clojure-related posts) with a bit of `clojure.data.xml` code:
+Clojure-related posts) were easy to implement with a bit of `clojure.data.xml`
+code:
 
 ``` clojure
 (def blog-root "http://blog.michielborkent.nl/")
@@ -167,7 +175,7 @@ tasks](https://book.babashka.org/#tasks) to create new blog posts. E.g. I
 created this very blog post using:
 
 ``` shell
-$ bb new :file migrating-octopress-to-babashka.md :title "Migrating this blog from octopress to babashka in 160 lines of Clojure"
+$ bb new :file migrating-octopress-to-babashka.md :title "Migrating this blog from octopress to babashka"
 ```
 
 All implemented tasks so far:
@@ -186,10 +194,10 @@ This replaces the `rake` stuff I used to have with Octopress.
 
 ## Conclusion
 
-I'm pretty happy with how far I got with a couple of hours hacking the babashka
-script together. I feel in control over my own blog again. From here on I can
-look for a plugin lets users respond to blog posts and perhaps a fancier
-design. If you anything useful to share regarding this, please let me know on
-e.g. [Twitter](https://twitter.com/borkdude).
+I'm pretty happy with how far I got with a couple of hours hacking on the
+babashka scripts and tasks. I feel in control over my own blog again. From here
+on I can look for a plugin lets users respond to blog posts and perhaps a
+fancier design. If you anything useful to share regarding this, please let me
+know on e.g. [Twitter](https://twitter.com/borkdude).
 
 The code for this blog is available [here](https://github.com/borkdude/blog).
