@@ -27,7 +27,8 @@ My blog has the following essential components:
 - Archive page with list of all blog posts written so far
 - Index page that lists the most recent blog posts
 - Each post has its own HTML page
-- An `atom.xml` feed for [Planet Clojure](http://planet.clojure.in/)
+- An `atom.xml` feed and a bespoke `planetclojure.xml` feed for [Planet
+  Clojure](http://planet.clojure.in/)
 - Highlighting for Clojure code snippets: not super important, but I'd like to
   at least have this back after a rewrite.
 
