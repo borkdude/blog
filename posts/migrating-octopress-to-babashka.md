@@ -198,7 +198,7 @@ This replaces the `rake` stuff I used to have with Octopress.
 I'm pretty happy with how far I got with a couple of hours hacking on the
 babashka scripts and tasks. The meat of the work is in `render.clj` which is
 under 170 lines of Clojure. I feel in control over my own blog again. From here
-on I can look for a plugin lets users respond to blog posts and perhaps a
+on I can look for a plugin which lets users respond to blog posts and perhaps a
 fancier design. If you anything useful to share regarding this, please let me
 know on e.g. [Twitter](https://twitter.com/borkdude).
 
