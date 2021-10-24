@@ -134,7 +134,7 @@
         now (java.time.ZonedDateTime/of (.atStartOfDay local-date) java.time.ZoneOffset/UTC)]
     (.format now fmt)))
 
-(def blog-root "http://blog.michielborkent.nl/")
+(def blog-root "https://blog.michielborkent.nl/")
 
 (defn atom-feed
   ;; validate at https://validator.w3.org/feed/check.cgi
