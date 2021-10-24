@@ -13,7 +13,8 @@
 (require '[pod.retrogradeorbit.bootleg.utils :as utils])
 
 (def posts (sort-by :date (comp - compare)
-                    (edn/read-string (slurp "posts.edn"))))
+                    (edn/read-string (format "[%s]"
+                                             (slurp "posts.edn")))))
 
 (def out-dir "public")
 
@@ -136,6 +137,7 @@
   [posts]
   (-> (xml/sexp-as-element
        [::atom/feed
+        {:xmlns "http://www.w3.org/2005/Atom"}
         [::atom/title "REPL adventures"]
         [::atom/link {:href "http://blog.michielborkent.nl/atom.xml" :rel "self"}]
         [::atom/link {:href "http://blog.michielborkent.nl"}]
