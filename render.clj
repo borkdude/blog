@@ -51,7 +51,6 @@
                               (fn [[match _]]
                                 (str/replace match "\n" " ")))
         hiccup (md/markdown markdown :data)
-        ;;hiccup (cons [:h1 title] hiccup)
         html (-> hiccup
                  (utils/convert-to :html))]
     html))

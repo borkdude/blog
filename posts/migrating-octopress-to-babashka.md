@@ -26,6 +26,12 @@ My blog has the following essential components:
 - Index page that lists the most recent blog posts
 - Each post has its own HTML page
 - An `atom.xml` feed for [Planet Clojure](http://planet.clojure.in/)
+- Highlighting for Clojure code snippets: not super important, but I'd like to
+  at least have this back after a rewrite.
+
+The primary goal of this blog is to share some of my experiences. All other
+things, like being able to react on a blog post, a fancy design, are secondary
+and can be figured out later.
 
 The language I am most fluent in is Clojure. [Babashka](https://babashka.org/)
 is a scripting tool that has similar startup characteristics as Ruby so it would
@@ -34,8 +40,8 @@ blog with a babashka script.
 
 ## Rewriting in babashka
 
-I started with copying each markdown file in `source/_posts` and moved them to a directory `posts`.
-In Octopress, blog posts start with a section like:
+I started with copying each markdown file in `source/_posts` and moved them to a
+directory `posts`.  In Octopress, blog posts start with a section like:
 
 ```
 ---
@@ -46,5 +52,72 @@ comments: true
 published: true
 categories: [clojure, clojurescript, figwheel, om]
 ---
+```
+
+I removed these sections replaced them with maps in a file called `posts.edn`:
+
+``` clojure
+{:title "Figwheel keep Om turning!"
+ :file "figwheel-keep-om-turning.md"
+ :date "2014-09-25"
+ :categories #{"clojure" "clojurescript" "figwheel" "om"}
+ :legacy true}
+```
+
+The maps are top level values so I can easily append new ones programmatically.
+
+I'm using a `bb.edn` file with [babashka
+tasks](https://book.babashka.org/#tasks) to create new blog posts. E.g. I created this very blog post using:
+
+``` shell
+$ bb new :file migrating-octopress-to-babashka.md :title "Migrating this blog from octopress to babashka in 160 lines of Clojure"
+```
+
+This replaces `rake whatever` (I forgot the specific command) to quickly add
+another blog post file + item in `posts.edn`.
+
+Then I started writing the `render.clj` script which iterates over every entry
+in `posts.edn` and renders markdown files to HTML.
+
+To do markdown rendering from babashka I'm using
+[bootleg](https://github.com/retrogradeorbit/bootleg) by Crispin Wellington
+which is available in the [pod
+registry](https://github.com/babashka/pod-registry/blob/master/examples/bootleg.clj).
+
+I had to fix a couple of things to get the rendering back that I had with
+Octopress. Links without markup, so `https://foobar.com` instead of
+`[foobar](https://foobar.com)` were rendered as an `a` element before, but
+bootleg doesn't do this out of the box.
+
+Another tweak I had to do is support line breaks in the middle of links like
+
+``` markdown
+[foobar]\n(https://foobar.com)
+```
+
+``` clojure
+(pods/load-pod 'retrogradeorbit/bootleg "0.1.9")
+
+(require '[pod.retrogradeorbit.bootleg.markdown :as md])
+
+(defn markdown->html [file]
+  (let [markdown (slurp file)
+
+        markdown (str/replace markdown #"http[A-Za-z0-9/:.=#?_-]+([\s])"
+
+                              (fn [[match ws]]
+
+                                (format "[%s](%s)%s"
+                                        (str/trim match)
+                                        (str/trim match)
+                                        ws)))
+        markdown (str/replace markdown #"\[(.*)\n(.*)\]"
+
+                              (fn [[match _]]
+                                (str/replace match "\n" " ")))
+        hiccup (md/markdown markdown :data)
+        html (-> hiccup
+                 (utils/convert-to :html))]
+    html))
 ```
 

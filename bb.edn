@@ -23,4 +23,8 @@
                                      (.format (java.time.LocalDate/now)
                                               (java.time.format.DateTimeFormatter/ofPattern "yyyy-MM-dd")))
                               :categories #{:clojure}})
-                       :append true)))}}}
+                       :append true)))}
+  render {:doc "Render blog"
+          :task (load-file "render.clj")}
+  publish {:doc "Publish to blog.michielborkent.nl"
+           :task (shell "rsync -a --delete public/ borkdude@michielborkent.nl:~/devblog")}}}

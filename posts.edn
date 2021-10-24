@@ -48,7 +48,7 @@
  :date "2020-07-26"
  :categories #{"wsl2", "clojure"}
  :legacy true}
-{:title "Migrating this blog from Octopress 1 to babashka in 160 lines of Clojure"
+{:title "Migrating this blog from Octopress to Babashka in 160 lines of Clojure"
  :file "migrating-octopress-to-babashka.md"
- :categories #{:clojure}
+ :categories #{"clojure"}
  :date "2021-10-24"}
