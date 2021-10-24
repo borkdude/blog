@@ -127,6 +127,22 @@ The tweaks:
 After those workarounds, it was pretty straightforward to support the most
 essential things my Octopress blog did.
 
+## Highlighting
+
+Clojure syntax highlighting works pretty well with
+[highlight.js](https://github.com/highlightjs/highlight.js) which I include like
+this:
+
+``` html
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+```
+
+After that it just pretty much worked. The syntax highlighting isn't perfect,
+but good enough for a blog with the occasional code snippet in my opinion.
+
 ## Feeds
 
 The generation of `atom.xml` and `planetclojure.xml` (which only contains
