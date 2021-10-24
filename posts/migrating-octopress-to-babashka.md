@@ -34,13 +34,17 @@ blog with a babashka script.
 
 ## Rewriting in babashka
 
-A started with copying each markdown file in `source/_posts` and moved them to a directory `posts`.
+I started with copying each markdown file in `source/_posts` and moved them to a directory `posts`.
 In Octopress, blog posts start with a section like:
 
 ```
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title: Figwheel keep Om turning!
+date: 2014-09-25 21:00:50 +0200
+comments: true
+published: true
+categories: [clojure, clojurescript, figwheel, om]
 ---
 ```
 
