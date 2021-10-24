@@ -140,8 +140,8 @@ this:
 <script>hljs.highlightAll();</script>
 ```
 
-After that it just pretty much worked. The syntax highlighting isn't perfect,
-but good enough for a blog with the occasional code snippet in my opinion.
+After that it just pretty much worked. The Clojure syntax highlighting isn't
+perfect, but good enough for a blog with the occasional snippet in my opinion.
 
 ## Feeds
 
