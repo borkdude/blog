@@ -66,16 +66,6 @@ I removed these sections replaced them with maps in a file called `posts.edn`:
 
 The maps are top level values so I can easily append new ones programmatically.
 
-I'm using a `bb.edn` file with [babashka
-tasks](https://book.babashka.org/#tasks) to create new blog posts. E.g. I created this very blog post using:
-
-``` shell
-$ bb new :file migrating-octopress-to-babashka.md :title "Migrating this blog from octopress to babashka in 160 lines of Clojure"
-```
-
-This replaces `rake whatever` (I forgot the specific command) to quickly add
-another blog post file + item in `posts.edn`.
-
 Then I started writing the `render.clj` script which iterates over every entry
 in `posts.edn` and renders markdown files to HTML.
 
@@ -87,13 +77,19 @@ registry](https://github.com/babashka/pod-registry/blob/master/examples/bootleg.
 I had to fix a couple of things to get the rendering back that I had with
 Octopress. Links without markup, so `https://foobar.com` instead of
 `[foobar](https://foobar.com)` were rendered as an `a` element before, but
-bootleg doesn't do this out of the box.
+bootleg, which uses [markdown-clj](https://github.com/yogthos/markdown-clj)
+doesn't do this out of the box.
 
-Another tweak I had to do is support line breaks in the middle of links like
+Another tweak I had to implement is support line breaks in the middle of
+markdown link syntax, since emacs's `fill-paragraph` sometimes causes that to
+happen:
 
 ``` markdown
-[foobar]\n(https://foobar.com)
+[foo
+bar](https://foobar.com)
 ```
+
+The tweaks:
 
 ``` clojure
 (pods/load-pod 'retrogradeorbit/bootleg "0.1.9")
@@ -102,22 +98,98 @@ Another tweak I had to do is support line breaks in the middle of links like
 
 (defn markdown->html [file]
   (let [markdown (slurp file)
-
+        ;; make links without markup clickable
         markdown (str/replace markdown #"http[A-Za-z0-9/:.=#?_-]+([\s])"
-
                               (fn [[match ws]]
-
                                 (format "[%s](%s)%s"
                                         (str/trim match)
                                         (str/trim match)
                                         ws)))
-        markdown (str/replace markdown #"\[(.*)\n(.*)\]"
-
-                              (fn [[match _]]
-                                (str/replace match "\n" " ")))
+        ;; allow links with markup over multiple lines
+        markdown (str/replace markdown #"\[[^\]]+\n"
+                              (fn [match]
+                                (str/replace match "\n" "$RET$")))
         hiccup (md/markdown markdown :data)
         html (-> hiccup
-                 (utils/convert-to :html))]
+                 (utils/convert-to :html))
+        html (str/replace html "$RET$" "\n")]
     html))
 ```
 
+After those workaround, it was pretty straightforward to support the most
+essential things my Octopress blog did.
+
+## Feeds
+
+The generation of `atom.xml` and `planetclojure.xml` (which only contains
+Clojure-related posts) with a bit of `clojure.data.xml` code:
+
+``` clojure
+(def blog-root "http://blog.michielborkent.nl/")
+
+(defn atom-feed
+  ;; validate at https://validator.w3.org/feed/check.cgi
+  [posts]
+  (-> (xml/sexp-as-element
+       [::atom/feed
+        {:xmlns "http://www.w3.org/2005/Atom"}
+        [::atom/title "REPL adventures"]
+        [::atom/link {:href "http://blog.michielborkent.nl/atom.xml" :rel "self"}]
+        [::atom/link {:href "http://blog.michielborkent.nl"}]
+        [::atom/updated (rfc-3339-now)]
+        [::atom/id blog-root]
+        [::atom/author
+         [::atom/name "Michiel Borkent"]]
+        (for [{:keys [title date file]} posts]
+          [::atom/entry
+           [::atom/id (str blog-root (str/replace file ".md" ".html"))]
+           [::atom/title title]
+           [::atom/updated (rfc-3339 date)]
+           [::atom/content {:type "html"}
+            [:-cdata (get @bodies file)]]])])
+      xml/indent-str))
+
+(spit (fs/file out-dir "atom.xml") (atom-feed posts))
+(spit (fs/file out-dir "planetclojure.xml")
+      (atom-feed (filter
+                  (fn [post]
+                    (some (:categories post) ["clojure" "clojurescript"]))
+                  posts)))
+```
+
+This [feed validator](https://validator.w3.org/feed/check.cgi) gave pretty good
+feedback on what should and should not go into this XML file.
+
+## Rake -> bb tasks
+
+Finally I wrote a `bb.edn` file with [babashka
+tasks](https://book.babashka.org/#tasks) to create new blog posts. E.g. I
+created this very blog post using:
+
+``` shell
+$ bb new :file migrating-octopress-to-babashka.md :title "Migrating this blog from octopress to babashka in 160 lines of Clojure"
+```
+
+All implemented tasks so far:
+
+``` shell
+$ bb tasks
+The following tasks are available:
+
+new     Create new blog article
+render  Render blog
+watch   Watch posts and templates and call render on file changes
+publish Publish to blog.michielborkent.nl
+```
+
+This replaces the `rake` stuff I used to have with Octopress.
+
+## Conclusion
+
+I'm pretty happy with how far I got with a couple of hours hacking the babashka
+script together. I feel in control over my own blog again. From here on I can
+look for a plugin lets users respond to blog posts and perhaps a fancier
+design. If you anything useful to share regarding this, please let me know on
+e.g. [Twitter](https://twitter.com/borkdude).
+
+The code for this blog is available [here](https://github.com/borkdude/blog).

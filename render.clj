@@ -41,21 +41,24 @@
 
 (defn markdown->html [file]
   (let [markdown (slurp file)
+        ;; make links without markup clickable
         markdown (str/replace markdown #"http[A-Za-z0-9/:.=#?_-]+([\s])"
                               (fn [[match ws]]
                                 (format "[%s](%s)%s"
                                         (str/trim match)
                                         (str/trim match)
                                         ws)))
-        markdown (str/replace markdown #"\[(.*)\n(.*)\]"
-                              (fn [[match _]]
-                                (str/replace match "\n" " ")))
+        ;; allow links with markup over multiple lines
+        markdown (str/replace markdown #"\[[^\]]+\n"
+                              (fn [match]
+                                (str/replace match "\n" "$$RET$$")))
         hiccup (md/markdown markdown :data)
         html (-> hiccup
-                 (utils/convert-to :html))]
+                 (utils/convert-to :html))
+        html (str/replace html "$$RET$$" "\n")]
     html))
 
-;; re-used when generating atom
+;; re-used when generating atom.xml
 (def bodies (atom {}))
 
 (doseq [{:keys [file title date legacy]} posts]
@@ -131,6 +134,8 @@
         now (java.time.ZonedDateTime/of (.atStartOfDay local-date) java.time.ZoneOffset/UTC)]
     (.format now fmt)))
 
+(def blog-root "http://blog.michielborkent.nl/")
+
 (defn atom-feed
   ;; validate at https://validator.w3.org/feed/check.cgi
   [posts]
@@ -141,12 +146,12 @@
         [::atom/link {:href "http://blog.michielborkent.nl/atom.xml" :rel "self"}]
         [::atom/link {:href "http://blog.michielborkent.nl"}]
         [::atom/updated (rfc-3339-now)]
-        [::atom/id "http://blog.michielborkent.nl/"]
+        [::atom/id blog-root]
         [::atom/author
          [::atom/name "Michiel Borkent"]]
         (for [{:keys [title date file]} posts]
           [::atom/entry
-           [::atom/id (str/replace file ".md" "")]
+           [::atom/id (str blog-root (str/replace file ".md" ".html"))]
            [::atom/title title]
            [::atom/updated (rfc-3339 date)]
            [::atom/content {:type "html"}
