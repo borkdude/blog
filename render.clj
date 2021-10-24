@@ -32,13 +32,13 @@
 ;;;; Generate posts from markdown
 
 (def post-template
-  "<i>Published: {{date}}</i> - back to <a href=\"index.html\">index</a>
+  "<i>Published: {{date}}</i> - <a href=\"archive.html\">archive</a>
 <h1>{{title}}</h1>
 {{body | safe }}
-<i>Published: {{date}}</i> - back to <a href=\"index.html\">index</a>
+<i>Published: {{date}}</i> - <a href=\"archive.html\">archive</a>
 ")
 
-(defn markdown->html [title file]
+(defn markdown->html [file]
   (let [markdown (slurp file)
         markdown (str/replace markdown #"http[A-Za-z0-9/:.=#?_-]+([\s])"
                               (fn [[match ws]]
@@ -59,7 +59,7 @@
 (def bodies (atom {}))
 
 (doseq [{:keys [file title date legacy]} posts]
-  (let [body (markdown->html title (str (fs/file "posts" file)))
+  (let [body (markdown->html (str (fs/file "posts" file)))
         _ (swap! bodies assoc file body)
         body (selmer/render post-template {:body body
                                            :title title
@@ -81,9 +81,9 @@
                                           {:new_url html-file})]
           (spit (fs/file (fs/file legacy-dir "index.html")) redirect-html))))))
 
-;;;; Generate index page
+;;;; Generate archive page
 
-(def index-html (slurp "templates/index.html"))
+(def archive-html (slurp "templates/archive.html"))
 
 (defn post-links []
   [:ul
@@ -94,10 +94,25 @@
            " - "
            date]])])
 
-(spit (fs/file out-dir "index.html")
-      (selmer/render index-html
+(spit (fs/file out-dir "archive.html")
+      (selmer/render archive-html
                      {:body (utils/convert-to (post-links) :html)}))
 
+;;;; Generate index page with last 3 posts
+
+(def index-html (slurp "templates/index.html"))
+
+(defn index []
+  (for [{:keys [file title date]} (take 3 posts)]
+    [:div
+     [:h1 [:a {:href (str/replace file ".md" ".html")}
+           title]]
+     [:i "Published " date]
+     (get @bodies file)]))
+
+(spit (fs/file out-dir "index.html")
+      (selmer/render index-html
+                     {:body (utils/convert-to (index) :html)}))
 
 ;;;; Generate atom feeds
 

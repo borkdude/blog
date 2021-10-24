@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="style.css">
     {{header}}
   </head>
-  <body>
+  <body class="index">
     <div style="max-width: 800px; margin: 0 auto 0 auto;">
       <div style="max-width: 800px">
-        <h1>REPL adventures</h1>
-        <p>A blog mostly about Clojure and ClojureScript</p>
-        <h2>Blog index</h2>
+        <h1><a href="index.html">REPL adventures</a></h1>
+        <p>A blog mostly about Clojure and ClojureScript.</p>
+        <a href="archive.html">Archive</a>
         {{body | safe }}
+        <a href="archive.html">Archive</a>
       </div>
     </div>
   </body>
