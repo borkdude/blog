@@ -6,7 +6,7 @@ today. In recent years I became frustrated with it since on every new system I
 had to install a version of Ruby that happened to work with Octopress, which
 wasn't always the case. When it did work, I started getting deprecation warnings
 from Ruby while compiling this blog. On top of this, Octopress seemed no longer
-maintained. The website says "version 3 coming soon" but this announcement was
+maintained. The website says "Octopress 3.0 is Coming" but this announcement was
 from 2015 and the website hasn't been updated ever since. It felt like time to
 move on.
 
