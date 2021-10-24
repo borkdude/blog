@@ -1,0 +1,13 @@
+body {
+  font-family: 'Georgia';
+  font-size: 17px;
+}
+
+.index ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.index li {
+  margin-bottom: 1em;
+}

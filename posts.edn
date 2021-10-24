@@ -1,0 +1,54 @@
+{:title "Figwheel keep Om turning!"
+ :file "figwheel-keep-om-turning.md"
+ :date "2014-09-25"
+ :categories #{"clojure" "clojurescript" "figwheel" "om"}
+ :legacy true}
+{:title "My ClojureScript adventure at Øredev"
+ :file "my-clojurescript-adventure-at-oredev.md"
+ :date "2014-11-16"
+ :categories #{"clojure", "clojurescript", "react" "om", "reagent"}
+ :legacy true}
+{:title "Migrating a Leiningen project to boot"
+ :file "from-leiningen-to-boot.md"
+ :date "2015-06-06"
+ :categories #{"clojure", "leiningen", "boot" "clojurescript", "figwheel"}
+ :legacy true}
+{:title "Using the Clojure REPL with Java or Scala"
+ :file "clojure-from-scala.md"
+ :date "2016-07-26"
+ :categories #{"clojure", "scala", "repl"}
+ :legacy true}
+{:title "One off experiments with Clojure and ClojureScript libraries"
+ :file "one-off-clojure-libraries.md"
+ :date "2016-10-19"
+ :categories #{"clojure" "leiningen" "boot" "planck"}
+ :legacy true}
+{:title "Inline def: an effective* debugging technique for Clojure"
+ :file "inline-def-debugging.md"
+ :date "2017-05-25"
+ :categories #{"clojure"}
+ :legacy true}
+{:title "Parsing a circuit with clojure.spec"
+ :file "parsing-a-circuit-with-clojure-spec.md"
+ :date "2017-10-10"
+ :categories #{"clojure" "spec"}
+ :legacy true}
+{:title "Transducing a text file"
+ :file "transducing-text.md"
+ :date "2018-01-17"
+ :categories #{"clojure"}
+ :legacy true}
+{:title "Clj-kondo hooks"
+ :file "clj-kondo-hooks.md"
+ :date "2020-06-21"
+ :categories #{"clojure", "clj-kondo"}
+ :legacy true}
+{:title "Porting a macOS Clojure dev setup to Windows WSL2"
+ :file "remote-wsl2-clojure.md"
+ :date "2020-07-26"
+ :categories #{"wsl2", "clojure"}
+ :legacy true}
+{:title "Migrating this blog from Octopress to Babashka in 160 lines of Clojure"
+ :file "migrating-octopress-to-babashka.md"
+ :categories #{"clojure"}
+ :date "2021-10-24"}
