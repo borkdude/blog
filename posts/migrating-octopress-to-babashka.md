@@ -72,7 +72,7 @@ I removed these sections replaced them with maps in a file called `posts.edn`:
 The maps are top level values so I can easily append new ones programmatically.
 The `:legacy true` flag is for blog posts that existed before the rewrite so I
 can create redirect pages for them. I plan to no longer include the date in the
-direct blog post URLs, but I don't want to break thr web for older blog posts.
+direct blog post URLs, but I don't want to break the web for older blog posts.
 
 Then I started writing the `render.clj` script which iterates over every entry
 in `posts.edn` and renders markdown files to HTML.
