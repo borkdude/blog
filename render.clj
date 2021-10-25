@@ -147,9 +147,12 @@
         [::atom/id blog-root]
         [::atom/author
          [::atom/name "Michiel Borkent"]]
-        (for [{:keys [title date file]} posts]
+        (for [{:keys [title date file]} posts
+              :let [html (str/replace file ".md" ".html")
+                    link (str blog-root html)]]
           [::atom/entry
-           [::atom/id (str blog-root (str/replace file ".md" ".html"))]
+           [::atom/id link]
+           [::atom/link link]
            [::atom/title title]
            [::atom/updated (rfc-3339 date)]
            [::atom/content {:type "html"}
