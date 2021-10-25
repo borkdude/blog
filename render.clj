@@ -18,8 +18,8 @@
 
 (def out-dir "public")
 
-(def post-html
-  (slurp "templates/post.html"))
+(def base-html
+  (slurp "templates/base.html"))
 
 ;;;; Sync images and CSS
 
@@ -33,10 +33,9 @@
 ;;;; Generate posts from markdown
 
 (def post-template
-  "<i>Published: {{date}}</i> - <a href=\"archive.html\">archive</a>
-<h1>{{title}}</h1>
+  "<h1>{{title}}</h1>
 {{body | safe }}
-<i>Published: {{date}}</i> - <a href=\"archive.html\">archive</a>
+<i>Published: {{date}}</i>
 ")
 
 (defn markdown->html [file]
@@ -67,7 +66,7 @@
         body (selmer/render post-template {:body body
                                            :title title
                                            :date date})
-        html (selmer/render post-html
+        html (selmer/render base-html
                             {:title title
                              :body body})
         html-file (str/replace file ".md" ".html")]
@@ -86,35 +85,34 @@
 
 ;;;; Generate archive page
 
-(def archive-html (slurp "templates/archive.html"))
-
 (defn post-links []
-  [:ul
-   (for [{:keys [file title date]} posts]
-     [:li [:span
-           [:a {:href (str/replace file ".md" ".html")}
-            title]
-           " - "
-           date]])])
+  [:div {:style "width: 600px;"}
+   [:h1 "Archive"]
+   [:ul.index
+    (for [{:keys [file title date]} posts]
+      [:li [:span
+            [:a {:href (str/replace file ".md" ".html")}
+             title]
+            " - "
+            date]])]])
 
 (spit (fs/file out-dir "archive.html")
-      (selmer/render archive-html
-                     {:body (utils/convert-to (post-links) :html)}))
+      (selmer/render base-html
+                     {:skip-archive true
+                      :body (utils/convert-to (post-links) :html)}))
 
 ;;;; Generate index page with last 3 posts
-
-(def index-html (slurp "templates/index.html"))
 
 (defn index []
   (for [{:keys [file title date]} (take 3 posts)]
     [:div
      [:h1 [:a {:href (str/replace file ".md" ".html")}
            title]]
-     [:i "Published " date]
-     (get @bodies file)]))
+     (get @bodies file)
+     [:i "Published " date]]))
 
 (spit (fs/file out-dir "index.html")
-      (selmer/render index-html
+      (selmer/render base-html
                      {:body (utils/convert-to (index) :html)}))
 
 ;;;; Generate atom feeds
