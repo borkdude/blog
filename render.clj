@@ -51,9 +51,7 @@
         markdown (str/replace markdown #"\[[^\]]+\n"
                               (fn [match]
                                 (str/replace match "\n" "$$RET$$")))
-        hiccup (md/markdown markdown :data)
-        html (-> hiccup
-                 (utils/convert-to :html))
+        html (md/markdown markdown :data :html)
         html (str/replace html "$$RET$$" "\n")]
     html))
 
