@@ -83,8 +83,8 @@ which is available in the [pod
 registry](https://github.com/babashka/pod-registry/blob/master/examples/bootleg.clj).
 
 I had to fix a couple of things to get the rendering back that I had with
-Octopress. Links without markup, so `https://foobar.com` instead of
-`[foobar](https://foobar.com)` were rendered as an `a` element before, but
+Octopress. Links without markup: `https://foobar.com` instead of
+`[foobar](https://foobar.com)`, were rendered as an `a` element before, but
 bootleg, which uses [markdown-clj](https://github.com/yogthos/markdown-clj)
 doesn't do this out of the box.
 
