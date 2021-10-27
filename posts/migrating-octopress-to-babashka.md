@@ -2,13 +2,15 @@
 
 Seven years ago I started writing about my adventures with Clojure. I started
 using [Octopress](http://octopress.org/) back then and was still using it until
-today. In recent years I became frustrated with it since on every new system I
-had to install a version of Ruby that happened to work with Octopress, which
-wasn't always the case. When it did work, I started getting deprecation warnings
-from Ruby while compiling this blog. On top of this, Octopress seemed no longer
-maintained. The website says "Octopress 3.0 is Coming" but this announcement was
-from 2015 and the website hasn't been updated ever since. It felt like time to
-move on.
+today. Octopress worked great for my blogging purposes and I'm grateful that it
+existed. However, in recent years I became frustrated with the experience of
+using it, which is probably due to a lack of my familiarity with the Ruby
+ecosystem. On every new system I had to install a version of Ruby that happened
+to work with Octopress, which wasn't always the case. When it did work, I
+started getting deprecation warnings from Ruby while compiling this blog. On top
+of this, Octopress seemed no longer maintained. The website says "Octopress 3.0
+is Coming" but this announcement was from 2015 and the website hasn't been
+updated ever since. It felt like time to move on.
 
 ## Requirements for replacement
 
