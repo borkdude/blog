@@ -150,24 +150,26 @@ Clojure-related posts) were easy to implement with a bit of `clojure.data.xml`
 code:
 
 ``` clojure
-(def blog-root "http://blog.michielborkent.nl/")
+(def blog-root "https://blog.michielborkent.nl/")
 
 (defn atom-feed
-  ;; validate at https://validator.w3.org/feed/check.cgi
   [posts]
   (-> (xml/sexp-as-element
        [::atom/feed
         {:xmlns "http://www.w3.org/2005/Atom"}
         [::atom/title "REPL adventures"]
-        [::atom/link {:href "http://blog.michielborkent.nl/atom.xml" :rel "self"}]
-        [::atom/link {:href "http://blog.michielborkent.nl"}]
+        [::atom/link {:href (str blog-root "atom.xml") :rel "self"}]
+        [::atom/link {:href blog-root}]
         [::atom/updated (rfc-3339-now)]
         [::atom/id blog-root]
         [::atom/author
          [::atom/name "Michiel Borkent"]]
-        (for [{:keys [title date file]} posts]
+        (for [{:keys [title date file]} posts
+              :let [html (str/replace file ".md" ".html")
+                    link (str blog-root html)]]
           [::atom/entry
-           [::atom/id (str blog-root (str/replace file ".md" ".html"))]
+           [::atom/id link]
+           [::atom/link link]
            [::atom/title title]
            [::atom/updated (rfc-3339 date)]
            [::atom/content {:type "html"}
