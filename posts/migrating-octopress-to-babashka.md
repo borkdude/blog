@@ -197,35 +197,6 @@ created this very blog post using:
 $ bb new :file migrating-octopress-to-babashka.md :title "Migrating this blog from octopress to babashka"
 ```
 
-``` clojure
-(def post-template
-  (str/triml "
-{:title {{title | safe }}
- :file {{file | safe }}
- :categories {{categories}}
- :date {{date | safe }}}\n"))
-
-(defn now []
-  (pr-str
-   (.format (java.time.LocalDate/now)
-            (java.time.format.DateTimeFormatter/ofPattern "yyyy-MM-dd"))))
-
-(defn new []
-  (let [{:keys [file title]} opts]
-    (assert file "Must give title")
-    (assert title "Must give filename")
-    (let [post-file (fs/file "posts" file)]
-      (when-not (fs/exists? post-file)
-        (spit (fs/file "posts" file) "TODO: write blog post")
-        (spit (fs/file "posts.edn")
-              (selmer/render post-template
-                             {:title (pr-str title)
-                              :file (pr-str file)
-                              :date (now)
-                              :categories #{:clojure}})
-              :append true)))))
-```
-
 All implemented tasks so far:
 
 ``` shell
