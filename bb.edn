@@ -1,29 +1,8 @@
 {:paths ["."]
  :tasks
- {:requires ([babashka.fs :as fs]
-             [tasks-helper :as th]
-             [selmer.parser :as selmer]
-             [clojure.string :as str])
-  :init (def opts (th/parse-opts *command-line-args*))
+ {:requires ([tasks-helper :as th])
   new {:doc "Create new blog article"
-       :task (let [{:keys [file title]} opts
-                   post-file (fs/file "posts" file)]
-               (assert file "Must give title")
-               (assert title "Must give filename")
-               (when-not (fs/exists? post-file)
-                 (spit (fs/file "posts" file) "TODO: write blog post")
-                 (spit (fs/file "posts.edn")
-                       (selmer/render (str/triml "
-{:title {{title | safe }}
- :file {{file | safe }}
- :categories {{categories}}
- :date {{date | safe }}}\n") {:title (pr-str title)
-                              :file (pr-str file)
-                              :date (pr-str
-                                     (.format (java.time.LocalDate/now)
-                                              (java.time.format.DateTimeFormatter/ofPattern "yyyy-MM-dd")))
-                              :categories #{:clojure}})
-                       :append true)))}
+       :task (th/new)}
   render {:doc "Render blog"
           :task (load-file "render.clj")}
   watch  {:doc "Watch posts and templates and call render on file changes"
