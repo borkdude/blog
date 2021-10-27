@@ -124,8 +124,12 @@ The tweaks:
     html))
 ```
 
-After those workarounds, it was pretty straightforward to support the most
-essential things my Octopress blog did.
+Since this is my personal blog solution, I'm not too worried about these hacks
+and not being able to use `$RET` in the text of my blogs. If I were to publish
+this as a framework or library I would have solved it at the root level, but
+that wasn't a cost I was ready to pay now. After these workarounds, it was
+pretty straightforward to support the most essential things my Octopress blog
+did.
 
 ## Highlighting
 
