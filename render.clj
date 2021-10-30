@@ -69,7 +69,7 @@
          (-> (fs/last-modified-time cached)
              fs/file-time->millis))))
 
-(fs/create-dirs (fs/file ".work" "posts"))
+(fs/create-dirs (fs/file ".work"))
 
 (doseq [{:keys [file title date legacy]} posts]
   (let [cache-file (fs/file ".work" (html-file file))
