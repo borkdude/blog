@@ -52,3 +52,7 @@
  :file "migrating-octopress-to-babashka.md"
  :categories #{"clojure"}
  :date "2021-10-25"}
+{:title "Speeding up builds with fs/modified-since"
+ :file "speeding-up-builds-fs-modified-since.md"
+ :categories #{:clojure}
+ :date "2021-10-30"}

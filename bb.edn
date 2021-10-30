@@ -6,7 +6,8 @@
        :task (th/new)}
   render {:doc "Render blog"
           :task (load-file "render.clj")}
-  watch  {:doc "Watch posts and templates and call render on file changes"
+  watch  {:depends [render]
+          :doc "Watch posts and templates and call render on file changes"
           :task (load-file "watch.clj")}
   publish {:doc "Publish to blog.michielborkent.nl"
            :depends [render]

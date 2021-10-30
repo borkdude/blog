@@ -100,7 +100,8 @@
   [:div {:style "width: 600px;"}
    [:h1 "Archive"]
    [:ul.index
-    (for [{:keys [file title date]} posts]
+    (for [{:keys [file title date preview]} posts
+          :when (not preview)]
       [:li [:span
             [:a {:href (str/replace file ".md" ".html")}
              title]
@@ -115,7 +116,8 @@
 ;;;; Generate index page with last 3 posts
 
 (defn index []
-  (for [{:keys [file title date]} (take 3 posts)]
+  (for [{:keys [file title date preview]} (take 3 posts)
+        :when (not preview)]
     [:div
      [:h1 [:a {:href (str/replace file ".md" ".html")}
            title]]
@@ -158,7 +160,8 @@
         [::atom/id blog-root]
         [::atom/author
          [::atom/name "Michiel Borkent"]]
-        (for [{:keys [title date file]} posts
+        (for [{:keys [title date file preview]} posts
+              :when (not preview)
               :let [html (str/replace file ".md" ".html")
                     link (str blog-root html)]]
           [::atom/entry
