@@ -62,20 +62,13 @@
 (defn html-file [file]
   (str/replace file ".md" ".html"))
 
-(defn stale? [cached anchor]
-  (or (not (fs/exists? cached))
-      (> (-> (fs/last-modified-time anchor)
-             fs/file-time->millis)
-         (-> (fs/last-modified-time cached)
-             fs/file-time->millis))))
-
 (fs/create-dirs (fs/file ".work"))
 
 (doseq [{:keys [file title date legacy]} posts]
   (let [cache-file (fs/file ".work" (html-file file))
         markdown-file (str "posts/" file)
-        stale-cache? (stale? cache-file markdown-file)
-        body (if stale-cache?
+        stale? (seq (fs/modified-since cache-file markdown-file))
+        body (if stale?
                (let [body (markdown->html markdown-file)]
                  (spit cache-file body)
                  body)
