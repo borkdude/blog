@@ -84,7 +84,7 @@ $ bb -e '(fs/modified-since "a" "src")'
 (#object[sun.nio.fs.UnixPath 0x778e11d9 "src/a"])
 ```
 
-## Real life examples
+## Real world examples
 
 Today I used this function to speed up the rendering of this blog (which
 reminded me to blog about this function):
