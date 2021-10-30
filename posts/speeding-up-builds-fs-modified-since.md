@@ -2,7 +2,7 @@
 
 When designing [babashka tasks](https://book.babashka.org/#tasks) I was aiming
 to create something like `make`, `just`, `npm run`: run tasks with almost no
-startup time overhead, possibly with dependencies between then, but with a
+startup time overhead, possibly with dependencies between them, but with a
 language I like to work with: Clojure. One thing I deliberately left out for now
 was a mechanism that talks about targets and whether to rebuild those targets or
 not. Another inspiration for babashka tasks was
