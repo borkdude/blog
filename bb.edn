@@ -1,6 +1,7 @@
 {:paths ["."]
  :tasks
- {:requires ([tasks-helper :as th])
+ {:requires ([babashka.fs :as fs]
+             [tasks-helper :as th])
   new {:doc "Create new blog article"
        :task (th/new)}
   render {:doc "Render blog"
@@ -9,4 +10,7 @@
           :task (load-file "watch.clj")}
   publish {:doc "Publish to blog.michielborkent.nl"
            :depends [render]
-           :task (shell "rsync -a --delete public/ borkdude@michielborkent.nl:~/devblog")}}}
+           :task (shell "rsync -a --delete public/ borkdude@michielborkent.nl:~/devblog")}
+  clean {:doc "Remove .work and public directory"
+         :task (do (fs/delete-tree ".work")
+                   (fs/delete-tree "public"))}}}
