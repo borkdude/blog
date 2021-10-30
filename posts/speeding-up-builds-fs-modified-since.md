@@ -106,7 +106,7 @@ Here I used `fs/modified-since` simply as a predicate to check if the cached
 HTML output was newer than the markdown input file: if the result is non-empty,
 we have to rebuild the markdown to HTML and then store it in a `.work`
 directory. The rendering of this blog went down from rougly 1 second to 200ms
-after building it for the first time from scratch. There are more places where I
+after building it for the first time. There are more places where I
 could do a similar optimization but for now it's fast enough.
 
 I've already used this function several times in `bb.edn` tasks file to speed up
@@ -148,11 +148,11 @@ generally applicable. This form of optimization does come with a trade-off:
 e.g. when you forget to take into account changes to `deps.edn` or so, you might
 get a false positive 'nothing to do here'. It might be a good idea to put
 `.cpcache` in the fileset in a `deps.edn` project as a sign that the classpath
-changed. As a part of [TDEPS-83](https://clojure.atlassian.net/browse/TDEPS-83),
-which will land in the [clojure CLI](https://clojure.org/guides/deps_and_cli)
-soon (and soon after that in `bb` itself via
-[deps.clj](https://github.com/borkdude/deps.clj)), even transitive `:local/root`
-changes will be picked up in this directory.
+changed. Soon [TDEPS-83](https://clojure.atlassian.net/browse/TDEPS-83), which
+will land in the [clojure CLI](https://clojure.org/guides/deps_and_cli) (and
+soon after that in `bb` itself via
+[deps.clj](https://github.com/borkdude/deps.clj)) and then even transitive
+`:local/root` changes will be picked up in this directory.
 
 Hope you enjoyed this little write-up about `fs/modified-since`. Thanks again to
 JUXT Mach where I got the inspiration from.
