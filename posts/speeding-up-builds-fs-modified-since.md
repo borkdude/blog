@@ -67,7 +67,7 @@ have to build `a` for the first time or that it was deleted, possibly because of
 `clean` task. In that case `b` is returned as well:
 
 ```
-$ touch a
+$ rm a
 $ bb -e '(fs/modified-since "a" "b")'
 (#object[sun.nio.fs.UnixPath 0x108eff48 "b"])
 ```
