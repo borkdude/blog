@@ -19,7 +19,7 @@ moving files, creating symlinks, etc. The `babashka.fs` library is included in
 [babashka](https://babashka.org/) but can also be used as a library within
 Clojure JVM programs. Now let's see what this function does.
 
-## `modified-since`
+## `fs/modified-since`
 
 Let's first take a look at the [docstring](https://babashka.org/fs/babashka.fs.html#var-modified-since):
 
@@ -32,10 +32,12 @@ Let's first take a look at the [docstring](https://babashka.org/fs/babashka.fs.h
   or collection of files (e.g. returned by glob). Directories are searched
   recursively.
 
+In other words:
+
 - The `anchor` argument can be a file or directory.
 - The `file-set` argument can be a file or directory.
-- The return type is a seq of regular files what were _modified since_ the
-  maximum of all the modified timestamps in anchor.
+- The returned value is a seq of regular files from `file-set` that were
+  _modified since_ the maximum of all the modified timestamps in `anchor`.
 
 Let's see it in action.
 
@@ -46,7 +48,7 @@ $ bb -e '(fs/modified-since "a" "b")'
 (#object[sun.nio.fs.UnixPath 0x108eff48 "b"])
 ```
 
-We see that when the file `b` was modified since `a`. This is because we touched
+We see that the file `b` was modified since `a`. This is because we touched
 `b` after we touched `a`.
 
 Now let's touch `a` again:
@@ -60,8 +62,9 @@ $ bb -e '(fs/modified-since "a" "b")'
 In other words, if `a` was a build target and `b` was a source file, then we
 didn't have to rebuild `a` again since it was already up to date.
 
-What if `a` doesn't exist? In real scenarios we would have to build `a` for the
-first time. In that case `b` is returned as well:
+What if `a` doesn't exist? In real scenarios this would probably mean that we
+have to build `a` for the first time or that it was deleted, possibly because of
+`clean` task. In that case `b` is returned as well:
 
 ```
 $ touch a
@@ -81,7 +84,7 @@ $ bb -e '(fs/modified-since "a" "src")'
 (#object[sun.nio.fs.UnixPath 0x778e11d9 "src/a"])
 ```
 
-## Speeding up this blog
+## Real life examples
 
 Today I used this function to speed up the rendering of this blog (which
 reminded me to blog about this function):
@@ -99,11 +102,12 @@ reminded me to blog about this function):
 ...
 ```
 
-Here I used it simply as a predicate to check if the cached HTML output was
-newer than the markdown input file: if the result is non-empty, we have to
-rebuild the markdown to HTML and then store it in a `.work` directory. The
-rendering of this blog went down from rougly 1 second to 200ms. There are more
-places where I could do a similar optimization but for now it's fast enough.
+Here I used `fs/modified-since` simply as a predicate to check if the cached
+HTML output was newer than the markdown input file: if the result is non-empty,
+we have to rebuild the markdown to HTML and then store it in a `.work`
+directory. The rendering of this blog went down from rougly 1 second to 200ms
+after building it for the first time from scratch. There are more places where I
+could do a similar optimization but for now it's fast enough.
 
 I've already used this function several times in `bb.edn` tasks file to speed up
 Clojure
@@ -127,28 +131,28 @@ the sources for the jar aren't modified since the jar itself, then we can skip
 launching a JVM entirely. But also within the `build.clj` which runs inside of a
 JVM the same technique can be used.
 
-Here is one more example of how I used `fs/modified-since` to skip a `lein
-uberjar` invocation.
+Here is one more example of how I used `fs/modified-since` to skip a `lein uberjar` invocation.
 
 ```
 build-server {:doc "Produces lsp server standalone jar"
               :depends [java1.8 update-project-clj -uberjar]
-              :task (when (seq (fs/modified-since -uberjar ["server/project.clj" "server/src"]))
+              :task (when (seq (fs/modified-since -uberjar ["server/project.clj"
+                                                            "server/src"]))
                       (shell {:dir "server"}
                         "lein with-profiles -user do clean, uberjar"))}
 ```
 
 The usage of this function isn't tied to any specific build system or scenario:
 it's just a comparison of some files with another bunch of files, which makes it
-generally applicable wherever you want to save some time in rebuilding. This
-form of optimization does come with a trade-off: e.g. when you forget to specify
-`deps.edn` or so, you might get a false positive 'nothing to do here'. It might
-be a good idea to put `.cpcache` in the fileset in a `deps.edn` project as a
-sign that the classpath changed. As a part of
-[TDEPS-83](https://clojure.atlassian.net/browse/TDEPS-83), which will land in
-the [clojure CLI](https://clojure.org/guides/deps_and_cli) soon (and soon after
-that in `bb` itself via [deps.clj](https://github.com/borkdude/deps.clj)), even
-transitive `:local/root` changes will be picked up in this directory.
+generally applicable. This form of optimization does come with a trade-off:
+e.g. when you forget to take into account changes to `deps.edn` or so, you might
+get a false positive 'nothing to do here'. It might be a good idea to put
+`.cpcache` in the fileset in a `deps.edn` project as a sign that the classpath
+changed. As a part of [TDEPS-83](https://clojure.atlassian.net/browse/TDEPS-83),
+which will land in the [clojure CLI](https://clojure.org/guides/deps_and_cli)
+soon (and soon after that in `bb` itself via
+[deps.clj](https://github.com/borkdude/deps.clj)), even transitive `:local/root`
+changes will be picked up in this directory.
 
 Hope you enjoyed this little write-up about `fs/modified-since`. Thanks again to
 JUXT Mach where I got the inspiration from.
