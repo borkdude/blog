@@ -92,7 +92,7 @@ reminded me to blog about this function):
 ``` clojure
 (doseq [{:keys [file title date legacy]} posts]
   (let [cache-file (fs/file ".work" (html-file file))
-        markdown-file (str "posts/" file)
+        markdown-file (fs/file "posts" file)
         stale? (seq (fs/modified-since cache-file markdown-file))
         body (if stale?
                (let [body (markdown->html markdown-file)]
