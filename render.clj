@@ -5,7 +5,8 @@
    [clojure.data.xml :as xml]
    [clojure.edn :as edn]
    [clojure.string :as str]
-   [selmer.parser :as selmer]))
+   [selmer.parser :as selmer]
+   [clojure.java.io :as io]))
 
 (pods/load-pod 'retrogradeorbit/bootleg "0.1.9")
 
@@ -58,8 +59,27 @@
 ;; re-used when generating atom.xml
 (def bodies (atom {}))
 
+(defn html-file [file]
+  (str/replace file ".md" ".html"))
+
+(defn stale? [cached anchor]
+  (or (not (fs/exists? cached))
+      (> (-> (fs/last-modified-time anchor)
+             fs/file-time->millis)
+         (-> (fs/last-modified-time cached)
+             fs/file-time->millis))))
+
+(fs/create-dirs (fs/file ".work" "posts"))
+
 (doseq [{:keys [file title date legacy]} posts]
-  (let [body (markdown->html (str (fs/file "posts" file)))
+  (let [cache-file (fs/file ".work" (html-file file))
+        markdown-file (str "posts/" file)
+        stale-cache? (stale? cache-file markdown-file)
+        body (if stale-cache?
+               (let [body (markdown->html markdown-file)]
+                 (spit cache-file body)
+                 body)
+               (slurp cache-file))
         _ (swap! bodies assoc file body)
         body (selmer/render post-template {:body body
                                            :title title

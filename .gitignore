@@ -13,3 +13,5 @@ vendor
 node_modules
 Gemfile.lock
 .cache
+.work
+.clj-kondo/rewrite-clj
