@@ -45,5 +45,5 @@
                              {:title (pr-str title)
                               :file (pr-str file)
                               :date (now)
-                              :categories #{:clojure}})
+                              :categories #{"clojure"}})
               :append true)))))
