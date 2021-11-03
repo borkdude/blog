@@ -25,7 +25,7 @@
   (str/triml "
 {:title {{title | safe }}
  :file {{file | safe }}
- :categories {{categories}}
+ :categories {{categories | safe }}
  :date {{date | safe }}}\n"))
 
 (defn now []

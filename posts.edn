@@ -56,3 +56,7 @@
  :file "speeding-up-builds-fs-modified-since.md"
  :categories #{"clojure"}
  :date "2021-10-30"}
+{:title "OSS Highlights of September - October 2021"
+ :file "oss-highlights-sep-oct-2021.md"
+ :categories #{"clojure"}
+ :date "2021-11-03"}
