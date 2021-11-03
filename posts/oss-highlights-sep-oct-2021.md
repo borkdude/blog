@@ -6,20 +6,23 @@ will mention highlights in some of them. Often, the devil is in the details and
 there aren't any new user-facing features, but still a lot of work has gone into
 refining existing features.
 
-Donations from [Github Sponsors](https://github.com/sponsors/borkdude) and the
-year long CT grant directly allow me to spend more time on open source. The list
-you are seeing here is a result of this. I love working on open source so thank
-you for allowing me to do this. In
+Donations from [Github Sponsors](https://github.com/sponsors/borkdude),
+OpenCollective and the year long CT grant directly allow me to spend more time
+on open source. The list you are seeing here is a result of this. I love working
+on open source so thank you for allowing me to do this. In
 [this](https://soundcloud.com/user-959992602/s4-e40-oss-with-michiel-borkent)
 [ClojureScript podcast](https://clojurescriptpodcast.com/) episode, Jacek Schae
 interviewed me on my decision to quit my previous job and work more on Clojure
 OSS. Have a listen if you want to know more about my motivations. If aside from
 sponsoring, you or your company needs work done on any of these or related
-projects and want to make a custom arrangement, please do reach out as well.
+projects and want to make a custom arrangement, please do reach out.
+
+Note that the projects listed below are not exclusively my effort and are worked
+on by a number or regular contributors. My thanks also goes out to them.
 
 # [Nbb](https://github.com/babashka/nbb)
 
-Ad-hoc CLJS scripting on Node.js.
+Ad-hoc CLJS scripting on Node.js using SCI.
 
 Many releases on [npm](https://www.npmjs.com/package/nbb).
 
@@ -136,7 +139,22 @@ GraalVM native-image configurations distribution for Clojure libraries.
 
 This is a new project.
 
+# [Jet](https://github.com/borkdude/jet)
+
+Releases: [0.0.16](https://github.com/borkdude/jet/blob/master/CHANGELOG.md#0016)
+
+Highlight: allow keywordize fn to access all available conversion functions from
+camel-snake-kebab lib. e.g. `csk/->PascalCase`.
+
 # [Digest](https://github.com/clj-commons/digest)
+
+Digest algorithms (md5, sha1 ...) for Clojure.
 
 I took over this library from Miki Tebeka and I'm maintaining it under
 clj-commons.
+
+# [Carve](https://github.com/borkdude/carve)
+
+Carve out the essentials of your Clojure app.
+
+Fixed a regression.
