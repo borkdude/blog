@@ -3,7 +3,7 @@ Together](https://www.clojuriststogether.org/). CT asked me to do a bimonthly
 report on my activities or write a blog post and link to that. That's what I'm
 doing here. I'll be going over the releases of existing and new projects and
 will mention highlights in some of them. Often, the devil is in the details and
-there aren't new user-facing features, but still a lot of work as gone into
+there aren't new user-facing features, but still a lot of work has gone into
 refining existing features.
 
 Donations from [Github Sponsors](https://github.com/sponsors/borkdude) and the
