@@ -7,8 +7,6 @@
             [clojure.string :as str]
             [goog.object]))
 
-;; https://discuss.codemirror.net/t/only-syntax-highlighting/2635/5
-
 (def theme
   (.theme EditorView
           #js {".cm-content" #js {:white-space "pre-wrap"

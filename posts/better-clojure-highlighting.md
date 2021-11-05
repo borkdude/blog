@@ -9,13 +9,18 @@ be. E.g. Nextjournal's
 CodeMirror 6 integration for Clojure, covers a lot more detail. So I tried to
 strip the demo of clojure-mode to the bare mininum for just for highlighting. I
 ended up with about 320kb (117kb gzipped) of optimized JS based on a CLJS
-implementation. Trying to squeeze the last bit out by rewriting it to JS didn't
+implementation. Trying to squeeze the last bit out by [rewriting it to
+JS](https://gist.github.com/borkdude/9b994fea470f324b8bfceda609572168) didn't
 pan out the way I hoped:
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Trying to optimize a JS bundle by rewriting something from CLJS to JS and bundling it with Rollup which supposedly has tree-shaking.<br><br>CLJS + Google Closure advanced bundle: 319kb<br>Pure JS + Rollup tree-shaking: 600kb<br><br>🤔 <a href="https://t.co/6VY8SGM5AW">pic.twitter.com/6VY8SGM5AW</a></p>&mdash; (λ. borkdude) (@borkdude) <a href="https://twitter.com/borkdude/status/1456574352888115200?ref_src=twsrc%5Etfw">November 5, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 So I'll stick with the CLJS approach for now. I tried write raw JS interop as
 much as possible to not pull in any CLJS functions that might increase the size.
+
+In the future it might be possible to get smaller builds when CodeMirror 6
+supports just highlighting better. There is a discussion about it
+[here](https://discuss.codemirror.net/t/only-syntax-highlighting/2635/5)
 
 To automate building the highlighter code when I re-render this blog, I again
 used [babashka tasks](https://book.babashka.org/#tasks):
