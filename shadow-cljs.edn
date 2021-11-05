@@ -1,0 +1,11 @@
+{:deps {:aliases [:dev :demo]}
+ :dev-http {8002 "public"
+            8001 "public/test"}
+ :nrepl {:port 9000}
+ :builds {:highlighter
+          {:compiler-options {:output-feature-set :es8}
+           :target :browser
+           :output-dir "public"
+           :modules {:clojure_highlighter {:init-fn clojure-highlighter.main/render}}
+           :build-hooks [(shadow.cljs.build-report/hook
+                          {:output-to "report.html"})]}}}

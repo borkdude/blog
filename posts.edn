@@ -60,3 +60,12 @@
  :file "oss-highlights-sep-oct-2021.md"
  :categories #{"clojure"}
  :date "2021-11-03"}
+{:title "All the ways to shell out in babashka"
+ :file "all-the-ways-to-shell-out-in-babashka.md"
+ :categories #{"clojure"}
+ :date "2021-11-04"
+ :preview true}
+{:title "Better Clojure highlighting with nextjournal/clojure-mode"
+ :file "better-clojure-highlighting.md"
+ :categories #{"clojure"}
+ :date "2021-11-05"}

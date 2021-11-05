@@ -5,8 +5,7 @@
    [clojure.data.xml :as xml]
    [clojure.edn :as edn]
    [clojure.string :as str]
-   [selmer.parser :as selmer]
-   [clojure.java.io :as io]))
+   [selmer.parser :as selmer]))
 
 (pods/load-pod 'retrogradeorbit/bootleg "0.1.9")
 
@@ -67,7 +66,10 @@
 (doseq [{:keys [file title date legacy]} posts]
   (let [cache-file (fs/file ".work" (html-file file))
         markdown-file (fs/file "posts" file)
-        stale? (seq (fs/modified-since cache-file markdown-file))
+        stale? (seq (fs/modified-since cache-file
+                                       [markdown-file
+                                        "posts.edn"
+                                        "templates"]))
         body (if stale?
                (let [body (markdown->html markdown-file)]
                  (spit cache-file body)

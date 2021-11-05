@@ -1,0 +1,12 @@
+{:deps {applied-science/js-interop {:mvn/version "0.2.5"}
+        org.clojure/clojure {:mvn/version "1.10.3"}
+        org.clojure/clojurescript {:mvn/version "1.10.866"}
+        nextjournal/clojure-mode
+        {:git/url "https://github.com/nextjournal/clojure-mode"
+         :sha "a83c87cd2bd2049b70613f360336a096d15c5518"}}
+ :aliases
+ {:dev {:extra-paths ["test"]
+        :extra-deps {thheller/shadow-cljs {:mvn/version "2.15.10"}}}
+  :demo {:extra-deps {borkdude/sci {:mvn/version "0.2.0"}
+                      reagent/reagent {:mvn/version "1.0.0"}}
+         :extra-paths ["demo/src"]}}}

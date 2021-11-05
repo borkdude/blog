@@ -4,9 +4,8 @@
     <title>{{title}}</title>
     <meta charset="utf-8"/>
     <link rel="stylesheet"
-          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/github.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
     <link type="application/atom+xml" rel="alternate" href="atom.xml" title="REPL Adventures">
     <link rel="stylesheet" href="style.css">
     {{header}}
@@ -40,6 +39,17 @@
       </div>
       {% endif %}
     </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre code').forEach((el) => {
+          if (!el.classList.contains('clojure')) {
+            hljs.highlightElement(el);
+          }
+        });
+      });
+    </script>
+
+    <script src="clojure_highlighter.js"></script>
 
   </body>
 </html>

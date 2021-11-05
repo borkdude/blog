@@ -15,3 +15,6 @@ Gemfile.lock
 .cache
 .work
 .clj-kondo/rewrite-clj
+.cpcache
+.shadow-cljs
+report.html
