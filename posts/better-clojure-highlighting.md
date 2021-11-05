@@ -18,8 +18,8 @@ pan out the way I hoped:
 So I'll stick with the CLJS approach for now. I tried write raw JS interop as
 much as possible to not pull in any CLJS functions that might increase the size.
 
-In the future it might be possible to get smaller builds when CodeMirror 6
-supports just highlighting better. There is a discussion about it
+In the future it might be possible to get smaller builds when CodeMirror 6 gets
+better support for 'just highlighting'. There is a discussion about it
 [here](https://discuss.codemirror.net/t/only-syntax-highlighting/2635/5)
 
 To automate building the highlighter code when I re-render this blog, I again
@@ -59,7 +59,10 @@ $ time bb render
 bb render   0.09s  user 0.05s system 81% cpu 0.174 total
 ```
 
-To show off the highlighting, here is the CLJS code:
+The above snippet is still highlighted with Highlight.js, but
+`<code class="clojure">...</code>` is highlighted with clojure-mode.
+
+To show off the highlighting, here is the CLJS code for the highlighter:
 
 ``` clojure
 (ns clojure-highlighter.main
