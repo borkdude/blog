@@ -1,10 +1,6 @@
-import { tags, styleTags } from "@codemirror/highlight";
 import { LezerLanguage } from "@codemirror/language";
-import { EditorState } from "@codemirror/state";
-import { EditorView } from "@codemirror/view";
 import { parser } from "lezer-clojure";
-
-import {highlightTree, defaultHighlightStyle} from "@codemirror/highlight";
+import { tags, styleTags, highlightTree, defaultHighlightStyle} from "@codemirror/highlight";
 
 function runmode(textContent, language, callback) {
   const tree = language.parser.parse(textContent);
@@ -17,21 +13,21 @@ function runmode(textContent, language, callback) {
   pos != tree.length && callback(textContent.slice(pos, tree.length), null, pos, tree.length);
 }
 
-let theme = EditorView.theme({
-  '.cm-content': { 'white-space': 'pre-wrap', padding: '10px 0' },
-  '&.cm-focused': { outline: 'none' },
-  '.cm-line': {
-    padding: '0 9px',
-    'line-height': '1.6',
-    'font-size': '16px',
-    'font-family': 'var(--code-font)'
-  },
-  '.cm-matchingBracket': { 'border-bottom': '1px solid var(--teal-color)', color: 'inherit' },
-  '.cm-gutters': { background: 'transparent', border: 'none' },
-  '.cm-gutterElement': { 'margin-left': '5px' },
-  '.cm-cursor': { visibility: 'hidden' },
-  '&.cm-focused .cm-cursor': { visibility: 'visible' }
-});
+// let theme = EditorView.theme({
+//   '.cm-content': { 'white-space': 'pre-wrap', padding: '10px 0' },
+//   '&.cm-focused': { outline: 'none' },
+//   '.cm-line': {
+//     padding: '0 9px',
+//     'line-height': '1.6',
+//     'font-size': '16px',
+//     'font-family': 'var(--code-font)'
+//   },
+//   '.cm-matchingBracket': { 'border-bottom': '1px solid var(--teal-color)', color: 'inherit' },
+//   '.cm-gutters': { background: 'transparent', border: 'none' },
+//   '.cm-gutterElement': { 'margin-left': '5px' },
+//   '.cm-cursor': { visibility: 'hidden' },
+//   '&.cm-focused .cm-cursor': { visibility: 'visible' }
+// });
 
 let style = {
   DefLike: tags.keyword,
@@ -52,7 +48,7 @@ let style = {
 let cljParser = parser.configure({props: [styleTags(style)]});
 
 let syntax = LezerLanguage.define({parser: cljParser}, {languageData: {commentTokens: {line: ";;"}}});
-let extensions = [EditorView.editable.of(false), theme, defaultHighlightStyle, [syntax]];
+// let extensions = [EditorView.editable.of(false), theme, defaultHighlightStyle, [syntax]];
 
 document.querySelectorAll("code.clojure").forEach( elt => {
   runmode(elt.innerText.trim(), syntax, (content, classes, from, to) => {
