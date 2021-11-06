@@ -3,9 +3,11 @@
             8001 "public/test"}
  :nrepl {:port 9000}
  :builds {:highlighter
-          {:compiler-options {:output-feature-set :es8}
+          {:compiler-options {:output-feature-set :es8
+                              :pseudo-names true}
            :target :browser
            :output-dir "public"
-           :modules {:clojure_highlighter {:init-fn clojure-highlighter.main/render}}
+           :modules {:clojure_highlighter {:entries ["/clojure_highlighter/main.js"]
+                                           #_#_:init-fn clojure-highlighter.main/render}}
            :build-hooks [(shadow.cljs.build-report/hook
                           {:output-to "report.html"})]}}}

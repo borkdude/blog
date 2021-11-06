@@ -15,12 +15,12 @@ pan out the way I hoped:
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Trying to optimize a JS bundle by rewriting something from CLJS to JS and bundling it with Rollup which supposedly has tree-shaking.<br><br>CLJS + Google Closure advanced bundle: 319kb<br>Pure JS + Rollup tree-shaking: 600kb<br><br>🤔 <a href="https://t.co/6VY8SGM5AW">pic.twitter.com/6VY8SGM5AW</a></p>&mdash; (λ. borkdude) (@borkdude) <a href="https://twitter.com/borkdude/status/1456574352888115200?ref_src=twsrc%5Etfw">November 5, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-So I'll stick with the CLJS approach for now. I tried write raw JS interop as
+So I'll stick with the CLJS approach for now. I wrote raw JS interop in CLJS as
 much as possible to not pull in any CLJS functions that might increase the size.
 
 In the future it might be possible to get smaller builds when CodeMirror 6 gets
 better support for 'just highlighting'. There is a discussion about it
-[here](https://discuss.codemirror.net/t/only-syntax-highlighting/2635/5)
+[here](https://discuss.codemirror.net/t/only-syntax-highlighting/2635/5).
 
 To automate building the highlighter code when I re-render this blog, I again
 used [babashka tasks](https://book.babashka.org/#tasks):
@@ -34,7 +34,7 @@ used [babashka tasks](https://book.babashka.org/#tasks):
   build-highlighter {:doc "Build Clojure highlighter JS"
                      :task
                      (when
-                         (seq (fs/modified-since "templates/clojure_highlighter.js"
+                         (seq (fs/modified-since "public/clojure_highlighter.js"
                                ["src"]))
      (shell "npx shadow-cljs release highlighter"))}
   render {:doc "Render blog"
@@ -43,7 +43,7 @@ used [babashka tasks](https://book.babashka.org/#tasks):
   ...}}
 ```
 
-If the `template/clojure_highlighter.js` file is alreasdy there and the CLJS
+If the `public/clojure_highlighter.js` file is already there and the CLJS
 hasn't changed, the `build-higlighter` step won't take any significant time due
 to the use of `fs/modified-since` which I blogged about
 [here](speeding-up-builds-fs-modified-since.html).
