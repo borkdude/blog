@@ -39,7 +39,7 @@ let style = {
 let cljParser = parser.configure({props: [styleTags(style)]});
 
 let syntax = LezerLanguage.define({parser: cljParser}, {languageData: {commentTokens: {line: ";;"}}});
-let extensions = [theme, defaultHighlightStyle, [syntax]];
+let extensions = [EditorView.editable.of(false), theme, defaultHighlightStyle, [syntax]];
 
 document.querySelectorAll("code.clojure").forEach( elt => {
   new EditorView({state: EditorState.create({doc: elt.innerText, extensions: [extensions]}),
