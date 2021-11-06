@@ -64,7 +64,11 @@
 
 (fs/create-dirs (fs/file ".work"))
 
-(doseq [{:keys [file title date legacy discuss]} posts]
+(def discuss-fallback "https://github.com/borkdude/blog/discussions/categories/posts")
+
+(doseq [{:keys [file title date legacy discuss]
+         :or {discuss discuss-fallback}}
+        posts]
   (let [cache-file (fs/file ".work" (html-file file))
         markdown-file (fs/file "posts" file)
         stale? (seq (fs/modified-since cache-file
@@ -120,7 +124,8 @@
 ;;;; Generate index page with last 3 posts
 
 (defn index []
-  (for [{:keys [file title date preview discuss]} (take 3 posts)
+  (for [{:keys [file title date preview discuss]
+         :or {discuss discuss-fallback}} (take 3 posts)
         :when (not preview)]
     [:div
      [:h1 [:a {:href (str/replace file ".md" ".html")}
