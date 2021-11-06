@@ -22,7 +22,6 @@
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^13.0.6",
     "rollup": "^2.59.0",
-    "rollup-plugin-terser": "^7.0.2",
-    "shadow-cljs": "^2.15.13"
+    "rollup-plugin-terser": "^7.0.2"
   }
 }

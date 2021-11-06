@@ -9,17 +9,15 @@ be. E.g. Nextjournal's
 CodeMirror 6 integration for Clojure, covers a lot more detail. So I tried to
 strip the demo of clojure-mode to the bare mininum for just for highlighting. I
 ended up with about 320kb (117kb gzipped) of optimized JS based on a CLJS
-implementation. Trying to squeeze the last bit out by [rewriting it to
-JS](https://gist.github.com/borkdude/9b994fea470f324b8bfceda609572168) didn't
-pan out the way I hoped:
+implementation. Trying to squeeze the last bit out by rewriting it to JS and
+bundling it with [Rollup.js](https://rollupjs.org/guide/en/) like the
+[CodeMirror docs](https://codemirror.net/6/examples/bundle/) suggest yielded
+600kb at first. But it turned out I needed to enable the terser [output
+plugin](https://rollupjs.org/guide/en/#using-output-plugins) and this got the
+bundle size down to 200kb (79kb gzipped).
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Trying to optimize a JS bundle by rewriting something from CLJS to JS and bundling it with Rollup which supposedly has tree-shaking.<br><br>CLJS + Google Closure advanced bundle: 319kb<br>Pure JS + Rollup tree-shaking: 600kb<br><br>🤔 <a href="https://t.co/6VY8SGM5AW">pic.twitter.com/6VY8SGM5AW</a></p>&mdash; (λ. borkdude) (@borkdude) <a href="https://twitter.com/borkdude/status/1456574352888115200?ref_src=twsrc%5Etfw">November 5, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-So I'll stick with the CLJS approach for now. I wrote raw JS interop in CLJS as
-much as possible to not pull in any CLJS functions that might increase the size.
-
-In the future it might be possible to get smaller builds when CodeMirror 6 gets
-better support for 'just highlighting'. There is a discussion about it
+In the future it might be possible to get even smaller builds when CodeMirror 6
+gets better support for 'just highlighting'. There is a discussion about it
 [here](https://discuss.codemirror.net/t/only-syntax-highlighting/2635/5).
 
 To automate building the highlighter code when I re-render this blog, I again
@@ -36,24 +34,25 @@ used [babashka tasks](https://book.babashka.org/#tasks):
                      (when
                          (seq (fs/modified-since "public/clojure_highlighter.js"
                                ["src"]))
-     (shell "npx shadow-cljs release highlighter"))}
+                       (shell "npx rollup -c rollup.config.js"))}
   render {:doc "Render blog"
           :depends [build-highlighter]
           :task (load-file "render.clj")}
   ...}}
 ```
 
-If the `public/clojure_highlighter.js` file is already there and the CLJS
-hasn't changed, the `build-higlighter` step won't take any significant time due
-to the use of `fs/modified-since` which I blogged about
+If the `public/clojure_highlighter.js` file is already there and JavaSceipt
+sources hasn't changed, the `build-higlighter` step won't take any significant
+time due to the use of `fs/modified-since` which I blogged about
 [here](speeding-up-builds-fs-modified-since.html).
 
 ``` shell
+$ bb clean
 $ time bb render
-shadow-cljs - starting via "clojure"
-[:highlighter] Compiling ...
-[:highlighter] Build completed. (56 files, 0 compiled, 0 warnings, 7,35s)
-bb render   62.02s  user 2.47s system 328% cpu 19.632 total
+
+src/clojure_highlighter/main.js → public/clojure_highlighter.js...
+created public/clojure_highlighter.js in 2.7s
+bb render   6.26s  user 0.84s system 155% cpu 4.557 total
 
 $ time bb render
 bb render   0.09s  user 0.05s system 81% cpu 0.174 total
@@ -62,7 +61,8 @@ bb render   0.09s  user 0.05s system 81% cpu 0.174 total
 The above snippet is still highlighted with Highlight.js, but
 `<code class="clojure">...</code>` is highlighted with clojure-mode.
 
-To show off the highlighting, here is the CLJS code for the highlighter:
+To show off the highlighting, here is the CLJS code for the highlighter, which I
+ported to JS later on.
 
 ``` clojure
 (ns clojure-highlighter.main
@@ -140,3 +140,7 @@ To show off the highlighting, here is the CLJS code for the highlighter:
 
 You can find the code for this blog on
 [Github](https://github.com/borkdude/blog), including the above code.
+
+Edits:
+
+- 2021-11-06: Include Rollup.js `terser` output plugin in blog post.
