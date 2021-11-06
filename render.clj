@@ -35,7 +35,8 @@
 (def post-template
   "<h1>{{title}}</h1>
 {{body | safe }}
-<i>Published: {{date}}</i>
+<p>Discuss this post <a href=\"{{discuss}}\">here</a>.</p>
+<p><i>Published: {{date}}</i></p>
 ")
 
 (defn markdown->html [file]
@@ -63,7 +64,7 @@
 
 (fs/create-dirs (fs/file ".work"))
 
-(doseq [{:keys [file title date legacy]} posts]
+(doseq [{:keys [file title date legacy discuss]} posts]
   (let [cache-file (fs/file ".work" (html-file file))
         markdown-file (fs/file "posts" file)
         stale? (seq (fs/modified-since cache-file
@@ -78,7 +79,8 @@
         _ (swap! bodies assoc file body)
         body (selmer/render post-template {:body body
                                            :title title
-                                           :date date})
+                                           :date date
+                                           :discuss discuss})
         html (selmer/render base-html
                             {:title title
                              :body body})
@@ -118,13 +120,14 @@
 ;;;; Generate index page with last 3 posts
 
 (defn index []
-  (for [{:keys [file title date preview]} (take 3 posts)
+  (for [{:keys [file title date preview discuss]} (take 3 posts)
         :when (not preview)]
     [:div
      [:h1 [:a {:href (str/replace file ".md" ".html")}
            title]]
      (get @bodies file)
-     [:i "Published " date]]))
+     [:p "Discuss this post " [:a {:href discuss} "here"] "."]
+     [:p [:i "Published: " date]]]))
 
 (spit (fs/file out-dir "index.html")
       (selmer/render base-html

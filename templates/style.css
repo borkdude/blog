@@ -36,7 +36,7 @@ p {
 
 .site-nav {
   float: right;
-  line-height: 48px;
+  line-height: 4rem;
 }
 
 .site-nav .page-link:not(:last-child) {
@@ -46,6 +46,11 @@ p {
 .page-link {
   color: #111;
   text-decoration: none;
+  vertical-align: middle;
+}
+
+.page-icon {
+  vertical-align: middle;
 }
 
 ul.index {

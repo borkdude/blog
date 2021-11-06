@@ -51,15 +51,18 @@
 {:title "Replacing my Octopress blog with 200 lines of Babashka"
  :file "migrating-octopress-to-babashka.md"
  :categories #{"clojure"}
- :date "2021-10-25"}
+ :date "2021-10-25"
+ :discuss "https://github.com/borkdude/blog/discussions/8"}
 {:title "Speeding up builds with fs/modified-since"
  :file "speeding-up-builds-fs-modified-since.md"
  :categories #{"clojure"}
- :date "2021-10-30"}
+ :date "2021-10-30"
+ :discuss "https://github.com/borkdude/blog/discussions/7"}
 {:title "OSS Highlights of September - October 2021"
  :file "oss-highlights-sep-oct-2021.md"
  :categories #{"clojure"}
- :date "2021-11-03"}
+ :date "2021-11-03"
+ :discuss "https://github.com/borkdude/blog/discussions/5"}
 {:title "All the ways to shell out in babashka"
  :file "all-the-ways-to-shell-out-in-babashka.md"
  :categories #{"clojure"}
@@ -68,4 +71,5 @@
 {:title "Better Clojure highlighting with nextjournal/clojure-mode"
  :file "better-clojure-highlighting.md"
  :categories #{"clojure"}
- :date "2021-11-05"}
+ :date "2021-11-05"
+ :discuss "https://github.com/borkdude/blog/discussions/4"}
