@@ -42,7 +42,8 @@ let syntax = LezerLanguage.define({parser: cljParser}, {languageData: {commentTo
 let extensions = [EditorView.editable.of(false), theme, defaultHighlightStyle, [syntax]];
 
 document.querySelectorAll("code.clojure").forEach( elt => {
-  new EditorView({state: EditorState.create({doc: elt.innerText, extensions: [extensions]}),
+  new EditorView({state: EditorState.create({doc: elt.innerText.trim(),
+                                             extensions: [extensions]}),
                   parent: elt});
   elt.firstChild.remove();
 });
