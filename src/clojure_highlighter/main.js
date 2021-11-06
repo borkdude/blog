@@ -127,7 +127,7 @@ document.querySelectorAll("code.clojure").forEach( elt => {
     }
     span.innerText = content;
     elt.appendChild(span);
-    console.log(content, classes, from, to);
+    // console.log(content, classes, from, to);
   });
 
   // new EditorView({state: EditorState.create({doc: elt.innerText.trim(),
