@@ -115,23 +115,48 @@ let literalStyle = `
 .ͼn.cm-focused .cm-cursor {visibility: visible;}
 `;
 
-let styleElt = document.createElement('style');
-styleElt.innerText = literalStyle;
-document.head.appendChild(styleElt);
+// let styleElt = document.createElement('style');
+// styleElt.innerText = literalStyle;
+// document.head.appendChild(styleElt);
 
-document.querySelectorAll("code.clojure").forEach( elt => {
-  runmode(elt.innerText.trim(), syntax, (content, classes, from, to) => {
-    let span = document.createElement('span');
-    if (classes) {
-      span.classList = classes;
-    }
-    span.innerText = content;
-    elt.appendChild(span);
-    // console.log(content, classes, from, to);
-  });
+// document.querySelectorAll("code.clojure").forEach( elt => {
+//   runmode(elt.innerText.trim(), syntax, (content, classes, from, to) => {
+//     let span = document.createElement('span');
+//     if (classes) {
+//       span.classList = classes;
+//     }
+//     span.innerText = content;
+//     elt.appendChild(span);
+//     // console.log(content, classes, from, to);
+//   });
 
-  // new EditorView({state: EditorState.create({doc: elt.innerText.trim(),
-  //                                            extensions: [extensions]}),
-  //                 parent: elt});
-  elt.firstChild.remove();
-});
+//   // new EditorView({state: EditorState.create({doc: elt.innerText.trim(),
+//   //                                            extensions: [extensions]}),
+//   //                 parent: elt});
+//   elt.firstChild.remove();
+// });
+
+let input = `{:a (+ 1 2 3)}
+
+"bye"`;
+
+let output = `<html>
+<head>
+  <style>${literalStyle}</style>
+</head>
+<body>
+`;
+
+runmode(input,
+        syntax, (content, classes, from, to) => {
+          content = content.replace(/\n/mg, "\n<br>");
+          if (classes) {
+            output += (`<span class="${classes}">${content}</span>`);
+          } else {
+            output += (content);
+          }
+        });
+
+output += '</body></html>';
+
+console.log(output);
