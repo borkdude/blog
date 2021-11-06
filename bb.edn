@@ -9,7 +9,8 @@
                      (when
                          (seq (fs/modified-since "public/clojure_highlighter.js"
                                ["src"]))
-                       (shell "npx rollup -c rollup.config.js"))}
+                       (shell "npx rollup -c rollup.config.js")
+                       #_(shell "npx shadow-cljs release highlighter"))}
   render {:doc "Render blog"
           :depends [build-highlighter]
           :task (load-file "render.clj")}

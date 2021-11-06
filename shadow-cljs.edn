@@ -4,7 +4,7 @@
  :nrepl {:port 9000}
  :builds {:highlighter
           {:compiler-options {:output-feature-set :es8
-                              :pseudo-names true}
+                              }
            :target :browser
            :output-dir "public"
            :modules {:clojure_highlighter {:entries ["/clojure_highlighter/main.js"]
