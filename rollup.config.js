@@ -7,5 +7,5 @@ export default {
     file: "public/clojure_highlighter.js",
     format: "iife"
   },
-  plugins: [nodeResolve(), terser()]
+  plugins: [nodeResolve() /*, terser()*/]
 };
