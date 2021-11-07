@@ -46,7 +46,7 @@ boot.user=> (require '[clj-time.core :as t])
 Note that Boot's `repl` task also supports the `--eval` option (`-e`
 for short), so we can already put the `require` on the command line:
 
-``` clojure
+```
 $ boot -d clj-time repl -e "(require '[clj-time.core :as t]))"
 Clojure 1.8.0
 ;;; output omitted

@@ -14,7 +14,7 @@ In the pre-transducer era, reading text files was often done like this:
   (->> (line-seq rdr)
        (mapcat #(str/split % #";"))
        (map count)
-       (doall))
+       (doall)))
 ```
 
 Given input `work.txt`:
