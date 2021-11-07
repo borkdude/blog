@@ -26,14 +26,14 @@ first step.
 ``` clojure
 (defn highlight-clojure [markdown]
   (str/replace markdown #"(?m)``` clojure\n([\s\S]+?)\n\s*```"
-               (fn [[_ y]]
-                 (try (-> (str/trim y)
+               (fn [[_ code]]
+                 (try (-> (str/trim code)
                           (htmlize)
                           (str/replace "[" "\\\\[")
                           (str/replace "]" "\\\\]")
                           (str/replace "*" "\\\\*"))
                       (catch Exception e
-                        (log "Could not highlight: " (ex-message e) y)
+                        (log "Could not highlight: " (ex-message e) code)
                         markdown)))))
 ```
 
