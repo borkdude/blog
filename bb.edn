@@ -4,14 +4,7 @@
              [tasks-helper :as th])
   new {:doc "Create new blog article"
        :task (th/new)}
-  ;; build-highlighter {:doc "Build Clojure highlighter JS"
-  ;;                    :task
-  ;;                    (when
-  ;;                        (seq (fs/modified-since "public/clojure_highlighter.js"
-  ;;                              ["src"]))
-  ;;                      (shell "npx rollup -c rollup.config.js"))}
   render {:doc "Render blog"
-          ;; :depends [build-highlighter]
           :task (load-file "render.clj")}
   watch  {:depends [render]
           :doc "Watch posts and templates and call render on file changes"

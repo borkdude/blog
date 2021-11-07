@@ -1,5 +1,6 @@
 (ns highlighter
   (:require
+   [babashka.fs :as fs]
    [babashka.pods :as pods]
    [clojure.string :as str]
    [rewrite-clj.node :refer [tag sexpr]]
@@ -15,13 +16,14 @@
     (println (str/join " " (map pr-str xs)))))
 
 (defn analysis [code]
-  ;; TODO: clean up afterwards, temp file, etc
-  (spit "/tmp/code.clj" code)
-  (-> (clj-kondo/run!
-       {:lint ["/tmp/code.clj"]
-        :config {:output {:analysis {:keywords true
-                                     :locals true}}}})
-      :analysis))
+  (let [tmp (doto (fs/file (fs/create-temp-dir) "code.clj")
+              fs/delete-on-exit)]
+    (spit tmp code)
+    (-> (clj-kondo/run!
+         {:lint [(str tmp)]
+          :config {:output {:analysis {:keywords true
+                                       :locals true}}}})
+        :analysis)))
 
 (defn locals [analysis]
   (->> analysis
@@ -147,16 +149,6 @@
                :var-defs (var-defs ana)})]
     (->> code p/parse-string-all node->html
          (format "<pre><code class=\"clojure hljs\">%s</code></pre>"))))
-
-(def styles "
-.def { color: #00f; }
-.symbol { color: #708; }
-.local { color: cadetblue; }
-.string { color: #a11; }
-.number { color: blue; }
-.keyword { color: #219; }
-.uneval { filter: opacity(0.5); }
-")
 
 (defn highlight-clojure [markdown]
   (str/replace markdown #"(?m)``` clojure\n([\s\S]+?)\n```"
