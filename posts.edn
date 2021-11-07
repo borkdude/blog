@@ -73,3 +73,7 @@
  :categories #{"clojure"}
  :date "2021-11-05"
  :discuss "https://github.com/borkdude/blog/discussions/4"}
+{:title "Writing a Clojure highlighter from scratch"
+ :file "writing-clojure-highlighter.md"
+ :categories #{"clojure"}
+ :date "2021-11-08"}

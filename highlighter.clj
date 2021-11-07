@@ -7,13 +7,13 @@
    [rewrite-clj.parser :as p]
    [selmer.parser :as selmer]))
 
-(pods/load-pod 'clj-kondo/clj-kondo "2021.10.19")
-
-(require '[pod.borkdude.clj-kondo :as clj-kondo])
-
 (defn log [& xs]
   (binding [*out* *err*]
     (println (str/join " " (map pr-str xs)))))
+
+(pods/load-pod 'clj-kondo/clj-kondo "2021.10.19")
+
+(require '[pod.borkdude.clj-kondo :as clj-kondo])
 
 (defn analysis [code]
   (let [tmp (doto (fs/file (fs/create-temp-dir) "code.clj")
@@ -21,8 +21,7 @@
     (spit tmp code)
     (-> (clj-kondo/run!
          {:lint [(str tmp)]
-          :config {:output {:analysis {:keywords true
-                                       :locals true}}}})
+          :config {:output {:analysis {:locals true}}}})
         :analysis)))
 
 (defn locals [analysis]
@@ -48,19 +47,19 @@
 
 (defmethod node->html :map [node]
   (span "map" (format "{%s}"
-                      (str/join "" (map node->html (:children node))))))
+                      (str/join (map node->html (:children node))))))
 
 (defmethod node->html :list [node]
   (span "lidy" (format "(%s)"
-                      (str/join "" (map node->html (:children node))))))
+                      (str/join (map node->html (:children node))))))
 
 (defmethod node->html :vector [node]
   (span "vector" (format "[%s]"
-                      (str/join "" (map node->html (:children node))))))
+                      (str/join (map node->html (:children node))))))
 
 (defmethod node->html :set [node]
   (span "set" (format "#{%s}"
-                      (str/join "" (map node->html (:children node))))))
+                      (str/join (map node->html (:children node))))))
 
 (def ^:dynamic *analysis*)
 
@@ -147,15 +146,17 @@
             (let [ana (analysis code)]
               {:locals (locals ana)
                :var-defs (var-defs ana)})]
-    (->> code p/parse-string-all node->html
-         (format "<pre><code class=\"clojure hljs\">%s</code></pre>"))))
+    (let [html (-> code p/parse-string-all node->html)]
+      (format "<pre><code class=\"clojure hljs\">%s</code></pre>" html))))
 
 (defn highlight-clojure [markdown]
-  (str/replace markdown #"(?m)``` clojure\n([\s\S]+?)\n```"
+  (str/replace markdown #"(?m)``` clojure\n([\s\S]+?)\n\s*```"
                (fn [[_ y]]
-                 (try (-> (htmlize y)
+                 (try (-> (str/trim y)
+                          (htmlize)
                           (str/replace "[" "\\[")
-                          (str/replace "]" "\\]"))
+                          (str/replace "]" "\\]")
+                          (str/replace "*" "\\*"))
                       (catch Exception e
                         (log "Could not highlight: " (ex-message e) y)
                         markdown)))))
