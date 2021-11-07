@@ -3,20 +3,20 @@ about using Nextjournal's
 [clojure-mode](https://github.com/nextjournal/clojure-mode) for better
 highlighting, I tried optimizing the JS output and got a look at the internals
 of [CodeMirror 6](https://codemirror.net/6/). I realized that writing a Clojure
-highlighter from scratch wasn't that hard if you had the right tools:
+highlighter from scratch wasn't that hard if you had the right tools at hand:
 
 - A tool which can break Clojure code into parts, tells you what each part is
   (symbol, keyword, vector, etc.)  and also provides a way to put the parts
-  together again. This tool is already available in
-  [babashka](https://babashka.org/) and is a library called
+  together again, with preservation of whitespace. This tool is already
+  available in [babashka](https://babashka.org/) and is a library called
   [rewrite-clj](https://github.com/clj-commons/rewrite-clj).
 - A tool that can provide additional semantic information: is a symbol a local
   or a var? The static analysis output of
   [clj-kondo](https://github.com/clj-kondo/clj-kondo) provides that information.
 
-Combining these ingredients was a couple of hours work and resulted in a 160
-line script called `highlighter.clj` which is now used to do the highlighting of
-this blog.
+I spent my Sunday afternoon combining these tools which resulted in a 160 line
+script called `highlighter.clj` which is now used to do the highlighting of this
+blog.
 
 This blog post is a high level walkthrough of the code. Let's begin with the
 first step.
@@ -38,12 +38,12 @@ first step.
 ```
 
 Parsing blocks of Clojure code from a markdown post is done using a basic
-regex. After turning the raw Clojure code into styled HTML, we escape some
-characters that are specific to markdown. Then we pass on the Clojure code to
-the `htmlize` function. If the highlighting failed for some reason, we log it
-and fall back on the unprocessed markdown. During the implementation I found
-several snippets of Clojure code with unbalanced parens which I had to fix,
-since rewrite-clj doesn't accept it. So all examples from this blog should be
+regex. Then we pass the Clojure code to the `htmlize` function. After that we
+escape some markdown-specific characters, so they will be preserved after
+markdown compilation. If the highlighting failed for some reason, we log it and
+fall back on the unprocessed markdown. During the implementation I found several
+snippets of Clojure code with unbalanced parens which I had to fix, since
+rewrite-clj doesn't accept it. So all examples from this blog should be
 copy-pastable into your Clojure editor without problems from now on.
 
 ### 2. Parse and analyze Clojure using clj-kondo and rewrite-clj:
@@ -148,11 +148,10 @@ in all the posts of this blog so far, by working through the list of unhandled t
 Rewrite-clj doesn't give different tags for symbols, strings, numbers and so on:
 it groups them under the `:token` tag. So there is some extra work needed to get
 different highlighting for different types of tokens. I wrote a function that
-returns a CSS class by looking at the contents of the node or at the type of the
-`sexpr` representation of the node. For a symbol node, I want different
-highlighting for vars and locals. This is where I check in the clj-kondo
-analysis if the symbol on that location is a local or var and else fall back on
-the general symbol CSS class.
+returns a CSS class by looking at the contents of the node or at the type of
+value of the node. For a symbol node, I want different highlighting for vars and
+locals. This is where I check in the clj-kondo analysis if the symbol on that
+location is a local or var and else fall back on the general symbol CSS class.
 
 ``` clojure
 (defn token-class [node]
