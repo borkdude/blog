@@ -199,7 +199,7 @@ function from symbol to integer.
 
 ``` clojure
 (defn value-by-symbol [sym]
-  @(get @context sym)))
+  @(get @context sym))
 ```
 
 The double `deref` is needed because we're dealing with an `atom` and a `delay`.

@@ -99,7 +99,9 @@ reminded me to blog about this function):
                  (spit cache-file body)
                  body)
                (slurp cache-file))
-...
+        ...]
+    ...)
+...)
 ```
 
 Here I used `fs/modified-since` simply as a predicate to check if the cached
@@ -133,7 +135,7 @@ JVM the same technique can be used.
 
 Here is one more example of how I used `fs/modified-since` to skip a `lein uberjar` invocation.
 
-```
+``` clojure
 build-server {:doc "Produces lsp server standalone jar"
               :depends [java1.8 update-project-clj -uberjar]
               :task (when (seq (fs/modified-since -uberjar ["server/project.clj"

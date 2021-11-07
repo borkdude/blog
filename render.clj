@@ -5,6 +5,7 @@
    [clojure.data.xml :as xml]
    [clojure.edn :as edn]
    [clojure.string :as str]
+   [highlighter :as h]
    [selmer.parser :as selmer]))
 
 (pods/load-pod 'retrogradeorbit/bootleg "0.1.9")
@@ -40,7 +41,9 @@
 ")
 
 (defn markdown->html [file]
-  (let [markdown (slurp file)
+  (let [_ (println "Processing markdown for file:" (str file))
+        markdown (slurp file)
+        markdown (h/highlight-clojure markdown)
         ;; make links without markup clickable
         markdown (str/replace markdown #"http[A-Za-z0-9/:.=#?_-]+([\s])"
                               (fn [[match ws]]
