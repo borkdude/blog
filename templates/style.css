@@ -68,4 +68,5 @@ ul.index {
 .string { color: #a11; }
 .number { color: blue; }
 .keyword { color: #219; }
-.uneval { filter: opacity(0.5); }
+.uneval, .comma { filter: opacity(0.5); }
+.regex { color: #a11;}

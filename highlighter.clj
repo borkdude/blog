@@ -133,9 +133,12 @@
   (span (name (tag node))
         (format "#(%s)" (str/join (map node->html (:children node))))))
 
+(defmethod node->html :comma [node]
+  (span (name (tag node))
+        (str node)))
+
 (defmethod node->html :default [node]
-  (binding [*out* *err*]
-    (println "Unhandled tag:" (tag node)))
+  (log "Unhandled tag:" (tag node))
   (span (name (tag node))
         (if (:children node)
           (str/join "" (map node->html (:children node)))
@@ -150,13 +153,14 @@
       (format "<pre><code class=\"clojure hljs\">%s</code></pre>" html))))
 
 (defn highlight-clojure [markdown]
-  (str/replace markdown #"(?m)``` clojure\n([\s\S]+?)\n\s*```"
+  (str/replace markdown #"(?m)```\s*clojure\n([\s\S]+?)\n\s*```"
                (fn [[_ code]]
                  (try (-> (str/trim code)
                           (htmlize)
-                          (str/replace "[" "\\[")
-                          (str/replace "]" "\\]")
-                          (str/replace "*" "\\*"))
+                          (str/replace "[" "&#91;")
+                          (str/replace "]" "&#93;")
+                          (str/replace "*" "&#42;")
+                          (str/replace "_" "&#95;"))
                       (catch Exception e
                         (log "Could not highlight: " (ex-message e) code)
                         markdown)))))

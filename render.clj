@@ -77,7 +77,9 @@
         stale? (seq (fs/modified-since cache-file
                                        [markdown-file
                                         "posts.edn"
-                                        "templates"]))
+                                        "templates"
+                                        "render.clj"
+                                        "highlighter.clj"]))
         body (if stale?
                (let [body (markdown->html markdown-file)]
                  (spit cache-file body)

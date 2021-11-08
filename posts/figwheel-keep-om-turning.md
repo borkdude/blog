@@ -254,24 +254,24 @@ appear on the page. I omitted irrelevant parts.
 
 ```clojure
 (ns example.client
-  ...
+  ,,,
   (:require [om.core :as om :include-macros true]
-            ...
+            ,,,
             [example.child :refer (child)]))
 
-...
+,,,
 
 (om/root
  (fn [app owner]
    (reify
-     ...
+     ,,,
      om/IRender
      (render [_]
        (om/build child app))
-     ...  )))
+     ,,,  ))
  app-state
  {:target (. js/document (getElementById "app"))})
-...
+,,,
 ```
 
 I'm not entirely sure if figwheel handles changes in namespace
@@ -305,7 +305,7 @@ In `will-mount` we'll now spawn a `go` loop that keeps reading from
   (go (loop []
     (when (<! re-render-ch)
       (om/refresh! owner)
-      (recur))))
+      (recur)))))
 ```
 
 All we have to do now is put a (truthy) message into the channel and

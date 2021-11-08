@@ -25,13 +25,14 @@ first step.
 
 ``` clojure
 (defn highlight-clojure [markdown]
-  (str/replace markdown #"(?m)``` clojure\n([\s\S]+?)\n\s*```"
+  (str/replace markdown #"(?m)```\s*clojure\n([\s\S]+?)\n\s*```"
                (fn [[_ code]]
                  (try (-> (str/trim code)
                           (htmlize)
-                          (str/replace "[" "\\\\[")
-                          (str/replace "]" "\\\\]")
-                          (str/replace "*" "\\\\*"))
+                          (str/replace "[" "&#91;")
+                          (str/replace "]" "&#93;")
+                          (str/replace "*" "&#42;")
+                          (str/replace "_" "&#95;"))
                       (catch Exception e
                         (log "Could not highlight: " (ex-message e) code)
                         markdown)))))
@@ -39,8 +40,8 @@ first step.
 
 Parsing blocks of Clojure code from a markdown post is done using a basic
 regex. Then we pass the Clojure code to the `htmlize` function. After that we
-escape some markdown-specific characters, so they will be preserved after
-markdown compilation. If the highlighting failed for some reason, we log it and
+escape some markdown-specific characters, so the markdown compiler won't be
+confused by them.. If the highlighting failed for some reason, we log it and
 fall back on the unprocessed markdown. During the implementation I found several
 snippets of Clojure code with unbalanced parens which I had to fix, since
 rewrite-clj doesn't accept it. So all examples from this blog should be
@@ -134,8 +135,7 @@ I wrote a `:default` implementation that logs a warning for nodes that I hadn't 
 
 ``` clojure
 (defmethod node->html :default [node]
-  (binding [*out* *err*]
-    (println "Unhandled tag:" (tag node)))
+  (log "Unhandled tag:" (tag node))
   (span (name (tag node))
         (if (:children node)
           (str/join "" (map node->html (:children node)))

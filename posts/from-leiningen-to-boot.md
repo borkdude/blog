@@ -52,7 +52,7 @@ In the `build.boot` file this is done by a call to `set-env!`:
 (set-env!
   :source-paths #{"src" "src-cljs"}
   :resource-paths #{"assets"}
-  ...
+  ,,,)
 ```
 
 Boot has the concept of immutable filesets. Each task receives a
@@ -85,7 +85,7 @@ In Boot this is done similarly, still inside the call to `set-env!`:
 
 ```clojure
 (set-env!
-    ...
+    ,,,
     :dependencies '[[org.clojure/clojure "1.6.0"]
                     [org.clojure/clojurescript "0.0-3211"]
                     [org.clojure/core.async "0.1.346.0-17112a-alpha"]
@@ -98,7 +98,7 @@ In Boot this is done similarly, still inside the call to `set-env!`:
                     [clj-json "0.5.3"]
                     [reagent "0.5.0"]
                     [prismatic/schema "0.4.3"]
-                    ...
+                    ,,,
                     ])
 ```
 
@@ -139,7 +139,7 @@ This sets the var `clojure.core/*print-length*` to `20`. If we print collections
 
 ```clojure
 user=> (println (range))
-(0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 ...)
+(0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 ,,,)
 nil
 ```
 
@@ -188,7 +188,7 @@ In Boot tasks are included as normal dependencies and scoped with `:test`:
 
 ```clojure
 (set-env!
-  ...
+  ,,,
   :dependencies '[[adzerk/boot-cljs "0.0-3269-2" :scope "test"]
                   [adzerk/boot-cljs-repl "0.1.9" :scope "test"]
                   [adzerk/boot-reload "0.2.6" :scope "test"]
@@ -406,10 +406,10 @@ I needed to work around this by creating an extra route in my handler:
 
 ```clojure
 (defroutes routes
-  ...
+  ,,,
   (resources "/")
   (resources "/public") ;; extra route
-  ...
+  ,,,)
 ```
 
 This problem will be solved in a future version of `reload`. See this
