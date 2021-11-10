@@ -1,5 +1,7 @@
 This post describes how to publish an [nbb](https://github.com/babashka/nbb)
-based project to [npm](https://npmjs.com/).
+based project to [npm](https://npmjs.com/). It is extracted from
+[this](https://github.com/babashka/nbb/tree/main/doc/publish) entry from the nbb
+documentation.
 
 Nbb is an ad-hoc CLJS scripting environment for Node.js. You could say that it
 is to CLJS on Node.js what [babashka](https://babashka.org/) is to JVM Clojure.
