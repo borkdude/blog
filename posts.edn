@@ -76,4 +76,9 @@
 {:title "Writing a Clojure highlighter from scratch"
  :file "writing-clojure-highlighter.md"
  :categories #{"clojure"}
- :date "2021-11-08"}
+ :date "2021-11-08"
+ :discuss "https://github.com/borkdude/blog/discussions/11"}
+{:title "Publishing an nbb project to npm"
+ :file "publishing-nbb-project-to-npm.md"
+ :categories #{"clojure"}
+ :date "2021-11-10"}

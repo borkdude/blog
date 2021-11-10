@@ -12,7 +12,8 @@ highlighter from scratch wasn't that hard if you had the right tools at hand:
   [rewrite-clj](https://github.com/clj-commons/rewrite-clj).
 - A tool that can provide additional semantic information: is a symbol a local
   or a var? The static analysis output of
-  [clj-kondo](https://github.com/clj-kondo/clj-kondo) provides that information.
+  [clj-kondo](https://github.com/clj-kondo/clj-kondo) provides that
+  information. This part is optional for incrementally better highlighting.
 
 I spent my Sunday afternoon combining these tools which resulted in a 160 line
 script called `highlighter.clj` which is now used to do the highlighting of this
@@ -203,4 +204,6 @@ For `:uneval` nodes, which is rewrite-clj's name for expressions that are ignore
 ```
 
 That's it really. A Sunday afternoon well spent. The code for the highlighter is
-[here](https://github.com/borkdude/blog/blob/main/highlighter.clj).
+[here](https://github.com/borkdude/blog/blob/main/highlighter.clj). In the
+future I might pull out this code into a library. The renderer could support
+ANSI escape code sequences for the terminal as well. Let me know what you think.
