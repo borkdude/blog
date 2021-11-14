@@ -181,7 +181,7 @@
                     link (str blog-root html)]]
           [::atom/entry
            [::atom/id link]
-           [::atom/link link]
+           [::atom/link {:href link}]
            [::atom/title title]
            [::atom/updated (rfc-3339 date)]
            [::atom/content {:type "html"}
