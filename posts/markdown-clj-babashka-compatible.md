@@ -197,21 +197,17 @@ Ran 75 tests containing 136 assertions.
 0 failures, 0 errors.
 ```
 
-I submitted a [PR](https://github.com/yogthos/markdown-clj/pull/173) with these
-changes to the markdown-clj repository. But for now I added my fork in the
-`:deps` of the `bb.edn` of this blog:
-
-``` clojure
-:deps {babashka/markdown-clj {:git/url "https://github.com/babashka/markdown-clj"
-                              :git/sha "20f65255d8056c52923fe82d1998dcd8a6cf6e3c"}}
-```
-
 After that change, I could use `markdown-clj` directly in the code for rendering
 this blog. You can see the diff
 [here](https://github.com/borkdude/blog/commit/5ab3eeb6601e81fb0166e9449cc8054bc99da46a).
 Previously I also used bootleg for hiccup, but babashka already has hiccup as a
 built-in dependency so that wasn't necessary anymore either.  So the blog
 rendering code is pure babashka now.
+
+I submitted a [PR](https://github.com/yogthos/markdown-clj/pull/173) with these
+changes to the markdown-clj repository. This PR was merged and a [new
+version](https://clojars.org/markdown-clj/versions/1.10.7) was published tn
+Clojars, which is used in the `deps.edn` of this blog.
 
 ## Performance considerations
 

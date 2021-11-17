@@ -1,6 +1,5 @@
 {:paths ["." "classes"]
- :deps {babashka/markdown-clj {:git/url "https://github.com/babashka/markdown-clj"
-                               :git/sha "20f65255d8056c52923fe82d1998dcd8a6cf6e3c"}
+ :deps {markdown-clj/markdown-clj {:mvn/version "1.10.7"}
         babashka/fs {:mvn/version "0.1.1"}
         org.clojure/data.xml {:mvn/version "0.2.0-alpha6"}
         hiccup/hiccup {:mvn/version "2.0.0-alpha2"}
