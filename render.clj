@@ -6,11 +6,12 @@
    [clojure.edn :as edn]
    [clojure.string :as str]
    [highlighter :as h]
+   [markdown.core :as md]
    [selmer.parser :as selmer]))
 
 (pods/load-pod 'retrogradeorbit/bootleg "0.1.9")
 
-(require '[pod.retrogradeorbit.bootleg.markdown :as md])
+#_(require '[pod.retrogradeorbit.bootleg.markdown :as md])
 (require '[pod.retrogradeorbit.bootleg.utils :as utils])
 
 (def posts (sort-by :date (comp - compare)
@@ -55,7 +56,7 @@
         markdown (str/replace markdown #"\[[^\]]+\n"
                               (fn [match]
                                 (str/replace match "\n" "$$RET$$")))
-        html (md/markdown markdown :data :html)
+        html (md/md-to-html-string markdown)
         html (str/replace html "$$RET$$" "\n")]
     html))
 
