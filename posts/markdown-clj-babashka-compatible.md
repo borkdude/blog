@@ -26,7 +26,7 @@ compilation. When looking closer, I learned that this dependency is used in a
 small corner of markdown-clj to parse front-matters. I stripped those out when I
 [migrated from Octopress to babashka](migrating-octopress-to-babashka.html), but
 I realize now I could have left those in. Since the rest of markdown-clj is pure
-Clojure, theres a reasonable chance it will work with babashka. Let's try and
+Clojure, there's a reasonable chance it will work with babashka. Let's try and
 see.
 
 I cloned the repo locally and tried this:
@@ -170,7 +170,7 @@ While I was at it, I also added a `deps.edn` and tasks for running the Clojure a
  :tasks
  {,,,
   test:clj {:doc "Runs tests with JVM Clojure"
-                :task (clojure "-X:test")}
+            :task (clojure "-X:test")}
   test:cljs {:doc "Runs tests with ClojureScript"
              :task (clojure "-M:cljs-test")}}}
 ```
@@ -212,9 +212,9 @@ built-in dependency so that wasn't necessary anymore either.  So the blog
 rendering code is pure babashka now.
 
 What about performance? Previous re-rendering all of the blog posts took 4
-seconds and now it takes 5 seconds. Runnning markdown-clj from source is slower
+seconds and now it takes 5 seconds. Running markdown-clj from source is slower
 than using the pod since the code in the pod is all pre-compiled and doesn't run
-through SCI. Compiling a single blog post isn't noticabley slower. The
+through SCI. Compiling a single blog post isn't noticeably slower. The
 difference is small enough to move forward with markdown-clj from source for
 now. Since it's easy to move between pure babashka, using the bootleg pod or
 running JVM Clojure, I keep my options open.
