@@ -241,17 +241,18 @@ Recompiling the entire blog with babashka is still faster, likely because the
 startup time on the JVM isn't that good because Clojure has to load more
 libraries at startup.
 
-If we AOT those libraries then the JVM is faster:
+If we AOT those libraries then JVM Clojure becomes faster but still the startup
+time doesn't outweigh the performance of the JVM:
 
 ``` shell
 $ mkdir -p classes
 $ clojure -M -e "(compile 'render)"
 $ time clojure -M -m render
-clojure -M -m render   5.94s  user 0.57s system 147% cpu 4.405 total
+...
+clojure -M -m render   13.91s  user 1.05s system 259% cpu 5.753 total
 ```
 
-Most of the time I won't recompile all my blog posts but just one. For this use
-case, babashka is ideal, because of the fast startup:
+Most of the time I won't recompile all my blog posts but just one:
 
 ``` shell
 $ touch posts/markdown-clj-babashka-compatible.md
