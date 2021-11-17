@@ -85,4 +85,5 @@
 {:title "Making markdown-clj babashka-compatible"
  :file "markdown-clj-babashka-compatible.md"
  :categories #{"clojure"}
- :date "2021-11-17"}
+ :date "2021-11-17"
+ :discuss "https://github.com/borkdude/blog/discussions/15"}
