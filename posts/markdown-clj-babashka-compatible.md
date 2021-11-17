@@ -1,8 +1,8 @@
-Recently I migrated the highlighting of Clojure code in thie blog from CLJS to
+Recently I migrated the highlighting of Clojure code in this blog from CLJS to
 pure [babashka](https://babashka.org/) code. See
 [this](writing-clojure-highlighter.html) blog post.
 
-For markdown compilation (rendering markdown files to html files) was using
+For rendering markdown files to html files I was using
 [bootleg](https://github.com/retrogradeorbit/bootleg) as a
 [pod](https://github.com/retrogradeorbit/bootleg#babashka-pod-usage). A pod is a
 binary which can act as an RPC server for babashka. Learn more about that
@@ -18,11 +18,12 @@ Then I wondered, can babashka run markdown-clj from source, rather than via a
 pod? Babashka supports a large subset of Clojure and a large subset of classes
 from the JVM. By now it can run a fair share of Clojure libraries from source,
 but sometimes minor tweaks are necessary. I looked at the dependencies of
-markdown-clj and it uses clj-commons/clj-yaml which is luckily included in
-babashka. If it wasn't, I'm pretty sure that dependency could be made optional,
-since I'm not doing anything with yaml in my blog. When looking closer, I
-learned that this dependency is used to parse front-matters. I stripped those
-out when I [migrated from Octopress to
+markdown-clj and it uses
+[clj-commons/clj-yaml](https://github.com/clj-commons/clj-yaml) which is luckily
+included in babashka. If it wasn't, I'm pretty sure that dependency could be
+made optional for those that do not need any YAML support in their markdown
+compilation. When looking closer, I learned that this dependency is used to
+parse front-matters. I stripped those out when I [migrated from Octopress to
 babashka](migrating-octopress-to-babashka.html), but I realize now I could have
 left those in. Anyway, let's continue on the quest to make markdown-clj
 babashka-compatible.
@@ -57,7 +58,7 @@ But changing the code in markdown-clj to:
 ```
 
 doesn't seem to have any downsides and would make that part compatible with
-babashka. There was another dynamic var that had exactly the same problem. After
+babashka. There was another dynamic var that had the same problem. After
 fixing that, I got:
 
 ``` shell
@@ -71,7 +72,7 @@ To be sure all markdown-clj tests pass with babashka, I added a test runner. The
 Cognitect Labs [test-runner](https://github.com/cognitect-labs/test-runner)
 (Cognitest :-D) works with babashka, provided that you include the babashka
 compatible [tools.namespace](https://github.com/babashka/tools.namespace) fork
-in your dependencies. Adding this to a `bb.edn`:
+in your dependencies. The `bb.edn` so far:
 
 ``` clojure
 {:deps {markdown-clj/markdown-clj {:local/root "."}}
@@ -166,15 +167,7 @@ While I was at it, I also added a `deps.edn` and tasks for running the Clojure a
 ``` clojure
 {:deps {markdown-clj/markdown-clj {:local/root "."}}
  :tasks
- {test:bb {:doc "Runs tests with babashka"
-           :extra-paths ["test"]
-           :extra-deps {io.github.cognitect-labs/test-runner
-                        {:git/tag "v0.5.0" :git/sha "b3fd0d2"}
-                        org.clojure/tools.namespace
-                        {:git/url "https://github.com/babashka/tools.namespace"
-                         :git/sha "3625153ee66dfcec2ba600851b5b2cbdab8fae6c"}}
-           :requires ([cognitect.test-runner :as tr])
-           :task (apply tr/-main "-d" "test" *command-line-args*)}
+ {,,,
   test:clj {:doc "Runs tests with JVM Clojure"
                 :task (clojure "-X:test")}
   test:cljs {:doc "Runs tests with ClojureScript"
@@ -205,7 +198,7 @@ I submitted a [PR](https://github.com/yogthos/markdown-clj/pull/173) with these
 changes to the markdown-clj repository. But for now I added my fork in the
 `:deps` of the `bb.edn` of this blog:
 
-``` shell
+``` clojure
 :deps {babashka/markdown-clj {:git/url "https://github.com/babashka/markdown-clj"
                               :git/sha "20f65255d8056c52923fe82d1998dcd8a6cf6e3c"}}
 ```
@@ -213,12 +206,14 @@ changes to the markdown-clj repository. But for now I added my fork in the
 After that change, I could use `markdown-clj` directly in the code for rendering
 this blog. You can see the diff
 [here](https://github.com/borkdude/blog/commit/5ab3eeb6601e81fb0166e9449cc8054bc99da46a).
-Previously I also used bootleg for hiccup, but babashka already has
-`hiccup2.core` as a built-in dependency so that wasn't necessary anymore either.
-So the blog rendering code is pure babashka now.
+Previously I also used bootleg for hiccup, but babashka already has hiccup as a
+built-in dependency so that wasn't necessary anymore either.  So the blog
+rendering code is pure babashka now.
 
 What about performance? Previous re-rendering all of the blog posts took 4
 seconds and now it takes 5 seconds. Runnning markdown-clj from source is slower
 than using the pod since the code in the pod is all pre-compiled and doesn't run
-through SCI. Compilign a single blog post isn't noticabley slower. The
-difference is small enough to move forward with markdown-clj from source.
+through SCI. Compiling a single blog post isn't noticabley slower. The
+difference is small enough to move forward with markdown-clj from source for
+now. Since it's easy to move between pure babashka, using the bootleg pod or
+running JVM Clojure, I keep my options open.
