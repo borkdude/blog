@@ -4,10 +4,10 @@
    [clojure.data.xml :as xml]
    [clojure.edn :as edn]
    [clojure.string :as str]
+   [hiccup2.core :as hiccup]
    [highlighter :as h]
    [markdown.core :as md]
-   [selmer.parser :as selmer]
-   [hiccup2.core :as hiccup]))
+   [selmer.parser :as selmer]))
 
 (def posts (sort-by :date (comp - compare)
                     (edn/read-string (format "[%s]"

@@ -82,3 +82,7 @@
  :file "publishing-nbb-project-to-npm.md"
  :categories #{"clojure"}
  :date "2021-11-10"}
+{:title "Making markdown-clj babashka-compatible"
+ :file "markdown-clj-babashka-compatible.md"
+ :categories #{"clojure"}
+ :date "2021-11-17"}
