@@ -23,18 +23,19 @@ markdown-clj. The only dependency it uses is
 included in babashka. If it wasn't, I'm pretty sure that dependency could be
 made optional for those that do not need any YAML support in their markdown
 compilation. When looking closer, I learned that this dependency is used in a
-small corner of markdown-clj to parse front-matters. I stripped those out when I
-[migrated from Octopress to babashka](migrating-octopress-to-babashka.html), but
-I realize now I could have left those in. Since the rest of markdown-clj is pure
-Clojure, there's a reasonable chance it will work with babashka. Let's try and
-see.
+small corner of markdown-clj to parse front-matters. I stripped those
+front-matters out when I [migrated from Octopress to
+babashka](migrating-octopress-to-babashka.html), but I realize now I could have
+left those in. Since the rest of markdown-clj is pure Clojure, there's a
+reasonable chance it will work with babashka. Let's try and see.
 
 I cloned the repo locally and tried this:
 
 ``` shell
 $ git clone git@github.com:yogthos/markdown-clj.git
 $ cd markdown-clj
-$ bb -cp src/clj:src/cljc -e "(require '[markdown.core :as md]) (md/md-to-html-string \"# 100\")"
+$ bb -cp src/clj:src/cljc -e "(require '[markdown.core :as md])
+  (md/md-to-html-string \"# 100\")"
 ----- Error --------------------------------------------------------------------
 Type:     java.lang.IllegalStateException
 Message:  Can't dynamically bind non-dynamic var #'markdown.common/*substring*
@@ -63,7 +64,8 @@ babashka. There was another dynamic var that had the same problem. After
 fixing that, I got:
 
 ``` shell
-$ bb -cp src/clj:src/cljc -e "(require '[markdown.core :as md]) (md/md-to-html-string \"# 100\")"
+$ bb -cp src/clj:src/cljc -e "(require '[markdown.core :as md])
+  (md/md-to-html-string \"# 100\")"
 "<h1>100</h1>"
 ```
 
@@ -221,9 +223,9 @@ difference is small enough to move forward with markdown-clj from source for
 now. Since it's easy to move between pure babashka, using the bootleg pod or
 running JVM Clojure, I keep my options open.
 
-In fact, with a few small tweaks, while writing this blog post, I made this blog
-run with JVM Clojure. Let's compare. Recompiling all blog posts, which is needed
-when code in `render.clj` changes, so we `touch` it:
+After writing the last paragraph, I made this blog's code run with JVM
+Clojure. Let's compare the time for recompiling all blog posts (which is
+triggered by a change to e.g. `render.clj`):
 
 ``` shell
 $ touch render.clj
@@ -264,4 +266,42 @@ $ touch posts/markdown-clj-babashka-compatible.md
 $ time clojure -M -m render
 Processing markdown for file: posts/markdown-clj-babashka-compatible.md
 clojure -M -m render   5.58s  user 0.60s system 189% cpu 3.266 total
+```
+
+## nbb
+
+Dmitri Sotnikov, the author of markdown-clj, suggested that markdown-clj could
+also be made compatible with [scittle](https://github.com/babashka/scittle) and
+[nbb](https://github.com/babashka/nbb). The only change I had to make to the
+original source was to change `cljs.reader` into `clojure.edn` and then it
+worked:
+
+``` shell
+$ nbb -cp src/clj:src/cljc:src/cljs -e "(require '[markdown.core :as md])
+  (md/md->html \"# 100\")"
+"<h1>100</h1>"
+```
+
+After adding a runner:
+
+``` clojure
+(ns nbb-runner
+  (:require [clojure.string :as str]
+            [clojure.test :refer [run-tests]]
+            [nbb.classpath :as cp]))
+
+(cp/add-classpath (str/join ":" ["src/cljs" "src/cljc" "test"]))
+
+(require '[markdown.md-test])
+
+(run-tests 'markdown.md-test)
+```
+
+and a few minor tweaks to the tests, the library runs with nbb:
+
+```
+Testing markdown.md-test
+
+Ran 75 tests containing 134 assertions.
+0 failures, 0 errors.
 ```
