@@ -1,17 +1,13 @@
 (ns render
   (:require
    [babashka.fs :as fs]
-   [babashka.pods :as pods]
    [clojure.data.xml :as xml]
    [clojure.edn :as edn]
    [clojure.string :as str]
    [highlighter :as h]
-   [selmer.parser :as selmer]))
-
-(pods/load-pod 'retrogradeorbit/bootleg "0.1.9")
-
-(require '[pod.retrogradeorbit.bootleg.markdown :as md])
-(require '[pod.retrogradeorbit.bootleg.utils :as utils])
+   [markdown.core :as md]
+   [selmer.parser :as selmer]
+   [hiccup2.core :as hiccup]))
 
 (def posts (sort-by :date (comp - compare)
                     (edn/read-string (format "[%s]"
@@ -55,7 +51,7 @@
         markdown (str/replace markdown #"\[[^\]]+\n"
                               (fn [match]
                                 (str/replace match "\n" "$$RET$$")))
-        html (md/markdown markdown :data :html)
+        html (md/md-to-html-string markdown)
         html (str/replace html "$$RET$$" "\n")]
     html))
 
@@ -124,7 +120,7 @@
 (spit (fs/file out-dir "archive.html")
       (selmer/render base-html
                      {:skip-archive true
-                      :body (utils/convert-to (post-links) :html)}))
+                      :body (hiccup/html (post-links))}))
 
 ;;;; Generate index page with last 3 posts
 
@@ -141,7 +137,7 @@
 
 (spit (fs/file out-dir "index.html")
       (selmer/render base-html
-                     {:body (utils/convert-to (index) :html)}))
+                     {:body (hiccup/html {:escape-strings? false} (index))}))
 
 ;;;; Generate atom feeds
 
