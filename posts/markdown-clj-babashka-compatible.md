@@ -18,15 +18,16 @@ Then I wondered, can babashka run markdown-clj from source, rather than via a
 pod? Babashka supports a large subset of Clojure and a large subset of classes
 from the JVM. By now it can run a fair share of Clojure libraries from source,
 but sometimes minor tweaks are necessary. I looked at the dependencies of
-markdown-clj and it uses
+markdown-clj. The only dependency it uses is
 [clj-commons/clj-yaml](https://github.com/clj-commons/clj-yaml) which is luckily
 included in babashka. If it wasn't, I'm pretty sure that dependency could be
 made optional for those that do not need any YAML support in their markdown
-compilation. When looking closer, I learned that this dependency is used to
-parse front-matters. I stripped those out when I [migrated from Octopress to
-babashka](migrating-octopress-to-babashka.html), but I realize now I could have
-left those in. Anyway, let's continue on the quest to make markdown-clj
-babashka-compatible.
+compilation. When looking closer, I learned that this dependency is used in a
+small corner of markdown-clj to parse front-matters. I stripped those out when I
+[migrated from Octopress to babashka](migrating-octopress-to-babashka.html), but
+I realize now I could have left those in. Since the rest of markdown-clj is pure
+Clojure, theres a reasonable chance it will work with babashka. Let's try and
+see.
 
 I cloned the repo locally and tried this:
 
