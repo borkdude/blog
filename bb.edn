@@ -1,6 +1,4 @@
-{:paths ["."]
- :deps {babashka/markdown-clj {:git/url "https://github.com/babashka/markdown-clj"
-                               :git/sha "20f65255d8056c52923fe82d1998dcd8a6cf6e3c"}}
+{:deps {blog/blog {:local/root "."}}
  :tasks
  {:requires ([babashka.fs :as fs]
              [tasks-helper :as th])

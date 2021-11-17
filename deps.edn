@@ -1,12 +1,20 @@
-{:deps {applied-science/js-interop {:mvn/version "0.2.5"}
-        org.clojure/clojure {:mvn/version "1.10.3"}
-        org.clojure/clojurescript {:mvn/version "1.10.866"}
-        nextjournal/clojure-mode
-        {:git/url "https://github.com/nextjournal/clojure-mode"
-         :sha "a83c87cd2bd2049b70613f360336a096d15c5518"}}
+{:paths ["." "classes"]
+ :deps {babashka/markdown-clj {:git/url "https://github.com/babashka/markdown-clj"
+                               :git/sha "20f65255d8056c52923fe82d1998dcd8a6cf6e3c"}
+        babashka/fs {:mvn/version "0.1.1"}
+        org.clojure/data.xml {:mvn/version "0.2.0-alpha6"}
+        hiccup/hiccup {:mvn/version "2.0.0-alpha2"}
+        babashka/pods {:git/url "https://github.com/babashka/pods"
+                       :git/sha "f360afa6135b8bd2d384d9ba4582c0de6fdac804"}
+        rewrite-clj/rewrite-clj {:mvn/version "1.0.699-alpha"}
+        selmer/selmer {:mvn/version "1.12.44"}
+        clj-kondo/clj-kondo {:mvn/version "2021.10.19"}}
  :aliases
- {:dev {:extra-paths ["test"]
-        :extra-deps {thheller/shadow-cljs {:mvn/version "2.15.10"}}}
-  :demo {:extra-deps {borkdude/sci {:mvn/version "0.2.0"}
-                      reagent/reagent {:mvn/version "1.0.0"}}
-         :extra-paths ["demo/src"]}}}
+ {:cljs {:extra-paths ["test"]
+         :extra-deps {thheller/shadow-cljs {:mvn/version "2.15.10"}
+                      applied-science/js-interop {:mvn/version "0.2.5"}
+                      org.clojure/clojure {:mvn/version "1.10.3"}
+                      org.clojure/clojurescript {:mvn/version "1.10.866"}
+                      nextjournal/clojure-mode
+                      {:git/url "https://github.com/nextjournal/clojure-mode"
+                       :sha "a83c87cd2bd2049b70613f360336a096d15c5518"}}}}}

@@ -190,3 +190,7 @@
                   (fn [post]
                     (some (:categories post) ["clojure" "clojurescript"]))
                   posts)))
+
+;; for JVM Clojure:
+(defn -main [& _args]
+  (System/exit 0))

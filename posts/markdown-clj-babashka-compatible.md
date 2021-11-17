@@ -10,9 +10,9 @@ binary which can act as an RPC server for babashka. Learn more about that
 
 Today I noticed a [new PR](https://github.com/retrogradeorbit/bootleg/pull/76)
 in bootleg. The user who submitted the PR also used bootleg for markdown
-compilation in babashka, but bootleg didn't expose an option that
-[markdown-clj](https://github.com/yogthos/markdown-clj), the underlying library
-supports. The PR fixes that.
+compilation in babashka, but bootleg didn't expose an option that the underlying
+library, [markdown-clj](https://github.com/yogthos/markdown-clj), supports. The
+PR fixes that.
 
 Then I wondered, can babashka run markdown-clj from source, rather than via a
 pod? Babashka supports a large subset of Clojure and a large subset of classes
@@ -211,10 +211,56 @@ Previously I also used bootleg for hiccup, but babashka already has hiccup as a
 built-in dependency so that wasn't necessary anymore either.  So the blog
 rendering code is pure babashka now.
 
+## Performance considerations
+
 What about performance? Previous re-rendering all of the blog posts took 4
-seconds and now it takes 5 seconds. Running markdown-clj from source is slower
+seconds and now it takes a second longer. Running markdown-clj from source is slower
 than using the pod since the code in the pod is all pre-compiled and doesn't run
 through SCI. Compiling a single blog post isn't noticeably slower. The
 difference is small enough to move forward with markdown-clj from source for
 now. Since it's easy to move between pure babashka, using the bootleg pod or
 running JVM Clojure, I keep my options open.
+
+In fact, with a few small tweaks, while writing this blog post, I made this blog
+run with JVM Clojure. Let's compare. Recompiling all blog posts, which is needed
+when code in `render.clj` changes, so we `touch` it:
+
+``` shell
+$ touch render.clj
+$ time bb render
+...
+bb render   3.51s  user 0.17s system 75% cpu 4.891 total
+
+$ touch render.clj
+$ clojure -M -m render
+...
+clojure -M -m render   21.97s  user 1.21s system 276% cpu 8.386 total
+```
+
+Recompiling the entire blog with babashka is still faster, likely because the
+startup time on the JVM isn't that good because Clojure has to load more
+libraries at startup.
+
+If we AOT those libraries then the JVM is faster:
+
+``` shell
+$ mkdir -p classes
+$ clojure -M -e "(compile 'render)"
+$ time clojure -M -m render
+clojure -M -m render   5.94s  user 0.57s system 147% cpu 4.405 total
+```
+
+Most of the time I won't recompile all my blog posts but just one. For this use
+case, babashka is ideal, because of the fast startup:
+
+``` shell
+$ touch posts/markdown-clj-babashka-compatible.md
+$ time bb render
+Processing markdown for file: posts/markdown-clj-babashka-compatible.md
+bb render   0.42s  user 0.12s system 79% cpu 0.682 total
+
+$ touch posts/markdown-clj-babashka-compatible.md
+$ time clojure -M -m render
+Processing markdown for file: posts/markdown-clj-babashka-compatible.md
+clojure -M -m render   5.58s  user 0.60s system 189% cpu 3.266 total
+```
