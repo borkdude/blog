@@ -87,3 +87,8 @@
  :categories #{"clojure"}
  :date "2021-11-17"
  :discuss "https://github.com/borkdude/blog/discussions/15"}
+{:title "Using clojure.spec.alpha with babashka"
+ :file "using-clojure-spec-alpha-with-babashka.md"
+ :categories #{"clojure"}
+ :date "2021-12-10"
+ :discuss "https://github.com/borkdude/blog/discussions/17"}
