@@ -1,24 +1,34 @@
-Spec is a library for validating and conforming (destructuring) data that comes
-with Clojure. For over a year there was an [open
-issue](https://github.com/babashka/babashka/issues/558) in the
+## Tl;dr
+
+If you want to use `clojure.spec.alpha` with babashka, upgrade to 0.7.0 or newer
+and use [babashka/spec.alpha](https://github.com/babashka/spec.alpha) as a
+library.
+
+## The issue
+
+[Spec](https://github.com/clojure/spec.alpha) is a library for validating and
+conforming (destructuring) data that comes with Clojure. For over a year there
+was an [open issue](https://github.com/babashka/babashka/issues/558) in the
 [babashka](https://babashka.org/) Github repo about whether to include
-[clojure.spec](https://github.com/clojure/spec.alpha) into babashka, a fast
-starting native Clojure scripting environment. Clojure.spec is used in many
-libraries and adding it would add compatibility with more of them. I already
-knew that from a technical perspective [SCI](https://github.com/babashka/sci)
-(the interpreter used by babashka) and clojure.spec can work together well. I've
-put this into practice in [grasp](https://github.com/borkdude/grasp), a tool to
-"grep" Clojure source using clojure specs provides a binary which includes
-clojure spec. The question is: should we?
+clojure.spec into babashka, a fast starting native Clojure scripting
+environment. Clojure.spec is used in many libraries and adding it would add
+compatibility with more of them. I already knew that from a technical
+perspective [SCI](https://github.com/babashka/sci) (the interpreter used by
+babashka) and clojure.spec can work together well. I've put this into practice
+in [grasp](https://github.com/borkdude/grasp), a tool to "grep" Clojure source
+using clojure specs. It provides a binary which includes clojure spec in the
+same way that babashka would. The question is: should we include
+clojure.spec.alpha in babashka?
 
 ## What does built-in mean?
 
 Adding a library as a built-in in babashka means that it is compiled into
 babashka's native image. The functions are pre-compiled to native machine code
 and aren't run through the SCI interpreter. This is much better for performance,
-but also for startup time. Libraries loaded from source means you have to parse
-and analyze the code before even using it. Adding a library as a built-in means
-that this work is already done compile time.
+but also for startup time. Loading libraries from source in babashka involved
+parsing and analyzing code before using it. Adding a library as a built-in means
+that this work is already done at compile time, by the Clojure compiler instead
+of SCI.
 
 ## Alpha
 
@@ -30,9 +40,9 @@ it ever disappear from Clojure once it's not alpha anymore? In 2019 Alex Miller
 gave an inspiring [talk](https://youtu.be/KeZNRypKVa4) at ClojuTRE in which he
 announced that spec 2 was soon coming. I'm still hoping it will soon come, but I
 understand that a lot of good things happened at Cognitect and they had other
-things to work on. In the open issue I've asked for feedback on including
+things to work on. In the open babashka issue I've asked for feedback on including
 `clojure.spec.alpha` as it is and most people were in favor of waiting for
-clojure spec stable. I decided to be patient and investigate alternatives. If we
+clojure spec 2. I decided to be patient and investigate alternatives. If we
 aren't going to include `clojure.spec.alpha` as a built-in, what alternatives do
 we have? We could try to run `clojure.spec.alpha` from source instead of a
 built-in so people can use it as an optional library.
@@ -56,7 +66,7 @@ something within reach, mostly because babashka didn't support
 protocols. Protocols were introduced in version
 [0.1.1](https://github.com/babashka/babashka/blob/master/CHANGELOG.md#v011-2020-06-10)
 in June of 2020, but by then I already made a rewrite of clojure.spec.alpha that
-used plain hashmaps instead of protocol. This version was called
+used plain hashmaps instead of protocols. This version was called
 [spartan.spec](https://github.com/borkdude/spartan.spec): spartan, because it
 supported the basic features of spec, but not all. It did not support
 generators, `fdef` and instrumentation. Although I could have made that work,
@@ -74,9 +84,9 @@ the original spec from source.
 
 When introducing protocols, I hadn't thought of revisiting running
 clojure.spec.alpha from source again. For some reason this only occurred to me
-in the past few days. I discovered that the incompatibilities were minimal. Here
-are some things I found and what I did in a fork to solve the compatibility with
-babashka:
+in the past few days. I discovered that the remaining incompatibilities were
+minimal. Here are some things I found and what I did in a fork to solve the
+compatibility with babashka:
 
 - Spec uses `clojure.lang.Compiler/demunge` to turn function names into symbols
   for displaying information about them. This functionality is also provided by
@@ -88,22 +98,23 @@ babashka:
   to see if we can get this function into `clojure.core`.
 - Spec uses Java interop on `clojure.lang.Var` to get the namespace and name
   symbols from a var. In babashka there is no `clojure.lang.Var`: SCI has its
-  own var type which works both in the JVM and with JavaScript. I used the
-  metadata on SCI vars to get this information instead.
+  own var type which works both in the JVM / GraalVM native and in JavaScript. I
+  used the metadata on SCI vars to get this information instead.
 - The function `clojure.spec.alpha/multi-spec-impl` uses Java interop on
   multimethods, so I had to expose `clojure.lang.MultiFn` in babashka to make
-  that possible. I noticed this when trying to use `multi-spec` in babashka and
-  was surprised the tests didn't catch this. I pulled out some examples from the
-  [spec guide](https://clojure.org/guides/spec) and turned those into
-  tests. Alex Miller included those tests upstream after I poked him about
-  it. Thanks Alex! The `multi-spec-impl` function pulls out the dispatch
-  function from a multimethod with `(.dispatchFn mm)`. This is not a method
-  call, since `dispatchFn` is a public field. I needed to improve SCI to support
-  public field lookups in Java classes, a feature nobody has ever asked for
-  before. The expression could have been written like `(.-dispatchFn mm)` to
-  make the field lookup explicit and this is what I changed it to, in order to
-  not have to support this ambiguity in SCI. This effort would have been easier
-  if clojure core exposed `dispatch-fn` like ClojureScript does. Vote
+  that possible. I noticed this when trying to use `multi-spec` in babashka when
+  I thought I was already done porting. Surprisingly spec's tests didn't catch
+  this, which I had been using to verify if the port worked. I pulled out some
+  examples from the [spec guide](https://clojure.org/guides/spec) and turned
+  those into tests for `multi-spec`. Alex Miller included those tests upstream
+  after I poked him about it. Thanks Alex!  The `multi-spec-impl` function pulls
+  out the dispatch function from a multimethod with `(.dispatchFn mm)`. This is
+  not a method call, since `dispatchFn` is a public field. I needed to improve
+  SCI to support public field lookups in Java classes. The expression could have
+  been written like `(.-dispatchFn mm)` to make the field lookup explicit and
+  this is what I changed it to, in order to not have to support this ambiguity
+  in SCI. This issue would have been easier to deal with if `clojure.core`
+  exposed `dispatch-fn` like ClojureScript does. Vote
   [here](https://ask.clojure.org/index.php/10261/please-add-dispatch-fn-to-clojure-core)
   to make that happen. Also, `get-method` is a core function, the `.getMethod`
   interop wasn't really necessary, but perhaps it is there for performance
@@ -127,6 +138,13 @@ Testing clojure.test-clojure.multi-spec
 Ran 13 tests containing 168 assertions.
 0 failures, 0 errors.
 ```
+
+In addition to spec's own tests, I've added tests from the following libraries
+that are using spec to babashka's CI:
+[better-cond](https://github.com/Engelberg/better-cond),
+[coax](https://github.com/exoscale/coax),
+[orchestra](https://github.com/jeaye/orchestra) and
+[integrant](https://github.com/weavejester/integrant).
 
 The benefit of maintaining a fork with minimal changes is that I can easily pull
 in changes from upstream.  The fork is available
@@ -159,3 +177,5 @@ A demo of data generation using spec:
 (0 -1 0 -1 -6 -1 -2 0 9 1)
 ({:name "r", :address {:street "Y", :street-number -1}} {:name "m", :address {:street "k8", :street-number -1}} {:name "5", :address {:street "s1E", :street-number 0}} {:name "o4H", :address {:street "4", :street-number -1}} {:name "nkhf", :address {:street "4Fh92", :street-number 1}} {:name "e", :address {:street "X", :street-number 4}} {:name "5v76a9B", :address {:street "bEf7e", :street-number 23}} {:name "213V", :address {:street "fNX3wr", :street-number 5}} {:name "8336lvbb9", :address {:street "fVP", :street-number -1}} {:name "x8X", :address {:street "utPQA", :street-number -7}})
 ```
+
+The above example executes in about 120ms on my machine.
