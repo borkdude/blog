@@ -92,3 +92,7 @@
  :categories #{"clojure"}
  :date "2021-12-10"
  :discuss "https://github.com/borkdude/blog/discussions/17"}
+{:title "OSS Highlights of November - December 2021"
+ :file "oss-highlights-nov-dec-2021.md"
+ :categories #{"clojure"}
+ :date "2021-12-31"}
