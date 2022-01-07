@@ -32,7 +32,7 @@ CREATE TABLE public.guestbook
 name text,
 message text,
 _created timestamp without time zone,
-session text,
+_session text,
 CONSTRAINT session_unique UNIQUE (session)
 )
 ```
@@ -89,7 +89,7 @@ Here I check if a user already posted a greeting before, using the session id:
          :port 5434})
 
 (def posted-before
-  (-> (sql/execute-one! db ["select count(*) from guestbook where session = ?" session-id])
+  (-> (sql/execute-one! db ["select count(*) from guestbook where _session = ?" session-id])
       :count))
 ```
 
