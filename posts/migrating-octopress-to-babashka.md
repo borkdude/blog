@@ -233,5 +233,6 @@ The code for this blog is available [here](https://github.com/borkdude/blog).
 Since writing this blog post, this blog has undergone some progressions which
 you can read about here:
 
-- [Clojure highlighting is done using a home-made highlighter](https://blog.michielborkent.nl/writing-clojure-highlighter.html)
+- [I wanted better Clojure highlighting using nextjournal/clojure-mode](https://blog.michielborkent.nl/better-clojure-highlighting.html).
+- [But then I realized that Clojure highlighting isn't that hard can be done using a home-made solution.](https://blog.michielborkent.nl/writing-clojure-highlighter.html)
 - [The blog now using markdown-clj from source](https://blog.michielborkent.nl/markdown-clj-babashka-compatible.html).
