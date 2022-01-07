@@ -97,3 +97,7 @@
  :categories #{"clojure"}
  :date "2021-12-31"
  :discuss "https://github.com/borkdude/blog/discussions/20"}
+{:title "Using babashka with php: guestbook example"
+ :file "using-babashka-with-php.md"
+ :categories #{"clojure"}
+ :date "2022-01-07"}
