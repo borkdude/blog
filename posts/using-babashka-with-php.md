@@ -1,6 +1,6 @@
 One of the recurring themes in Clojure land is:
 
-- There is a popular widely used platform (JVM, JS, .NET, Node.js, ...).
+- There is a popular widely used platform (JVM, browser, .NET, Node.js, ...).
 - We may not like the language that comes with that platform.
 - Adding Clojure on top of that platform might make the platform more tolerable and fun to use.
 
