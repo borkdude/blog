@@ -13,13 +13,14 @@ the PHP script is requested via nginx. The babashka script prints HTML and then
 exits. PHP sends the HTML to the browser as it would normally do. If you have
 already paid the operational costs of installing and maintaining PHP, this
 approach doesn't add much cost to it. A closely related CGI-based approach, but
-one that doesn't use PHP at all, has been explored before by Eccentic-J and you
+one that doesn't use PHP at all, has been explored before by Eccentric-J and you
 can read his blog post
 [here](https://eccentric-j.com/blog/clojure-like-its-php.html).
 
-You can see the result [here](https://cgi.michielborkent.nl/guestbook.php) and
-the code is on [Github](https://github.com/borkdude/bb-php-guestbook). Below is
-a brief explanation of the components involved.
+The example described in this blog post is a guestbook.  You can view the
+guestbook [here](https://cgi.michielborkent.nl/guestbook.php) and the code is on
+[Github](https://github.com/borkdude/bb-php-guestbook). Below is a brief
+explanation of the components involved.
 
 ## Database table
 
