@@ -235,4 +235,4 @@ you can read about here:
 
 - [I wanted better Clojure highlighting using nextjournal/clojure-mode](https://blog.michielborkent.nl/better-clojure-highlighting.html).
 - [But then I realized that Clojure highlighting isn't that hard can be done using a home-made solution.](https://blog.michielborkent.nl/writing-clojure-highlighter.html)
-- [The blog now using markdown-clj from source](https://blog.michielborkent.nl/markdown-clj-babashka-compatible.html).
+- [Instead of the pod, the blog is now using markdown-clj from source](https://blog.michielborkent.nl/markdown-clj-babashka-compatible.html).
