@@ -65,10 +65,10 @@ You can test the lambda function by creating a test event and invoking it.
 
 To be able to invoke the function via HTTP, you'll first have to `Publish` it.
 
-The, under `Configuration > Trigger` you can add an API Gateway trigger. Create
+Then, under `Configuration > Trigger` you can add an API Gateway trigger. Create
 one and choose `HTTP API` and `Security Open` (make sure you change this when it
-becomes a private production rather than just for the sake of trying nbb on
-lambda!).
+becomes a private production lambda rather than just for the sake of trying nbb
+on lambda!).
 
 After that you should end up with a public URL like
 `https://9fov8nrv4f.execute-api.eu-central-1.amazonaws.com/default/...` which
@@ -78,3 +78,7 @@ the cold start were around 100ms.
 As a nice bonus, you can edit the CLJS code directly in the console:
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">After cold start on a 128MB ARM lambda:<br><br>$ time curl <a href="https://t.co/NGsyrtbKZp">https://t.co/NGsyrtbKZp</a><br>{&quot;hello&quot;:&quot;world&quot;}curl 0.02s user 0.01s system 23% cpu 0.105 total<br><br>And you get to edit the CLJS code in the console :) <a href="https://t.co/4ql2R04R0N">pic.twitter.com/4ql2R04R0N</a></p>&mdash; (λ. borkdude) (@borkdude) <a href="https://twitter.com/borkdude/status/1479786184557617160?ref_src=twsrc%5Etfw">January 8, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+Also check out this [nbb serverless
+example](https://github.com/vharmain/nbb-serverless-example) that Valtteri
+Harmainen made.
