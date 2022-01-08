@@ -52,7 +52,7 @@ example.cljs:
 
 Make sure to run `npm install`.
 
-Zip the directory: `zip -r app.zip`.
+Zip the directory: `zip -r app.zip .`
 
 Go to the AWS Console. `Choose Lambda` -> `Author from Scratch` -> `Runtime Node.s 14.x + arm64`.
 The default 128 MB should be sufficient for fast response
