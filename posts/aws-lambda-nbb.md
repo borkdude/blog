@@ -11,7 +11,7 @@ well.
 
 ## Nbb on AWS Lambda
 
-While it was already possible to use [nbb](https://github.com/babashka/nbb) on
+While it was already possible to use nbb on
 AWS Lambda, it needed some boilerplate code. Valtterri Harmainen captured this
 boilerplate in his
 [nbb-lambda-adapter](https://github.com/vharmain/nbb-lambda-adapter).
