@@ -102,3 +102,8 @@
  :categories #{"clojure"}
  :date "2022-01-07"
  :discuss "https://github.com/borkdude/blog/discussions/21"}
+{:title "Creating an AWS Lambda function with nbb"
+ :file "aws-lambda-nbb.md"
+ :categories #{"clojure"}
+ :date "2022-01-08"
+ :discuss "https://github.com/borkdude/blog/discussions/22"}
