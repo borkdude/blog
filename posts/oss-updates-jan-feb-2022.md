@@ -33,6 +33,8 @@ Highlights:
 I also submitted a PR to [cli-matic](https://github.com/l3nz/cli-matic) to fix
 the long standing issue about babashka compatibility.
 
+Please leave some feedback about babashka in the [Q1 Survey](https://forms.gle/ko3NjDg2SwXeEoNQ9)!
+
 ## [Clj-kondo](https://github.com/clj-kondo/clj-kondo)
 
 A linter for Clojure (code) that sparks joy.
