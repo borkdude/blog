@@ -107,3 +107,7 @@
  :categories #{"clojure"}
  :date "2022-01-08"
  :discuss "https://github.com/borkdude/blog/discussions/22"}
+{:title "OSS Updates of January - February 2022"
+ :file "oss-updates-jan-feb-2022.md"
+ :categories #{"clojure"}
+ :date "2022-02-27"}
