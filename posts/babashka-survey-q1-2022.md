@@ -169,7 +169,8 @@ something I will be looking into in an ongoing basis. Most if not all of that
 work is happening in SCI, which is also powering
 [nbb](https://github.com/babashka/nbb) and other JS targets.
 
-If you are interested in the raw data for this survey, then send me a message.
+If you are interested in the raw (anonimized) data for this survey, then send me
+a message.
 
 ## Thanks
 
