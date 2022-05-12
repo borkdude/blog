@@ -111,3 +111,7 @@
  :file "oss-updates-jan-feb-2022.md"
  :categories #{"clojure"}
  :date "2022-02-27"}
+{:title "OSS Updates of March - April 2022"
+ :file "oss-updates-mar-apr-2022.md"
+ :categories #{"clojure"}
+ :date "2022-04-29"}
