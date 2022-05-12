@@ -118,4 +118,5 @@
 {:title "Babashka survey Q1 2022 results!"
  :file "babashka-survey-q1-2022.md"
  :categories #{"clojure"}
- :date "2022-05-12"}
+ :date "2022-05-12"
+ :discuss "https://github.com/borkdude/blog/discussions/25"}
