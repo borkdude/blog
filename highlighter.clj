@@ -1,19 +1,15 @@
 (ns highlighter
   (:require
    [babashka.fs :as fs]
-   [babashka.pods :as pods]
    [clojure.string :as str]
-   [rewrite-clj.node :refer [tag sexpr]]
+   [pod.borkdude.clj-kondo :as clj-kondo]
+   [rewrite-clj.node :refer [sexpr tag]]
    [rewrite-clj.parser :as p]
    [selmer.parser :as selmer]))
 
 (defn log [& xs]
   (binding [*out* *err*]
     (println (str/join " " (map pr-str xs)))))
-
-(pods/load-pod 'clj-kondo/clj-kondo "2021.10.19")
-
-(require '[pod.borkdude.clj-kondo :as clj-kondo])
 
 (defn analysis [code]
   (let [tmp (doto (fs/file (fs/create-temp-dir) "code.clj")
