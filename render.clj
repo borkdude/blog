@@ -49,11 +49,15 @@
                                         (str/trim match)
                                         (str/trim match)
                                         ws)))
+        markdown (str/replace markdown #"--" (fn [_]
+                                               "$$NDASH$$"))
         ;; allow links with markup over multiple lines
         markdown (str/replace markdown #"\[[^\]]+\n"
                               (fn [match]
                                 (str/replace match "\n" "$$RET$$")))
         html (md/md-to-html-string markdown)
+        ;; see issue https://github.com/yogthos/markdown-clj/issues/146
+        html (str/replace html "$$NDASH$$" "--")
         html (str/replace html "$$RET$$" "\n")]
     html))
 

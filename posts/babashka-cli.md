@@ -2,30 +2,44 @@
 The main ideas:
 
 - Put as little effort as possible into turning a clojure function into a CLI,
-  similar to `-X` style invocations (see docs
-  [here](https://clojure.org/reference/deps_and_cli#_execute_a_function)). For
-  lazy people like me!
+  similar to `-X` style invocations. For lazy people like me! If you are not
+  familiar with `clj -X`, read the docs
+  [here](https://clojure.org/reference/deps_and_cli#_execute_a_function).
 - But with a better UX by not having to use quotes on the command line as a
   result of having to pass EDN directly: `:dir foo` instead of `:dir '"foo"'` or
-  who knows how to write the latter in `cmd.exe` or Powershell...
+  who knows how to write the latter in `cmd.exe` or Powershell.
+- Open world assumption: passing extra arguments does not break and arguments
+  can be re-used in multiple contexts.
+- Because the line between calling functions from the command line and Clojure
+  itself is blurred, validation of arguments should happen in the same way you'd
+  do it in Clojure, using your favorite tools (manually, spec, schema,
+  malli...). As such, the library only focuses on coercion (turning argument
+  strings into data), not on validation.
 
 Given the function:
 
 ``` clojure
-(defn foo [{:keys [foo bar] :as m}] (prn m))
+(defn foo [{:keys [force dir] :as m}]
+  (prn m))
 ```
 
 and with a little bit of [config](https://github.com/babashka/cli#clojure-cli)
 in your `deps.edn`, you can call the function from the command line using:
 
 ``` clojure
-clj -M:foo --foo --bar=yes
+clj -M:foo --force --dir=src
+```
+
+or:
+
+``` clojure
+clj -M:foo --force --dir src
 ```
 
 which will then print:
 
 ```
-{:foo true, :bar "yes"}
+{:force true, :dir "src"}
 ```
 
 We did not have to teach babashka CLI anything about the expected arguments.
@@ -33,21 +47,22 @@ We did not have to teach babashka CLI anything about the expected arguments.
 Another accepted syntax is:
 
 ```
-clj -M:foo :foo true :bar yes
+clj -M:foo :force true :dir src
 ```
 
 but this is parsed as:
 
 ```
-{:foo "true", :bar "yes"}
+{:foo "true", :dir "src"}
 ```
 
 Here babashka CLI needs a little argument "hinting" using metadata:
 
 ``` clojure
 (defn foo
-  {:org.babashka/cli {:coerce {:foo :boolean}}}
-  [{:keys [foo bar] :as m}] (prn m))
+  {:org.babashka/cli {:coerce {:force :boolean}}}
+  [{:keys [force dir] :as m}]
+  (prn m))
 ```
 
 The metadata format is set up in such a way that libraries need not have a dependency on babashka CLI itself.
@@ -56,21 +71,21 @@ The metadata format is set up in such a way that libraries need not have a depen
 After invoking this again:
 
 ```
-clj -M:foo :foo true :bar yes
+clj -M:foo :force true :dir src
 ```
 
 you will see:
 
-```
-{:foo true, :bar "yes"}
+``` clojure
+{:force true, :dir "src"}
 ```
 
 Did you notice that the `-M` invocation now becomes almost identical to `-X`,
 but without quotes?
 
 ```
-clj -M:foo :foo true :bar yes
-clj -X:foo :foo true :bar '"yes"'
+clj -M:foo :force true :dir src
+clj -X:foo :force true :dir '"src"'
 ```
 
 Let's look at a recent project,
