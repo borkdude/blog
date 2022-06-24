@@ -91,7 +91,9 @@
 
 (defmethod node->html :multi-line [node]
   (span "string"
-        (str/join "<br>" (map escape (:lines node)))))
+        (str "&quot;"
+             (str/join "<br>" (map escape (:lines node)))
+             "&quot;")))
 
 (defmethod node->html :quote [node]
   (str "'" (str/join (map node->html (:children node)))))

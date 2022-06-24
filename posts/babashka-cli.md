@@ -1,7 +1,7 @@
 [Babashka CLI](https://github.com/babashka/cli) is a new library for command line argument parsing.
 The main ideas:
 
-- Put as little effort as possible into turning a clojure function into a CLI,
+- Put as little effort as possible into turning a Clojure function into a CLI,
   similar to `-X` style invocations. For lazy people like me! If you are not
   familiar with `clj -X`, read the docs
   [here](https://clojure.org/reference/deps_and_cli#_execute_a_function).
@@ -11,10 +11,10 @@ The main ideas:
 - Open world assumption: passing extra arguments does not break and arguments
   can be re-used in multiple contexts.
 - Because the line between calling functions from the command line and Clojure
-  itself is blurred, validation of arguments should happen in the same way you'd
-  do it in Clojure, using your favorite tools (manually, spec, schema,
-  malli...). As such, the library only focuses on coercion (turning argument
-  strings into data), not on validation.
+  itself is blurred, validation of arguments should happen in your Clojure
+  function, using your favorite tools (manually, spec, schema, malli...). As
+  such, the library only focuses on coercion: turning argument strings into data
+  and then passes that data to your function.
 
 Given the function:
 
@@ -133,7 +133,7 @@ Now when I add this function to `deps.edn` using:
         :exec-fn babashka.http-server/exec}
 ```
 
-I can call it with both `-M` and `-X`:
+it can be called both with `-M` and `-X`:
 
 ``` text
 $ clj -M:serve --port 1339
