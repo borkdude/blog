@@ -14,7 +14,7 @@ The main ideas:
   itself is blurred, validation of arguments should happen in your Clojure
   function, using your favorite tools (manually, spec, schema, malli...). As
   such, the library only focuses on coercion: turning argument strings into data
-  and then passes that data to your function.
+  which is then passed to your function.
 
 Given the function:
 
@@ -106,7 +106,7 @@ for `-X` usage) with the parsed arguments:
   (exec (cli/parse-opts args cli-opts)))
 ```
 
-In turn, the `exec` function, adds some light logic making it suitable for
+In turn, the `exec` function adds some light logic making it suitable for
 command line usage. It prints help when `:help` is true. Because I'm lazy, I just print the docstring of `serve`, the function that's going to be called:
 
 

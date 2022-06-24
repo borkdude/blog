@@ -75,3 +75,7 @@ ul.index {
 .keyword { color: #219; }
 .uneval, .comma { filter: opacity(0.5); }
 .regex { color: #a11;}
+
+pre {
+  color: steelblue;
+}

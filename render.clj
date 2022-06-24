@@ -5,7 +5,7 @@
    [clojure.edn :as edn]
    [clojure.string :as str]
    [hiccup2.core :as hiccup]
-   [highlighter :as h]
+   #_[highlighter :as h]
    [markdown.core :as md]
    [selmer.parser :as selmer]))
 
@@ -41,9 +41,9 @@
 (defn markdown->html [file]
   (let [_ (println "Processing markdown for file:" (str file))
         markdown (slurp file)
-        markdown (h/highlight-clojure markdown)
+        ;; markdown (h/highlight-clojure markdown)
         ;; make links without markup clickable
-        markdown (str/replace markdown #"http[A-Za-z0-9/:.=#?_-]+([\s])"
+        markdown (str/replace markdown #"https?//[A-Za-z0-9/:.=#?_-]+([\s])"
                               (fn [[match ws]]
                                 (format "[%s](%s)%s"
                                         (str/trim match)
@@ -79,7 +79,7 @@
         stale? (seq (fs/modified-since cache-file
                                        [markdown-file
                                         "posts.edn"
-                                        "templates"
+                                        "templates/base.html"
                                         "render.clj"
                                         "highlighter.clj"]))
         body (if stale?
