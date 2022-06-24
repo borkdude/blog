@@ -89,19 +89,19 @@ clj -X:foo :force true :dir '"src"'
 ```
 
 Let's look at a recent project,
-[http-server](https://github.com/babashka/http-server) where I used babashka CLI
-to serve both `-X`, and `-M` needs.
+[http-server](https://github.com/babashka/http-server), where I used babashka
+CLI to serve both `-X`, and `-M` needs.
 
 The only argument hints defined there right now are:
 
-```
+``` clojure
 (def ^:private cli-opts {:coerce {:port :long}})
 ```
 
 The `-main` function simply defers to the clojure `exec` API function (intended
 for `-X` usage) with the parsed arguments:
 
-```
+``` clojure
 (defn ^:no-doc -main [& args]
   (exec (cli/parse-opts args cli-opts)))
 ```
@@ -110,9 +110,9 @@ In turn, the `exec` function, adds some light logic making it suitable for
 command line usage. It prints help when `:help` is true. Because I'm lazy, I just print the docstring of `serve`, the function that's going to be called:
 
 
-```
+``` clojure
 (defn exec
-  "Exec function, intended for command line usage. Same API as `serve` but
+  "Exec function, intended for command line usage. Same API as serve but
   blocks until process receives SIGINT."
   {:org.babashka/cli cli-opts}
   [opts]
@@ -127,7 +127,7 @@ exiting.
 
 Now when I add this function to `deps.edn` using:
 
-```
+``` clojure
 :serve {:deps {org.babashka/http-server {:mvn/version "0.1.3"}}
         :main-opts ["-m" "babashka.http-server"]
         :exec-fn babashka.http-server/exec}
@@ -135,23 +135,20 @@ Now when I add this function to `deps.edn` using:
 
 I can call it with both `-M` and `-X`:
 
-```
+``` clojure
 $ clj -M:serve --port 1339
-Serving assets at http://localhost:1339
 ```
 
 or:
 
-```
+``` clojure
 $ clj -M:serve :port 1339
-Serving assets at http://localhost:1339
 ```
 
 or:
 
-```
+``` clojure
 $ clj -X:serve :port 1339
-Serving assets at http://localhost:1339
 ```
 
 And help printing is supported in both styles:
@@ -166,7 +163,7 @@ Options:
 
 or:
 
-```
+``` clojure
 $ clj -X:serve :help true
 ```
 
