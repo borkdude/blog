@@ -192,7 +192,7 @@ command line UX!
 
 It's still up for discussion if babashka CLI should parse `"true"`, `"false"`
 and numbers automatically, which would make this library even easier to use. You
-can provide feedback on that
-[here](https://github.com/babashka/cli/issues/10). Another idea is to support
-`--no-foo` as an alias for `:foo false`. See
+can provide feedback on that [here](https://github.com/babashka/cli/issues/10).
+
+Another idea is to support `--no-foo` as an alias for `:foo false`. See
 [this](https://github.com/babashka/cli/issues/17) issue.
