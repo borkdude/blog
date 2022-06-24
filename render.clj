@@ -43,7 +43,7 @@
         markdown (slurp file)
         ;; markdown (h/highlight-clojure markdown)
         ;; make links without markup clickable
-        markdown (str/replace markdown #"https?//[A-Za-z0-9/:.=#?_-]+([\s])"
+        #_#_markdown (str/replace markdown #"https?//[A-Za-z0-9/:.=#?_-]+([\s])"
                               (fn [[match ws]]
                                 (format "[%s](%s)%s"
                                         (str/trim match)
