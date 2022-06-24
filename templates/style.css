@@ -11,7 +11,7 @@ h1, h2, h3 {
 }
 
 a {
-  color: rgb(15, 23, 42)
+  color: rgb(51, 65, 85)
 }
 
 .wrapper {
@@ -49,7 +49,6 @@ p {
 }
 
 .page-link {
-  color: #111;
   text-decoration: none;
   vertical-align: middle;
 }
