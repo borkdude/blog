@@ -26,13 +26,13 @@ Given the function:
 and with a little bit of [config](https://github.com/babashka/cli#clojure-cli)
 in your `deps.edn`, you can call the function from the command line using:
 
-``` clojure
+``` text
 clj -M:foo --force --dir=src
 ```
 
 or:
 
-``` clojure
+``` text
 clj -M:foo --force --dir src
 ```
 
@@ -46,13 +46,13 @@ We did not have to teach babashka CLI anything about the expected arguments.
 
 Another accepted syntax is:
 
-```
+``` text
 clj -M:foo :force true :dir src
 ```
 
 but this is parsed as:
 
-```
+``` clojure
 {:foo "true", :dir "src"}
 ```
 
@@ -70,7 +70,7 @@ The metadata format is set up in such a way that libraries need not have a depen
 
 After invoking this again:
 
-```
+``` text
 clj -M:foo :force true :dir src
 ```
 
@@ -83,7 +83,7 @@ you will see:
 Did you notice that the `-M` invocation now becomes almost identical to `-X`,
 but without quotes?
 
-```
+``` text
 clj -M:foo :force true :dir src
 clj -X:foo :force true :dir '"src"'
 ```
@@ -135,25 +135,25 @@ Now when I add this function to `deps.edn` using:
 
 I can call it with both `-M` and `-X`:
 
-``` clojure
+``` text
 $ clj -M:serve --port 1339
 ```
 
 or:
 
-``` clojure
+``` text
 $ clj -M:serve :port 1339
 ```
 
 or:
 
-``` clojure
+``` text
 $ clj -X:serve :port 1339
 ```
 
 And help printing is supported in both styles:
 
-```
+``` text
 $ clj -M:serve --help
 Serves static assets using web server.
 Options:
