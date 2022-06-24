@@ -9,6 +9,8 @@
    [markdown.core :as md]
    [selmer.parser :as selmer]))
 
+(def blog-title "REPL adventures")
+
 (def posts (sort-by :date (comp - compare)
                     (edn/read-string (format "[%s]"
                                              (slurp "posts.edn")))))
@@ -120,6 +122,7 @@
 (spit (fs/file out-dir "archive.html")
       (selmer/render base-html
                      {:skip-archive true
+                      :title (str blog-title " - Archive")
                       :body (hiccup/html (post-links))}))
 
 ;;;; Generate index page with last 3 posts
@@ -137,7 +140,8 @@
 
 (spit (fs/file out-dir "index.html")
       (selmer/render base-html
-                     {:body (hiccup/html {:escape-strings? false} (index))}))
+                     {:title blog-title
+                      :body (hiccup/html {:escape-strings? false} (index))}))
 
 ;;;; Generate atom feeds
 
@@ -164,7 +168,7 @@
   (-> (xml/sexp-as-element
        [::atom/feed
         {:xmlns "http://www.w3.org/2005/Atom"}
-        [::atom/title "REPL adventures"]
+        [::atom/title blog-title]
         [::atom/link {:href (str blog-root "atom.xml") :rel "self"}]
         [::atom/link {:href blog-root}]
         [::atom/updated (rfc-3339-now)]
