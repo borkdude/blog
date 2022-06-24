@@ -120,3 +120,8 @@
  :categories #{"clojure"}
  :date "2022-05-12"
  :discuss "https://github.com/borkdude/blog/discussions/25"}
+{:title "Babashka CLI: turn Clojure functions into CLIs"
+ :file "babashka-cli.md"
+ :categories #{"clojure"}
+ :date "2022-06-24"
+ :discuss "https://github.com/borkdude/blog/discussions/28"}
