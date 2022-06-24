@@ -95,6 +95,10 @@
              (str/join "<br>" (map escape (:lines node)))
              "&quot;")))
 
+(defmethod node->html :var [node]
+  (span "var"
+        (str node)))
+
 (defmethod node->html :quote [node]
   (str "'" (str/join (map node->html (:children node)))))
 
