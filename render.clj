@@ -26,8 +26,8 @@
 
 (fs/copy-tree "assets" asset-dir {:replace-existing true})
 
-(spit (fs/file out-dir "style.css")
-      (slurp "templates/style.css"))
+(doseq [file (fs/glob "templates" "*.{css,svg}")]
+  (fs/copy file out-dir {:replace-existing true}))
 
 ;;;; Generate posts from markdown
 
