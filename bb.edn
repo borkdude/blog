@@ -19,7 +19,7 @@
                              :git/sha "b38c1f16ad2c618adae2c3b102a5520c261a7dd3"}}
                :requires ([babashka.http-server :as http])
                :task (do
-                       (println "Serving HTML on port http://localhost:1888")
+                       (println "Serving HTML on port 1888")
                        (http/serve {:port 1888
                                     :dir "public"}))}
   watch  {:depends [render http-server]
