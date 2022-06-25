@@ -38,7 +38,7 @@ clj -M:foo --force --dir src
 
 which will then print:
 
-```
+``` clojure
 {:force true, :dir "src"}
 ```
 

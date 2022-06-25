@@ -55,7 +55,9 @@
         markdown (str/replace markdown #"\[[^\]]+\n"
                               (fn [match]
                                 (str/replace match "\n" "$$RET$$")))
-        html (md/md-to-html-string markdown)
+        html (md/md-to-html-string markdown :code-style
+                                   (fn [lang]
+                                     (format "class=\"lang-%s\"" lang)))
         ;; see issue https://github.com/yogthos/markdown-clj/issues/146
         html (str/replace html "$$NDASH$$" "--")
         html (str/replace html "$$RET$$" "\n")]
