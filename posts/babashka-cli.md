@@ -57,7 +57,7 @@ and this is parsed as:
 ```
 
 Booleans, numbers and keywords are auto-coerced, but if you want to make things
-strict, you can use metadata. E.g. if we want to accept a keyword for the option `:mode`:
+strict, you can use metadata. E.g. if we want to accept a keyword for the option `mode`:
 
 ``` text
 clj -M:foo :force false :dir src :mode overwrite
@@ -78,7 +78,7 @@ you can teach babashka CLI using metadata:
   (prn m))
 ```
 
-A leading colon is also accepted:
+A leading colon is also accepted (and auto-coerced as keyword):
 
 ``` clojure
 clj -M:foo :force false :dir src :mode :overwrite
