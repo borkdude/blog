@@ -47,45 +47,51 @@ We did not have to teach babashka CLI anything about the expected arguments.
 Another accepted syntax is:
 
 ``` text
-clj -M:foo :force true :dir src
+clj -M:foo :force false :dir src
 ```
 
-but this is parsed as:
+and this is parsed as:
 
 ``` clojure
-{:foo "true", :dir "src"}
+{:force false, :dir "src"}
 ```
 
-Here babashka CLI needs a little argument "hinting" using metadata:
+Booleans, numbers and keywords are auto-coerced, but if you want to make things
+strict, you can use metadata. E.g. if we want to accept a keyword for the option `:mode`:
+
+``` text
+clj -M:foo :force false :dir src :mode overwrite
+```
+
+and parse it as:
+
+``` clojure
+{:force false, :dir "src" :mode :overwrite}
+```
+
+you can teach babashka CLI using metadata:
 
 ``` clojure
 (defn foo
-  {:org.babashka/cli {:coerce {:force :boolean}}}
-  [{:keys [force dir] :as m}]
+  {:org.babashka/cli {:coerce {:mode :keyword}}}
+  [{:keys [force dir mode] :as m}]
   (prn m))
 ```
 
-The metadata format is set up in such a way that libraries need not have a dependency on babashka CLI itself.
-
-
-After invoking this again:
-
-``` text
-clj -M:foo :force true :dir src
-```
-
-you will see:
+A leading colon is also accepted:
 
 ``` clojure
-{:force true, :dir "src"}
+clj -M:foo :force false :dir src :mode :overwrite
 ```
+
+The metadata format is set up in such a way that libraries need not have a dependency on babashka CLI itself.
 
 Did you notice that the `-M` invocation now becomes almost identical to `-X`,
 but without quotes?
 
 ``` text
-clj -M:foo :force true :dir src
-clj -X:foo :force true :dir '"src"'
+clj -M:foo :force true :dir src :mode :overwrite
+clj -X:foo :force true :dir '"src"' :mode :overwrite
 ```
 
 Let's look at a recent project,
@@ -97,6 +103,8 @@ The only argument hints defined there right now are:
 ``` clojure
 (def ^:private cli-opts {:coerce {:port :long}})
 ```
+
+although that could have been left out since numbers are auto-coerced.
 
 The `-main` function simply defers to the clojure `exec` API function (intended
 for `-X` usage) with the parsed arguments:
@@ -189,10 +197,3 @@ $ http-server --port 1339
 I hope you're convinced that with very little code, babashka CLI can let you
 support both `-M`, `-X` style invocations and babashka scripts, while improving
 command line UX!
-
-It's still up for discussion if babashka CLI should parse `"true"`, `"false"`
-and numbers automatically, which would make this library even easier to use. You
-can provide feedback on that [here](https://github.com/babashka/cli/issues/10).
-
-Another idea is to support `--no-foo` as an alias for `:foo false`. See
-[this](https://github.com/babashka/cli/issues/17) issue.
