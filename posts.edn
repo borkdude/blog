@@ -125,3 +125,7 @@
  :categories #{"clojure"}
  :date "2022-06-24"
  :discuss "https://github.com/borkdude/blog/discussions/28"}
+{:title "OSS Updates of May - June 2022"
+ :file "oss-updates-may-jun-2022.md"
+ :categories #{"clojure"}
+ :date "2022-06-30"}
