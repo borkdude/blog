@@ -3,7 +3,8 @@
         org.babashka/filewatcher {:version "0.0.1"}}
  :tasks
  {:requires ([babashka.fs :as fs]
-             [tasks-helper :as th])
+             [tasks-helper :as th]
+             [render :as r])
   new {:doc "Create new blog article"
        :task (th/new)}
   -build-highlighter {:doc "Build Clojure highlighter JS. No longer used."
@@ -13,7 +14,9 @@
                                ["src"]))
                        (shell "npx rollup -c rollup.config.js"))}
   render {:doc "Render blog"
-          :task (load-file "render.clj")}
+          :task (r/quickblog {:blog-title "REPL adventures"
+                              :out-dir "public"
+                              :blog-root "https://blog.michielborkent.nl/"})}
   http-server {:extra-deps {babashka/http-server
                             {:git/url "https://github.com/babashka/http-server"
                              :git/sha "b38c1f16ad2c618adae2c3b102a5520c261a7dd3"}}

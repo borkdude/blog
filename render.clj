@@ -32,11 +32,11 @@
         ;; markdown (h/highlight-clojure markdown)
         ;; make links without markup clickable
         #_#_markdown (str/replace markdown #"https?//[A-Za-z0-9/:.=#?_-]+([\s])"
-                              (fn [[match ws]]
-                                (format "[%s](%s)%s"
-                                        (str/trim match)
-                                        (str/trim match)
-                                        ws)))
+                                  (fn [[match ws]]
+                                    (format "[%s](%s)%s"
+                                            (str/trim match)
+                                            (str/trim match)
+                                            ws)))
         markdown (str/replace markdown #"--" (fn [_]
                                                "$$NDASH$$"))
         ;; allow links with markup over multiple lines
@@ -63,10 +63,7 @@
           markdown-file (fs/file "posts" file)
           stale? (seq (fs/modified-since cache-file
                                          [markdown-file
-                                          "posts.edn"
-                                          "templates/base.html"
-                                          "render.clj"
-                                          "highlighter.clj"]))
+                                          "posts.edn"]))
           body (if stale?
                  (let [body (markdown->html markdown-file)]
                    (spit cache-file body)
@@ -108,29 +105,9 @@
             " - "
             date]])]])
 
-
-(defn quickblog [{:keys [blog-title
-                         out-dir]
-                  :or {out-dir "public"}}]
-  (let [posts (sort-by :date (comp - compare)
-                       (edn/read-string (format "[%s]"
-                                                (slurp "posts.edn"))))
-        asset-dir (fs/create-dirs (fs/file out-dir "assets"))
-        ;; sync assets
-        _ (fs/copy-tree "assets" asset-dir {:replace-existing true})
-        _ (doseq [file (fs/glob "templates" "*.{css,svg}")]
-            (fs/copy file out-dir {:replace-existing true}))
-        _ (fs/create-dirs (fs/file ".work"))]
-    (gen-posts {:posts posts :out-dir out-dir})
-    (spit (fs/file out-dir "archive.html")
-          (selmer/render base-html
-                         {:skip-archive true
-                          :title (str blog-title " - Archive")
-                          :body (hiccup/html (post-links))})))
-  )
 ;;;; Generate index page with last 3 posts
 
-(defn index []
+(defn index [{:keys [posts]}]
   (for [{:keys [file title date preview discuss]
          :or {discuss discuss-fallback}} (take 3 posts)
         :when (not preview)]
@@ -141,10 +118,13 @@
      [:p "Discuss this post " [:a {:href discuss} "here"] "."]
      [:p [:i "Published: " date]]]))
 
-(spit (fs/file out-dir "index.html")
-      (selmer/render base-html
-                     {:title blog-title
-                      :body (hiccup/html {:escape-strings? false} (index))}))
+(defn spit-index
+  [{:keys [posts out-dir blog-title]}]
+  (spit (fs/file out-dir "index.html")
+        (selmer/render (base-html)
+                       {:title blog-title
+                        :body (hiccup/html {:escape-strings? false} (index {:posts posts}))})))
+
 
 ;;;; Generate atom feeds
 
@@ -163,11 +143,9 @@
         now (java.time.ZonedDateTime/of (.atTime local-date 23 59 59) java.time.ZoneOffset/UTC)]
     (.format now fmt)))
 
-(def blog-root "https://blog.michielborkent.nl/")
-
 (defn atom-feed
   ;; validate at https://validator.w3.org/feed/check.cgi
-  [posts]
+  [{:keys [posts blog-title blog-root]}]
   (-> (xml/sexp-as-element
        [::atom/feed
         {:xmlns "http://www.w3.org/2005/Atom"}
@@ -191,13 +169,34 @@
             [:-cdata (get @bodies file)]]])])
       xml/indent-str))
 
-(spit (fs/file out-dir "atom.xml") (atom-feed posts))
-(spit (fs/file out-dir "planetclojure.xml")
-      (atom-feed (filter
-                  (fn [post]
-                    (some (:categories post) ["clojure" "clojurescript"]))
-                  posts)))
+(defmacro ->map [& ks]
+  (assert (every? symbol? ks))
+  (zipmap (map keyword ks)
+          ks))
 
-;; for JVM Clojure:
-(defn -main [& _args]
-  (System/exit 0))
+(defn quickblog [{:keys [blog-title
+                         out-dir
+                         blog-root]
+                  :or {out-dir "public"}}]
+  (let [posts (sort-by :date (comp - compare)
+                       (edn/read-string (format "[%s]"
+                                                (slurp "posts.edn"))))
+        asset-dir (fs/create-dirs (fs/file out-dir "assets"))]
+    (fs/copy-tree "assets" asset-dir {:replace-existing true})
+    (doseq [file (fs/glob "templates" "*.{css,svg}")]
+      (fs/copy file out-dir {:replace-existing true}))
+    (fs/create-dirs (fs/file ".work"))
+    (gen-posts {:posts posts :out-dir out-dir})
+    (spit (fs/file out-dir "archive.html")
+          (selmer/render (base-html)
+                         {:skip-archive true
+                          :title (str blog-title " - Archive")
+                          :body (hiccup/html (post-links {:posts posts}))}))
+    (spit-index (->map posts out-dir blog-title))
+    (spit (fs/file out-dir "atom.xml") (atom-feed {:posts posts :blog-title blog-title :blog-root blog-root}))
+    (spit (fs/file out-dir "planetclojure.xml")
+          (atom-feed (filter
+                      (fn [post]
+                        (some (:categories post) ["clojure" "clojurescript"]))
+                      posts)))))
+
