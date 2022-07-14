@@ -1,3 +1,7 @@
+{:categories #{"clojure"}, :date "2022-06-24", :discuss "https://github.com/borkdude/blog/discussions/28"}
+
+# Babashka CLI: turn Clojure functions into CLIs
+
 [Babashka CLI](https://github.com/babashka/cli) is a new library for command line argument parsing.
 The main ideas:
 

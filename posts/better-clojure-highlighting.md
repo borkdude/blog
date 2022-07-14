@@ -1,3 +1,7 @@
+{:categories #{"clojure"}, :date "2021-11-05", :discuss "https://github.com/borkdude/blog/discussions/4"}
+
+# Better Clojure highlighting with nextjournal/clojure-mode
+
 Almost two weeks ago I [wrote](migrating-octopress-to-babashka.html) about how I
 replaced my Octopress blog with about 200 lines of
 [babashka](https://github.com/babashka/babashka). I also wrote that I used

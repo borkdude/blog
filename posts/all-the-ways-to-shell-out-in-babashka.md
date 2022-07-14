@@ -1,3 +1,7 @@
+{:categories #{"clojure"}, :date "2021-11-04", :preview true}
+
+# All the ways to shell out in babashka
+
 [Babashka](https://github.com/babashka/babashka) is a fast starting native
 scripting tool for Clojure. Like in bash, it's common to call other programs,
 also known as "shelling out".

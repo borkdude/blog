@@ -1,3 +1,7 @@
+{:date "2014-11-16", :categories #{"clojure" "om" "reagent" "react" "clojurescript"}, :legacy true}
+
+# My ClojureScript adventure at Øredev
+
 ## tl;dr
 
 November 6th 2014 I was given the chance to speak about ClojureScript and React at the Swedish developer conference [Øredev](http://oredev.org/2014/speakers/michiel-borkent). You will find the videos and slides of my talks below. The talk about ClojureScript and React seems to be more popular and it has better sound quality, so you may want to skip straight to that one.

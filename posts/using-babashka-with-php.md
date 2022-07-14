@@ -1,3 +1,7 @@
+{:categories #{"clojure"}, :date "2022-01-07", :discuss "https://github.com/borkdude/blog/discussions/21"}
+
+# Using babashka with PHP: guestbook example
+
 One of the recurring themes in Clojure land is:
 
 - There is a popular widely used platform (JVM, browser, .NET, Node.js, ...).

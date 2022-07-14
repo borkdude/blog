@@ -1,3 +1,7 @@
+{:categories #{"clojure"}, :date "2021-12-31", :discuss "https://github.com/borkdude/blog/discussions/20"}
+
+# OSS Highlights of November - December 2021
+
 Like the previous [OSS highlights](oss-highlights-sep-oct-2021.html), I'll give
 an overview of OSS work I did in November and December of 2021. I'd like to
 emphasize that I can do this work because of sponsoring via:

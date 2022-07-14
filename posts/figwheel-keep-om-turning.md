@@ -1,3 +1,7 @@
+{:date "2014-09-25", :categories #{"clojure" "om" "figwheel" "clojurescript"}, :legacy true}
+
+# Figwheel keep Om turning!
+
 How to combine figwheel, Om and Ring in one application
 ## tl;dr
 In this article you will find a configuration of figwheel with

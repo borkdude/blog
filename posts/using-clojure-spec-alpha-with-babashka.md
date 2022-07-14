@@ -1,3 +1,7 @@
+{:categories #{"clojure"}, :date "2021-12-10", :discuss "https://github.com/borkdude/blog/discussions/17"}
+
+# Using clojure.spec.alpha with babashka
+
 ## Tl;dr
 
 If you want to use `clojure.spec.alpha` with babashka, upgrade to 0.7.0 or newer

@@ -1,3 +1,7 @@
+{:categories #{"clojure"}, :date "2021-11-08", :discuss "https://github.com/borkdude/blog/discussions/11"}
+
+# Writing a Clojure highlighter from scratch
+
 In the aftermath of my [previous blog post](better-clojure-highlighting.html)
 about using Nextjournal's
 [clojure-mode](https://github.com/nextjournal/clojure-mode) for better

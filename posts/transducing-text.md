@@ -1,3 +1,7 @@
+{:date "2018-01-17", :categories #{"clojure"}, :legacy true}
+
+# Transducing a text file
+
 This post highlights of one of the core ideas posted in [this
 blogpost](https://www.grammarly.com/blog/engineering/building-etl-pipelines-with-clojure-and-transducers/). If
 you've already read it and you're intimately familiar with transducers, this

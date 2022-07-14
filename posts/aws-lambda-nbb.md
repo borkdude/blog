@@ -1,3 +1,7 @@
+{:categories #{"clojure"}, :date "2022-01-08", :discuss "https://github.com/borkdude/blog/discussions/22"}
+
+# Creating an AWS Lambda function with nbb
+
 ## Nbb
 
 [Nbb](https://github.com/babashka/nbb) is a scripting environment, in the

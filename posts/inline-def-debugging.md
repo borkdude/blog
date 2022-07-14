@@ -1,3 +1,7 @@
+{:date "2017-05-25", :categories #{"clojure"}, :legacy true}
+
+# Inline def: an effective* debugging technique for Clojure
+
 Clojure beginners often hear that inline `def` is bad style. For code
 you commit that's mostly true. Example:
 

@@ -1,3 +1,7 @@
+{:categories #{"clojure"}, :date "2022-02-27"}
+
+# OSS Updates of January - February 2022
+
 In this post I'll give updates about open source I worked on during January and February 2022.
 
 ## Sponsors

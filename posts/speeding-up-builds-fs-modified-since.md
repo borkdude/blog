@@ -1,3 +1,7 @@
+{:categories #{"clojure"}, :date "2021-10-30", :discuss "https://github.com/borkdude/blog/discussions/7"}
+
+# Speeding up builds with fs/modified-since
+
 ## Babashka tasks
 
 When designing [babashka tasks](https://book.babashka.org/#tasks) I was aiming

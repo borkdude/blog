@@ -1,3 +1,7 @@
+{:date "2016-10-19", :categories #{"clojure" "boot" "planck" "leiningen"}, :legacy true}
+
+# One off experiments with Clojure and ClojureScript libraries
+
 Did you ever need to know the date and time 30 hours from now,
 because that is the time you could check into your plane to
 EuroClojure 2016 (and you're too lazy to do this in your head)? Or

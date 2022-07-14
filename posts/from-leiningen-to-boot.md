@@ -1,3 +1,7 @@
+{:date "2015-06-06", :categories #{"clojure" "boot" "figwheel" "leiningen" "clojurescript"}, :legacy true}
+
+# Migrating a Leiningen project to boot
+
 Edit: this post made it to the front page of Hacker News. Thanks!
 
 <img src="assets/boot-lein-2015/hacker-news-lein2boot.png">
