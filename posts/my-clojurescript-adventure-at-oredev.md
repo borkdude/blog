@@ -1,6 +1,4 @@
-{:date "2014-11-16", :categories #{"clojure" "om" "reagent" "react" "clojurescript"}, :legacy true}
-
-# My ClojureScript adventure at Øredev
+{:title "My ClojureScript adventure at Øredev", :date "2014-11-16", :categories #{"clojure" "om" "reagent" "react" "clojurescript"}, :legacy true}
 
 ## tl;dr
 

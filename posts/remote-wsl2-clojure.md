@@ -1,6 +1,4 @@
-{:date "2020-07-26", :categories #{"clojure" "wsl2"}, :legacy true}
-
-# Porting a macOS Clojure dev setup to Windows WSL2
+{:title "Porting a macOS Clojure dev setup to Windows WSL2", :date "2020-07-26", :categories #{"clojure" "wsl2"}, :legacy true}
 
 **EDIT 2020-09-16:** this post is now also available as a talk. The slides are
 available

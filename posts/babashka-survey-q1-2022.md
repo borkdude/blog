@@ -1,6 +1,4 @@
-{:categories #{"clojure"}, :date "2022-05-12", :discuss "https://github.com/borkdude/blog/discussions/25"}
-
-# Babashka survey Q1 2022 results!
+{:title "Babashka survey Q1 2022 results!", :categories #{"clojure"}, :date "2022-05-12", :discuss "https://github.com/borkdude/blog/discussions/25"}
 
 In Q1 of 2022 I ran the babashka survey again. I've done this once before (in
 November 2020) to see how people are using babashka and what they think could be

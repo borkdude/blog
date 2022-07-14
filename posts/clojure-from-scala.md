@@ -1,6 +1,4 @@
-{:date "2016-07-26", :categories #{"scala" "clojure" "repl"}, :legacy true}
-
-# Using the Clojure REPL with Java or Scala
+{:title "Using the Clojure REPL with Java or Scala", :date "2016-07-26", :categories #{"scala" "clojure" "repl"}, :legacy true}
 
 Clojure is a tool that enables interactive development and runtime
 inspection. Even when we work in other programming languages,

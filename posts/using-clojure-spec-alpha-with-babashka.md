@@ -1,6 +1,4 @@
-{:categories #{"clojure"}, :date "2021-12-10", :discuss "https://github.com/borkdude/blog/discussions/17"}
-
-# Using clojure.spec.alpha with babashka
+{:title "Using clojure.spec.alpha with babashka", :categories #{"clojure"}, :date "2021-12-10", :discuss "https://github.com/borkdude/blog/discussions/17"}
 
 ## Tl;dr
 

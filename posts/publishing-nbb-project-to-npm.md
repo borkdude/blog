@@ -1,6 +1,4 @@
-{:categories #{"clojure"}, :date "2021-11-10"}
-
-# Publishing an nbb project to npm
+{:title "Publishing an nbb project to npm", :categories #{"clojure"}, :date "2021-11-10"}
 
 This post describes how to publish an [nbb](https://github.com/babashka/nbb)
 based project to [npm](https://npmjs.com/). It is extracted from

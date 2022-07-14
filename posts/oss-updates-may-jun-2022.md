@@ -1,6 +1,4 @@
-{:categories #{"clojure"}, :date "2022-06-30"}
-
-# OSS Updates of May - June 2022
+{:title "OSS Updates of May - June 2022", :categories #{"clojure"}, :date "2022-06-30"}
 
 In this post I'll give updates about open source I worked on during May and June 2022.
 

@@ -1,6 +1,4 @@
-{:categories #{"clojure"}, :date "2022-01-08", :discuss "https://github.com/borkdude/blog/discussions/22"}
-
-# Creating an AWS Lambda function with nbb
+{:title "Creating an AWS Lambda function with nbb", :categories #{"clojure"}, :date "2022-01-08", :discuss "https://github.com/borkdude/blog/discussions/22"}
 
 ## Nbb
 

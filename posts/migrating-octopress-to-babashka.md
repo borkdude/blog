@@ -1,6 +1,4 @@
-{:categories #{"clojure"}, :date "2021-10-25", :discuss "https://github.com/borkdude/blog/discussions/8"}
-
-# Replacing my Octopress blog with 200 lines of Babashka
+{:title "Replacing my Octopress blog with 200 lines of Babashka", :categories #{"clojure"}, :date "2021-10-25", :discuss "https://github.com/borkdude/blog/discussions/8"}
 
 ## Octopress
 

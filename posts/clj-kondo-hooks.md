@@ -1,6 +1,4 @@
-{:date "2020-06-21", :categories #{"clojure" "clj-kondo"}, :legacy true}
-
-# Clj-kondo hooks
+{:title "Clj-kondo hooks", :date "2020-06-21", :categories #{"clojure" "clj-kondo"}, :legacy true}
 
 [Clj-kondo](https://github.com/borkdude/clj-kondo/) is a Clojure linter that
 uses static analysis. This means it only looks at source code, but does not

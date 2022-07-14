@@ -1,6 +1,4 @@
-{:date "2014-09-25", :categories #{"clojure" "om" "figwheel" "clojurescript"}, :legacy true}
-
-# Figwheel keep Om turning!
+{:title "Figwheel keep Om turning!", :date "2014-09-25", :categories #{"clojure" "om" "figwheel" "clojurescript"}, :legacy true}
 
 How to combine figwheel, Om and Ring in one application
 ## tl;dr

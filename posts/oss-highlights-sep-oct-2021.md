@@ -1,6 +1,4 @@
-{:categories #{"clojure"}, :date "2021-11-03", :discuss "https://github.com/borkdude/blog/discussions/5"}
-
-# OSS Highlights of September - October 2021
+{:title "OSS Highlights of September - October 2021", :categories #{"clojure"}, :date "2021-11-03", :discuss "https://github.com/borkdude/blog/discussions/5"}
 
 This year I'm receiving a long term grant from [Clojurists
 Together](https://www.clojuriststogether.org/). CT asked me to do a bimonthly

@@ -1,6 +1,4 @@
-{:categories #{"clojure"}, :date "2021-11-17", :discuss "https://github.com/borkdude/blog/discussions/15"}
-
-# Making markdown-clj babashka-compatible
+{:title "Making markdown-clj babashka-compatible", :categories #{"clojure"}, :date "2021-11-17", :discuss "https://github.com/borkdude/blog/discussions/15"}
 
 Recently I migrated the highlighting of Clojure code in this blog from CLJS to
 pure [babashka](https://babashka.org/) code. See
