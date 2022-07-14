@@ -7,14 +7,17 @@
    [hiccup2.core :as hiccup]
    #_[highlighter :as h]
    [markdown.core :as md]
-   [selmer.parser :as selmer]))
+   [selmer.parser :as selmer]
+   [clojure.java.io :as io]))
 
+;; TODO: config
 (def blog-title "REPL adventures")
 
-(def posts (sort-by :date (comp - compare)
+#_(def posts (sort-by :date (comp - compare)
                     (edn/read-string (format "[%s]"
                                              (slurp "posts.edn")))))
 
+;; TODO: config
 (def out-dir "public")
 
 (def base-html
@@ -32,15 +35,13 @@
 ;;;; Generate posts from markdown
 
 (def post-template
-  "<h1>{{title}}</h1>
-{{body | safe }}
+  "{{body | safe }}
 <p>Discuss this post <a href=\"{{discuss}}\">here</a>.</p>
 <p><i>Published: {{date}}</i></p>
 ")
 
 (defn markdown->html [file]
   (let [_ (println "Processing markdown for file:" (str file))
-        markdown (slurp file)
         ;; markdown (h/highlight-clojure markdown)
         ;; make links without markup clickable
         #_#_markdown (str/replace markdown #"https?//[A-Za-z0-9/:.=#?_-]+([\s])"
@@ -49,6 +50,9 @@
                                         (str/trim match)
                                         (str/trim match)
                                         ws)))
+        rdr (io/reader file)
+        _skip-edn (edn/read rdr)
+        markdown (str rdr)
         markdown (str/replace markdown #"--" (fn [_]
                                                "$$NDASH$$"))
         ;; allow links with markup over multiple lines
@@ -73,25 +77,20 @@
 
 (def discuss-fallback "https://github.com/borkdude/blog/discussions/categories/posts")
 
-(doseq [{:keys [file title date legacy discuss]
-         :or {discuss discuss-fallback}}
-        posts]
+(doseq [file (fs/glob "posts" "**.md")]
   (let [cache-file (fs/file ".work" (html-file file))
         markdown-file (fs/file "posts" file)
         stale? (seq (fs/modified-since cache-file
-                                       [markdown-file
-                                        "posts.edn"
-                                        "templates/base.html"
-                                        "render.clj"
-                                        "highlighter.clj"]))
+                                       markdown-file))
         body (if stale?
                (let [body (markdown->html markdown-file)]
                  (spit cache-file body)
                  body)
                (slurp cache-file))
         _ (swap! bodies assoc file body)
+        {:keys [date discuss]} (edn/read (io/reader file))
+        ;; TODO, close
         body (selmer/render post-template {:body body
-                                           :title title
                                            :date date
                                            :discuss discuss})
         html (selmer/render base-html
