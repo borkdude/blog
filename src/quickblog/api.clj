@@ -1,4 +1,4 @@
-(ns render
+(ns quickblog.api
   (:require
    [babashka.fs :as fs]
    [clojure.data.xml :as xml]

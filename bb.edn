@@ -1,10 +1,11 @@
 {:deps {blog/blog {:local/root "."}}
+ :paths ["."]
  :pods {clj-kondo/clj-kondo {:version "2022.05.31"}
         org.babashka/filewatcher {:version "0.0.1"}}
  :tasks
  {:requires ([babashka.fs :as fs]
              [tasks-helper :as th]
-             [render :as r])
+             [quickblog.api :as r])
   new {:doc "Create new blog article"
        :task (th/new)}
   -build-highlighter {:doc "Build Clojure highlighter JS. No longer used."
