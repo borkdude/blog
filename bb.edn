@@ -1,26 +1,32 @@
 {:pods {clj-kondo/clj-kondo {:version "2022.02.09"}}
  :deps {org.babashka/cli {:mvn/version "0.3.31"}
-        io.github.borkdude/quickblog {:git/sha "d9646b39051143ae537193047d592c5f6d11729b"}
+        io.github.borkdude/quickblog {:local/root "../quickblog"}
         io.github.borkdude/quickdoc {:git/sha "a8068f1c8b13e09a2966804213fc41dd813de18e"}}
  :paths ["."]
  :tasks
- {:init (def opts (cli/parse-opts *command-line-args*))
+ {:init (def opts (merge (cli/parse-opts *command-line-args*)
+                         {:blog-title "REPL adventures"
+                          :out-dir "public"
+                          :blog-root "https://blog.michielborkent.nl/"
+                          :discuss-link "https://github.com/borkdude/blog/discussions/categories/posts"}))
+
   :requires ([babashka.fs :as fs]
              [quickblog.api :as r]
              [babashka.cli :as cli])
+
   new {:doc "Create new blog article"
        :task (r/new opts)}
+
   render {:doc "Render blog"
-          :task (r/quickblog {:blog-title "REPL adventures"
-                              :out-dir "public"
-                              :blog-root "https://blog.michielborkent.nl/"})}
+          :task (r/quickblog opts)}
+
   watch  {:doc "Watch posts and templates and call render on file changes"
-          :task (r/watch {:blog-title "REPL adventures"
-                          :out-dir "public"
-                          :blog-root "https://blog.michielborkent.nl/"})}
+          :task (r/watch opts)}
+
   publish {:doc "Publish to blog.michielborkent.nl"
            :depends [render]
            :task (shell "rsync -a --delete public/ borkdude@michielborkent.nl:~/devblog")}
+
   clean {:doc "Remove .work and public directory"
          :task (do (fs/delete-tree ".work")
                    (fs/delete-tree "public"))}
