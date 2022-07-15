@@ -1,34 +1,22 @@
-{:deps {blog/blog {:local/root "."}}
+{:deps {blog/blog {:local/root "."}
+        org.babashka/cli {:mvn/version "0.3.31"}}
  :paths ["."]
- :pods {clj-kondo/clj-kondo {:version "2022.05.31"}
-        org.babashka/filewatcher {:version "0.0.1"}}
+ :pods {org.babashka/filewatcher {:version "0.0.1"}}
  :tasks
- {:requires ([babashka.fs :as fs]
-             [tasks-helper :as th]
-             [quickblog.api :as r])
+ {:init (def opts (cli/parse-opts *command-line-args*))
+  :requires ([babashka.fs :as fs]
+             [quickblog.api :as r]
+             [babashka.cli :as cli])
   new {:doc "Create new blog article"
-       :task (th/new)}
-  -build-highlighter {:doc "Build Clojure highlighter JS. No longer used."
-                      :task
-                      (when
-                         (seq (fs/modified-since "public/clojure_highlighter.js"
-                               ["src"]))
-                       (shell "npx rollup -c rollup.config.js"))}
+       :task (r/new opts)}
   render {:doc "Render blog"
           :task (r/quickblog {:blog-title "REPL adventures"
                               :out-dir "public"
                               :blog-root "https://blog.michielborkent.nl/"})}
-  http-server {:extra-deps {babashka/http-server
-                            {:git/url "https://github.com/babashka/http-server"
-                             :git/sha "b38c1f16ad2c618adae2c3b102a5520c261a7dd3"}}
-               :requires ([babashka.http-server :as http])
-               :task (do
-                       (println "Serving HTML on port http://localhost:1888")
-                       (http/serve {:port 1888
-                                    :dir "public"}))}
-  watch  {:depends [render http-server]
-          :doc "Watch posts and templates and call render on file changes"
-          :task (load-file "watch.clj")}
+  watch  {:doc "Watch posts and templates and call render on file changes"
+          :task (r/watch {:blog-title "REPL adventures"
+                          :out-dir "public"
+                          :blog-root "https://blog.michielborkent.nl/"})}
   publish {:doc "Publish to blog.michielborkent.nl"
            :depends [render]
            :task (shell "rsync -a --delete public/ borkdude@michielborkent.nl:~/devblog")}

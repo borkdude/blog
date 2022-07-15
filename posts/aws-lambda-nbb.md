@@ -3,7 +3,7 @@
 [Nbb](https://github.com/babashka/nbb) is a scripting environment, in the
 tradition of babashka, but for Node.js. Like babashka, nbb doesn't have a
 compile cycle, but it just interprets Clojure code using
-[SCI](https://github.com/babashka/sci). It has a few useful CLJS libraries
+ [SCI](https://github.com/babashka/sci). It has a few useful CLJS libraries
 included, e.g. for JS interop. It can load _any_ JS library from NPM. Check out
 the repo [here](https://github.com/babashka/nbb). There are several
 [examples](https://github.com/babashka/nbb/tree/main/examples) available as

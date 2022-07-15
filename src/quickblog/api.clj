@@ -48,7 +48,7 @@
 (defn base-html []
   (slurp "templates/base.html"))
 
-(defn gen-posts [{:keys [posts out-dir]}]
+(defn gen-posts [{:keys [posts out-dir] :as opts}]
   (doseq [{:keys [file title date legacy discuss]
            :or {discuss discuss-fallback}}
           posts]
@@ -66,8 +66,10 @@
           _ (swap! bodies assoc file body)
           body (selmer/render post-template (->map body title date discuss))
           html (selmer/render base-html
-                              {:title title
-                               :body body})
+                              (assoc opts
+                                     :title title
+                                     :body body
+                                     :watch "foooooo"))
           html-file (str/replace file ".md" ".html")]
       (spit (fs/file out-dir html-file) html)
       (let [legacy-dir (fs/file out-dir (str/replace date "-" "/")
@@ -162,16 +164,19 @@
 (defn quickblog [{:keys [blog-title
                          out-dir
                          blog-root]
-                  :or {out-dir "public"}}]
-  (let [posts (sort-by :date (comp - compare)
+                  :or {out-dir "public"}
+                  :as opts}]
+  (let [opts (assoc opts :out-dir out-dir)
+        posts (sort-by :date (comp - compare)
                        (edn/read-string (format "[%s]"
                                                 (slurp "posts.edn"))))
+        opts (assoc opts :posts posts)
         asset-dir (fs/create-dirs (fs/file out-dir "assets"))]
     (fs/copy-tree "assets" asset-dir {:replace-existing true})
     (doseq [file (fs/glob "templates" "*.{css,svg}")]
       (fs/copy file out-dir {:replace-existing true}))
     (fs/create-dirs (fs/file ".work"))
-    (gen-posts {:posts posts :out-dir out-dir})
+    (gen-posts opts)
     (spit (fs/file out-dir "archive.html")
           (selmer/render (base-html)
                          {:skip-archive true
@@ -185,3 +190,44 @@
                         (some (:categories post) ["clojure" "clojurescript"]))
                       posts)))))
 
+(defn now []
+  (pr-str
+   (.format (java.time.LocalDate/now)
+            (java.time.format.DateTimeFormatter/ofPattern "yyyy-MM-dd"))))
+
+(defn new [{:keys [file title]}]
+  (assert file "Must give title")
+  (assert title "Must give filename")
+  (let [post-file (fs/file "posts" file)]
+    (when-not (fs/exists? post-file)
+      (spit (fs/file "posts" file) "TODO: write blog post")
+      (spit (fs/file "posts.edn")
+            (selmer/render post-template
+                           {:title (pr-str title)
+                            :file (pr-str file)
+                            :date (now)
+                            :categories #{"clojure"}})
+            :append true))))
+
+(defn serve [_]
+  (let [serve (requiring-resolve 'babashka.http-server/serve)]
+    (serve {:port 1888
+            :dir "public"})))
+
+(defn watch [opts]
+  (let [opts (assoc opts :watch "<script type=\"text/javascript\" src=\"https://livejs.com/live.js\"></script>")]
+    (quickblog opts)
+    (serve opts)
+    (let [load-pod (requiring-resolve 'babashka.pods/load-pod)]
+      (load-pod 'org.babashka/filewatcher "0.0.1")
+      (let [watch (requiring-resolve 'pod.babashka.filewatcher/watch)]
+        (watch "posts"
+               (fn [_]
+                 (println "Re-rendering")
+                 (quickblog opts)))
+
+        (watch "templates"
+               (fn [_]
+                 (println "Re-rendering")
+                 (quickblog "render.clj"))))))
+  @(promise))
