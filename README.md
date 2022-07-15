@@ -1,6 +1,17 @@
-# Blog
+# Quickblog
 
-My [blog](https://blog.michielborkent.nl/).
+The blog code powering my [blog](https://blog.michielborkent.nl/).
 
-See [this](https://blog.michielborkent.nl/migrating-octopress-to-babashka.html)
-blog post about rewriting this blog from Octopress to babashka.
+See [API.md](API.md) on how to use this.
+
+## Quickstart
+
+
+
+## Improvements
+
+Feel free to send PRs for improvements.
+
+My wishlist:
+
+- Category links
