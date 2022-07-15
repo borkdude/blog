@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-clojure.min.js"></script>
+    {{watch | safe }}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism.min.css">
   </head>
   <body>
@@ -15,7 +16,7 @@
       <div class="wrapper">
         <div class="site-nav">
           <a class="page-link" href="archive.html">Archive</a>
-          <a class="page-link" href="https://github.com/borkdude/blog/discussions/categories/posts">Discuss</a>
+          <a class="page-link" href="{{discuss-link}}">Discuss</a>
           <a class="page-link" href="atom.xml">
             Feed
           </a>

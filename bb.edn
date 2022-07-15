@@ -1,33 +1,38 @@
-{:deps {blog/blog {:local/root "."}}
- :pods {clj-kondo/clj-kondo {:version "2022.05.31"}
-        org.babashka/filewatcher {:version "0.0.1"}}
+{:pods {clj-kondo/clj-kondo {:version "2022.02.09"}}
+ :deps {org.babashka/cli {:mvn/version "0.3.31"}
+        io.github.borkdude/quickblog {:local/root "../quickblog"}
+        io.github.borkdude/quickdoc {:git/sha "a8068f1c8b13e09a2966804213fc41dd813de18e"}}
+ :paths ["."]
  :tasks
- {:requires ([babashka.fs :as fs]
-             [tasks-helper :as th])
+ {:init (def opts (merge (cli/parse-opts *command-line-args*)
+                         {:blog-title "REPL adventures"
+                          :out-dir "public"
+                          :blog-root "https://blog.michielborkent.nl/"
+                          :discuss-link "https://github.com/borkdude/blog/discussions/categories/posts"}))
+
+  :requires ([babashka.fs :as fs]
+             [quickblog.api :as r]
+             [babashka.cli :as cli])
+
   new {:doc "Create new blog article"
-       :task (th/new)}
-  -build-highlighter {:doc "Build Clojure highlighter JS. No longer used."
-                      :task
-                      (when
-                         (seq (fs/modified-since "public/clojure_highlighter.js"
-                               ["src"]))
-                       (shell "npx rollup -c rollup.config.js"))}
+       :task (r/new opts)}
+
   render {:doc "Render blog"
-          :task (load-file "render.clj")}
-  http-server {:extra-deps {babashka/http-server
-                            {:git/url "https://github.com/babashka/http-server"
-                             :git/sha "b38c1f16ad2c618adae2c3b102a5520c261a7dd3"}}
-               :requires ([babashka.http-server :as http])
-               :task (do
-                       (println "Serving HTML on port http://localhost:1888")
-                       (http/serve {:port 1888
-                                    :dir "public"}))}
-  watch  {:depends [render http-server]
-          :doc "Watch posts and templates and call render on file changes"
-          :task (load-file "watch.clj")}
+          :task (r/quickblog opts)}
+
+  watch  {:doc "Watch posts and templates and call render on file changes"
+          :task (r/watch opts)}
+
   publish {:doc "Publish to blog.michielborkent.nl"
            :depends [render]
            :task (shell "rsync -a --delete public/ borkdude@michielborkent.nl:~/devblog")}
+
   clean {:doc "Remove .work and public directory"
          :task (do (fs/delete-tree ".work")
-                   (fs/delete-tree "public"))}}}
+                   (fs/delete-tree "public"))}
+
+  quickdoc {:doc "Invoke quickdoc"
+            :requires ([quickdoc.api :as api])
+            :task (api/quickdoc {:git/branch "main"
+                                 :github/repo "https://github.com/borkdude/quickblog"
+                                 :source-paths ["src/quickblog/api.clj"]})}}}

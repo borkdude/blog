@@ -65,18 +65,3 @@ ul.index {
 .index li {
   margin-bottom: 1em;
 }
-
-.def { color: #00f; }
-.symbol { color: #708; }
-.local { color: cadetblue; }
-.string { color: #a11; }
-.number { color: blue; }
-.keyword { color: #219; }
-.uneval, .comma { filter: opacity(0.5); }
-.regex { color: #a11;}
-
-pre {
-  color: darkslateblue;
-  background-color: lavender;
-}
-
