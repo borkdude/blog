@@ -6,7 +6,8 @@
    [clojure.string :as str]
    [hiccup2.core :as hiccup]
    [markdown.core :as md]
-   [selmer.parser :as selmer]))
+   [selmer.parser :as selmer]
+   [clojure.java.io :as io]))
 
 (defmacro ^:private ->map [& ks]
   (assert (every? symbol? ks))
@@ -45,7 +46,14 @@
         html (str/replace html "$$RET$$" "\n")]
     html))
 
+(defn- ensure-template [path]
+  (let [f (fs/file path)]
+    (when-not (fs/exists? f)
+      (fs/create-dirs (fs/parent f))
+      (spit f (slurp (io/resource path))))))
+
 (defn- base-html []
+  (ensure-template "templates/base.html")
   (slurp "templates/base.html"))
 
 (defn- gen-posts [{:keys [posts out-dir] :as opts}]
@@ -164,6 +172,7 @@
            out-dir]
     :or {out-dir "public"}
     :as opts}]
+  (ensure-template "templates/style.css")
   (let [opts (assoc opts :out-dir out-dir)
         posts (sort-by :date (comp - compare)
                        (edn/read-string (format "[%s]"
