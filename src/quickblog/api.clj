@@ -3,11 +3,11 @@
    [babashka.fs :as fs]
    [clojure.data.xml :as xml]
    [clojure.edn :as edn]
+   [clojure.java.io :as io]
    [clojure.string :as str]
    [hiccup2.core :as hiccup]
    [markdown.core :as md]
-   [selmer.parser :as selmer]
-   [clojure.java.io :as io]))
+   [selmer.parser :as selmer]))
 
 (defmacro ^:private ->map [& ks]
   (assert (every? symbol? ks))
