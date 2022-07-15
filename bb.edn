@@ -1,7 +1,8 @@
-{:deps {blog/blog {:local/root "."}
-        org.babashka/cli {:mvn/version "0.3.31"}}
+{:pods {clj-kondo/clj-kondo {:version "2022.02.09"}}
+ :deps {blog/blog {:local/root "."}
+        org.babashka/cli {:mvn/version "0.3.31"}
+        io.github.borkdude/quickdoc {:git/sha "a8068f1c8b13e09a2966804213fc41dd813de18e"}}
  :paths ["."]
- :pods {org.babashka/filewatcher {:version "0.0.1"}}
  :tasks
  {:init (def opts (cli/parse-opts *command-line-args*))
   :requires ([babashka.fs :as fs]
@@ -22,4 +23,10 @@
            :task (shell "rsync -a --delete public/ borkdude@michielborkent.nl:~/devblog")}
   clean {:doc "Remove .work and public directory"
          :task (do (fs/delete-tree ".work")
-                   (fs/delete-tree "public"))}}}
+                   (fs/delete-tree "public"))}
+
+  quickdoc {:doc "Invoke quickdoc"
+            :requires ([quickdoc.api :as api])
+            :task (api/quickdoc {:git/branch "main"
+                                 :github/repo "https://github.com/borkdude/quickblog"
+                                 :source-paths ["src/quickblog/api.clj"]})}}}

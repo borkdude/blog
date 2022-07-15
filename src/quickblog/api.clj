@@ -8,12 +8,12 @@
    [markdown.core :as md]
    [selmer.parser :as selmer]))
 
-(defmacro ->map [& ks]
+(defmacro ^:private ->map [& ks]
   (assert (every? symbol? ks))
   (zipmap (map keyword ks)
           ks))
 
-(def post-template
+(def ^:private post-template
   "<h1>{{title}}</h1>
 {{body | safe }}
 <p>Discuss this post <a href=\"{{discuss}}\">here</a>.</p>
@@ -21,14 +21,14 @@
 ")
 
 ;; re-used when generating atom.xml
-(def bodies (atom {}))
+(def ^:private bodies (atom {}))
 
-(defn html-file [file]
+(defn- html-file [file]
   (str/replace file ".md" ".html"))
 
-(def discuss-fallback "https://github.com/borkdude/blog/discussions/categories/posts")
+(def ^:private discuss-fallback "https://github.com/borkdude/blog/discussions/categories/posts")
 
-(defn markdown->html [file]
+(defn- markdown->html [file]
   (let [_ (println "Processing markdown for file:" (str file))
         markdown (slurp file)
         markdown (str/replace markdown #"--" (fn [_]
@@ -45,19 +45,17 @@
         html (str/replace html "$$RET$$" "\n")]
     html))
 
-(defn base-html []
+(defn- base-html []
   (slurp "templates/base.html"))
 
-(defn gen-posts [{:keys [posts out-dir] :as opts}]
+(defn- gen-posts [{:keys [posts out-dir] :as opts}]
   (doseq [{:keys [file title date legacy discuss]
            :or {discuss discuss-fallback}}
           posts]
     (let [base-html (base-html)
           cache-file (fs/file ".work" (html-file file))
           markdown-file (fs/file "posts" file)
-          stale? (seq (fs/modified-since cache-file
-                                         [markdown-file
-                                          "posts.edn"]))
+          stale? (seq (fs/modified-since cache-file markdown-file))
           body (if stale?
                  (let [body (markdown->html markdown-file)]
                    (spit cache-file body)
@@ -68,8 +66,7 @@
           html (selmer/render base-html
                               (assoc opts
                                      :title title
-                                     :body body
-                                     :watch "foooooo"))
+                                     :body body))
           html-file (str/replace file ".md" ".html")]
       (spit (fs/file out-dir html-file) html)
       (let [legacy-dir (fs/file out-dir (str/replace date "-" "/")
@@ -85,7 +82,7 @@
 
 ;;;; Generate archive page
 
-(defn post-links [{:keys [posts]}]
+(defn- post-links [{:keys [posts]}]
   [:div {:style "width: 600px;"}
    [:h1 "Archive"]
    [:ul.index
@@ -99,7 +96,7 @@
 
 ;;;; Generate index page with last 3 posts
 
-(defn index [{:keys [posts]}]
+(defn- index [{:keys [posts]}]
   (for [{:keys [file title date preview discuss]
          :or {discuss discuss-fallback}} (take 3 posts)
         :when (not preview)]
@@ -110,32 +107,32 @@
      [:p "Discuss this post " [:a {:href discuss} "here"] "."]
      [:p [:i "Published: " date]]]))
 
-(defn spit-index
-  [{:keys [posts out-dir blog-title]}]
-  (spit (fs/file out-dir "index.html")
-        (selmer/render (base-html)
-                       {:title blog-title
-                        :body (hiccup/html {:escape-strings? false} (index {:posts posts}))})))
-
+(defn- spit-index
+  [{:keys [posts out-dir] :as opts}]
+  (spit
+   (fs/file out-dir "index.html")
+   (selmer/render (base-html)
+                  (assoc opts
+                         :body (hiccup/html {:escape-strings? false} (index {:posts posts}))))))
 
 ;;;; Generate atom feeds
 
 (xml/alias-uri 'atom "http://www.w3.org/2005/Atom")
 (import java.time.format.DateTimeFormatter)
 
-(defn rfc-3339-now []
+(defn- rfc-3339-now []
   (let [fmt (DateTimeFormatter/ofPattern "yyyy-MM-dd'T'HH:mm:ssxxx")
         now (java.time.ZonedDateTime/now java.time.ZoneOffset/UTC)]
     (.format now fmt)))
 
-(defn rfc-3339 [yyyy-MM-dd]
+(defn- rfc-3339 [yyyy-MM-dd]
   (let [in-fmt (DateTimeFormatter/ofPattern "yyyy-MM-dd")
         local-date (java.time.LocalDate/parse yyyy-MM-dd in-fmt)
         fmt (DateTimeFormatter/ofPattern "yyyy-MM-dd'T'HH:mm:ssxxx")
         now (java.time.ZonedDateTime/of (.atTime local-date 23 59 59) java.time.ZoneOffset/UTC)]
     (.format now fmt)))
 
-(defn atom-feed
+(defn- atom-feed
   ;; validate at https://validator.w3.org/feed/check.cgi
   [{:keys [posts blog-title blog-root]}]
   (-> (xml/sexp-as-element
@@ -161,11 +158,12 @@
             [:-cdata (get @bodies file)]]])])
       xml/indent-str))
 
-(defn quickblog [{:keys [blog-title
-                         out-dir
-                         blog-root]
-                  :or {out-dir "public"}
-                  :as opts}]
+(defn quickblog
+  "Renders posts declared in `posts.edn` to `out-dir`."
+  [{:keys [blog-title
+           out-dir]
+    :or {out-dir "public"}
+    :as opts}]
   (let [opts (assoc opts :out-dir out-dir)
         posts (sort-by :date (comp - compare)
                        (edn/read-string (format "[%s]"
@@ -179,23 +177,26 @@
     (gen-posts opts)
     (spit (fs/file out-dir "archive.html")
           (selmer/render (base-html)
-                         {:skip-archive true
-                          :title (str blog-title " - Archive")
-                          :body (hiccup/html (post-links {:posts posts}))}))
-    (spit-index (->map posts out-dir blog-title))
-    (spit (fs/file out-dir "atom.xml") (atom-feed (->map posts blog-title blog-root)))
+                         (assoc opts
+                                :skip-archive true
+                                :title (str blog-title " - Archive")
+                                :body (hiccup/html (post-links {:posts posts})))))
+    (spit-index opts)
+    (spit (fs/file out-dir "atom.xml") (atom-feed opts))
     (spit (fs/file out-dir "planetclojure.xml")
           (atom-feed (filter
                       (fn [post]
                         (some (:categories post) ["clojure" "clojurescript"]))
                       posts)))))
 
-(defn now []
+(defn- now []
   (pr-str
    (.format (java.time.LocalDate/now)
             (java.time.format.DateTimeFormatter/ofPattern "yyyy-MM-dd"))))
 
-(defn new [{:keys [file title]}]
+(defn new
+  "Creates new entry in `posts.edn` and creates `file` in `posts` dir."
+  [{:keys [file title]}]
   (assert file "Must give title")
   (assert title "Must give filename")
   (let [post-file (fs/file "posts" file)]
@@ -209,18 +210,31 @@
                             :categories #{"clojure"}})
             :append true))))
 
-(defn serve [_]
+(defn serve
+  "Runs file-server on `port`."
+  [{:keys [port]
+    :or {port 1888}}]
   (let [serve (requiring-resolve 'babashka.http-server/serve)]
-    (serve {:port 1888
+    (serve {:port port
             :dir "public"})))
 
-(defn watch [opts]
-  (let [opts (assoc opts :watch "<script type=\"text/javascript\" src=\"https://livejs.com/live.js\"></script>")]
+(defn watch
+  "Watches `posts.edn`, `posts` and `templates` for changes. Runs file
+  server using `serve`."
+  [{:keys [watch-script]
+    :or {watch-script "<script type=\"text/javascript\" src=\"https://livejs.com/live.js\"></script>"}
+    :as opts}]
+  (let [opts (assoc opts :watch watch-script)]
     (quickblog opts)
     (serve opts)
     (let [load-pod (requiring-resolve 'babashka.pods/load-pod)]
       (load-pod 'org.babashka/filewatcher "0.0.1")
       (let [watch (requiring-resolve 'pod.babashka.filewatcher/watch)]
+        (watch "posts.edn"
+               (fn [_]
+                 (println "Re-rendering")
+                 (quickblog opts)))
+
         (watch "posts"
                (fn [_]
                  (println "Re-rendering")
@@ -229,5 +243,5 @@
         (watch "templates"
                (fn [_]
                  (println "Re-rendering")
-                 (quickblog "render.clj"))))))
+                 (quickblog opts))))))
   @(promise))
