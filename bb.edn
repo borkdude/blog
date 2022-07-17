@@ -8,7 +8,9 @@
                          {:blog-title "REPL adventures"
                           :out-dir "public"
                           :blog-root "https://blog.michielborkent.nl/"
-                          :discuss-link "https://github.com/borkdude/blog/discussions/categories/posts"}))
+                          :discuss-link "https://github.com/borkdude/blog/discussions/categories/posts"
+                          :twitter-handle "borkdude"
+                          :about-link "https://michielborkent.nl"}))
 
   :requires ([babashka.fs :as fs]
              [quickblog.api :as r]
