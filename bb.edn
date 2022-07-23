@@ -10,7 +10,8 @@
                           :blog-root "https://blog.michielborkent.nl/"
                           :discuss-link "https://github.com/borkdude/blog/discussions/categories/posts"
                           :twitter-handle "borkdude"
-                          :about-link "https://michielborkent.nl"}))
+                          :about-link "https://michielborkent.nl"
+                          :favicon true}))
 
   :requires ([babashka.fs :as fs]
              [quickblog.api :as r]
