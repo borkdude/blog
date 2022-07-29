@@ -3,21 +3,20 @@ In a previous blog post
 [babashka CLI](https://github.com/babashka/cli). It offers you similar benefits
 as `clojure -X` but with a more Unixy command line interface.
 
-In version `0.9.159` of babashka (building as I'm writing this) babashka CLI was
-integrated.  It is available as a built-in library so you don't need to declare
-it anymore in `:deps` in `bb.edn` unless you want to use a newer version than
-the built-in one.
+In version `0.9.159` of babashka, babashka CLI was integrated.  It is available
+as a built-in library so you don't need to declare it anymore in `:deps` in
+`bb.edn` unless you want to use a newer version than the built-in one.
 
 ## -x
 
 For invoking functions from the command line, you can use the new `-x` flag (a pun to Clojure's `-X` of course!):
 
-```
+``` clojure
 bb -x clojure.core/identity --hello there
 {:hello "there"}
 ```
 
-Babashka prints the last evaluated value. What we see in the above snippet is
+What we see in the above snippet is
 that a map `{:hello "there"}` is constructed by babashka CLI and then fed to the
 `identity` function. After that the result is printed to the console.
 
@@ -37,7 +36,8 @@ a file available on the classpath:
 
 (defn my-function
   {:org.babashka/cli {:exec-args {:fn-data 1}
-                      :coerce {:num [:int]}}}
+                      :coerce {:num [:int]}
+                      :alias {:n :num}}}
   [m]
   m)
 ```
