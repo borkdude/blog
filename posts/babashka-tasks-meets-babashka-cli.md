@@ -3,7 +3,7 @@ In a previous blog post
 [babashka CLI](https://github.com/babashka/cli). It offers you similar benefits
 as `clojure -X` but with a more Unixy command line interface.
 
-In version `0.9.159` of babashka, babashka CLI was integrated.  It is available
+In version `0.9.160` of babashka, babashka CLI was integrated.  It is available
 as a built-in library so you don't need to declare it anymore in `:deps` in
 `bb.edn` unless you want to use a newer version than the built-in one.
 
@@ -59,7 +59,7 @@ What about task integration? Let's adapt our `bb.edn`:
 
 ``` clojure
 {:paths ["."]
- :tasks {doit {:task (let [x (exec tasks/my-function)]
+ :tasks {doit {:task (let [x (exec 'tasks/my-function)]
                        (prn :x x))
                :exec-args {:task-data 1234}}
          }}
@@ -74,7 +74,7 @@ $ bb doit --cli-option :yeah -n 1 2 3
 
 As you can see it works similar to `-x`, but you can provide another set of
 defaults on the task level with `:exec-args`. Executing a function through
-babashka CLI is done using the `babashka.task/exec` macro, available by default
+babashka CLI is done using the `babashka.task/exec` function, available by default
 in tasks.
 
 <!-- A hack to parse command line arguments in babashka and then forward them to Clojure: -->
