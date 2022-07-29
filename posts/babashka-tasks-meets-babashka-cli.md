@@ -77,4 +77,25 @@ defaults on the task level with `:exec-args`. Executing a function through
 babashka CLI is done using the `babashka.task/exec` macro, available by default
 in tasks.
 
+A hack to parse commmand line arguments in babashka and then forward them to Clojure:
+
+``` clojure
+{:paths ["."]
+ :tasks {:requires ([babashka.cli :as cli])
+         doit {:task
+               (do
+                 (defn parse {:org.babashka/cli {:coerce {:number [:int]}
+                                                 :alias {:n :number}}}
+                   [m] m)
+                 (clojure "-X" "clojure.core/prn"
+                          (exec parse)))
+               :exec-args {:task-data 1234}
+               }}}
+```
+
+``` clojure
+$ bb doit -n 1 2 3
+{:task-data 1234, :number [1 2 3]}
+```
+
 Hope you will enjoy this!
