@@ -129,3 +129,7 @@
  :file "oss-updates-may-jun-2022.md"
  :categories #{"clojure"}
  :date "2022-06-30"}
+{:title "Babashka tasks meets babashka CLI",
+ :file "babashka-tasks-meets-babashka-cli.md",
+ :date "2022-07-29",
+ :tags #{"clojure"}}
