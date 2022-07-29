@@ -68,8 +68,8 @@ What about task integration? Let's adapt our `bb.edn`:
 and invoke the task:
 
 ``` clojure
-$ bb doit --cli-option :yeah
-:x {:ns-data 1, :fn-data 1, :task-data 1234, :cli-option :yeah}
+$ bb doit --cli-option :yeah -n 1 2 3
+:x {:ns-data 1, :fn-data 1, :task-data 1234, :cli-option :yeah, :num [1 2 3]}
 ```
 
 As you can see it works similar to `-x`, but you can provide another set of
