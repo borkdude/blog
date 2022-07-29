@@ -77,30 +77,30 @@ defaults on the task level with `:exec-args`. Executing a function through
 babashka CLI is done using the `babashka.task/exec` macro, available by default
 in tasks.
 
-A hack to parse command line arguments in babashka and then forward them to Clojure:
+<!-- A hack to parse command line arguments in babashka and then forward them to Clojure: -->
 
-``` clojure
-{:paths ["."]
- :tasks
- {:requires ([babashka.cli :as cli])
+<!-- ``` clojure -->
+<!-- {:paths ["."] -->
+<!--  :tasks -->
+<!--  {:requires ([babashka.cli :as cli]) -->
 
-  doit {:task
-        (do
-          (defn parse {:org.babashka/cli {:coerce {:number [:int]}
-                                          :alias {:n :number}}}
-            [m] m)
-          (clojure "-X" "clojure.core/prn"
-                   (exec parse)))
-        :exec-args {:task-data 1234}}
-  }}
-```
+<!--   doit {:task -->
+<!--         (do -->
+<!--           (defn parse {:org.babashka/cli {:coerce {:number [:int]} -->
+<!--                                           :alias {:n :number}}} -->
+<!--             [m] m) -->
+<!--           (clojure "-X" "clojure.core/prn" -->
+<!--                    (exec parse))) -->
+<!--         :exec-args {:task-data 1234}} -->
+<!--   }} -->
+<!-- ``` -->
 
-``` clojure
-$ bb doit -n 1 2 3
-{:task-data 1234, :number [1 2 3]}
-```
+<!-- ``` clojure -->
+<!-- $ bb doit -n 1 2 3 -->
+<!-- {:task-data 1234, :number [1 2 3]} -->
+<!-- ``` -->
 
-although you can do the above manually using `(babashka.cli/parse-opts ...)` as
-well or by using babashka CLI directly with the [clojure CLI](https://github.com/babashka/cli#clojure-cli).
+<!-- although you can do the above manually using `(babashka.cli/parse-opts ...)` as -->
+<!-- well or by using babashka CLI directly with the [clojure CLI](https://github.com/babashka/cli#clojure-cli). -->
 
 Hope you will enjoy this!
