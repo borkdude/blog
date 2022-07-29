@@ -101,6 +101,6 @@ $ bb doit -n 1 2 3
 ```
 
 although you can do the above manually using `(babashka.cli/parse-opts ...)` as
-well.
+well or by using babashka CLI directly with the [clojure CLI](https://github.com/babashka/cli#clojure-cli).
 
 Hope you will enjoy this!
