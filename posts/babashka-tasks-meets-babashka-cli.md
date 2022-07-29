@@ -44,7 +44,7 @@ a file available on the classpath:
 
 Now let's invoke:
 
-```
+``` clojure
 $ bb -x tasks/my-function -n 1 2
 {:ns-data 1, :fn-data 1, :num [1 2]}
 ```
@@ -57,7 +57,7 @@ the clojure CLI.
 
 What about task integration? Let's adapt our `bb.edn`:
 
-```
+``` clojure
 {:paths ["."]
  :tasks {doit {:task (let [x (exec tasks/my-function)]
                        (prn :x x))
@@ -67,7 +67,7 @@ What about task integration? Let's adapt our `bb.edn`:
 
 and invoke the task:
 
-```
+``` clojure
 $ bb doit --cli-option :yeah
 :x {:ns-data 1, :fn-data 1, :task-data 1234, :cli-option :yeah}
 ```
