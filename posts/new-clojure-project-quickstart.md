@@ -31,6 +31,32 @@ To start a new Clojure project, run `neil new --name myproject`. This produces a
 [deps-new](https://github.com/seancorfield/deps-new) `scratch` template. Now we
 are are going to incrementally add some functionality to this project.
 
+## Adding library
+
+Let's decide that we're going to need a library to deal with files. Let's search for one:
+
+``` clojure
+$ neil dep search "file system"
+:lib fs/fs :version 1.3.3 :description "File system utilities for clojure"
+:lib me.raynes/fs :version 1.4.6 :description "File system utilities for clojure"
+:lib babashka/fs :version 0.1.6 :description "Babashka file system utilities."
+```
+
+Let's go with the [babashka/fs](https://github.com/babashka/fs) library:
+
+```
+$ neil dep add :lib babashka/fs :version 0.1.6
+```
+
+Now the library is added to `deps.edn` and we can use it in our project:
+
+``` clojure
+$ clj
+Clojure 1.11.0
+user=> (require '[babashka.fs :as fs])
+nil
+```
+
 ## Test
 
 Let's start by adding a test runner. Type: `neil add test`. After doing this,
