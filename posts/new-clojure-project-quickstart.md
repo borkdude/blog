@@ -33,7 +33,9 @@ Windows and struggle with the official `clojure` Powershell-based installation,
 To start a new Clojure project, run `neil new --name myproject`. This produces a
 `myproject` directory with a very basic project layout based on the
 [deps-new](https://github.com/seancorfield/deps-new) `scratch` template. Now we
-are are going to incrementally add some functionality to this project.
+are are going to incrementally add some functionality to this project. If you
+like to skip most of these steps, you can start from the more fully featured
+`app` template with `neil new app --name myproject`.
 
 ## Adding library
 
