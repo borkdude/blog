@@ -1,15 +1,15 @@
 Clojure beginners sometimes struggle with setting up a new Clojure `deps.edn`
-compared to setting up a [lein](https://leiningen.org/) project. This is one of
-the reasons I've built [neil](https://github.com/babashka/neil). But not only
-for beginners, I've been using `neil` myself a ton too, to add common features
-to existing `deps.edn` projects. You may think that `neil` is a pun on
+project compared to setting up a [lein](https://leiningen.org/) project. This is
+one of the reasons I've built [neil](https://github.com/babashka/neil). But not
+only for beginners, I've been using `neil` myself a ton too, to add common
+features to existing `deps.edn` projects. You may think that `neil` is a pun on
 `lein`. Of course it is. But the name is also an hommage to [Neil
 Peart](https://en.wikipedia.org/wiki/Neil_Peart), one of the greatest
 progressive rock drummers to have ever lived.
 
 The intent of this post is to give you a starting point from where you can
 figure out things further. This post isn't going to explain any details of how
-`deps.edn` and related tooling works. For that I'm going to refer you to here:
+`deps.edn` and related tooling works. For that I'm going to refer you to
 [here](https://clojure.org/guides/deps_and_cli).
 
 Let's install `neil` which is available for
@@ -82,7 +82,7 @@ Run:
 neil add nrepl
 ```
 
-to add a `:nepl` alias to your project. Now you can run `clj -M:nrepl` to get a
+to add a `:nrepl` alias to your project. Now you can run `clj -M:nrepl` to get a
 console REPL, but also a running nREPL server that you can connect to from your
 editor. Note that many editors also support `jack-in` and if you prefer to use
 that, you won't need this.
@@ -135,7 +135,8 @@ $ java -jar target/lib1-1.2.1-standalone.jar 1 2 3
 
 ## Babashka tasks
 
-If you have difficulty remember the above invocations, you can write a `bb.edn` with some [tasks](https://book.babashka.org/#tasks):
+If you have difficulty remembering the above invocations, you can write a
+`bb.edn` with some [tasks](https://book.babashka.org/#tasks):
 
 `bb.edn`:
 ``` clojure
