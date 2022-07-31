@@ -133,3 +133,7 @@
  :file "babashka-tasks-meets-babashka-cli.md",
  :date "2022-07-29",
  :tags #{"clojure"}}
+{:title "New Clojure project quickstart",
+ :file "new-clojure-project-quickstart.md",
+ :date "2022-07-31",
+ :tags #{"clojure"}}
