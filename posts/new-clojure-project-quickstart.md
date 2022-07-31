@@ -197,7 +197,6 @@ we send any args you pass to a task invocation to clojure. So to run a specific 
 
 ``` shell
 bb test -v myproject.core-test/failing-test
-
 ```
 
 If you prefer to use the installed clojure CLI, you can do this by using:
