@@ -23,9 +23,10 @@ neil runs with [babashka](https://babashka.org/) for fast startup time.
 If you've already installed `babashka` (perhaps indirectly by installing `neil`)
 but didn't yet install the [clojure
 CLI](https://clojure.org/guides/deps_and_cli) or have problems doing so, then
-you can run `bb clojure` instead of `clojure` for launching `clojure`. If you
-are on Windows and struggle with the official `clojure` Powershell-based
-installation, `bb clojure` may come in handy too.
+you can run `bb clojure` instead of `clojure` for launching Clojure. Instead of
+`clj`, on linux/macOS you'll want to use `rlwrap bb clojure`. If you are on
+Windows and struggle with the official `clojure` Powershell-based installation,
+`bb clojure` may come in handy too.
 
 ## New
 
