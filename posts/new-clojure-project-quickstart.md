@@ -187,14 +187,20 @@ If you have difficulty remembering the above invocations, you can write a
 ```
 
 The `clojure` function is built into babashka and is a drop-in replacement for
-the clojure CLI which does not require any installation. With 
+the clojure CLI which does not require any installation. With
 
 ``` clojure
 (apply ... *command-line-args*)
 ```
 
-we send any args you pass to a task invocation to clojure. If you prefer to use
-the installed clojure CLI, you can do this by using:
+we send any args you pass to a task invocation to clojure. So to run a specific test, you can write:
+
+``` shell
+bb test -v myproject.core-test/failing-test
+
+```
+
+If you prefer to use the installed clojure CLI, you can do this by using:
 
 ``` clojure
 (apply shell "clojure" ... *command-line-args*)
