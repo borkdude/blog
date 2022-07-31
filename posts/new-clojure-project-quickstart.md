@@ -20,9 +20,11 @@ JVM](https://github.com/babashka/neil#clojure) or can easily be installed
 [manually](https://github.com/babashka/neil#manual). Unless you use clojure JVM,
 neil runs with [babashka](https://babashka.org/) for fast startup time.
 
-If you are on Windows and struggle with the official `clojure` Powershell-based
-installation, check out [deps.clj](https://github.com/borkdude/deps.clj) and run
-it with `deps` instead of `clojure`.
+If you've already installed `babashka` (perhaps indirectly by installing `neil`)
+but didn't yet install the clojure CLI or have problems doing so, then you can
+just run `bb clojure` instead of `clojure`. If you are on Windows and struggle
+with the official `clojure` Powershell-based installation, `bb clojure` may come
+in handy too.
 
 ## New
 
