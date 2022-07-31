@@ -183,7 +183,7 @@ If you have difficulty remembering the above invocations, you can write a
                  (shell "clj -M:nrepl"))}
 
   uber {:doc "Build uberjar"
-        :task (apply clojure "-T:build uber" *command-line-args*)}}}
+        :task (clojure "-T:build uber")}}}
 ```
 
 The `clojure` function is built into babashka and is a drop-in replacement for
