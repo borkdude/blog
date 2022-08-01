@@ -132,7 +132,7 @@ Since the default `build.clj` file is going to assume your project is under
 
 ``` shell
 git init
-git add src test
+git add deps.edn src test
 git commit -m "initial commit"
 ```
 
