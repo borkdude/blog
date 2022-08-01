@@ -181,8 +181,7 @@ If you have difficulty remembering the above invocations, you can write a
   nrepl {:doc "Start REPL"
          :task (if (fs/windows?)
                  (clojure "-M:nrepl")
-                 ;; rlwrap:
-                 (shell "clj -M:nrepl"))}
+                 (shell "rlwrap bb clojure -M:nrepl"))}
 
   uber {:doc "Build uberjar"
         :task (clojure "-T:build uber")}}}
