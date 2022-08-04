@@ -1,3 +1,7 @@
+Title: OSS Updates of January - February 2022
+Date: 2022-02-27
+Tags: clojure
+
 In this post I'll give updates about open source I worked on during January and February 2022.
 
 ## Sponsors

@@ -1,3 +1,8 @@
+Title: Inline def: an effective* debugging technique for Clojure
+Date: 2017-05-25
+Tags: clojure
+Legacy: true
+
 Clojure beginners often hear that inline `def` is bad style. For code
 you commit that's mostly true. Example:
 

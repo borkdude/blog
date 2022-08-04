@@ -1,3 +1,8 @@
+Title: Using the Clojure REPL with Java or Scala
+Date: 2016-07-26
+Tags: scala,clojure,repl
+Legacy: true
+
 Clojure is a tool that enables interactive development and runtime
 inspection. Even when we work in other programming languages,
 Clojure can still be useful. Especially when that other language lives

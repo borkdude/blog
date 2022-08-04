@@ -1,3 +1,7 @@
+Title: Babashka survey Q1 2022 results!
+Date: 2022-05-12
+Tags: clojure
+
 In Q1 of 2022 I ran the babashka survey again. I've done this once before (in
 November 2020) to see how people are using babashka and what they think could be
 improved. This year about 200 people responded. That is double the amount since

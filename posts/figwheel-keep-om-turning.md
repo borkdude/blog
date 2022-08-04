@@ -1,3 +1,8 @@
+Title: Figwheel keep Om turning!
+Date: 2014-09-25
+Tags: clojure,om,figwheel,clojurescript
+Legacy: true
+
 How to combine figwheel, Om and Ring in one application
 ## tl;dr
 In this article you will find a configuration of figwheel with

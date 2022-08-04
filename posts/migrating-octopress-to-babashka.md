@@ -1,3 +1,7 @@
+Title: Replacing my Octopress blog with 200 lines of Babashka
+Date: 2021-10-25
+Tags: clojure
+
 ## Octopress
 
 Seven years ago I started writing about my adventures with Clojure. I started

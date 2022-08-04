@@ -1,3 +1,8 @@
+Title: Parsing a circuit with clojure.spec
+Date: 2017-10-10
+Tags: clojure,spec
+Legacy: true
+
 [Advent of Code](http://adventofcode.com/) is a collection of
 self-contained programming problems, one for each day during
 [Advent](https://en.wikipedia.org/wiki/Advent). My favorite problem of
