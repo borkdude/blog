@@ -1,3 +1,8 @@
+Title: Migrating a Leiningen project to boot
+Date: 2015-06-06
+Tags: clojure,boot,figwheel,leiningen,clojurescript
+Legacy: true
+
 Edit: this post made it to the front page of Hacker News. Thanks!
 
 <img src="assets/boot-lein-2015/hacker-news-lein2boot.png">

@@ -1,3 +1,7 @@
+Title: Writing a Clojure highlighter from scratch
+Date: 2021-11-08
+Tags: clojure
+
 In the aftermath of my [previous blog post](better-clojure-highlighting.html)
 about using Nextjournal's
 [clojure-mode](https://github.com/nextjournal/clojure-mode) for better

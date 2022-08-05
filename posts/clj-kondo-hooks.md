@@ -1,3 +1,8 @@
+Title: Clj-kondo hooks
+Date: 2020-06-21
+Tags: clojure,clj-kondo
+Legacy: true
+
 [Clj-kondo](https://github.com/borkdude/clj-kondo/) is a Clojure linter that
 uses static analysis. This means it only looks at source code, but does not
 execute it. While the information available to produce good lint warnings is

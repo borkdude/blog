@@ -1,3 +1,7 @@
+Title: OSS Highlights of November - December 2021
+Date: 2021-12-31
+Tags: clojure
+
 Like the previous [OSS highlights](oss-highlights-sep-oct-2021.html), I'll give
 an overview of OSS work I did in November and December of 2021. I'd like to
 emphasize that I can do this work because of sponsoring via:

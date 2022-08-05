@@ -1,3 +1,7 @@
+Title: Babashka tasks meets babashka CLI
+Date: 2022-08-02
+Tags: clojure
+
 In a previous blog post
 [(link)](https://blog.michielborkent.nl/babashka-cli.html) I introduced
 [babashka CLI](https://github.com/babashka/cli). It offers you similar benefits

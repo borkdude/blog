@@ -1,3 +1,7 @@
+Title: New Clojure project quickstart
+Date: 2022-08-02
+Tags: clojure
+
 Clojure beginners sometimes struggle with setting up a new Clojure `deps.edn`
 project compared to setting up a [lein](https://leiningen.org/) project. This is
 one of the reasons I've built [neil](https://github.com/babashka/neil). But not

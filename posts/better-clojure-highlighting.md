@@ -1,3 +1,7 @@
+Title: Better Clojure highlighting with nextjournal/clojure-mode
+Date: 2021-11-05
+Tags: clojure
+
 Almost two weeks ago I [wrote](migrating-octopress-to-babashka.html) about how I
 replaced my Octopress blog with about 200 lines of
 [babashka](https://github.com/babashka/babashka). I also wrote that I used
