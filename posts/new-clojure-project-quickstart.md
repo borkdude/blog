@@ -110,6 +110,10 @@ The test runner we added is the Cognitect Labs
 [test-runner](https://github.com/cognitect-labs/test-runner) so check out the
 README of that project if you need to know more.
 
+Update 2022-08-06: `neil` now comes with a new subcommand: `test`, so you can
+replace `clojure -M:test` with `neil test`. Also when you've created a project
+with `neil new`, `neil add test` will generate one default test for you.
+
 ## REPL
 
 Run:
