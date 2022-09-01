@@ -20,8 +20,7 @@ you can sponsor this work via the following organizations:
 - [OpenCollective](https://opencollective.com/babashka) (also see the [clj-kondo](https://opencollective.com/clj-kondo) one)
 - [Clojurists Together](https://www.clojuriststogether.org/)
 
-...
- 
+
 ## Projects
 
 <!-- https://github.com/borkdude?tab=overview&from=2022-06-01&to=2022-06-30 -->
