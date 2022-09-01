@@ -35,12 +35,17 @@ but we can still have our parens.
 
 ### [Cherry](https://github.com/clavascript/cherry)
 
-Cherry is similar to ClavaScript, but it does emit CLJS with the persistent data
-structures. The compiler code is almost identical to Clava's, but with a few
-tweaks here and there. E.g. `{:a 1}` in Clava means: a JS object with a `"a"`
-key and `1` value, but in cherry, `{:a 1}` means the same as in CLJS. The goal
-of both Clava and Cherry are to reduce friction between CLJS and JS
-tooling. Both projects should be considered experimental for now.
+Cherry is similar to ClavaScript, but it does emit CLJS-compatible code (with
+the persistent data structures, etc). The compiler code is almost identical to
+Clava's, but with a few tweaks here and there. E.g. `{:a 1}` in Clava means: a
+JS object with a `"a"` key and `1` value, but in cherry, `{:a 1}` means the same
+as in CLJS. The goal of both Clava and Cherry are to reduce friction between
+CLJS and JS tooling. Both projects should be considered experimental for
+now. Challenges in both Clava and Cherry is the REPL, since both projects
+compile to ES6 modules and ES6 module imports are immutable.
+
+On [ClojureDays 2022](https://clojuredays.org/) I will give a talk titled
+"ClojureScript reimagined" which will shed more light on both projects.
 
 ### [Scittle](https://github.com/babashka/scittle)
 
@@ -55,6 +60,25 @@ Scittle got 2 new plugins: one for `promesa.core` and one for
 Babashka toolbox is a port of [Clojure
 toolbox](https://www.clojure-toolbox.com/) and gives an overview of
 bb-compatible libraries and projects.
+
+### [Babashka CLI](https://github.com/babashka/cli)
+
+Turn Clojure functions into CLIs!
+
+Several new options have been added: `:validate`, `:require`, `:restrict`. Also error handling was made more flexible.
+
+Babashka CLI proper is now part of babashka. Also see my blog posts about it:
+
+- [Babashka tasks meets babashka CLI](https://blog.michielborkent.nl/babashka-tasks-meets-babashka-cli.html)
+- [Babashka CLI: turn Clojure functions into CLIs](https://blog.michielborkent.nl/babashka-cli.html)
+
+### [Babashka](https://github.com/babashka/babashka)
+
+Native, fast starting Clojure interpreter for scripting.
+
+- Compatibility with [malli](https://github.com/metosin/malli#babashka)
+- `-x`: a way to execute functions from the command line using babashka CLI
+- Many bugfixes and enhancements
 
 ### [Nbb](https://github.com/babashka/nbb)
 
@@ -79,17 +103,6 @@ A lot has been happening in this project, with the help of Josh Glover. Check
 out the
 [changelog](https://github.com/borkdude/quickblog/blob/main/CHANGELOG.md#changelog). The
 blog you're currently reading is made with quickblog.
-
-### [Babashka CLI](https://github.com/babashka/cli)
-
-Turn Clojure functions into CLIs!
-
-Several new options have been added: `:validate`, `:require`, `:restrict`. Also error handling was made more flexible.
-
-Babashka CLI proper is now part of babashka. Also see my blog posts about it:
-
-- [Babashka tasks meets babashka CLI](https://blog.michielborkent.nl/babashka-tasks-meets-babashka-cli.html)
-- [Babashka CLI: turn Clojure functions into CLIs](https://blog.michielborkent.nl/babashka-cli.html)
 
 ### [SCI](https://github.com/babashka/sci)
 
