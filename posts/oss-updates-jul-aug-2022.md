@@ -52,7 +52,7 @@ On [ClojureDays 2022](https://clojuredays.org/) I will give a talk titled
 Execute Clojure(Script) directly from browser script tags via SCI.
 See it in [action](https://babashka.org/scittle/).
 
-Scittle got 2 new plugins: one for `promesa.core` and one for
+Scittle received two new plugins: one for `promesa.core` and one for
 `cljs.pprint`. Also error messages were improved.
 
 ### [Babashka toolbox](https://babashka.org/toolbox/)
@@ -108,7 +108,7 @@ blog you're currently reading is made with quickblog.
 
 Configurable Clojure interpreter suitable for scripting and Clojure DSLs.
 
-This is the workhorse that power babashka, nbb, bebo, and many other projects.
+This is the workhorse that powers babashka, nbb, bebo, and many other projects.
 
 Several bugfixes and enhancements were made in the last two months.
 
