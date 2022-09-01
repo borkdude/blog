@@ -9,9 +9,9 @@ In this post I'll give updates about open source I worked on during May and June
 But first off, I'd like to thank all the sponsors and contributors that make
 this work possible! Top sponsors: [Clojurists
 Together](https://clojuriststogether.org/), [Roam
-Research](https://roamresearch.com/), [Adgoji](https://www.adgoji.com/),
-[Cognitect](https://www.cognitect.com/), [Kepler16](https://kepler16.com/),
-[Nextjournal](https://nextjournal.com/).
+Research](https://roamresearch.com/), [Nextjournal](https://nextjournal.com/),
+[Adgoji](https://www.adgoji.com/), [Cognitect](https://www.cognitect.com/),
+[Kepler16](https://kepler16.com/), .
 
 If you want to ensure that the projects I work on are sustainably maintained,
 you can sponsor this work via the following organizations:
