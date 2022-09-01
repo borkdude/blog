@@ -154,6 +154,10 @@ The dynaload logic from clojure.spec.alpha as a library
 
 This library was made compatible with nbb.
 
+### [Deps.clj](https://github.com/borkdude/deps.clj)
+
+Upgrades and minor fixes.
+
 ### [Sci.configs](https://github.com/babashka/sci.configs)
 
 A collection of ready to be used SCI configs
