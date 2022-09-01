@@ -31,7 +31,7 @@ This is a new project: a CLJS syntax to JS compiler for the niche use case where
 you want to write JS, but do it using CLJS syntax and tooling
 instead. ClavaScript comes with a standard library that resembles CLJS but is
 built on bare JS ingredients. As such, Clava comes with the usual JS caveats,
-but we can still have our parens.
+but we can still have our parens and enjoy a slim bundle size!
 
 ### [Cherry](https://github.com/clavascript/cherry)
 
