@@ -91,9 +91,15 @@ Scripting in Clojure on Node.js using SCI
 - [Malli](https://github.com/metosin/malli) compatibilty
 - Many small bugfixes and improvements
 
+### [Clj-kondo](https://github.com/clj-kondo/clj-kondo)
+
+Static analyzer and linter for Clojure code that sparks joy
+
 ### [Bebo](https://github.com/borkdude/bebo)
 
-Run Clojure scripts on [Deno](https://deno.land/) via SCI.
+Run Clojure scripts on [Deno](https://deno.land/) via SCI. I'm not exactly sure
+how useful this is to the wider Clojure community, but I got curious about deno
+and decided to give this a go.
 
 ### [Quickblog](https://github.com/borkdude/quickblog)
 
@@ -139,10 +145,6 @@ A babashka pod around buddy core (Cryptographic Api for Clojure).
 
 The latest release adds wrappers for `buddy.sign.jwt` and provides an `aarch64`
 binary.
-
-### [Clj-kondo](https://github.com/clj-kondo/clj-kondo)
-
-Static analyzer and linter for Clojure code that sparks joy
 
 See [changelogs](https://github.com/clj-kondo/clj-kondo/blob/master/CHANGELOG.md#20220803).
 
