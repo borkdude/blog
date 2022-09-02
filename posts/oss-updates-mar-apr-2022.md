@@ -1,6 +1,6 @@
 Title: OSS Updates of March - April 2022
 Date: 2022-04-29
-Tags: clojure
+Tags: clojure, oss updates
 
 In this post I'll give updates about open source I worked on during March and April 2022.
 
