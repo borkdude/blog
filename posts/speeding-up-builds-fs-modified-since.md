@@ -45,7 +45,7 @@ In other words:
 
 Let's see it in action.
 
-```
+``` shell
 $ touch a
 $ touch b
 $ bb -e '(fs/modified-since "a" "b")'

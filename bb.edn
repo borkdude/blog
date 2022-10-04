@@ -9,7 +9,7 @@
                           :blog-description "A blog mostly about Clojure and ClojureScript."
                           :out-dir "public"
                           :blog-root "https://blog.michielborkent.nl/"
-                          :discuss-fallback "https://github.com/borkdude/blog/discussions/categories/posts"
+                          :discuss-link "https://github.com/borkdude/blog/discussions/categories/posts"
                           :twitter-handle "borkdude"
                           :about-link "https://michielborkent.nl"
                           :favicon true}))
