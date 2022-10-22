@@ -1,6 +1,6 @@
 Title: New Clojure project quickstart
 Date: 2022-08-02
-Tags: clojure
+Tags: clojure, neil
 
 Clojure beginners sometimes struggle with setting up a new Clojure `deps.edn`
 project compared to setting up a [lein](https://leiningen.org/) project. This is
