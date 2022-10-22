@@ -56,7 +56,7 @@ and then deploy again.
 The `neil version` command is similar to NPM's `version` command.
 
 For a full project that uses this setup, check out [this
-one](https://github.com/clj-kondo/clj-kondo.configs/tree/main/rum/rum) that I
+one](https://github.com/clj-kondo/configs/tree/main/configs/rum/rum) that I
 just created today in a couple of keystrokes.
 
 Happy deploying!
