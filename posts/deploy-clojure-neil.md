@@ -28,7 +28,7 @@ You can set the project name and version like this:
 {:deps {}
  :paths ["resources"]
  :aliases
- {:neil {:project {:name io.github.clj-kondo/config-rum
+ {:neil {:project {:name io.github.clj-kondo/config-rum-rum
                    :version "1.0.0"}}
   :build ;; added by neil
   {:deps {io.github.clojure/tools.build {:git/tag "v0.8.3" :git/sha "0d20256"}
