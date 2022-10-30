@@ -5,7 +5,8 @@
  :paths ["."]
  :tasks
  {:init (def opts (merge (cli/parse-opts *command-line-args*)
-                         {:blog-title "REPL adventures"
+                         {:blog-author "Michiel Borkent"
+                          :blog-title "REPL adventures"
                           :blog-description "A blog mostly about Clojure and ClojureScript."
                           :out-dir "public"
                           :blog-root "https://blog.michielborkent.nl/"
