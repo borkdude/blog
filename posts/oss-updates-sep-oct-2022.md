@@ -1,20 +1,23 @@
-Title: OSS updates of July - August 2022
-Date: 2022-09-01
+Title: OSS updates of September - October 2022
+Date: 2022-10-31
 Tags: clojure, oss updates
 
-In this post I'll give updates about open source I worked on during July and August 2022.
+In this post I'll give updates about open source I worked on during September and October 2022.
 
 ## Sponsors
 
 But first off, I'd like to thank all the sponsors and contributors that make
-this work possible! Top sponsors: [Clojurists
-Together](https://clojuriststogether.org/), [Roam
-Research](https://roamresearch.com/), [Nextjournal](https://nextjournal.com/),
-[Adgoji](https://www.adgoji.com/), [Cognitect](https://www.cognitect.com/),
-[Kepler16](https://kepler16.com/), .
+this work possible! Top sponsors:
+
+- [Clojurists Together](https://clojuriststogether.org/)
+- [Roam Research](https://roamresearch.com/)
+- [Nextjournal](https://nextjournal.com/)
+- [Toyokumo](https://toyokumo.co.jp/)
+- [Cognitect](https://www.cognitect.com/)
+- [Kepler16](https://kepler16.com/)
 
 If you want to ensure that the projects I work on are sustainably maintained,
-you can sponsor this work via the following organizations:
+you can sponsor this work via the following organizations. Thank you!
 
 - [Github Sponsors](https://github.com/sponsors/borkdude)
 - [OpenCollective](https://opencollective.com/babashka) (also see the [clj-kondo](https://opencollective.com/clj-kondo) one)
@@ -23,17 +26,38 @@ you can sponsor this work via the following organizations:
 
 ## Projects
 
-<!-- https://github.com/borkdude?tab=overview&from=2022-06-01&to=2022-06-30 -->
+<!-- September: https://github.com/borkdude?tab=overview&from=2022-09-01&to=2022-09-31 -->
+<!-- October: https://github.com/borkdude?tab=overview&from=2022-10-01&to=2022-10-31 -->
 
-### [ClavaScript](https://github.com/clavascript/clavascript)
+### [Babashka](https://github.com/babashka/babashka)
 
-This is a new project: a CLJS syntax to JS compiler for the niche use case where
-you want to write JS, but do it using CLJS syntax and tooling
-instead. ClavaScript comes with a standard library that resembles CLJS but is
-built on bare JS ingredients. As such, Clava comes with the usual JS caveats,
-but we can still have our parens and enjoy a slim bundle size!
+Native, fast starting Clojure interpreter for scripting.
 
-### [Cherry](https://github.com/clavascript/cherry)
+- The first [1.0
+release](https://github.com/babashka/babashka/blob/master/CHANGELOG.md#10164-2022-10-17)
+was released!
+- Optimizations for `let` which is now much faster.
+- Many small improvements. See the
+[changelogs](https://github.com/babashka/babashka/blob/master/CHANGELOG.md).
+
+### [Squint](https://github.com/squint-cljs/squint) and [Cherry](https://github.com/squint-cljs/cherry)
+
+CLJS syntax to JS compiler for use case where you want to write JS, but do it
+using CLJS syntax and tooling instead. Squint comes with a standard library that
+resembles CLJS but is built on bare JS ingredients. As such, squint comes with
+the usual JS caveats, but we can still have our parens and enjoy a slim bundle
+size!
+
+I've working on unifying the compiler code of cherry and squint into one code
+base, which is still in progress. I've also worked on REPL code.
+
+I've also given a [presentation on squint and
+cherry](https://twitter.com/borkdude/status/1586662315805450240) at the [Dutch
+Clojure Days](https://clojuredays.org/). The video will appear online in the future!
+
+====
+
+
 
 Cherry is similar to ClavaScript, but it does emit CLJS-compatible code (with
 the persistent data structures, etc). The compiler code is almost identical to
@@ -71,14 +95,6 @@ Babashka CLI proper is now part of babashka. Also see my blog posts about it:
 
 - [Babashka tasks meets babashka CLI](https://blog.michielborkent.nl/babashka-tasks-meets-babashka-cli.html)
 - [Babashka CLI: turn Clojure functions into CLIs](https://blog.michielborkent.nl/babashka-cli.html)
-
-### [Babashka](https://github.com/babashka/babashka)
-
-Native, fast starting Clojure interpreter for scripting.
-
-- Compatibility with [malli](https://github.com/metosin/malli#babashka)
-- `-x`: a way to execute functions from the command line using babashka CLI
-- Many bugfixes and enhancements
 
 ### [Nbb](https://github.com/babashka/nbb)
 
