@@ -55,21 +55,23 @@ I've also given a [presentation on squint and
 cherry](https://twitter.com/borkdude/status/1586662315805450240) at the [Dutch
 Clojure Days](https://clojuredays.org/). The video will appear online in the future!
 
+### [Clj-kondo](https://github.com/clj-kondo/clj-kondo)
+
+Static analyzer and linter for Clojure code that sparks joy
+
+See [changelogs](https://github.com/clj-kondo/clj-kondo/blob/master/CHANGELOG.md#20220803).
+
+Two new releases with many fixes and improvements. [Check the
+changelogs](https://github.com/clj-kondo/clj-kondo/blob/master/CHANGELOG.md) for
+details.
+
+Among several new linters, there is a new `:unused-value` linter which detects
+unused values, which is particularly helpful for detecting unused transient
+operation results which can lead to bugs.
+
 ====
 
 
-
-Cherry is similar to ClavaScript, but it does emit CLJS-compatible code (with
-the persistent data structures, etc). The compiler code is almost identical to
-Clava's, but with a few tweaks here and there. E.g. `{:a 1}` in Clava means: a
-JS object with a `"a"` key and `1` value, but in cherry, `{:a 1}` means the same
-as in CLJS. The goal of both Clava and Cherry are to reduce friction between
-CLJS and JS tooling. Both projects should be considered experimental for
-now. Challenges in both Clava and Cherry is the REPL, since both projects
-compile to ES6 modules and ES6 module imports are immutable.
-
-On [ClojureDays 2022](https://clojuredays.org/) I will give a talk titled
-"ClojureScript reimagined" which will shed more light on both projects.
 
 ### [Scittle](https://github.com/babashka/scittle)
 
@@ -106,10 +108,6 @@ Scripting in Clojure on Node.js using SCI
 - `nbb.edn`: you can now declare dependencies within this file, e.g. from Clojars and nbb will add them automatically to the classpath, so you can `require` them.
 - [Malli](https://github.com/metosin/malli) compatibilty
 - Many small bugfixes and improvements
-
-### [Clj-kondo](https://github.com/clj-kondo/clj-kondo)
-
-Static analyzer and linter for Clojure code that sparks joy
 
 ### [Bebo](https://github.com/borkdude/bebo)
 
@@ -161,8 +159,6 @@ A babashka pod around buddy core (Cryptographic Api for Clojure).
 
 The latest release adds wrappers for `buddy.sign.jwt` and provides an `aarch64`
 binary.
-
-See [changelogs](https://github.com/clj-kondo/clj-kondo/blob/master/CHANGELOG.md#20220803).
 
 ### [Dynaload](https://github.com/borkdude/dynaload)
 
