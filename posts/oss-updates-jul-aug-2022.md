@@ -2,7 +2,7 @@ Title: OSS updates of July - August 2022
 Date: 2022-09-01
 Tags: clojure, oss updates
 
-In this post I'll give updates about open source I worked on during May and June 2022.
+In this post I'll give updates about open source I worked on during July and August 2022.
 
 ## Sponsors
 
