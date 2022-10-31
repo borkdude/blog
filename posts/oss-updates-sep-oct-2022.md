@@ -15,6 +15,7 @@ this work possible! Top sponsors:
 - [Toyokumo](https://toyokumo.co.jp/)
 - [Cognitect](https://www.cognitect.com/)
 - [Kepler16](https://kepler16.com/)
+- [Adgoji](https://www.adgoji.com/)
 
 If you want to ensure that the projects I work on are sustainably maintained,
 you can sponsor this work via the following organizations. Thank you!
