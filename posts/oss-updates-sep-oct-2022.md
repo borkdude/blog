@@ -69,77 +69,28 @@ Among several new linters, there is a new `:unused-value` linter which detects
 unused values, which is particularly helpful for detecting unused transient
 operation results which can lead to bugs.
 
-====
-
-
-
-### [Scittle](https://github.com/babashka/scittle)
-
-Execute Clojure(Script) directly from browser script tags via SCI.
-See it in [action](https://babashka.org/scittle/).
-
-Scittle received two new plugins: one for `promesa.core` and one for
-`cljs.pprint`. Also error messages were improved.
-
-### [Babashka toolbox](https://babashka.org/toolbox/)
-
-Babashka toolbox is a port of [Clojure
-toolbox](https://www.clojure-toolbox.com/) and gives an overview of
-bb-compatible libraries and projects.
-
-### [Babashka CLI](https://github.com/babashka/cli)
-
-Turn Clojure functions into CLIs!
-
-Several new options have been added: `:validate`, `:require`, `:restrict`. Also error handling was made more flexible.
-
-Babashka CLI proper is now part of babashka. Also see my blog posts about it:
-
-- [Babashka tasks meets babashka CLI](https://blog.michielborkent.nl/babashka-tasks-meets-babashka-cli.html)
-- [Babashka CLI: turn Clojure functions into CLIs](https://blog.michielborkent.nl/babashka-cli.html)
-
-### [Nbb](https://github.com/babashka/nbb)
-
-Scripting in Clojure on Node.js using SCI
-
-- A new [bundle](https://github.com/babashka/nbb/tree/main/doc/bundle#bundle)
-  command to bundle nbb scripts to standalone scripts, which can then be
-  processed further with e.g. `esbuild` to minify and tree-shake them.
-- `nbb.edn`: you can now declare dependencies within this file, e.g. from Clojars and nbb will add them automatically to the classpath, so you can `require` them.
-- [Malli](https://github.com/metosin/malli) compatibilty
-- Many small bugfixes and improvements
-
-### [Bebo](https://github.com/borkdude/bebo)
-
-Run Clojure scripts on [Deno](https://deno.land/) via SCI. I'm not exactly sure
-how useful this is to the wider Clojure community, but I got curious about deno
-and decided to give this a go.
-
-### [Quickblog](https://github.com/borkdude/quickblog)
-
-Light-weight static blog engine for Clojure and babashka
-
-A lot has been happening in this project, with the help of Josh Glover. Check
-out the
-[changelog](https://github.com/borkdude/quickblog/blob/main/CHANGELOG.md#changelog). The
-blog you're currently reading is made with quickblog.
-
 ### [SCI](https://github.com/babashka/sci)
 
 Configurable Clojure interpreter suitable for scripting and Clojure DSLs.
 
 This is the workhorse that powers babashka, nbb, bebo, and many other projects.
 
-Several bugfixes and enhancements were made in the last two months.
+Several bugfixes and enhancements were made in the last two months in two new releases.
+Performance of `let` bindings are now up to 8x faster.
 
-### [Neil](https://github.com/babashka/neil)
+See [changelogs](https://github.com/babashka/sci/blob/master/CHANGELOG.md) for more details.
 
-A CLI to add common aliases and features to deps.edn-based projects.
+### [Clj-yaml](https://github.com/clj-commons/clj-yaml)
 
-Neil now has a `new` subcommand which defers to
-[deps-new](https://github.com/seancorfield/deps-new). Also `neil test` was added
-to run tests using the Cognitect-labs test runner. Much thanks to
-[rads](https://github.com/rads) who contributed a lot.
+In the past two month, I became one of the maintainers, together with [@lread](https://github.com/lread), of [clj-yaml](https://github.com/clj-commons/clj-yaml).
+Clj-yaml is a built-in library of babashka.
+
+### [Deps.clj](https://github.com/borkdude/deps.clj)
+
+A faithful port of the clojure CLI bash script to Clojure
+
+A lot of Windows improvements in the last two months. Deps.clj is now also available as part of an [MSI installer](https://github.com/casselc/clj-msi/releases) that installs `deps.exe` as `clj.exe`.
+This installer might form the basis for an official Clojure MSI installer.
 
 ### [Process](https://github.com/babashka/process)
 
@@ -147,31 +98,113 @@ Clojure library for shelling out / spawning subprocesses
 
 Minor updates and fixes.
 
+### [Nbb](https://github.com/babashka/nbb)
+
+Scripting in Clojure on Node.js using SCI
+
+The first 1.0 version was released.
+
+Many small bugfixes and improvements in the last two months. See [changelogs](https://github.com/babashka/nbb/blob/main/CHANGELOG.md).
+
+### [Babashka CLI](https://github.com/babashka/cli)
+
+Turn Clojure functions into CLIs!
+
+See [changelogs](https://github.com/babashka/cli/blob/main/CHANGELOG.md).
+
+### [Quickdoc](https://github.com/borkdude/quickdoc)
+
+Quickdoc is a tool to generate documentation from namespace/var analysis done by
+clj-kondo. It's fast and spits out an `API.md` file in the root of your project,
+so you can immediately view it on Github. It has undergone significant
+improvements in the last two months. I'm using quickdoc myself in several
+projects. In the last two months, there have been improvements in the table of
+contents linking and linking to source code.
+
 ### [Fs](https://github.com/babashka/fs)
 
 File system utility library for Clojure.
 
-Minor updates and fixes.
+Minor updates and fixes. See [changelogs](https://github.com/babashka/fs/blob/master/CHANGELOG.md#changelog).
 
-### [Pod-babashka-buddy](https://github.com/babashka/pod-babashka-buddy)
+### [Carve](https://github.com/borkdude/carve)
 
-A babashka pod around buddy core (Cryptographic Api for Clojure).
+Carve out the essentials of your Clojure app by removing unused vars
 
-The latest release adds wrappers for `buddy.sign.jwt` and provides an `aarch64`
-binary.
+Version 0.2.0 was released, after a long hiatus, with an updated version of clj-kondo and some minor fixes.
 
-### [Dynaload](https://github.com/borkdude/dynaload)
+### [Grasp](https://github.com/borkdude/grasp)
 
-The dynaload logic from clojure.spec.alpha as a library
+Grep Clojure code using clojure.spec regexes.
 
-This library was made compatible with nbb.
+I use this tool to analyze code patterns to make informed choices for e.g. SCI and clj-kondo.
+E.g. see [this](https://github.com/borkdude/grasp/blob/master/examples/let_bindings.clj) example that shows how many let bindings are typically used.
+See the example in action [here](https://twitter.com/borkdude/status/1582320503049826304).
 
-### [Deps.clj](https://github.com/borkdude/deps.clj)
+A new version was released with minor fixes.
 
-Upgrades and minor fixes.
+### [Rewrite-edn](https://github.com/borkdude/rewrite-edn)
+
+Utility lib on top of rewrite-clj with common operations to update EDN while preserving whitespace and comments.
+
+Minor fixes and enhancements. Repeated usage of `assoc` is now a safe
+operation. Thanks to [@lread](https://github.com/lread) for the improvements.
+
+### [lein2deps](https://github.com/borkdude/lein2deps)
+
+Lein to deps.edn converter
+
+This new little tool can convert a `project.edn` file to a `deps.edn` file. It even
+supports Java compilation and evaluation of code within `project.clj`.
+
+### [Clj-kondo configs](https://github.com/clj-kondo/configs)
+
+Library configurations as dependencies for clj-kondo.
+
+The idea of this repository is that you can add configuration for libraries as a
+dependency to your `deps.edn` or `project.clj`.  If you invoke the right command
+or if you are using Clojure LSP, then the configuration is written into your
+`.clj-kondo` directory and clj-kondo will understand custom constructs in your
+library.  Normally you can provide these configurations as part of your library,
+but this is not always an option, so the remaining configurations can live over
+here.
+
+### [Gh-release-artifact](https://github.com/borkdude/gh-release-artifact)
+
+Upload artifacts to Github releases idempotently
+
+This tool has been in use within babashka, clj-kondo and other projects to
+automate uploading release artifacts from various CI systems to Github releases,
+idempotently. It is now open source and ready to be used by others.
+
+### [Jet](https://github.com/borkdude/jet)
+
+CLI to transform between JSON, EDN, YAML and Transit, powered with a minimal
+query language.
+
+The latest release adds support for YAML (by using clj-yaml), thanks to [@qdzo](https://github.com/qdzo).
+
+### [Neil](https://github.com/babashka/neil)
+
+A CLI to add common aliases and features to `deps.edn`-based projects.
+
+Neil now comes with a `dep upgrade` command, thanks to [@teodorlu](https://github.com/teodorlu) and [@russmatney](https://github.com/russmatney), together with other improvements.
+
+### [Respeced](https://github.com/borkdude/respeced)
+
+Finally, after 4 years, a new release of respeced, a testing library for clojure.spec fdefs.
+
+### [Quickblog](https://github.com/borkdude/quickblog)
+
+Light-weight static blog engine for Clojure and babashka
+
+Small improvements. See [changelog](https://github.com/borkdude/quickblog/blob/main/CHANGELOG.md#changelog). 
+The blog you're currently reading is made with quickblog.
 
 ### [Sci.configs](https://github.com/babashka/sci.configs)
 
 A collection of ready to be used SCI configs
 
-Moved `cljs.pprint` config from nbb into this project.
+Added a `doseq` macro in [promesa](https://github.com/funcool/promesa) which also is available via this
+configuration. Sci.configs is used in [Clerk](https://github.com/nextjournal/clerk), [nbb](https://github.com/babashka/nbb), [Joyride](https://github.com/BetterThanTomorrow/joyride/) and other SCI-based
+CLJS projects.
