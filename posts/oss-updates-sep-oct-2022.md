@@ -35,18 +35,23 @@ Native, fast starting Clojure interpreter for scripting.
 
 - The first [1.0
 release](https://github.com/babashka/babashka/blob/master/CHANGELOG.md#10164-2022-10-17)
-was released!
-- Optimizations for `let` which is now much faster.
+ was released!
+- Optimizations for `let` (in SCI) which is now up to 8x faster.
 - Many small improvements. See the
-[changelogs](https://github.com/babashka/babashka/blob/master/CHANGELOG.md).
+ [changelogs](https://github.com/babashka/babashka/blob/master/CHANGELOG.md).
 
 ### [Squint](https://github.com/squint-cljs/squint) and [Cherry](https://github.com/squint-cljs/cherry)
 
-CLJS syntax to JS compiler for use case where you want to write JS, but do it
+Squint and cherry are two flavors of the same CLJS compiler.
+
+Squint is a CLJS _syntax_ to JS compiler for use case where you want to write JS, but do it
 using CLJS syntax and tooling instead. Squint comes with a standard library that
 resembles CLJS but is built on bare JS ingredients. As such, squint comes with
 the usual JS caveats, but we can still have our parens and enjoy a slim bundle
-size!
+size.
+
+Cherry comes with the CLJS standard library and is as such much closer to the
+normal ClojureScript, but the minimal amount of JS is a little bigger.
 
 I've working on unifying the compiler code of cherry and squint into one code
 base, which is still in progress. I've also worked on REPL code.
@@ -59,8 +64,6 @@ Clojure Days](https://clojuredays.org/). The video will appear online in the fut
 
 Static analyzer and linter for Clojure code that sparks joy
 
-See [changelogs](https://github.com/clj-kondo/clj-kondo/blob/master/CHANGELOG.md#20220803).
-
 Two new releases with many fixes and improvements. [Check the
 changelogs](https://github.com/clj-kondo/clj-kondo/blob/master/CHANGELOG.md) for
 details.
@@ -69,16 +72,36 @@ Among several new linters, there is a new `:unused-value` linter which detects
 unused values, which is particularly helpful for detecting unused transient
 operation results which can lead to bugs.
 
+### [Clj-kondo configs](https://github.com/clj-kondo/configs)
+
+Library configurations as dependencies for clj-kondo.
+
+The idea of this repository is that you can add configuration for libraries as a
+dependency to your `deps.edn` or `project.clj`.  If you invoke the right command
+or if you are using Clojure LSP, then the configuration is written into your
+`.clj-kondo` directory and clj-kondo will understand custom constructs in your
+library.  Normally you can provide these configurations as part of your library,
+but this is not always an option, so the remaining configurations can live over
+here.
+
 ### [SCI](https://github.com/babashka/sci)
 
 Configurable Clojure interpreter suitable for scripting and Clojure DSLs.
 
-This is the workhorse that powers babashka, nbb, bebo, and many other projects.
+This is the workhorse that powers babashka, nbb, Joyride, and many other projects.
 
 Several bugfixes and enhancements were made in the last two months in two new releases.
-Performance of `let` bindings are now up to 8x faster.
+Performance of `let` bindings are now up to 8x faster, as already mentioned in the babashka entry of this post.
 
 See [changelogs](https://github.com/babashka/sci/blob/master/CHANGELOG.md) for more details.
+
+### [Nbb](https://github.com/babashka/nbb)
+
+Scripting in Clojure on Node.js using SCI
+
+The first 1.0 version was released.
+
+Many small bugfixes and improvements in the last two months. See [changelogs](https://github.com/babashka/nbb/blob/main/CHANGELOG.md).
 
 ### [Clj-yaml](https://github.com/clj-commons/clj-yaml)
 
@@ -92,25 +115,32 @@ A faithful port of the clojure CLI bash script to Clojure
 A lot of Windows improvements in the last two months. Deps.clj is now also available as part of an [MSI installer](https://github.com/casselc/clj-msi/releases) that installs `deps.exe` as `clj.exe`.
 This installer might form the basis for an official Clojure MSI installer.
 
-### [Process](https://github.com/babashka/process)
+### [Gh-release-artifact](https://github.com/borkdude/gh-release-artifact)
 
-Clojure library for shelling out / spawning subprocesses
+Upload artifacts to Github releases idempotently
 
-Minor updates and fixes.
+This tool has been in use within babashka, clj-kondo and other projects to
+automate uploading release artifacts from various CI systems to Github releases,
+idempotently. It is now open source and ready to be used by others.
 
-### [Nbb](https://github.com/babashka/nbb)
+### [Jet](https://github.com/borkdude/jet)
 
-Scripting in Clojure on Node.js using SCI
+CLI to transform between JSON, EDN, YAML and Transit, powered with a minimal
+query language.
 
-The first 1.0 version was released.
-
-Many small bugfixes and improvements in the last two months. See [changelogs](https://github.com/babashka/nbb/blob/main/CHANGELOG.md).
+The latest release adds support for YAML (by using clj-yaml), thanks to [@qdzo](https://github.com/qdzo).
 
 ### [Babashka CLI](https://github.com/babashka/cli)
 
 Turn Clojure functions into CLIs!
 
 See [changelogs](https://github.com/babashka/cli/blob/main/CHANGELOG.md).
+
+### [Process](https://github.com/babashka/process)
+
+Clojure library for shelling out / spawning subprocesses
+
+Minor updates and fixes. See [changelogs](https://github.com/babashka/process/blob/master/CHANGELOG.md).
 
 ### [Quickdoc](https://github.com/borkdude/quickdoc)
 
@@ -156,33 +186,6 @@ Lein to deps.edn converter
 
 This new little tool can convert a `project.edn` file to a `deps.edn` file. It even
 supports Java compilation and evaluation of code within `project.clj`.
-
-### [Clj-kondo configs](https://github.com/clj-kondo/configs)
-
-Library configurations as dependencies for clj-kondo.
-
-The idea of this repository is that you can add configuration for libraries as a
-dependency to your `deps.edn` or `project.clj`.  If you invoke the right command
-or if you are using Clojure LSP, then the configuration is written into your
-`.clj-kondo` directory and clj-kondo will understand custom constructs in your
-library.  Normally you can provide these configurations as part of your library,
-but this is not always an option, so the remaining configurations can live over
-here.
-
-### [Gh-release-artifact](https://github.com/borkdude/gh-release-artifact)
-
-Upload artifacts to Github releases idempotently
-
-This tool has been in use within babashka, clj-kondo and other projects to
-automate uploading release artifacts from various CI systems to Github releases,
-idempotently. It is now open source and ready to be used by others.
-
-### [Jet](https://github.com/borkdude/jet)
-
-CLI to transform between JSON, EDN, YAML and Transit, powered with a minimal
-query language.
-
-The latest release adds support for YAML (by using clj-yaml), thanks to [@qdzo](https://github.com/qdzo).
 
 ### [Neil](https://github.com/babashka/neil)
 
