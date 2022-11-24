@@ -23,7 +23,7 @@ which is easy enough:
 and then run it with `bb -m my-test.runner`.
 
 Not too bad, but still, it's work and boilerplate and even more so when you want
-to make a runner with CLI argument parsing which only runs a subset of your
+to make a runner with CLI argument parsing to support running a subset of your
 tests. Since a year or so, you can use the
 [cognitect-labs/test-runner](https://github.com/cognitect-labs/test-runner) with
 babashka. But this required a [fork of tools
