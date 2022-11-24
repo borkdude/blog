@@ -34,10 +34,4 @@
 
   clean {:doc "Remove .work and public directory"
          :task (do (fs/delete-tree ".work")
-                   (fs/delete-tree "public"))}
-
-  quickdoc {:doc "Invoke quickdoc"
-            :requires ([quickdoc.api :as api])
-            :task (api/quickdoc {:git/branch "main"
-                                 :github/repo "https://github.com/borkdude/quickblog"
-                                 :source-paths ["src/quickblog/api.clj"]})}}}
+                   (fs/delete-tree "public"))}}}
