@@ -1,9 +1,9 @@
-Title: Running tests with babashka
+Title: Testing babashka scripts
 Date: 2022-11-24
 Tags: clojure, babashka
 
-For running tests with babashka, you can write your own test runner from
-scratch, which is easy enough:
+For testing babashka scripts, you can write your own test runner from scratch,
+which is easy enough:
 
 ``` clojure
 (ns my-test.runner
