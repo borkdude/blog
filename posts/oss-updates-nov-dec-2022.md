@@ -1,5 +1,5 @@
 Title: OSS updates of November - December 2022
-Date: 2023-01-35
+Date: 2023-01-06
 Tags: clojure, oss updates
 
 In this post I'll give updates about open source I worked on during November and December 2022.
@@ -107,25 +107,15 @@ compatibility and performance. JS and JVM interop has become up to 5x
 faster. All of these changes benefit babashka, nbb, joyride, etc.
 
 See
-[changelogs](https://github.com/babashka/sci/blob/master/CHANGELOG.md) for more
+[changelog](https://github.com/babashka/sci/blob/master/CHANGELOG.md) for more
 details.
-
-### [Nbb](https://github.com/babashka/nbb)
-
-Scripting in Clojure on Node.js using SCI
-
-Because it's so easy to deploy to npm, I usually publish a new version for each issue that is resolved.
-
-No big changes, but many small bugfixes and improvements in the last two
-months. See
-[changelogs](https://github.com/babashka/nbb/blob/main/CHANGELOG.md).
 
 ### [Clj-kondo](https://github.com/clj-kondo/clj-kondo)
 
 Static analyzer and linter for Clojure code that sparks joy
 
 Two new releases with many fixes and improvements. [Check the
-changelogs](https://github.com/clj-kondo/clj-kondo/blob/master/CHANGELOG.md) for
+changelog](https://github.com/clj-kondo/clj-kondo/blob/master/CHANGELOG.md) for
 details.
 
 Some highlights:
@@ -155,7 +145,7 @@ is more convenient, since you can use it with `apply` and
 `*command-line-args*`. All functions in `babashka.process` have been rewritten
 to support this syntax.
 
-See [changelogs](https://github.com/babashka/process/blob/master/CHANGELOG.md) for details.
+See [changelog](https://github.com/babashka/process/blob/master/CHANGELOG.md) for details.
 
 ### [Quickdoc](https://github.com/borkdude/quickdoc)
 
@@ -170,7 +160,7 @@ File system utility library for Clojure.
 Fs has gotten one new function: `update-file`, that alters the contents of a
 (text) file using a function. The function is reminiscent of `swap!`.
 
-See [changelogs](https://github.com/babashka/fs/blob/master/CHANGELOG.md#changelog) for more details.
+See [changelog](https://github.com/babashka/fs/blob/master/CHANGELOG.md#changelog) for more details.
 
 ### [Neil](https://github.com/babashka/neil)
 
@@ -201,6 +191,16 @@ and other projects that are used in nbb, joyride, scittle, etc.  See recent
 [commits](https://github.com/babashka/sci.configs/commits/main) for what's been
 improved.
 
+### [Nbb](https://github.com/babashka/nbb)
+
+Scripting in Clojure on Node.js using SCI
+
+Because it's so easy to deploy to npm, I usually publish a new version for each issue that is resolved.
+
+No big changes, but many small bugfixes and improvements in the last two
+months. See
+[changelog](https://github.com/babashka/nbb/blob/main/CHANGELOG.md).
+
 ### [Edamame](https://github.com/borkdude/edamame)
 
 Configurable EDN/Clojure parser with location metadata. It has been stable for a
@@ -218,7 +218,7 @@ This tool can convert a `project.edn` file to a `deps.edn` file. It even
 supports Java compilation and evaluation of code within `project.clj`. Several minor enhancements were made.
 See [changelog](https://github.com/borkdude/lein2deps/blob/main/CHANGELOG.md).
 
-## [Joyride](https://github.com/BetterThanTomorrow/joyride)
+### [Joyride](https://github.com/BetterThanTomorrow/joyride)
 
 Modify VSCode by executing ClojureScript (SCI) code in your REPL and/or run
 scripts via keyboard shortcuts.
@@ -242,15 +242,15 @@ The claypoole configuration was improved.
 
 Turn Clojure functions into CLIs!
 
-Minor fixes. See [changelogs](https://github.com/babashka/cli/blob/main/CHANGELOG.md).
+Minor fixes. See [changelog](https://github.com/babashka/cli/blob/main/CHANGELOG.md).
 
-## Babashka pods
+### Babashka pods
 
 The [pods](https://github.com/babashka/pods) library contains the code that
 supports using pods in babashka and the JVM. A critical error was fixed that
 would hang babashka and a new JVM release was pushed to Clojars (v0.1.0).
 
-## Babashka compatibility in external libs
+### Babashka compatibility in external libs
 
 I contributed to [RCF](https://github.com/hyperfiddle/rcf),
 [deep-diff2](https://github.com/lambdaisland/deep-diff2) and
