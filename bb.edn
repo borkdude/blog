@@ -34,4 +34,8 @@
 
   clean {:doc "Remove .work and public directory"
          :task (do (fs/delete-tree ".work")
-                   (fs/delete-tree "public"))}}}
+                   (fs/delete-tree "public"))}
+
+  quickblog {:doc "Start blogging quickly! Run `bb quickblog help` for details."
+             :requires ([quickblog.cli :as qcli])
+             :task (qcli/dispatch opts)}}}

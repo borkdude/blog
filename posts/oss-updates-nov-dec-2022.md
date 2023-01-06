@@ -1,6 +1,7 @@
 Title: OSS updates of November - December 2022
 Date: 2023-01-06
 Tags: clojure, oss updates
+Description: My Clojure OSS updates for November and December 2022
 
 In this post I'll give updates about open source I worked on during November and December 2022.
 
