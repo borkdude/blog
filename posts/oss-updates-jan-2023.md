@@ -26,12 +26,36 @@ you can sponsor this work via the following organizations. Thank you!
 - [Clojurists Together](https://www.clojuriststogether.org/)
 
 > **Warning**
+
 > If you are using Github Sponsors and are making payments via
 > Paypal, please update to a creditcard since Github Sponsors won't support
 > Paypal from February 23rd 2023. Read their statement
 > [here](https://github.blog/changelog/2023-01-23-github-sponsors-will-stop-supporting-paypal/).
 
 ## Projects
+
+<!--
+
+- quickblog
+- babashka
+- babashka/pod-babashka-instaparse 31 commits
+- nbb
+- http-client
+- neil
+- clj-kondo
+- clojure-lsp:
+-- symbol analysis https://github.com/borkdude/clojure-lsp/commit/f662adab1b17d5dbc3648d6d8208334dc920aa0e
+- edamame
+- https://github.com/borkdude/jna-native-image-sci
+- https://github.com/borkdude/carve
+- jet
+- deps.clj
+- 4ever-clojure
+- lein clj-kondo
+
+TODO: https://github.com/borkdude
+
+-->
 
 ### [http-client](https://github.com/babashka/http-client)
 
