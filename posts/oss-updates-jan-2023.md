@@ -36,53 +36,52 @@ you can sponsor this work via the following organizations. Thank you!
 
 <!--
 
+sources: https://github.com/borkdude
+local ~/dev dir (since github doesn't show all repos)
+
 - quickblog
 - babashka
 - babashka/pod-babashka-instaparse 31 commits
+- instaparse.bb
 - nbb
-- http-client
+- http-client *
 - neil
 - clj-kondo
+- clj-kondo-bb
 - clojure-lsp:
 -- symbol analysis https://github.com/borkdude/clojure-lsp/commit/f662adab1b17d5dbc3648d6d8208334dc920aa0e
+- https://github.com/clojure-lsp/clojure-lsp/pull/1447
 - edamame
 - https://github.com/borkdude/jna-native-image-sci
-- https://github.com/borkdude/carve
+- carve
 - jet
 - deps.clj
 - 4ever-clojure
 - lein clj-kondo
+- joyride
+- squint / cherry
+- tools-deps-native / tools.bbuild
+- scittle
+- lein2deps
+- pod-babashka-buddy
+- edamame
+- nbb
+- babashka.cli
+- fs
+- process
+- deps.clj
+- sci
 
-TODO: https://github.com/borkdude
 
 -->
 
 ### [http-client](https://github.com/babashka/http-client)
 
-The new babashka http-client aims to become default HTTP client solution in babashka.
+The new babashka http-client aims to become default HTTP client solution in babashka, mostly replacing [babashka.curl](https://github.com/babashka/babashka.curl).
 
-Babashka has several built-in options for making HTTP requests, including:
+This month the default client was improved to accept `gzip` and `deflate` as encodings by default, reflecting what `babashka.curl` did.
 
-- [babashka.curl](https://github.com/babashka/babashka.curl)
-- [http-kit](https://github.com/http-kit/http-kit)
-- [java.net.http](https://docs.oracle.com/en/java/javase/17/docs/api/java.net.http/java/net/http/package-summary.html)
-
-In addition, it allows to use several libraries to be used as a dependency:
-
-- [java-http-clj](https://github.com/schmee/java-http-clj)
-- [hato](https://github.com/gnarroway/hato)
-- [clj-http-lite](https://github.com/clj-commons/clj-http-lite)
-
-The built-in clients come with their own trade-offs. E.g. babashka.curl shells
-out to `curl` which on Windows requires your local `curl` to be
-updated. Http-kit buffers the entire response in memory. Using `java.net.http`
-directly can be a bit verbose.
-
-Babashka's http-client aims to be a good default for most scripting use cases
-and is built on top of `java.net.http` and can be used as a dependency-free JVM
-library as well. The API is mostly compatible with babashka.curl so it can be
-used as a drop-in replacement. The other built-in solutions will not be removed
-any time soon.
+Also `babashka.http-client` is now available as a built-in namespace in `babashka` v1.1.171 and higher.
 
 ### [Babashka](https://github.com/babashka/babashka)
 
