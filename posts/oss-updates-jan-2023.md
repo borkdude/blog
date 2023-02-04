@@ -39,33 +39,28 @@ you can sponsor this work via the following organizations. Thank you!
 sources: https://github.com/borkdude
 local ~/dev dir (since github doesn't show all repos)
 
-- quickblog
-- babashka
-- babashka/pod-babashka-instaparse 31 commits
-- instaparse.bb
-- nbb
+- quickblog*
+- babashka *
+- babashka/pod-babashka-instaparse 31 commits *
+- instaparse.bb *
+- nbb *
 - http-client *
-- neil
-- clj-kondo
-- clj-kondo-bb
-- clojure-lsp:
--- symbol analysis https://github.com/borkdude/clojure-lsp/commit/f662adab1b17d5dbc3648d6d8208334dc920aa0e
-- https://github.com/clojure-lsp/clojure-lsp/pull/1447
-- edamame
-- https://github.com/borkdude/jna-native-image-sci
-- carve
-- jet
-- deps.clj
-- 4ever-clojure
-- lein clj-kondo
-- joyride
-- squint / cherry
-- tools-deps-native / tools.bbuild
-- scittle
-- lein2deps
-- pod-babashka-buddy
-- edamame
-- nbb
+- neil *
+- clj-kondo / clj-kondo-bb / lein clj-kondo *
+- edamame *
+- https://github.com/borkdude/jna-native-image-sci *
+- carve *
+- jet *
+- deps.clj *
+- 4ever-clojure *
+- joyride *
+- squint / cherry *
+- tools-deps-native / tools.bbuild *
+- scittle *
+- lein2deps *
+- pod-babashka-buddy *
+- edamame *
+- nbb *
 - babashka.cli
 - fs
 - process
@@ -75,7 +70,7 @@ local ~/dev dir (since github doesn't show all repos)
 
 -->
 
-### [http-client](https://github.com/babashka/http-client)
+### [Http-client](https://github.com/babashka/http-client)
 
 The new babashka http-client aims to become default HTTP client solution in babashka, mostly replacing [babashka.curl](https://github.com/babashka/babashka.curl).
 
@@ -87,44 +82,63 @@ Also `babashka.http-client` is now available as a built-in namespace in `babashk
 
 Native, fast starting Clojure interpreter for scripting.
 
-I had the honor to write a guest blog post for the GraalVM blog about
-babashka. You can read it
-[here](https://medium.com/graalvm/babashka-how-graalvm-helped-create-a-fast-starting-scripting-environment-for-clojure-b0fcc38b0746).
-
-Daniel Higginbotham from Brave Clojure wrote [Babashka
-Babooka](https://www.braveclojure.com/quests/babooka/) which I helped reviewing.
-
-I also wrote a blog on how to [test babashka scripts](https://blog.michielborkent.nl/babashka-test-runner.html).
-
-Versions 1.0.165 - 1.0.169 were released. Visit the [changelog](https://github.com/babashka/babashka/blob/master/CHANGELOG.md) for details.
+New releases in the past month: 1.0.170 - 1.1.173
 Highlights:
 
-- Compatibility with Cognitest [test-runner](https://github.com/cognitect-labs/test-runner) and [tools.namespace](https://github.com/clojure/tools.namespace)
-- [#1433](https://github.com/babashka/babashka/issues/1433): spec source as built-in fallback. When not including the
-  [clojure.spec.alpha](https://github.com/babashka/spec.alpha) fork as a
-  library, babashka loads a bundled version, when `clojure.spec.alpha` is required.
-- Many performance improvements (via SCI)
-- Several non-special forms are now regular macros rather than treated special (via SCI)
-- Update to babashka process to v0.4.13: support `(process opts? & args)` syntax everywhere
+- Support for `data_readers.clj(c)`
+- Include [http-client](https://github.com/babashka/http-client) as built-in library
+- Compatibility with [clojure.tools.namespace.repl/refresh](https://github.com/clojure/tools.namespace)
+- Compatibility with [clojure.java.classpath](https://github.com/clojure/java.classpath) (and other libraries which rely on `java.class.path` and `RT/baseLoader`)
+- Compatibility with [eftest](https://github.com/weavejester/eftest) test runner (see demo)
+- Compatibility with [cljfmt](https://github.com/weavejester/cljfmt)
+- Support for `*loaded-libs*` and `(loaded-libs)`
+- Support `add-watch` on vars (which adds compatibility with `potemkin.namespaces`)
+- BREAKING: make printing of script results explicit with `--prn`
 
-### [Squint](https://github.com/squint-cljs/squint) and [Cherry](https://github.com/squint-cljs/cherry)
+Check the [changelog](https://github.com/babashka/babashka/blob/master/CHANGELOG.md) for all the changes!
 
-Squint and cherry are two flavors of the same CLJS compiler.
+### [Instaparse-bb](https://github.com/babashka/instaparse-bb)
 
-Squint is a CLJS _syntax_ to JS compiler for use case where you want to write
-JS, but do it using CLJS syntax and tooling instead.  Cherry comes with the CLJS
-standard library and is as such much closer to the normal ClojureScript, but the
-minimal amount of JS is a little bigger.
+This is a new project and gives you access to a subset of
+[instaparse](https://github.com/Engelberg/instaparse) via a
+[pod](https://github.com/babashka/pod-babashka-instaparse).
 
-The [video](https://www.youtube.com/watch?v=oCd74TQ-gf4) of the talk I did on ClojureDays 2022 came online!
+Instaparse was request a few times to have as a library in babashka and
+instaparse-bb is a good first step, without making a decision on that yet. See
+the relevant discussion
+[here](https://github.com/babashka/babashka/discussions/1335).
 
-In the past two months, I've been restructuring code between squint and cherry:
-a bit boring but necessary to keep going forward. Along with some minor bugfixes
-and features, one new JSX feature landed: you can pass a props map using a new
-notation inspired by [helix](https://github.com/lilactown/helix).
+### [Carve](https://github.com/borkdude/carve)
 
-You can read details in the
-[changelog](https://github.com/squint-cljs/squint/blob/main/CHANGELOG.md).
+Remove unused Clojure vars
+
+In the [0.3.5](https://github.com/borkdude/carve/blob/master/CHANGELOG.md#035) version, Carve got the following updates:
+
+- Upgrade clj-kondo version
+
+- Make babashka compatible by using the [clj-kondo-bb](https://github.com/clj-kondo/clj-kondo-bb) library
+
+- Discontinue the `carve` binary in favor of invocation with babashka.
+  Instead you can now install carve with [bbin](https://github.com/babashka/bbin):
+
+  ```
+  bbin install io.github.borkdude/carve
+  ```
+
+- Implement [babashka.cli](https://github.com/babashka/cli) integration
+
+- Implement `--help`
+
+### [Jet](https://github.com/borkdude/jet)
+
+CLI to transform between JSON, EDN, YAML and Transit using Clojure
+
+Version `0.4.23`:
+
+- [#123](https://github.com/borkdude/jet/issues/123): Add `base64/encode` and `base64/decode`
+- Add `jet/paths` and `jet/when-pred`
+- Deprecate interactive mode
+- Deprecate `--query` in favor of `--thread-last`, `--thread-first` or `--func`
 
 ### [SCI](https://github.com/babashka/sci)
 
@@ -144,15 +158,24 @@ details.
 
 Static analyzer and linter for Clojure code that sparks joy
 
-Two new releases with many fixes and improvements. [Check the
+Three new releases with many fixes and improvements in the last month. [Check the
 changelog](https://github.com/clj-kondo/clj-kondo/blob/master/CHANGELOG.md) for
 details.
 
 Some highlights:
 
-- [#609](https://github.com/clj-kondo/clj-kondo/issues/609): typecheck var usage, e.g. `(def x :foo) (inc x)` will now give a warning
-- [#1846](https://github.com/clj-kondo/clj-kondo/issues/1846): new linters: `:earmuffed-var-not-dymamic` and `:dynamic-var-not-earmuffed`. See [docs](https://github.com/clj-kondo/clj-kondo/blob/master/doc/linters.md#dynamic-vars).
-- [#1875](https://github.com/clj-kondo/clj-kondo/issues/1875): add `:duplicate-field-name` linter for deftype and defrecord definitions.
+- [#1742](https://github.com/clj-kondo/clj-kondo/issues/1742): new linter `:aliased-namespace-var-usage`: warn on var usage from namespaces that were used with `:as-alias`. See [demo](https://twitter.com/borkdude/status/1613524896625340417/photo/1).
+- [#1926](https://github.com/clj-kondo/clj-kondo/issues/1926): Add keyword analysis for EDN files. This means you can find references for keywords throughout your project with clojure-lsp, now including in EDN files.
+- [#1902](https://github.com/clj-kondo/clj-kondo/issues/1902): provide `:symbols` analysis for navigation to symbols in quoted forms or EDN files. See [demo](https://twitter.com/borkdude/status/1612773780589355008).
+
+The symbol analysis is used from clojure-lsp for which I provided a patch
+[here](https://github.com/borkdude/clojure-lsp/commit/f662adab1b17d5dbc3648d6d8208334dc920aa0e).
+
+A new project around clj-kondo is
+[clj-kondo-bb](https://github.com/clj-kondo/clj-kondo-bb) which enables you to
+use clj-kondo from babashka scripts.
+
+Also [lein-clj-kondo](https://github.com/clj-kondo/lein-clj-kondo) got an update.
 
 ### [Scittle](https://github.com/babashka/scittle)
 
@@ -196,8 +219,10 @@ See [changelog](https://github.com/babashka/fs/blob/master/CHANGELOG.md#changelo
 
 A CLI to add common aliases and features to `deps.edn`-based projects.
 
-A `NEIL_GITHUB_TOKEN` can now be configured to avoid hitting the rate limit of
-the Github API, thanks to Russ Matney.
+This month there were several small fixes, one of them being to always pick
+stable versions when adding or upgrading libraries. See full
+[changelog](https://github.com/babashka/neil/blob/main/CHANGELOG.md) for
+details.
 
 ### [Quickblog](https://github.com/borkdude/quickblog)
 
@@ -205,8 +230,20 @@ Light-weight static blog engine for Clojure and babashka.
 
 The blog you're currently reading is made with quickblog.
 
-Version [0.1.0](https://github.com/borkdude/quickblog/blob/main/CHANGELOG.md#010-2022-12-11) was finally released with much thanks to Josh Glover.
-See [changelog](https://github.com/borkdude/quickblog/blob/main/CHANGELOG.md#changelog) for more details.
+Version
+[0.2.3](https://github.com/borkdude/quickblog/blob/main/CHANGELOG.md#023-2023-01-30)
+was released with contributions from several people, mostly enabling you to
+tweak your own blog even more, while having good defaults.
+
+Instances of quickblog can be seen here:
+
+- [Michiel Borkent's blog](https://blog.michielborkent.nl)
+- [Josh Glover's blog](https://jmglov.net/blog)
+- [Jeremy Taylor's blog](https://jdt.me/strange-reflections.html)
+- [Luc Engelen's blog](https://blog.cofx.nl/) ([source](https://github.com/cofx22/blog))
+- [Rattlin.blog](https://rattlin.blog/)
+
+If you are also using quickblog, please let me know!
 
 ### [Rewrite-edn](https://github.com/borkdude/rewrite-edn)
 
@@ -221,22 +258,10 @@ and other projects that are used in nbb, joyride, scittle, etc.  See recent
 [commits](https://github.com/babashka/sci.configs/commits/main) for what's been
 improved.
 
-### [Nbb](https://github.com/babashka/nbb)
-
-Scripting in Clojure on Node.js using SCI
-
-Because it's so easy to deploy to npm, I usually publish a new version for each issue that is resolved.
-
-No big changes, but many small bugfixes and improvements in the last two
-months. See
-[changelog](https://github.com/babashka/nbb/blob/main/CHANGELOG.md).
-
 ### [Edamame](https://github.com/borkdude/edamame)
 
-Configurable EDN/Clojure parser with location metadata. It has been stable for a
-while and reached version 1.0.0. The API is exposed now in
-[babashka](https://github.com/babashka/babashka) and
-[nbb](https://github.com/babashka/nbb) as well.
+Edamame got a new function: `parse-next+string` which returns the original
+string along with the parsed s-expression.
 
 [Changelog](https://github.com/borkdude/edamame/blob/master/CHANGELOG.md)
 
@@ -245,22 +270,11 @@ while and reached version 1.0.0. The API is exposed now in
 Lein to deps.edn converter
 
 This tool can convert a `project.edn` file to a `deps.edn` file. It even
-supports Java compilation and evaluation of code within `project.clj`. Several minor enhancements were made.
-See [changelog](https://github.com/borkdude/lein2deps/blob/main/CHANGELOG.md).
-
-### [Joyride](https://github.com/BetterThanTomorrow/joyride)
-
-Modify VSCode by executing ClojureScript (SCI) code in your REPL and/or run
-scripts via keyboard shortcuts.
-
-I'm working on this project together with Peter Strömberg (known for his work on
-Calva) and I'm mostly reviewing Peter's PR instead of writing code.
-
-Read the changelog [here](https://github.com/BetterThanTomorrow/joyride/blob/master/CHANGELOG.md).
-
-### [Deps.clj](https://github.com/borkdude/deps.clj)
-
-Regular maintainance, keeping up with the official Clojure CLI and tools jar!
+supports Java compilation and evaluation of code within `project.clj`. There is
+now a lein plugin which enables you to sync your `project.clj` with your
+`deps.edn` every time you start `lein`. Several other minor enhancements were
+made.  See
+[changelog](https://github.com/borkdude/lein2deps/blob/main/CHANGELOG.md).
 
 ### [Clj-kondo configs](https://github.com/clj-kondo/configs)
 
@@ -280,9 +294,28 @@ The [pods](https://github.com/babashka/pods) library contains the code that
 supports using pods in babashka and the JVM. A critical error was fixed that
 would hang babashka and a new JVM release was pushed to Clojars (v0.1.0).
 
+### [4ever-clojure](https://github.com/oxalorg/4ever-clojure)
+
+I added the ability to build and deploy 4ever-clojure to Github Actions. Every
+time a commit is merged, the site is automatically updated.
+
 ### Babashka compatibility in external libs
 
 I contributed to [RCF](https://github.com/hyperfiddle/rcf),
 [deep-diff2](https://github.com/lambdaisland/deep-diff2) and
 [clj-diff](https://github.com/lambdaisland/clj-diff) to make these libraries
 babashka compatible.
+
+### Brief mentions
+
+The following projects also got updates so I'll briefly mention them as well:
+
+- [jna-native-image-sci](https://github.com/borkdude/jna-native-image-sci): Compile a program that uses JNA to native-image and allow dynamic evaluation using [SCI](https://github.com/babashka/sci)!
+- [deps.clj](https://github.com/borkdude/deps.clj): A faithful port of the clojure CLI bash script to Clojure
+- [joyride](https://github.com/BetterThanTomorrow/joyride): VSCode CLJS scripting and REPL (via [SCI](https://github.com/babashka/sci))
+- [squint](https://github.com/squint-cljs/squint): CLJS _syntax_ to JS compiler
+- [tools-deps-native](https://github.com/babashka/tools-deps-native): Run tools.deps as a native binary
+- [tools.bbuild](https://github.com/babashka/tools.bbuild): Library of functions for building Clojure projects
+- [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
+- [pod-babashka-buddy](https://github.com/babashka/pod-babashka-buddy): A pod around buddy core (Cryptographic Api for Clojure).
+- [nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI
