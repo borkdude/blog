@@ -22,7 +22,7 @@ If you want to ensure that the projects I work on are sustainably maintained,
 you can sponsor this work in the following ways. Thank you!
 
 - [Github Sponsors](https://github.com/sponsors/borkdude)
-- The [babaska](https://opencollective.com/babashka) or [clj-kondo](https://opencollective.com/clj-kondo) OpenCollective
+- The [Babaska](https://opencollective.com/babashka) or [Clj-kondo](https://opencollective.com/clj-kondo) OpenCollective
 - [Ko-fi](https://ko-fi.com/borkdude)
 - [Clojurists Together](https://www.clojuriststogether.org/)
 
