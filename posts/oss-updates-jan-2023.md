@@ -28,7 +28,8 @@ you can sponsor this work in the following ways. Thank you!
 
 If you're used to sponsoring through some other means which isn't listed above, please get in touch.
 
-> **Warning**
+> **Attention**
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Warning.svg/260px-Warning.svg.png" width="20px">
 
 > If you are using Github Sponsors and are making payments via Paypal, please
 update to a creditcard since Github Sponsors won't support Paypal from February
