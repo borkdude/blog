@@ -74,14 +74,6 @@ local ~/dev and ~/dev/babashka dir (since github doesn't show all repos)
 
 -->
 
-### [Http-client](https://github.com/babashka/http-client)
-
-The new babashka http-client project mostly replaces [babashka.curl](https://github.com/babashka/babashka.curl).
-
-This month the default client was improved to accept `gzip` and `deflate` as encodings by default, reflecting what `babashka.curl` did.
-
-Also `babashka.http-client` is now available as a built-in namespace in `babashka` v1.1.171 and higher.
-
 ### [Babashka](https://github.com/babashka/babashka)
 
 Native, fast starting Clojure interpreter for scripting.
@@ -108,6 +100,37 @@ I contributed changes to the following libraries to make them compatible with ba
 - [debux](https://github.com/philoskim/debux) - A trace-based debugging library for Clojure and ClojureScript
 
 Check the [changelog](https://github.com/babashka/babashka/blob/master/CHANGELOG.md) for all the changes!
+
+### [Http-client](https://github.com/babashka/http-client)
+
+The new babashka http-client project mostly replaces [babashka.curl](https://github.com/babashka/babashka.curl).
+
+This month the default client was improved to accept `gzip` and `deflate` as encodings by default, reflecting what `babashka.curl` did.
+
+Also `babashka.http-client` is now available as a built-in namespace in `babashka` v1.1.171 and higher.
+
+### [Clj-kondo](https://github.com/clj-kondo/clj-kondo)
+
+Static analyzer and linter for Clojure code that sparks joy
+
+Three new releases with many fixes and improvements in the last month. [Check the
+changelog](https://github.com/clj-kondo/clj-kondo/blob/master/CHANGELOG.md) for
+details.
+
+Some highlights:
+
+- [#1742](https://github.com/clj-kondo/clj-kondo/issues/1742): new linter `:aliased-namespace-var-usage`: warn on var usage from namespaces that were used with `:as-alias`. See [demo](https://twitter.com/borkdude/status/1613524896625340417/photo/1).
+- [#1926](https://github.com/clj-kondo/clj-kondo/issues/1926): Add keyword analysis for EDN files. This means you can find references for keywords throughout your project with clojure-lsp, now including in EDN files.
+- [#1902](https://github.com/clj-kondo/clj-kondo/issues/1902): provide `:symbols` analysis for navigation to symbols in quoted forms or EDN files. See [demo](https://twitter.com/borkdude/status/1612773780589355008).
+
+The symbol analysis is used from clojure-lsp for which I provided a patch
+[here](https://github.com/borkdude/clojure-lsp/commit/f662adab1b17d5dbc3648d6d8208334dc920aa0e).
+
+A new project around clj-kondo is
+[clj-kondo-bb](https://github.com/clj-kondo/clj-kondo-bb) which enables you to
+use clj-kondo from babashka scripts.
+
+Also [lein-clj-kondo](https://github.com/clj-kondo/lein-clj-kondo) got an update.
 
 ### [Instaparse-bb](https://github.com/babashka/instaparse-bb)
 
@@ -151,29 +174,6 @@ Version `0.4.23`:
 - Add `jet/paths` and `jet/when-pred`
 - Deprecate interactive mode
 - Deprecate `--query` in favor of `--thread-last`, `--thread-first` or `--func`
-
-### [Clj-kondo](https://github.com/clj-kondo/clj-kondo)
-
-Static analyzer and linter for Clojure code that sparks joy
-
-Three new releases with many fixes and improvements in the last month. [Check the
-changelog](https://github.com/clj-kondo/clj-kondo/blob/master/CHANGELOG.md) for
-details.
-
-Some highlights:
-
-- [#1742](https://github.com/clj-kondo/clj-kondo/issues/1742): new linter `:aliased-namespace-var-usage`: warn on var usage from namespaces that were used with `:as-alias`. See [demo](https://twitter.com/borkdude/status/1613524896625340417/photo/1).
-- [#1926](https://github.com/clj-kondo/clj-kondo/issues/1926): Add keyword analysis for EDN files. This means you can find references for keywords throughout your project with clojure-lsp, now including in EDN files.
-- [#1902](https://github.com/clj-kondo/clj-kondo/issues/1902): provide `:symbols` analysis for navigation to symbols in quoted forms or EDN files. See [demo](https://twitter.com/borkdude/status/1612773780589355008).
-
-The symbol analysis is used from clojure-lsp for which I provided a patch
-[here](https://github.com/borkdude/clojure-lsp/commit/f662adab1b17d5dbc3648d6d8208334dc920aa0e).
-
-A new project around clj-kondo is
-[clj-kondo-bb](https://github.com/clj-kondo/clj-kondo-bb) which enables you to
-use clj-kondo from babashka scripts.
-
-Also [lein-clj-kondo](https://github.com/clj-kondo/lein-clj-kondo) got an update.
 
 ### [Fs](https://github.com/babashka/fs)
 
