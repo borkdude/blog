@@ -242,19 +242,21 @@ time a commit is merged, the site is automatically updated.
 
 ### Brief mentions
 
-The following projects also got updates so I'll briefly mention them as well:
+The following projects also got updates, mostly in the form of maintenance and
+performance improvements. This post would get too long if I had to go into
+detail about them, so I'll briefly mention them in random order:
 
-- [Jna-native-image-sci](https://github.com/borkdude/jna-native-image-sci): Compile a program that uses JNA to native-image and allow dynamic evaluation using [SCI](https://github.com/babashka/sci)!
-- [Deps.clj](https://github.com/borkdude/deps.clj): A faithful port of the clojure CLI bash script to Clojure
-- [Joyride](https://github.com/BetterThanTomorrow/joyride): VSCode CLJS scripting and REPL (via [SCI](https://github.com/babashka/sci))
-- [Squint](https://github.com/squint-cljs/squint): CLJS _syntax_ to JS compiler
-- [Tools-deps-native](https://github.com/babashka/tools-deps-native): Run tools.deps as a native binary
-- [Tools.bbuild](https://github.com/babashka/tools.bbuild): Library of functions for building Clojure projects
-- [Scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
-- [Pod-babashka-buddy](https://github.com/babashka/pod-babashka-buddy): A pod around buddy core (Cryptographic Api for Clojure).
-- [Nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI
-- [CLI](https://github.com/babashka/cli)
-- [Process](https://github.com/babashka/process)
-- [SCI](https://github.com/babashka/sci)
-- [Scittle](https://github.com/babashka/scittle)
-- [Sci.configs](https://github.com/babashka/sci.configs)
+- [jna-native-image-sci](https://github.com/borkdude/jna-native-image-sci): Compile a program that uses JNA to native-image and allow dynamic evaluation using [SCI](https://github.com/babashka/sci)!
+- [deps.clj](https://github.com/borkdude/deps.clj): A faithful port of the clojure CLI bash script to Clojure
+- [joyride](https://github.com/BetterThanTomorrow/joyride): VSCode CLJS scripting and REPL (via [SCI](https://github.com/babashka/sci))
+- [squint](https://github.com/squint-cljs/squint): CLJS _syntax_ to JS compiler
+- [tools-deps-native](https://github.com/babashka/tools-deps-native): Run tools.deps as a native binary
+- [tools.bbuild](https://github.com/babashka/tools.bbuild): Library of functions for building Clojure projects
+- [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
+- [pod-babashka-buddy](https://github.com/babashka/pod-babashka-buddy): A pod around buddy core (Cryptographic Api for Clojure).
+- [nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI
+- [CLI](https://github.com/babashka/cli): Turn Clojure functions into CLIs!
+- [process](https://github.com/babashka/process): Clojure library for shelling out / spawning sub-processes
+- [SCI](https://github.com/babashka/sci): Configurable Clojure/Script interpreter suitable for scripting and Clojure DSLs
+- [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
+- [sci.configs](https://github.com/babashka/sci.configs): A collection of ready to be used SCI configs
