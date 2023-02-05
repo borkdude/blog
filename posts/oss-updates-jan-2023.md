@@ -25,11 +25,12 @@ you can sponsor this work via the following organizations. Thank you!
 - [OpenCollective](https://opencollective.com/babashka) (also see the [clj-kondo](https://opencollective.com/clj-kondo) one)
 - [Clojurists Together](https://www.clojuriststogether.org/)
 
-> **Attention**
-> If you are using Github Sponsors and are making payments via
-> Paypal, please update to a creditcard since Github Sponsors won't support
-> Paypal from February 23rd 2023. Read their statement
-> [here](https://github.blog/changelog/2023-01-23-github-sponsors-will-stop-supporting-paypal/).
+> **Warning**
+
+If you are using Github Sponsors and are making payments via
+Paypal, please update to a creditcard since Github Sponsors won't support
+Paypal from February 23rd 2023. Read their statement
+[here](https://github.blog/changelog/2023-01-23-github-sponsors-will-stop-supporting-paypal/).
 
 ## Projects
 
