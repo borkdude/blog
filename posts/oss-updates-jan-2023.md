@@ -19,18 +19,23 @@ this work possible! Top sponsors:
 - [Adgoji](https://www.adgoji.com/)
 
 If you want to ensure that the projects I work on are sustainably maintained,
-you can sponsor this work via the following organizations. Thank you!
+you can sponsor this work in the following ways. Thank you!
 
 - [Github Sponsors](https://github.com/sponsors/borkdude)
 - [OpenCollective](https://opencollective.com/babashka) (also see the [clj-kondo](https://opencollective.com/clj-kondo) one)
+- [Ko-fi](https://ko-fi.com/borkdude)
 - [Clojurists Together](https://www.clojuriststogether.org/)
+
+If you're used to sponsoring through some other means which isn't listed above, please get in touch.
 
 > **Warning**
 
 > If you are using Github Sponsors and are making payments via Paypal, please
 update to a creditcard since Github Sponsors won't support Paypal from February
 23rd 2023. Read their statement
-[here](https://github.blog/changelog/2023-01-23-github-sponsors-will-stop-supporting-paypal/).
+[here](https://github.blog/changelog/2023-01-23-github-sponsors-will-stop-supporting-paypal/). If
+you are not able to pay via a creditcard, you can still sponsor me via one of
+the ways mentioned above.
 
 ## Projects
 
