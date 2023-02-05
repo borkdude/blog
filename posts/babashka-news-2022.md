@@ -1,6 +1,6 @@
 Title: Babashka news in 2022
 Date: 2023-01-06
-Tags: clojure, babashka
+Tags: clojure, babashka, babashka news
 
 This is an overview of all the news collected about babashka in 2022! It is a
 collection of links to scripts, libraries, blog posts, talks and tweets about
