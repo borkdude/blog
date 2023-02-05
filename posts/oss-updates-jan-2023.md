@@ -61,12 +61,11 @@ local ~/dev dir (since github doesn't show all repos)
 - pod-babashka-buddy *
 - edamame *
 - nbb *
-- babashka.cli
-- fs
-- process
-- deps.clj
-- sci
-
+- babashka.cli *
+- fs *
+- process *
+- deps.clj *
+- sci *
 
 -->
 
@@ -94,6 +93,14 @@ Highlights:
 - Support for `*loaded-libs*` and `(loaded-libs)`
 - Support `add-watch` on vars (which adds compatibility with `potemkin.namespaces`)
 - BREAKING: make printing of script results explicit with `--prn`
+
+#### Babashka compatibility in external libs
+
+I contributed changes to the following libraries to make them compatible with babashka:
+
+- [cljfmt](https://github.com/weavejester/cljfmt) - A tool for formatting Clojure code
+- [carve](https://github.com/borkdude/carve) - Remove unused Clojure vars
+- [debux](https://github.com/philoskim/debux) - A trace-based debugging library for Clojure and ClojureScript
 
 Check the [changelog](https://github.com/babashka/babashka/blob/master/CHANGELOG.md) for all the changes!
 
@@ -140,20 +147,6 @@ Version `0.4.23`:
 - Deprecate interactive mode
 - Deprecate `--query` in favor of `--thread-last`, `--thread-first` or `--func`
 
-### [SCI](https://github.com/babashka/sci)
-
-Configurable Clojure interpreter suitable for scripting and Clojure DSLs.
-
-This is the workhorse that powers babashka, nbb, Joyride, and many other projects.
-
-Many improvements have happened over the last two months, both in Clojure
-compatibility and performance. JS and JVM interop has become up to 5x
-faster. All of these changes benefit babashka, nbb, joyride, etc.
-
-See
-[changelog](https://github.com/babashka/sci/blob/master/CHANGELOG.md) for more
-details.
-
 ### [Clj-kondo](https://github.com/clj-kondo/clj-kondo)
 
 Static analyzer and linter for Clojure code that sparks joy
@@ -177,41 +170,16 @@ use clj-kondo from babashka scripts.
 
 Also [lein-clj-kondo](https://github.com/clj-kondo/lein-clj-kondo) got an update.
 
-### [Scittle](https://github.com/babashka/scittle)
-
-Execute Clojure(Script) directly from browser script tags via SCI.
-See it in [action](https://babashka.org/scittle/).
-
-Version 0.4.11 introduced the [re-frame](https://github.com/day8/re-frame)
-plugin.  You can play around with it in the playground
-[here](https://babashka.org/scittle/codemirror.html).  Several other releases
-were made. Details in the
-[changelog](https://github.com/babashka/scittle/blob/main/CHANGELOG.md).
-
-### [Process](https://github.com/babashka/process)
-
-Clojure library for shelling out / spawning subprocesses
-
-This library traditionally had the syntax: `(process [ & cmd-args ] ?opts)` but
-in practice, it turned out that having the syntax `(process ?opts & cmd-args)`
-is more convenient, since you can use it with `apply` and
-`*command-line-args*`. All functions in `babashka.process` have been rewritten
-to support this syntax.
-
-See [changelog](https://github.com/babashka/process/blob/master/CHANGELOG.md) for details.
-
-### [Quickdoc](https://github.com/borkdude/quickdoc)
-
-Quickdoc is a tool to generate documentation from namespace/var analysis done by
-clj-kondo. It's fast and spits out an `API.md` file in the root of your project,
-so you can immediately view it on Github. Minor fixes and improvements were made.
-
 ### [Fs](https://github.com/babashka/fs)
 
 File system utility library for Clojure.
 
-Fs has gotten one new function: `update-file`, that alters the contents of a
-(text) file using a function. The function is reminiscent of `swap!`.
+Fs has gotten a few new functions:
+
+- `unifixy`, to turn a Windows path into a path with Unix-style path
+separators. Note that that style is supported by the JVM and this offers a more
+reliable way to e.g. match filenames via regexes.
+- several `xdg-*-home` helper functions, contributed by [@eval](https://github.com/eval)
 
 See [changelog](https://github.com/babashka/fs/blob/master/CHANGELOG.md#changelog) for more details.
 
@@ -245,13 +213,6 @@ Instances of quickblog can be seen here:
 
 If you are also using quickblog, please let me know!
 
-### [Rewrite-edn](https://github.com/borkdude/rewrite-edn)
-
-Utility lib on top of rewrite-clj with common operations to update EDN while preserving whitespace and comments.
-
-Minor fixes and enhancements. Several functions have been added like `fnil` and `conj`. See [changelog](https://github.com/borkdude/rewrite-edn/blob/master/CHANGELOG.md).
-
-### [Sci.configs](https://github.com/babashka/sci.configs)
 
 A collection of ready to be used SCI configs for e.g. Reagent, Promesa, Re-frame
 and other projects that are used in nbb, joyride, scittle, etc.  See recent
@@ -276,46 +237,26 @@ now a lein plugin which enables you to sync your `project.clj` with your
 made.  See
 [changelog](https://github.com/borkdude/lein2deps/blob/main/CHANGELOG.md).
 
-### [Clj-kondo configs](https://github.com/clj-kondo/configs)
-
-Library configurations as dependencies for clj-kondo.
-
-The claypoole configuration was improved.
-
-### [Babashka CLI](https://github.com/babashka/cli)
-
-Turn Clojure functions into CLIs!
-
-Minor fixes. See [changelog](https://github.com/babashka/cli/blob/main/CHANGELOG.md).
-
-### Babashka pods
-
-The [pods](https://github.com/babashka/pods) library contains the code that
-supports using pods in babashka and the JVM. A critical error was fixed that
-would hang babashka and a new JVM release was pushed to Clojars (v0.1.0).
-
 ### [4ever-clojure](https://github.com/oxalorg/4ever-clojure)
 
 I added the ability to build and deploy 4ever-clojure to Github Actions. Every
 time a commit is merged, the site is automatically updated.
 
-### Babashka compatibility in external libs
-
-I contributed to [RCF](https://github.com/hyperfiddle/rcf),
-[deep-diff2](https://github.com/lambdaisland/deep-diff2) and
-[clj-diff](https://github.com/lambdaisland/clj-diff) to make these libraries
-babashka compatible.
-
 ### Brief mentions
 
 The following projects also got updates so I'll briefly mention them as well:
 
-- [jna-native-image-sci](https://github.com/borkdude/jna-native-image-sci): Compile a program that uses JNA to native-image and allow dynamic evaluation using [SCI](https://github.com/babashka/sci)!
-- [deps.clj](https://github.com/borkdude/deps.clj): A faithful port of the clojure CLI bash script to Clojure
-- [joyride](https://github.com/BetterThanTomorrow/joyride): VSCode CLJS scripting and REPL (via [SCI](https://github.com/babashka/sci))
-- [squint](https://github.com/squint-cljs/squint): CLJS _syntax_ to JS compiler
-- [tools-deps-native](https://github.com/babashka/tools-deps-native): Run tools.deps as a native binary
-- [tools.bbuild](https://github.com/babashka/tools.bbuild): Library of functions for building Clojure projects
-- [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
-- [pod-babashka-buddy](https://github.com/babashka/pod-babashka-buddy): A pod around buddy core (Cryptographic Api for Clojure).
-- [nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI
+- [Jna-native-image-sci](https://github.com/borkdude/jna-native-image-sci): Compile a program that uses JNA to native-image and allow dynamic evaluation using [SCI](https://github.com/babashka/sci)!
+- [Deps.clj](https://github.com/borkdude/deps.clj): A faithful port of the clojure CLI bash script to Clojure
+- [Joyride](https://github.com/BetterThanTomorrow/joyride): VSCode CLJS scripting and REPL (via [SCI](https://github.com/babashka/sci))
+- [Squint](https://github.com/squint-cljs/squint): CLJS _syntax_ to JS compiler
+- [Tools-deps-native](https://github.com/babashka/tools-deps-native): Run tools.deps as a native binary
+- [Tools.bbuild](https://github.com/babashka/tools.bbuild): Library of functions for building Clojure projects
+- [Scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
+- [Pod-babashka-buddy](https://github.com/babashka/pod-babashka-buddy): A pod around buddy core (Cryptographic Api for Clojure).
+- [Nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI
+- [CLI](https://github.com/babashka/cli)
+- [Process](https://github.com/babashka/process)
+- [SCI](https://github.com/babashka/sci)
+- [Scittle](https://github.com/babashka/scittle)
+- [Sci.configs](https://github.com/babashka/sci.configs)
