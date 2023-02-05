@@ -42,7 +42,7 @@ the ways mentioned above.
 <!--
 
 sources: https://github.com/borkdude
-local ~/dev dir (since github doesn't show all repos)
+local ~/dev and ~/dev/babashka dir (since github doesn't show all repos)
 
 - quickblog*
 - babashka *
@@ -76,7 +76,7 @@ local ~/dev dir (since github doesn't show all repos)
 
 ### [Http-client](https://github.com/babashka/http-client)
 
-The new babashka http-client aims to become default HTTP client solution in babashka, mostly replacing [babashka.curl](https://github.com/babashka/babashka.curl).
+The new babashka http-client project mostly replaces [babashka.curl](https://github.com/babashka/babashka.curl).
 
 This month the default client was improved to accept `gzip` and `deflate` as encodings by default, reflecting what `babashka.curl` did.
 
