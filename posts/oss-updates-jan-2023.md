@@ -224,8 +224,6 @@ improved.
 Edamame got a new function: `parse-next+string` which returns the original
 string along with the parsed s-expression.
 
-[Changelog](https://github.com/borkdude/edamame/blob/master/CHANGELOG.md)
-
 ### [lein2deps](https://github.com/borkdude/lein2deps)
 
 Lein to deps.edn converter
