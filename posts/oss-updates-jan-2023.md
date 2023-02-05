@@ -25,7 +25,7 @@ you can sponsor this work via the following organizations. Thank you!
 - [OpenCollective](https://opencollective.com/babashka) (also see the [clj-kondo](https://opencollective.com/clj-kondo) one)
 - [Clojurists Together](https://www.clojuriststogether.org/)
 
-> **Warning**
+**Warning**
 
 If you are using Github Sponsors and are making payments via
 Paypal, please update to a creditcard since Github Sponsors won't support
