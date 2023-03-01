@@ -48,7 +48,7 @@ local ~/dev and ~/dev/babashka dir (since github doesn't show all repos)
 
 -->
 
-### [babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting
+## [babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting
 
 New release: 1.2.174
 
@@ -66,7 +66,7 @@ I worked together with the maintainers of the following libraries to make them c
 - [kaocha](https://github.com/lambdaisland/kaocha): test runner
 - [multiformats](https://github.com/greglook/clj-multiformats): Clojure(Script) implementations of the self-describing multiformat specs
 
-### [http-client](https://github.com/babashka/http-client): babashka's http-client
+### [http-client](https://github.com/babashka/http-client): Babashka's http-client
 
 The `babashka.http-client` namespace mostly replaces
 [babashka.curl](https://github.com/babashka/babashka.curl).
@@ -74,7 +74,7 @@ The `babashka.http-client` namespace mostly replaces
 This month support for `:multipart` uploads was added, mostly based on and
 inspired by [hato](https://github.com/gnarroway/hato)'s implementation.
 
-### [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy
+### [clj-kondo](https://github.com/clj-kondo/clj-kondo): Static analyzer and linter for Clojure code that sparks joy
 
 New release: 2023.02.17
 
@@ -89,7 +89,7 @@ Some highlights:
 changelog](https://github.com/clj-kondo/clj-kondo/blob/master/CHANGELOG.md) for
 details.
 
-### [SCI](https://github.com/babashka/sci): configurable Clojure/Script interpreter suitable for scripting and Clojure DSLs
+### [SCI](https://github.com/babashka/sci): Configurable Clojure/Script interpreter suitable for scripting and Clojure DSLs
 
 This month:
 
@@ -98,7 +98,7 @@ This month:
 - Making loading of libraries thread-safe in JVM
 - Several fixes with respect to `deftype` and `toString` + `equals`
 
-### [fs](https://github.com/babashka/fs): file system utility library for Clojure.
+### [fs](https://github.com/babashka/fs): File system utility library for Clojure
 
 Highlights:
 
@@ -112,7 +112,7 @@ See [changelog](https://github.com/babashka/fs/blob/master/CHANGELOG.md#changelo
 
 This month I looked into wrapping output of processes with a prefix so when ran in parallel, you can easily distuingish them. A preliminary solution is in [this thread](https://github.com/babashka/process/discussions/102#discussioncomment-4903758).
 
-### [pod-babashka-lanterna](https://github.com/babashka/pod-babashka-lanterna): interact with clojure-lanterna from babashka
+### [pod-babashka-lanterna](https://github.com/babashka/pod-babashka-lanterna): Interact with clojure-lanterna from babashka
 
 A very experimental 0.0.1 release was published.
 
@@ -122,7 +122,7 @@ You can try it out by playing tetris in the console with babashka:
 bb -Sdeps '{:deps {io.github.borkdude/console-tetris {:git/sha "2d3bee34ea93c84608c7cc5994ae70480b2df54c"}}}' -m tetris.core
 ```
 
-### [nbb](https://github.com/babashka/nbb): scripting in Clojure on Node.js using SCI
+### [nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI
 
 Finally nbb has gotten support for passing maps to keyword argument functions:
 
@@ -145,7 +145,7 @@ This month I contributed a built-in version of
 joyriders can rewrite their code from within VSCode.
 
 
-### [cljs-showcase](https://github.com/borkdude/cljs-showcase): showcase CLJS libs using SCI
+### [cljs-showcase](https://github.com/borkdude/cljs-showcase): Showcase CLJS libs using SCI
 
 A little project to show how you can use SCI to showcare your CLJS library in an interactive way.
 
@@ -167,20 +167,20 @@ detail about them, so I'll briefly mention them in random order:
 These are some of the other projects I'm involved with but little to no activity
 happened in the past month.
 
-- [4ever-clojure](https://github.com/oxalorg/4ever-clojure) - Pure CLJS version of 4clojure, meant to run forever!
 - [carve](https://github.com/borkdude/carve) - Remove unused Clojure vars
 - [deps.clj](https://github.com/borkdude/deps.clj): A faithful port of the clojure CLI bash script to Clojure
 - [edamame](https://github.com/borkdude/edamame): Configurable EDN/Clojure parser with location metadata
 - [cherry](https://github.com/squint-cljs/cherry): Experimental ClojureScript to ES6 module compiler
 - [grasp](https://github.com/borkdude/grasp): Grep Clojure code using clojure.spec regexes
-- [instaparse-bb](https://github.com/babashka/instaparse-bb)
 - [jet](https://github.com/borkdude/jet): CLI to transform between JSON, EDN, YAML and Transit using Clojure
-<!-- - [tools-deps-native](https://github.com/babashka/tools-deps-native): Run tools.deps as a native binary-->
-<!-- - [tools.bbuild](https://github.com/babashka/tools.bbuild): Library of functions for building Clojure projects-->
 - [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
-- [pod-babashka-buddy](https://github.com/babashka/pod-babashka-buddy): A pod around buddy core (Cryptographic Api for Clojure).
 - [neil](https://github.com/babashka/neil): A CLI to add common aliases and features to deps.edn-based projects
-- [process](https://github.com/babashka/process): Clojure library for shelling out / spawning sub-processes
-- [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
+- [quickblog](https://github.com/borkdude/quickblog): Light-weight static blog engine for Clojure and babashka
 - [sci.configs](https://github.com/babashka/sci.configs): A collection of ready to be used SCI configs
 - [lein2deps](https://github.com/borkdude/lein2deps): leiningen to deps.edn converter
+- [4ever-clojure](https://github.com/oxalorg/4ever-clojure) - Pure CLJS version of 4clojure, meant to run forever!
+- [instaparse-bb](https://github.com/babashka/instaparse-bb)
+- [pod-babashka-buddy](https://github.com/babashka/pod-babashka-buddy): A pod around buddy core (Cryptographic Api for Clojure).
+
+<!-- - [tools-deps-native](https://github.com/babashka/tools-deps-native): Run tools.deps as a native binary-->
+<!-- - [tools.bbuild](https://github.com/babashka/tools.bbuild): Library of functions for building Clojure projects-->
