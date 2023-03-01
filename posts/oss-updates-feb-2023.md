@@ -174,9 +174,9 @@ happened in the past month.
 - [cherry](https://github.com/squint-cljs/cherry): Experimental ClojureScript to ES6 module compiler
 - [grasp](https://github.com/borkdude/grasp): Grep Clojure code using clojure.spec regexes
 - [instaparse-bb](https://github.com/babashka/instaparse-bb)
-- [jet](https://github.com/borkdude/jet)
-- [tools-deps-native](https://github.com/babashka/tools-deps-native): Run tools.deps as a native binary
-- [tools.bbuild](https://github.com/babashka/tools.bbuild): Library of functions for building Clojure projects
+- [jet](https://github.com/borkdude/jet): CLI to transform between JSON, EDN, YAML and Transit using Clojure
+<!-- - [tools-deps-native](https://github.com/babashka/tools-deps-native): Run tools.deps as a native binary-->
+<!-- - [tools.bbuild](https://github.com/babashka/tools.bbuild): Library of functions for building Clojure projects-->
 - [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
 - [pod-babashka-buddy](https://github.com/babashka/pod-babashka-buddy): A pod around buddy core (Cryptographic Api for Clojure).
 - [neil](https://github.com/babashka/neil): A CLI to add common aliases and features to deps.edn-based projects
