@@ -48,9 +48,9 @@ local ~/dev and ~/dev/babashka dir (since github doesn't show all repos)
 
 -->
 
-### [babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting.
+### [babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting
 
-New releas: 1.2.174
+New release: 1.2.174
 
 Highlights:
 
@@ -63,10 +63,10 @@ See the complete [CHANGELOG](https://github.com/babashka/babashka/blob/master/CH
 
 I worked together with the maintainers of the following libraries to make them compatible with babashka:
 
-- [kaocha](https://github.com/lambdaisland/kaocha) test runner
-- [multiformats](https://github.com/greglook/clj-multiformats)
+- [kaocha](https://github.com/lambdaisland/kaocha): test runner
+- [multiformats](https://github.com/greglook/clj-multiformats): Clojure(Script) implementations of the self-describing multiformat specs
 
-### [http-client](https://github.com/babashka/http-client)
+### [http-client](https://github.com/babashka/http-client): babashka's http-client
 
 The `babashka.http-client` namespace mostly replaces
 [babashka.curl](https://github.com/babashka/babashka.curl).
@@ -74,9 +74,7 @@ The `babashka.http-client` namespace mostly replaces
 This month support for `:multipart` uploads was added, mostly based on and
 inspired by [hato](https://github.com/gnarroway/hato)'s implementation.
 
-### [clj-kondo](https://github.com/clj-kondo/clj-kondo)
-
-Static analyzer and linter for Clojure code that sparks joy
+### [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy
 
 New release: 2023.02.17
 
@@ -91,9 +89,7 @@ Some highlights:
 changelog](https://github.com/clj-kondo/clj-kondo/blob/master/CHANGELOG.md) for
 details.
 
-### [SCI](https://github.com/babashka/sci)
-
-Configurable Clojure/Script interpreter suitable for scripting and Clojure DSLs
+### [SCI](https://github.com/babashka/sci): configurable Clojure/Script interpreter suitable for scripting and Clojure DSLs
 
 This month:
 
@@ -102,9 +98,7 @@ This month:
 - Making loading of libraries thread-safe in JVM
 - Several fixes with respect to `deftype` and `toString` + `equals`
 
-### [fs](https://github.com/babashka/fs)
-
-File system utility library for Clojure.
+### [fs](https://github.com/babashka/fs): file system utility library for Clojure.
 
 Highlights:
 
@@ -114,15 +108,13 @@ E.g. `(fs/zip "src" {:root "src"})` will zip `src/foo.clj` into the zip file und
 
 See [changelog](https://github.com/babashka/fs/blob/master/CHANGELOG.md#changelog) for more details.
 
-### [process](https://github.com/babashka/process)
-
-Clojure library for shelling out / spawning sub-processes
+### [process](https://github.com/babashka/process): Clojure library for shelling out / spawning sub-processes
 
 This month I looked into wrapping output of processes with a prefix so when ran in parallel, you can easily distuingish them. A preliminary solution is in [this thread](https://github.com/babashka/process/discussions/102#discussioncomment-4903758).
 
-### [pod-babashka-lanterna](https://github.com/babashka/pod-babashka-lanterna)
+### [pod-babashka-lanterna](https://github.com/babashka/pod-babashka-lanterna): interact with clojure-lanterna from babashka
 
-This is a pod to interact with clojure-lanterna from babashka. A very experimental 0.0.1 release was published.
+A very experimental 0.0.1 release was published.
 
 You can try it out by playing tetris in the console with babashka:
 
@@ -130,9 +122,7 @@ You can try it out by playing tetris in the console with babashka:
 bb -Sdeps '{:deps {io.github.borkdude/console-tetris {:git/sha "2d3bee34ea93c84608c7cc5994ae70480b2df54c"}}}' -m tetris.core
 ```
 
-### [nbb](https://github.com/babashka/nbb)
-
-Scripting in Clojure on Node.js using SCI
+### [nbb](https://github.com/babashka/nbb): scripting in Clojure on Node.js using SCI
 
 Finally nbb has gotten support for passing maps to keyword argument functions:
 
@@ -148,16 +138,14 @@ an invoked script which is not in the current directory.
 
 See changelogs [here](https://github.com/babashka/nbb/blob/main/CHANGELOG.md).
 
-### [joyride](https://github.com/BetterThanTomorrow/joyride)
-
-VSCode CLJS scripting and REPL (via [SCI](https://github.com/babashka/sci))
+### [joyride](https://github.com/BetterThanTomorrow/joyride): VSCode CLJS scripting and REPL (via [SCI](https://github.com/babashka/sci))
 
 This month I contributed a built-in version of
 [rewrite-clj](https://github.com/clj-commons/rewrite-clj) to joyride, so
 joyriders can rewrite their code from within VSCode.
 
 
-### [cljs-showcase](https://github.com/borkdude/cljs-showcase)
+### [cljs-showcase](https://github.com/borkdude/cljs-showcase): showcase CLJS libs using SCI
 
 A little project to show how you can use SCI to showcare your CLJS library in an interactive way.
 
