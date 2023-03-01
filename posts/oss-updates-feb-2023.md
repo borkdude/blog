@@ -48,9 +48,7 @@ local ~/dev and ~/dev/babashka dir (since github doesn't show all repos)
 
 -->
 
-### [babashka](https://github.com/babashka/babashka)
-
-Native, fast starting Clojure interpreter for scripting.
+### [babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting.
 
 New releas: 1.2.174
 
