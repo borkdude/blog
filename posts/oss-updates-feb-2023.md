@@ -46,167 +46,122 @@ the ways mentioned above.
 sources: https://github.com/borkdude
 local ~/dev and ~/dev/babashka dir (since github doesn't show all repos)
 
-- quickblog*
-- babashka *
-- babashka/pod-babashka-instaparse 31 commits *
-- instaparse.bb *
-- nbb *
-- http-client *
-- neil *
-- clj-kondo / clj-kondo-bb / lein clj-kondo *
-- edamame *
-- https://github.com/borkdude/jna-native-image-sci *
-- carve *
-- jet *
-- deps.clj *
-- 4ever-clojure *
-- joyride *
-- squint / cherry *
-- tools-deps-native / tools.bbuild *
-- scittle *
-- lein2deps *
-- pod-babashka-buddy *
-- edamame *
-- nbb *
-- babashka.cli *
-- fs *
-- process *
-- deps.clj *
-- sci *
-
 -->
 
-### [Babashka](https://github.com/babashka/babashka)
-
-compat: https://github.com/greglook/clj-multiformats
-compat: https://github.com/lambdaisland/kaocha
+### [babashka](https://github.com/babashka/babashka)
 
 Native, fast starting Clojure interpreter for scripting.
 
-New releases in the past month: 1.0.170 - 1.1.173
+New releas: 1.2.174
+
 Highlights:
 
-- Support for `data_readers.clj(c)`
-- Include [http-client](https://github.com/babashka/http-client) as built-in library
-- Compatibility with [clojure.tools.namespace.repl/refresh](https://github.com/clojure/tools.namespace)
-- Compatibility with [clojure.java.classpath](https://github.com/clojure/java.classpath) (and other libraries which rely on `java.class.path` and `RT/baseLoader`)
-- Compatibility with [eftest](https://github.com/weavejester/eftest) test runner (see demo)
-- Compatibility with [cljfmt](https://github.com/weavejester/cljfmt)
-- Support for `*loaded-libs*` and `(loaded-libs)`
-- Support `add-watch` on vars (which adds compatibility with `potemkin.namespaces`)
-- BREAKING: make printing of script results explicit with `--prn`
+- Use GraalVM 22.3.1 on JDK 19.0.2. This adds virtual thread support. See [demo](https://twitter.com/borkdude/status/1572222344684531717).
+- Add more `java.time` and related classes with the goal of supporting [juxt.tick](https://github.com/juxt/tick) ([issue](https://github.com/juxt/tick/issues/86))
+
+See the complete [CHANGELOG](https://github.com/babashka/babashka/blob/master/CHANGELOG.md).
 
 #### Babashka compatibility in external libs
 
-I contributed changes to the following libraries to make them compatible with babashka:
+I worked together with the maintainers of the following libraries to make them compatible with babashka:
 
-- [cljfmt](https://github.com/weavejester/cljfmt) - A tool for formatting Clojure code
-- [debux](https://github.com/philoskim/debux) - A trace-based debugging library for Clojure and ClojureScript
+- [kaocha](https://github.com/lambdaisland/kaocha) test runner
+- [multiformats](https://github.com/greglook/clj-multiformats)
 
-Check the [changelog](https://github.com/babashka/babashka/blob/master/CHANGELOG.md) for all the changes!
+### [http-client](https://github.com/babashka/http-client)
 
-### [Http-client](https://github.com/babashka/http-client)
+The `babashka.http-client` namespace mostly replaces
+[babashka.curl](https://github.com/babashka/babashka.curl).
 
-The new babashka http-client project mostly replaces [babashka.curl](https://github.com/babashka/babashka.curl).
+This month support for `:multipart` uploads was added, mostly based on and
+inspired by [hato](https://github.com/gnarroway/hato)'s implementation.
 
-This month support for `:multipart` uploads was added, mostly inspired by [hato](https://github.com/gnarroway/hato)'s implementation.
-
-### [Clj-kondo](https://github.com/clj-kondo/clj-kondo)
+### [clj-kondo](https://github.com/clj-kondo/clj-kondo)
 
 Static analyzer and linter for Clojure code that sparks joy
 
-TODO [Check the
-changelog](https://github.com/clj-kondo/clj-kondo/blob/master/CHANGELOG.md) for
-details.
+New release: 2023.02.17
 
 Some highlights:
 
-### [Instaparse-bb](https://github.com/babashka/instaparse-bb)
+- [#1976](https://github.com/clj-kondo/clj-kondo/issues/1976): warn about using multiple bindings after varargs (`&`) symbol in fn syntax
+- Add arity checks for core `def`
+- [#1954](https://github.com/clj-kondo/clj-kondo/issues/1954): new `:uninitialized-var` linter. See [docs](https://github.com/clj-kondo/clj-kondo/blob/master/doc/linters.md#uninitialized-var).
+- [#1996](https://github.com/clj-kondo/clj-kondo/issues/1996): expose `hooks-api/resolve`. See [docs](https://github.com/clj-kondo/clj-kondo/blob/master/doc/hooks.md#api).
 
-This is a new project and gives you access to a subset of
-[instaparse](https://github.com/Engelberg/instaparse) via a
-[pod](https://github.com/babashka/pod-babashka-instaparse).
+[Check the
+changelog](https://github.com/clj-kondo/clj-kondo/blob/master/CHANGELOG.md) for
+details.
 
-Instaparse was request a few times to have as a library in babashka and
-instaparse-bb is a good first step, without making a decision on that yet. See
-the relevant discussion
-[here](https://github.com/babashka/babashka/discussions/1335).
+### [SCI](https://github.com/babashka/sci)
 
-### [Carve](https://github.com/borkdude/carve)
+Configurable Clojure/Script interpreter suitable for scripting and Clojure DSLs
 
-Remove unused Clojure vars
+This month:
 
-In the [0.3.5](https://github.com/borkdude/carve/blob/master/CHANGELOG.md#035) version, Carve got the following updates:
+- Adding JS libraries to a SCI context. See [docs](https://github.com/babashka/sci#javascript-libraries)
+- Keyword arguments as map support for CLJS
+- Making loading of libraries thread-safe in JVM
+- Several fixes with respect to `deftype` and `toString` + `equals`
 
-- Upgrade clj-kondo version
-- Make babashka compatible by using the [clj-kondo-bb](https://github.com/clj-kondo/clj-kondo-bb) library
-- Discontinue the `carve` binary in favor of invocation with babashka.
-  Instead you can now install carve with [bbin](https://github.com/babashka/bbin):
-  ```
-  bbin install io.github.borkdude/carve
-  ```
-- Implement [babashka.cli](https://github.com/babashka/cli) integration
-- Implement `--help`
-
-### [Jet](https://github.com/borkdude/jet)
-
-CLI to transform between JSON, EDN, YAML and Transit using Clojure
-
-Version `0.4.23`:
-
-- [#123](https://github.com/borkdude/jet/issues/123): Add `base64/encode` and `base64/decode`
-- Add `jet/paths` and `jet/when-pred`
-- Deprecate interactive mode
-- Deprecate `--query` in favor of `--thread-last`, `--thread-first` or `--func`
-
-### [Fs](https://github.com/babashka/fs)
+### [fs](https://github.com/babashka/fs)
 
 File system utility library for Clojure.
 
-Fs has gotten a few new functions:
+Highlights:
 
-- `unifixy`, to turn a Windows path into a path with Unix-style path
-separators. Note that that style is supported by the JVM and this offers a more
-reliable way to e.g. match filenames via regexes.
 - several `xdg-*-home` helper functions, contributed by [@eval](https://github.com/eval)
+- `babashka.fs/zip`  now takes a `:root` option to elide a parent folder or folders.
+E.g. `(fs/zip "src" {:root "src"})` will zip `src/foo.clj` into the zip file under `foo.clj`.
 
 See [changelog](https://github.com/babashka/fs/blob/master/CHANGELOG.md#changelog) for more details.
 
-### [lein2deps](https://github.com/borkdude/lein2deps)
-
-Lein to deps.edn converter
-
-This tool can convert a `project.edn` file to a `deps.edn` file. It even
-supports Java compilation and evaluation of code within `project.clj`. There is
-now a lein plugin which enables you to sync your `project.clj` with your
-`deps.edn` every time you start `lein`. Several other minor enhancements were
-made.  See
-[changelog](https://github.com/borkdude/lein2deps/blob/main/CHANGELOG.md).
-
-### [4ever-clojure](https://github.com/oxalorg/4ever-clojure)
-
-I added the ability to build and deploy 4ever-clojure to Github Actions. Every
-time a commit is merged, the site is automatically updated.
-
-### [Process](https://github.com/babashka/process)
+### [process](https://github.com/babashka/process)
 
 Clojure library for shelling out / spawning sub-processes
 
 This month I looked into wrapping output of processes with a prefix so when ran in parallel, you can easily distuingish them. A preliminary solution is in [this thread](https://github.com/babashka/process/discussions/102#discussioncomment-4903758).
 
-### TODO
+### [pod-babashka-lanterna](https://github.com/babashka/pod-babashka-lanterna)
 
-- [pod-babashka-lanterna](https://github.com/babashka/pod-babashka-lanterna): a pod to interact with clojure-lanterna from babashka
+This is a pod to interact with clojure-lanterna from babashka. A very experimental 0.0.1 release was published.
 
-Mention [tetris example](https://github.com/borkdude/console-tetris/tree/pod-babashka-lanterna)
+You can try it out by playing tetris in the console with babashka:
 
-- [nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI
-changelogs
+``` clojure
+bb -Sdeps '{:deps {io.github.borkdude/console-tetris {:git/sha "2d3bee34ea93c84608c7cc5994ae70480b2df54c"}}}' -m tetris.core
+```
 
-- [joyride](https://github.com/BetterThanTomorrow/joyride): VSCode CLJS scripting and REPL (via [SCI](https://github.com/babashka/sci))
-rewrite-clj
+### [nbb](https://github.com/babashka/nbb)
 
-- [cljs-showcase](https://github.com/borkdude/cljs-showcase)
+Scripting in Clojure on Node.js using SCI
+
+Finally nbb has gotten support for passing maps to keyword argument functions:
+
+``` clojure
+(defn foo [& {:keys [a b c]}])
+(foo :a 1 :b 2 :c 3)
+(foo {:a 1 :b 2 :c 3})
+```
+
+Several other improvements have been made in the area of macros and resolving JS
+library references and resolving dependencies in an `nbb.edn` file, relative to
+an invoked script which is not in the current directory.
+
+See changelogs [here](https://github.com/babashka/nbb/blob/main/CHANGELOG.md).
+
+### [joyride](https://github.com/BetterThanTomorrow/joyride)
+
+VSCode CLJS scripting and REPL (via [SCI](https://github.com/babashka/sci))
+
+This month I contributed a built-in version of
+[rewrite-clj](https://github.com/clj-commons/rewrite-clj) to joyride, so
+joyriders can rewrite their code from within VSCode.
+
+
+### [cljs-showcase](https://github.com/borkdude/cljs-showcase)
+
+A little project to show how you can use SCI to showcare your CLJS library in an interactive way.
 
 ### Brief mentions
 
@@ -226,17 +181,20 @@ detail about them, so I'll briefly mention them in random order:
 These are some of the other projects I'm involved with but little to no activity
 happened in the past month.
 
+- [4ever-clojure](https://github.com/oxalorg/4ever-clojure) - Pure CLJS version of 4clojure, meant to run forever!
 - [carve](https://github.com/borkdude/carve) - Remove unused Clojure vars
 - [deps.clj](https://github.com/borkdude/deps.clj): A faithful port of the clojure CLI bash script to Clojure
 - [edamame](https://github.com/borkdude/edamame): Configurable EDN/Clojure parser with location metadata
 - [cherry](https://github.com/squint-cljs/cherry): Experimental ClojureScript to ES6 module compiler
 - [grasp](https://github.com/borkdude/grasp): Grep Clojure code using clojure.spec regexes
+- [instaparse-bb](https://github.com/babashka/instaparse-bb)
+- [jet](https://github.com/borkdude/jet)
 - [tools-deps-native](https://github.com/babashka/tools-deps-native): Run tools.deps as a native binary
 - [tools.bbuild](https://github.com/babashka/tools.bbuild): Library of functions for building Clojure projects
 - [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
 - [pod-babashka-buddy](https://github.com/babashka/pod-babashka-buddy): A pod around buddy core (Cryptographic Api for Clojure).
-- [neil](https://github.com/babashka/neil)
+- [neil](https://github.com/babashka/neil): A CLI to add common aliases and features to deps.edn-based projects
 - [process](https://github.com/babashka/process): Clojure library for shelling out / spawning sub-processes
-- [SCI](https://github.com/babashka/sci): Configurable Clojure/Script interpreter suitable for scripting and Clojure DSLs
 - [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
 - [sci.configs](https://github.com/babashka/sci.configs): A collection of ready to be used SCI configs
+- [lein2deps](https://github.com/borkdude/lein2deps): leiningen to deps.edn converter
