@@ -5,7 +5,7 @@ Tags: clojure, babashka, babashka news
 If you want to help me keep track of babashka-related news, please contribute to
 [news.md](https://github.com/babashka/babashka/blob/master/doc/news.md) or use
 the `#babashka` hashtag on
-[Twitter](https://twitter.com/search?q=(%23babashka%20OR%20babashka)&src=typed_query&f=live)
+[Twitter](https://twitter.com/search?q=%28%23babashka%20OR%20babashka%28&src=typed_query&f=live)
 or [Mastodon](https://mastodon.social/tags/babashka).
 
 ### Releases
@@ -30,7 +30,12 @@ Release highlights:
 
 ### Articles
 
+One new book this month:
+
 - [Babooka: write command line Clojure](https://www.braveclojure.com/quests/babooka/) by Daniel Higginbotham
+
+and several blog posts:
+
 - [Blambda analyses sites](https://jmglov.net/blog/2023-01-04-blambda-analyses-sites.html) by Josh Glover
 - [Babashka: How GraalVM Helped Create a Fast-Starting Scripting Environment for Clojure](https://logico-jp.io/2023/01/07/babashka-how-graalvm-helped-create-a-fast-starting-scripting-environment-for-clojure/) in Japanese
 - [The wizard of HOP - How we built the web based HOP CLI Settings Editor using Babashka and Scittle](https://www.gethop.dev/post/the-wizard-of-hop-how-we-built-the-web-based-hop-cli-settings-editor-using-babashka-and-scittle) by Bingen Galartza
