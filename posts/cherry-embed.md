@@ -86,7 +86,7 @@ Full example:
 
 (set! *eval* cherry/eval-form)
 
-(def x (eval '(+ 1 2 3))
+(def x (eval '(+ 1 2 3)))
 ```
 
 Cherry is still experimental and looking for feedback. Please try it out and join the Clojurians Slack channel for discussion.
