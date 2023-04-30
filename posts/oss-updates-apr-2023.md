@@ -14,7 +14,7 @@ babashka/clojure-related talk or workshop in the CfP!
 
 ## Sponsors
 
-But first off, I'd like to thank all the sponsors and contributors that make
+I'd like to thank all the sponsors and contributors that make
 this work possible! Top sponsors:
 
 - [Clojurists Together](https://clojuriststogether.org/)
