@@ -1,9 +1,11 @@
 Title: OSS updates April 2023
-Date: 2023-05-01
+Date: 2023-04-30
 Tags: clojure, oss updates
 Description: My Clojure OSS updates for April 2023
 
 In this post I'll give updates about open source I worked on during April 2023.
+
+To see previous OSS updates, go [here](https://blog.michielborkent.nl/tags/oss-updates.html).
 
 ## [Babashka-conf](https://babashka.org/conf/)
 
