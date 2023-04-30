@@ -8,7 +8,7 @@ the `#babashka` hashtag on
 [Twitter](https://twitter.com/search?q=%28%23babashka%20OR%20babashka%28&src=typed_query&f=live)
 or [Mastodon](https://mastodon.social/tags/babashka).
 
-## 2023-03 ([Twitter](https://twitter.com/search?q=(%23babashka%20OR%20babashka)%20since%3A2023-03-01%20until%3A2023-04-01&src=typed_query&f=top), [Mastodon](https://mastodon.social/tags/babashka))
+## 2023-03
 
 ### Releases
 
@@ -31,7 +31,7 @@ Biggest highlight: Switch to GraalVM 19 and enable virtual threads!
 
 - Write babashka at [Cognician](https://twitter.com/RobStuttaford/status/1641694501793038336)!
 
-## 2023-02 ([Twitter](https://twitter.com/search?q=(%23babashka%20OR%20babashka)%20since%3A2023-02-01%20until%3A2023-03-01&src=typed_query&f=live), [Mastodon](https://mastodon.social/tags/babashka))
+## 2023-02
 
 ## Releases
 
