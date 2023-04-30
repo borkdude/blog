@@ -54,6 +54,7 @@ changelogs for all changes.
 - [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.
   - [#1196](https://github.com/clj-kondo/clj-kondo/issues/1196): show language context in `.cljc` files with `:output {:langs true}`. See [docs](https://github.com/clj-kondo/clj-kondo/blob/master/doc/config.md#show-language-context-in-cljc-files).
   - [#2030](https://github.com/clj-kondo/clj-kondo/issues/2030): Add a new `:discouraged-tag` linter for discouraged tag literals. See the [docs](https://github.com/clj-kondo/clj-kondo/blob/master/doc/linters.md#discouraged-tag).
+  - [#2058](https://github.com/clj-kondo/clj-kondo/issues/2058): warn about `#()` and `#""` in `.edn files
 - [babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting
   - Released 1.3.177 - 1.3.179
   - [#1541](https://github.com/babashka/babashka/issues/1541): respect `bb.edn`
