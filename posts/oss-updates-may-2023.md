@@ -3,7 +3,7 @@ Date: 2023-05-30
 Tags: clojure, oss updates
 Description: My Clojure OSS updates for May 2023
 
-In this post I'll give updates about open source I worked on during April 2023.
+In this post I'll give updates about open source I worked on during May 2023.
 
 To see previous OSS updates, go [here](https://blog.michielborkent.nl/tags/oss-updates.html).
 
