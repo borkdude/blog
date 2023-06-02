@@ -14,7 +14,11 @@ Babashka-conf is happening June 10th in Berlin. Only a few tickets left!
 ## Sponsors
 
 I'd like to thank all the sponsors and contributors that make
-this work possible! Top sponsors:
+this work possible! Open the details section for more info.
+
+<details>
+<summary>Sponsor info</summary>
+Top sponsors:
 
 - [Clojurists Together](https://clojuriststogether.org/)
 - [Roam Research](https://roamresearch.com/)
@@ -36,6 +40,7 @@ you can sponsor this work in the following ways. Thank you!
 If you're used to sponsoring through some other means which isn't listed above, please get in touch.
 
 On to the projects that I've been working on!
+</details>
 
 <!--
 
@@ -107,6 +112,8 @@ changelogs for all changes.
 These are (some of the) other projects I'm involved with but little to no activity
 happened in the past month.
 
+<details>
+<summary>Click for more details</summary>
 - [edamame](https://github.com/borkdude/edamame): Configurable EDN/Clojure parser with location metadata
   - Improvements for reading namespaced maps
 - [babashka.book](https://github.com/babashka/book): Babashka manual
@@ -140,6 +147,7 @@ happened in the past month.
 - [clj2el](https://borkdude.github.io/clj2el/): transpile Clojure to elisp
 - [deflet](https://github.com/borkdude/deflet): make let-expressions REPL-friendly!
 - [babashka.json](https://github.com/babashka/json): babashka JSON library/adapter
+</details>
 
 <!-- - [tools-deps-native](https://github.com/babashka/tools-deps-native): Run tools.deps as a native binary-->
 <!-- - [tools.bbuild](https://github.com/babashka/tools.bbuild): Library of functions for building Clojure projects-->
