@@ -62,7 +62,7 @@ changelogs for all changes.
   - Released 1.3.180, mostly a maintenance release
   - See the complete [CHANGELOG](https://github.com/babashka/babashka/blob/master/CHANGELOG.md)
 - [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
-  - #58: build system for creating scittle distribution with custom libraries. See [plugins/demo](https://github.com/babashka/scittle/tree/main/plugins/demo).
+  - [#58](https://github.com/babashka/scittle/issues/58): build system for creating scittle distribution with custom libraries. See [plugins/demo](https://github.com/babashka/scittle/tree/main/plugins/demo).
   - Use `window.location.hostname` for WebSocket connection instead of hardcoding `"localhost"` ([@pyrmont](https://github.com/pyrmont))
   - Upgrade `sci.configs` to `"33bd51e53700b224b4cb5bda59eb21b62f962745"`
   - Update nREPL implementation: implement `eldoc` (`info`, `lookup`) ([@benjamin-asdf](https://github.com/benjamin-asdf))
