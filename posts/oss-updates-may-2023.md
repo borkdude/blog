@@ -44,14 +44,14 @@ local ~/dev and ~/dev/babashka dir (since github doesn't show all repos)
 
 -->
 
-## Projects
+## Updates
 
 The following projects had updates in the last month. Note that only highlights
 are mentioned and not a full overview of all changes. See the project's
 changelogs for all changes.
 
-- Preparations for babashka conf are in full swing and I'm preparing a talk with the title 'Growing an ecosystem'.
-
+- Preparations for [babashka conf](https://github.com/babashka/conf) are in full swing and I'm preparing a talk with the title 'Growing an ecosystem'.
+- This month I've had the honor to visit the JUXT 10 year anniversary in London and met a lot of fellow Clojurians over there.
 - [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.
   - Version 2023.05.18 - 2023.05.26 were released. Full changelogs [here](https://github.com/clj-kondo/clj-kondo/blob/master/CHANGELOG.md). Highlights:
   - Linter `:uninitialized-var` moved from default `:level :off` to `:warning`
