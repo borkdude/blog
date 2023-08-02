@@ -1,5 +1,5 @@
 Title: OSS updates July 2023
-Date: 2023-07-31
+Date: 2023-08-02
 Tags: clojure, oss updates
 Description: My Clojure OSS updates for July 2023
 
@@ -47,38 +47,40 @@ local ~/dev and ~/dev/babashka dir (since github doesn't show all repos)
 
 ## Updates
 
-Early this month I've been on a vacation in Switzerland to catch some fresh air. 
-
-- [squint](https://github.com/squint-cljs/squint): CLJS _syntax_ to JS compiler and [cherry](https://github.com/squint-cljs/cherry) Experimental ClojureScript to ES6 module compiler
-  - Both projects can now be used simultaneously in one build. The use case for this is when you have projects like [clerk](https://github.com/nextjournal/clerk) that ship with multiple options for evaluating CLJS at runtime and you want to offer both squint and cherry as options.
-- [sql pods](https://github.com/babashka/babashka-sql-pods): babashka pods for SQL databases
-  - Version 0.1.2 was released which contains upgrades of database drivers and
-    next.jdbc library. Also a bug was fixed around mssql.
-- [CLI](https://github.com/babashka/cli): Turn Clojure functions into CLIs!
-  - Implemented an alternative to `shutdown-agents` which does not kill threads
-    when using an exec function, e.g. when spinning up a web server. Also see
-    [TDEPS-198](https://clojure.atlassian.net/browse/TDEPS-198).
-- [cljs-showcase](https://github.com/borkdude/cljs-showcase): Showcase CLJS libs using SCI
-  - Namespace state is now preserved over multiple blocks
 - [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.
-  - Actively working towards a [new release](https://github.com/clj-kondo/clj-kondo/blob/master/CHANGELOG.md#unreleased), probably next month.
-- [fs](https://github.com/babashka/fs) - File system utility library for Clojure
-  - Add `gzip` and `gunzip` functions (thanks to Lauri Oherd)
-- [deps.clj](https://github.com/borkdude/deps.clj): A faithful port of the clojure CLI bash script to Clojure
-  - Tried to improve the situation where the downloaded tools jar may be corrupt and causes trouble when calculating the classpath, using a crc32 check. See babashka [issue](https://github.com/babashka/babashka/issues/1576).
-- [SCI](https://github.com/babashka/sci): Configurable Clojure/Script interpreter suitable for scripting and Clojure DSLs
-  - Support `:require-macros`
-  - Introduce `eval-string+` which received an optional initial `:ns` key and also returns the last active `:ns` so you can preserve the namespace state over multiple evaluations.
-  - Released v0.8.40
-- [process](https://github.com/babashka/process): Clojure library for shelling out / spawning sub-processes
-  - Implement `:out :bytes` to receive output as bytes (thanks Hans Bugge Grathwohl)
-  - Make `:dir` option accept `java.nio.file.Path`
+  - A big fat new release: 2023.07.23. Several new linting rules and lots of fixes. See [changelogs](https://github.com/clj-kondo/clj-kondo/blob/master/CHANGELOG.md#20230713) here.
+- [http-client](https://github.com/babashka/http-client): Babashka's http-client
+  - Added a websocket API, a fix for the `:ssl-context {:insecure true}` option and more. See [CHANGELOG](https://github.com/babashka/http-client/blob/main/CHANGELOG.md).
+- [pod-babashka-fswatcher](https://github.com/babashka/pod-babashka-fswatcher): babashka filewatcher pod
+  - The events emitted from the file watcher are now automatically deduplicated.
+  - An aarch64 binary for Mac is now available
+  Thanks to @fjsousa and @lispyclouds.
+- [edamame](https://github.com/borkdude/edamame): Configurable EDN/Clojure parser with location metadata
+  - A small bugfix release around reading malformed reader conditional expressions
+- [lein-clj-kondo](https://github.com/clj-kondo/lein-clj-kondo): a leiningen plugin for clj-kondo
+  - This plugin now follows the version number of clj-kondo
+- [squint](https://github.com/squint-cljs/squint): CLJS _syntax_ to JS compiler and [cherry](https://github.com/squint-cljs/cherry) Experimental ClojureScript to ES6 module compiler
+  - Add [`defclass`](https://github.com/squint-cljs/squint/blob/main/doc/defclass.md) in squint, inspired by shadow-cljs
+  - More work on getting squint and cherry to work in one build
+  - Provide UMD build which works better in Firefox Webworkers
+  - cherry can now be used in a playground at [livecodes.io](https://dev.livecodes.io/?template=clojurescript)
+  - Fix `doseq` and add `doall` and `dorun` in squint
+- [lein2deps](https://github.com/borkdude/lein2deps): leiningen to deps.edn converter
+  - Allow anonymous function literals in `project.clj`
 - [babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting.
-  - 1575: fix command line parsing problem with -e + `*command-line-args*`
-  - 1576: make downloading/unzipping of deps.clj tools .zip file more robust (see deps.clj)
-  - released version 1.3.181
-  - 1581: bb `print-deps`: sort dependencies (thanks to Teodor Heggelund)
-  - 1579: add `clojure.tools.reader/resolve-symbol` built-in
+  - Version `1.3.182` released, mostly library bumps and small bugfixes. See changelogs [here](https://github.com/babashka/babashka/blob/master/CHANGELOG.md#13182-2023-07-20).
+- [deps.clj](https://github.com/borkdude/deps.clj): A faithful port of the clojure CLI bash script to Clojure
+  - More robust handling of downloading and unzipping tools jar
+- [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
+  - Fixed a small bug with evaluating tags: when there would be whitespace + a `"src"` attribute, the whitespace would be executed and the attribute was ignored.
+- [tools-deps-native](https://github.com/babashka/tools-deps-native) and [tools.bbuild](https://github.com/babashka/tools.bbuild)
+  - This EXPERIMENTAL combo allows you to use tools.build from babashka. In this release a reflection issue was addressed.
+- [nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI
+  - Add missing function to promesa
+- [jet](https://github.com/borkdude/jet): CLI to transform between JSON, EDN, YAML and Transit using Clojure
+  - Release version `0.7.27` (see
+    [changelogs](https://github.com/borkdude/jet/blob/master/CHANGELOG.md#0727-2023-08-02))
+    with missing 1.11 functions and options for easier kebab/camel/etc. casing.
 
 <!-- ## Contributions to other projects -->
 
@@ -96,15 +98,22 @@ happened in the past month.
 
 <details>
 <summary>Click for more details</summary>
-- [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
-- [nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI
-- [http-client](https://github.com/babashka/http-client): Babashka's http-client
+- [sql pods](https://github.com/babashka/babashka-sql-pods): babashka pods for SQL databases
+- [CLI](https://github.com/babashka/cli): Turn Clojure functions into CLIs!
+- [cljs-showcase](https://github.com/borkdude/cljs-showcase): Showcase CLJS libs using SCI
+- [fs](https://github.com/babashka/fs) - File system utility library for Clojure
+- [SCI](https://github.com/babashka/sci): Configurable Clojure/Script interpreter suitable for scripting and Clojure DSLs
+  - Support `:require-macros`
+  - Introduce `eval-string+` which received an optional initial `:ns` key and also returns the last active `:ns` so you can preserve the namespace state over multiple evaluations.
+  - Released v0.8.40
+- [process](https://github.com/babashka/process): Clojure library for shelling out / spawning sub-processes
+  - Implement `:out :bytes` to receive output as bytes (thanks Hans Bugge Grathwohl)
+  - Make `:dir` option accept `java.nio.file.Path`
+
 - [sci.configs](https://github.com/babashka/sci.configs): A collection of ready to be used SCI configs.
-- [edamame](https://github.com/borkdude/edamame): Configurable EDN/Clojure parser with location metadata
 - [babashka.book](https://github.com/babashka/book): Babashka manual
 - [pod-babashka-go-sqlite3](https://github.com/babashka/pod-babashka-go-sqlite3): A babashka pod for interacting with sqlite3
 - [instaparse-bb](https://github.com/babashka/instaparse-bb)
-- [jet](https://github.com/borkdude/jet): CLI to transform between JSON, EDN, YAML and Transit using Clojure
 - [quickdoc](https://github.com/borkdude/quickdoc): Quick and minimal API doc generation for Clojure
 - [rewrite-clj](https://github.com/clj-commons/rewrite-clj): Rewrite Clojure code and edn
 - [pod-babashka-buddy](https://github.com/babashka/pod-babashka-buddy): A pod around buddy core (Cryptographic Api for Clojure).
@@ -113,10 +122,8 @@ happened in the past month.
 - [carve](https://github.com/borkdude/carve) - Remove unused Clojure vars
 - [grasp](https://github.com/borkdude/grasp): Grep Clojure code using clojure.spec regexes
 - [quickblog](https://github.com/borkdude/quickblog): Light-weight static blog engine for Clojure and babashka
-- [lein2deps](https://github.com/borkdude/lein2deps): leiningen to deps.edn converter
 - [4ever-clojure](https://github.com/oxalorg/4ever-clojure) - Pure CLJS version of 4clojure, meant to run forever!
 - [pod-babashka-lanterna](https://github.com/babashka/pod-babashka-lanterna): Interact with clojure-lanterna from babashka
-- [pod-babashka-fswatcher](https://github.com/babashka/pod-babashka-fswatcher): babashka filewatcher pod
 - [joyride](https://github.com/BetterThanTomorrow/joyride): VSCode CLJS scripting and REPL (via [SCI](https://github.com/babashka/sci))
 - [clj2el](https://borkdude.github.io/clj2el/): transpile Clojure to elisp
 - [deflet](https://github.com/borkdude/deflet): make let-expressions REPL-friendly!
@@ -125,5 +132,3 @@ happened in the past month.
 
 </details>
 
-<!-- - [tools-deps-native](https://github.com/babashka/tools-deps-native): Run tools.deps as a native binary-->
-<!-- - [tools.bbuild](https://github.com/babashka/tools.bbuild): Library of functions for building Clojure projects-->
