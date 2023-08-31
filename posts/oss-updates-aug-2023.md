@@ -84,8 +84,8 @@ Here are updates about the projects/libraries I've worked on last month.
   - Upgrade sqlite version so it supports json fields
 - [cherry](https://github.com/squint-cljs/cherry)
   - Add [`defclass`](https://github.com/squint-cljs/squint/blob/main/doc/defclass.md) to cherry (similar to squint)
- - Expose `clojure.string` and `clojure.walk` namespaces
- - Fix overriding core vars
+  - Expose `clojure.string` and `clojure.walk` namespaces
+  - Fix overriding core vars
 - [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.
   - working towards a new release with a large number of small bug fixes, see upcoming [changelog](https://github.com/clj-kondo/clj-kondo/blob/master/CHANGELOG.md)
 - [http-client](https://github.com/babashka/http-client): babashka's http-client
