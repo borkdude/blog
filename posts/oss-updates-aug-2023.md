@@ -47,8 +47,13 @@ local ~/dev and ~/dev/babashka dir (since github doesn't show all repos)
 
 ## Updates
 
-TODO: mention strangeloop
-TODO: mention Rahul and Anu for JavaZone
+Currently my attention is mostly directed at the upcoming [Strange loop](https://www.thestrangeloop.com/2023/babashka-a-meta-circular-clojure-interpreter-for-the-command-line.html) talk. I'm very excited to be part of the last iteration of this conference. It will also be my first time flying to the USA!
+
+Rahul De and Anupriya Johari will be giving a workshop at JavaZone on Tuesday
+the 7th of September. Check the details
+[here](https://2023.javazone.no/program/19a5cab3-7afd-4dc1-b60a-bea8562d3186).
+
+Here are updates about the projects/libraries I've worked on last month.
 
 - [jet](https://github.com/borkdude/jet): CLI to transform between JSON, EDN, YAML and Transit using Clojure
   - Release version `0.7.27` (see
@@ -77,32 +82,14 @@ TODO: mention Rahul and Anu for JavaZone
   - Compatibility with the newest integrant version
 - [pod-babashka-go-sqlite3](https://github.com/babashka/pod-babashka-go-sqlite3): A babashka pod for interacting with sqlite3
   - Upgrade sqlite version so it supports json fields
-- cherry
-
+- [cherry](https://github.com/squint-cljs/cherry)
+  - Add [`defclass`](https://github.com/squint-cljs/squint/blob/main/doc/defclass.md) to cherry (similar to squint)
+ - Expose `clojure.string` and `clojure.walk` namespaces
+ - Fix overriding core vars
 - [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.
-  - A big fat new release: 2023.07.23. Several new linting rules and lots of fixes. See [changelogs](https://github.com/clj-kondo/clj-kondo/blob/master/CHANGELOG.md#20230713) here.
-- [http-client](https://github.com/babashka/http-client): Babashka's http-client
-  - Added a websocket API, a fix for the `:ssl-context {:insecure true}` option and more. See [CHANGELOG](https://github.com/babashka/http-client/blob/main/CHANGELOG.md).
-- [pod-babashka-fswatcher](https://github.com/babashka/pod-babashka-fswatcher): babashka filewatcher pod
-  - The events emitted from the file watcher are now automatically deduplicated.
-  - An aarch64 binary for Mac is now available
-  Thanks to @fjsousa and @lispyclouds.
-- [edamame](https://github.com/borkdude/edamame): Configurable EDN/Clojure parser with location metadata
-  - A small bugfix release around reading malformed reader conditional expressions
-- [lein-clj-kondo](https://github.com/clj-kondo/lein-clj-kondo): a leiningen plugin for clj-kondo
-  - This plugin now follows the version number of clj-kondo
-- [squint](https://github.com/squint-cljs/squint): CLJS _syntax_ to JS compiler and [cherry](https://github.com/squint-cljs/cherry) Experimental ClojureScript to ES6 module compiler
-  - Add [`defclass`](https://github.com/squint-cljs/squint/blob/main/doc/defclass.md) in squint, inspired by shadow-cljs
-  - More work on getting squint and cherry to work in one build
-  - Provide UMD build which works better in Firefox Webworkers
-  - cherry can now be used in a playground at [livecodes.io](https://dev.livecodes.io/?template=clojurescript)
-  - Fix `doseq` and add `doall` and `dorun` in squint
-- [lein2deps](https://github.com/borkdude/lein2deps): leiningen to deps.edn converter
-  - Allow anonymous function literals in `project.clj`
-- [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
-  - Fixed a small bug with evaluating tags: when there would be whitespace + a `"src"` attribute, the whitespace would be executed and the attribute was ignored.
-- [tools-deps-native](https://github.com/babashka/tools-deps-native) and [tools.bbuild](https://github.com/babashka/tools.bbuild)
-  - This EXPERIMENTAL combo allows you to use tools.build from babashka. In this release a reflection issue was addressed.
+  - working towards a new release with a large number of small bug fixes, see upcoming [changelog](https://github.com/clj-kondo/clj-kondo/blob/master/CHANGELOG.md)
+- [http-client](https://github.com/babashka/http-client): babashka's http-client
+  - A number of small bugfixes and additions
 
 <!-- ## Contributions to other projects -->
 
@@ -120,14 +107,18 @@ happened in the past month.
 
 <details>
 <summary>Click for more details</summary>
+- [pod-babashka-fswatcher](https://github.com/babashka/pod-babashka-fswatcher): babashka filewatcher pod
+- [edamame](https://github.com/borkdude/edamame): Configurable EDN/Clojure parser with location metadata
+- [lein-clj-kondo](https://github.com/clj-kondo/lein-clj-kondo): a leiningen plugin for clj-kondo
+- [squint](https://github.com/squint-cljs/squint): CLJS _syntax_ to JS compiler and [cherry](https://github.com/squint-cljs/cherry) Experimental ClojureScript to ES6 module compi
+- [lein2deps](https://github.com/borkdude/lein2deps): leiningen to deps.edn converter
+- [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
+- [tools-deps-native](https://github.com/babashka/tools-deps-native) and [tools.bbuild](https://github.com/babashka/tools.bbuild)
 - [sql pods](https://github.com/babashka/babashka-sql-pods): babashka pods for SQL databases
 - [CLI](https://github.com/babashka/cli): Turn Clojure functions into CLIs!
 - [cljs-showcase](https://github.com/borkdude/cljs-showcase): Showcase CLJS libs using SCI
 - [fs](https://github.com/babashka/fs) - File system utility library for Clojure
 - [process](https://github.com/babashka/process): Clojure library for shelling out / spawning sub-processes
-  - Implement `:out :bytes` to receive output as bytes (thanks Hans Bugge Grathwohl)
-  - Make `:dir` option accept `java.nio.file.Path`
-
 - [babashka.book](https://github.com/babashka/book): Babashka manual
 - [instaparse-bb](https://github.com/babashka/instaparse-bb)
 - [rewrite-clj](https://github.com/clj-commons/rewrite-clj): Rewrite Clojure code and edn
