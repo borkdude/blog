@@ -50,7 +50,7 @@ local ~/dev and ~/dev/babashka dir (since github doesn't show all repos)
 Currently my attention is mostly directed at the upcoming [Strange loop](https://www.thestrangeloop.com/2023/babashka-a-meta-circular-clojure-interpreter-for-the-command-line.html) talk. I'm very excited to be part of the last iteration of this conference. It will also be my first time flying to the USA!
 
 Rahul De and Anupriya Johari will be giving a workshop at JavaZone on Tuesday
-the 7th of September. Check the details
+the 5th of September. Check the details
 [here](https://2023.javazone.no/program/19a5cab3-7afd-4dc1-b60a-bea8562d3186).
 
 Here are updates about the projects/libraries I've worked on last month.
