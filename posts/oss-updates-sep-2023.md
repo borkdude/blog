@@ -1,5 +1,5 @@
 Title: OSS updates September 2023
-Date: 2023-08-30
+Date: 2023-09-30
 Tags: clojure, oss updates
 Description: My Clojure OSS updates for September 2023
 
@@ -50,8 +50,11 @@ local ~/dev and ~/dev/babashka dir (since github doesn't show all repos)
 Last week I delivered my babashka talk at [Strange
 loop](https://www.thestrangeloop.com/2023/babashka-a-meta-circular-clojure-interpreter-for-the-command-line.html)
 talk and much of my attention went to the preparation of that (slides
-[here](https://speakerdeck.com/borkdude/babashka-a-meta-circular-clojure-interpreter-for-the-command-line-at-strange-loop-2023)). I
-did manage to get some coding done as well.
+[here](https://speakerdeck.com/borkdude/babashka-a-meta-circular-clojure-interpreter-for-the-command-line-at-strange-loop-2023)). Hopefully
+the talk will be online soon. Keep an eye on the [Strange Loop Youtube
+channel](https://www.youtube.com/playlist?list=PLcGKfGEEONaBNsY_bOj8IhbCPvj6OAdWo). I
+did manage to get some coding done as well, despite testing positive for COVID
+when I arrived back home...
 
 Here are updates about the projects/libraries I've worked on last month.
 
@@ -104,7 +107,7 @@ Here are updates about the projects/libraries I've worked on last month.
   - [#180](https://github.com/babashka/neil/issues/180): `neil dep upgrade`: with `--unstable`, opt-into unstable library updates ([@teodorlu](https://github.com/teodorlu))
   - [#183](https://github.com/babashka/neil/issues/183): Don't drop `:exclusions` when running `neil dep add` or `neil dep upgrade` ([@borkdude] and [@teodorlu])
 - [CLI](https://github.com/babashka/cli): Turn Clojure functions into CLIs!
-  - Small release with the option to add your own header on top of `format-opts`, thanks to @Sohalt
+  - Small release with the option to add your own header on top of `format-opts`, thanks to [@Sohalt](https://github.com/Sohalt)
 - [http-client](https://github.com/babashka/http-client): babashka's http-client
   - A number of small bugfixes and additions
 - A number of experiments around [squint](https://github.com/squint-cljs/squint):
@@ -128,7 +131,7 @@ Here are updates about the projects/libraries I've worked on last month.
     invoked. This allowed a fix in babashka for `Thread/sleep` on non-longs and
     for `Class/forName` which works arond a bug in Oracle GraalVM 21.
 - [sci.configs](https://github.com/babashka/sci.configs): A collection of ready to be used SCI configs.
-  - @holyjak made a configuration for Fulcro which can be seen live in action [here](https://blog.jakubholy.net/2023/interactive-code-snippets-fulcro/)
+  - [@holyjak](https://github.com/holyjak) made a configuration for [Fulcro](https://github.com/fulcrologic/fulcro) which can be seen live in action [here](https://blog.jakubholy.net/2023/interactive-code-snippets-fulcro/)
 
 ## Other projects
 
