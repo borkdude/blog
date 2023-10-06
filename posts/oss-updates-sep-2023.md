@@ -52,8 +52,11 @@ loop](https://www.thestrangeloop.com/2023/babashka-a-meta-circular-clojure-inter
 talk and much of my attention went to the preparation of that (slides
 [here](https://speakerdeck.com/borkdude/babashka-a-meta-circular-clojure-interpreter-for-the-command-line-at-strange-loop-2023)). Hopefully
 the talk will be online soon. Keep an eye on the [Strange Loop Youtube
-channel](https://www.youtube.com/playlist?list=PLcGKfGEEONaBNsY_bOj8IhbCPvj6OAdWo). I
-did manage to get some coding done as well, despite testing positive for COVID
+channel](https://www.youtube.com/playlist?list=PLcGKfGEEONaBNsY_bOj8IhbCPvj6OAdWo).
+
+EDIT: the talk is now available [here](https://www.youtube.com/watch?v=DHtRfO3Bp90).
+
+I did manage to get some coding done as well, despite testing positive for COVID
 when I arrived back home...
 
 Here are updates about the projects/libraries I've worked on last month.
