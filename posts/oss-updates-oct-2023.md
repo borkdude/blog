@@ -1,4 +1,4 @@
-Title: OSS updates September 2023
+Title: OSS updates October 2023
 Date: 2023-10-31
 Tags: clojure, oss updates
 Description: My Clojure OSS updates for October 2023
@@ -47,50 +47,43 @@ local ~/dev and ~/dev/babashka dir (since github doesn't show all repos)
 
 ## Updates
 
+drwxr-xr-x@  78 borkdude  staff   2496 Oct 27 14:59 babashka
+  Check subdirectories!!!!
+
 drwxr-xr-x@  55 borkdude  staff   1760 Oct 27 17:36 clj-kondo
 drwxr-xr-x   16 borkdude  staff    512 Oct 27 15:55 hoplon-javelin
 drwxr-xr-x  172 borkdude  staff   5504 Oct 27 15:50 .
 drwxr-xr-x@  27 borkdude  staff    864 Oct 27 15:06 scittle
 drwxr-xr-x@  47 borkdude  staff   1504 Oct 27 15:05 nbb
 drwxr-xr-x@  25 borkdude  staff    800 Oct 27 15:00 sci.configs
-drwxr-xr-x@  78 borkdude  staff   2496 Oct 27 14:59 babashka
-drwxr-xr-x   58 borkdude  staff   1856 Oct 26 16:44 squint
 
 Here are updates about the projects/libraries I've worked on last month.
 
+- [babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting.
+  - [Support self-contained binaries as uberjars!](https://github.com/babashka/babashka/wiki/Self-contained-executable#uberjar)
+  - Add `java.security.KeyFactory`, `java.security.spec.PKCS8EncodedKeySpec`, `java.net.URISyntaxException`
+  - Fix babashka.process/exec wrt `babashka.process/*defaults*`
+  - #1632: Partial fix for `(.readPassword (System/console))`
+  - Enable producing self-contained binaries using [uberjars](https://github.com/babashka/babashka/wiki/Self-contained-executable#uberjar)
+  - Bump httpkit to `2.8.0-beta3` (fixes GraalVM issue with virtual threads)
+  - Bump `deps.clj` and `fs`
+  - Expose `taoensso.timbre.appenders.core`
+  - nREPL: implement `ns-list` op
+  - SCI: optimize `swap!`, `deref` and `reset!` for normal atoms (rather than user-created `IAtom`s)
 - [squint](https://github.com/squint-cljs/squint): CLJS _syntax_ to JS compiler
-  ## 0.3.35 (2023-10-25)
-
+  <br>Lots of stuff happened in October with squint!
   - [#347](https://github.com/squint-cljs/squint/issues/347): Add `:pre` and `:post` support in `fn`
   - Add `number?`
   - Support `docstring` in `def`
-
-  ## 0.3.34 (2023-10-24)
-
   - Handle multipe source `:paths` in a more robust fashion
-
-  ## 0.3.33 (2023-10-24)
-
   - [#344](https://github.com/squint-cljs/squint/issues/344): macros can't be used via aliases
-
-  ## 0.3.32 (2023-10-17)
-
   - Add `squint.edn` support, see [docs](README.md#squintedn)
   - Add `watch` subcommand to watch `:paths` from `squint.edn`
   - Make generated `let` variable names in JS more deterministic, which helps hot reloading in React
   - Added a [vite + react example project](examples/vite-react).
   - Resolve symbolic namespaces `(:require [foo.bar])` from `:paths`
-
-  ## 0.2.31 (2023-10-09)
-
   - Add `bit-and` and `bit-or`
-
-  ## 0.2.30 (2023-10-04)
-
   - Include `lib/squint.core.umd.js` which defines a global `squint.core` object (easy to use in browsers, see [docs](README.md#compile-on-a-server-use-in-a-browser))
-
-  ## 0.2.29 (2023-10-03)
-
   - Add `subs`, `fn?`, `re-seq`
   - Add `squint.edn` with `:paths` to resolve macros from (via `:require-macros`)
 
@@ -126,19 +119,6 @@ Here are updates about the projects/libraries I've worked on last month.
   - [#2134](https://github.com/clj-kondo/clj-kondo/issues/2134): don't warn on usage of private var in `data_readers.clj(c)`
   - [#2148](https://github.com/clj-kondo/clj-kondo/issues/2148): warn on configuration error in `:unused-refeferred-var` linter
   - Expose more vars in `clj-kondo.hooks-api` interpreter namespace
-- [babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting.
-  Version 1.3.185 released!
-  - [#1624](https://github.com/babashka/babashka/pull/1624): Use Oracle GraalVM 21 ([@lispyclouds](https://github.com/lispyclouds))
-  - Use PGO to speed up loops (now 2-3x faster for `(time (loop [val 0 cnt 10000000] (if (pos? cnt) (recur (inc val) (dec cnt)) val)))`!)
-  - Bump babashka.http-client to v0.4.15
-  - Bump rewrite-clj to v0.1.1.47
-  - [#1619](https://github.com/babashka/babashka/issues/1619): Fix reflection issue with `Thread/sleep` in `core.async/timeout`
-  - Support interop on `java.util.stream.IntStream`
-  - [#1513](https://github.com/babashka/babashka/issues/1513): Fix interop on `Thread/sleep` with numbers that aren't already longs
-  - Bump babashka.cli to 0.7.53
-  - Fix [#babashka.nrepl/66](https://github.com/babashka/babashka.nrepl/issues/66)
-  - Various nREPL server improvements (classpath op, file lookup information for `cider-find-var`)
-  - Bump cheshire to 5.12.0
 - [http-client](https://github.com/babashka/http-client): babashka's http-client
   - A number of small bugfixes and additions
 - A number of experiments around [squint](https://github.com/squint-cljs/squint):
