@@ -50,7 +50,7 @@ accomplish this is to use `.cljc` files.
 ## Reader conditionals
 
 When porting the project, I added features and fixed bugs in squint to
-accomodate targeting both CLJS and squint. So almost every `.cljs` file was
+accommodate targeting both CLJS and squint. So almost every `.cljs` file was
 renamed to a `.cljc` file and CLJS-specific code like `goog-define` was
 re-implemented using a squint override:
 
@@ -83,7 +83,7 @@ squint port. The `src` directory contains CLJS-specific files that are not in
 scope for test.
 
 When running `npx squint compile` all the files in `:paths` are re-compiled,
-which is handy whe you want to distribute the project to NPM.
+which is handy when you want to distribute the project to NPM.
 
 ## Symbolic namespaces
 
@@ -105,7 +105,7 @@ To increase sharing of code, I supported loading namespaces from `squint.edn`'s
 
 In a lot of places the `js-interop` library was used to create literals,
 functions with JS object destructuring, etc, most of which squint already does
-out of the box.  To accomodate this, I wrote a bunch of macros which basically
+out of the box.  To accommodate this, I wrote a bunch of macros which basically
 did nothing and replaces the `j` alias with a namespace which mocks the
 `js-interop` library:
 
@@ -122,7 +122,7 @@ In squint, macros are (currently) loaded via the `:require-macros` section in a
 `ns` form. The squint compiler looks for a `.cljc` file within `:paths`, the
 loads this file using [SCI](https://github.com/babashka/sci), makes the
 transformation and the resumes compilation of the transformed form. The reason
-SCI is used is that squint doesn't know Clojure's data structures at runtime,
+SCI is used is that squint doesn't know Clojure's data structures at run-time,
 but you can still use them at compile time. This model is pretty similar how
 CLJS executes macros on the JVM.
 
