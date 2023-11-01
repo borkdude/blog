@@ -42,9 +42,9 @@ words:
 > for squint as they are interop heavy and the libraries takes care of state
 > using their own re-frame/redux like architecture
 
-Martin asked me if I could do this in a way such that the original ClojureScript
-library would still be usable from ClojureScript as well. One of the ways to
-accomplish this is to use `.cljc` files.
+Martin asked me if I could do this in a way such that the library would still be
+usable from ClojureScript as well. One of the ways to accomplish this is to use
+`.cljc` files.
 
 ## Reader conditionals
 
