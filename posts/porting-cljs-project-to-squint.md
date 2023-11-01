@@ -22,9 +22,10 @@ once started) and you lose the fast equality checks you can get from structural
 sharing.  Note that there is also squint's sister project,
 [cherry](https://github.com/squint-cljs/cherry) which, does use CLJS's immutable
 data structures, but you get a minimum of 350kb project size due to CLJS's
-standard library being bundled with it. This may or may not be worth it and may
-offset the drawbacks of squint for you. Let's just see how far we can get with
-just squint in porting a ClojureScript project.
+standard library being bundled with it and not being optimizable by ES6
+bundlers. Perhaps the extra bundle size offsets the drawbacks of squint's direct
+JS interop approach for you. But let's just see how far we can get with just
+squint in porting a ClojureScript project!
 
 ## Clojure-mode
 
@@ -33,12 +34,18 @@ As a case study in this blog, we're going to look at
 Nextjournal which offers a Clojure mode for
 [CodeMirror](https://codemirror.net/) 6. A request was made some time ago to
 make this library usable directly from JavaScript as an NPM library. Since most
-of the code in this project is Java interop (using the excellent
+of the code in this project is JS interop (using the excellent
 [js-interop](https://github.com/applied-science/js-interop) library it seemed
-like a good candidate for a squint port. Martin Kavalar of Nextjournal asked me
-if I could do this in a way such that the original ClojureScript library would
-still be usable from ClojureScript as well. One of the ways to accomplish this
-is to use `.cljc` files.
+like a good candidate for a squint port. In Martin Kavalar of Nextjournal's own
+words:
+
+> I feel that codemirror and prosemirror extensions are especially well suited
+> for squint as they are interop heavy and the libraries takes care of state
+> using their own re-frame/redux like architecture
+
+Martin asked me if I could do this in a way such that the original ClojureScript
+library would still be usable from ClojureScript as well. One of the ways to
+accomplish this is to use `.cljc` files.
 
 ## Reader conditionals
 
