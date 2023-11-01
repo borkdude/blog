@@ -85,6 +85,22 @@ scope for test.
 When running `npx squint compile` all the files in `:paths` are re-compiled,
 which is handy whe you want to distribute the project to NPM.
 
+## Symbolic namespaces
+
+Before doing this port, other JS files had to be referenced using the JS library
+notation in the `ns` form:
+
+``` clojure
+(:require ["./my_other_ns.mjs"])
+```
+
+To increase sharing of code, I supported loading namespaces from `squint.edn`'s
+`:paths` using the notation we're using to from Clojure(Script):
+
+``` clojure
+(:require [nextjournal.my-other-ns])
+```
+
 ## Stub macros
 
 In a lot of places the `js-interop` library was used to create literals,
@@ -211,7 +227,85 @@ Another source of bugs was code like:
 ```
 
 In Squint, `{:foo :bar}` is just a JavaScript object and those cannot be called
-as functions (as of now). Of course, squint could be clever and just support
-literal collections in function position by emitting `(get {:foo :bar} :foo)`
-for those, but I'm not convinced 
+as functions as of now. Squint could be clever and just support literal
+collections in function position by emitting `(get {:foo :bar} :foo)` but this
+would break down when the user would push the data literal to a local or var
+(unless you add some kind of inference). I chose to just rewrite those
+expressions to use `get` or `contains?` instead, which works both in CLJS and squint:
 
+
+``` clojure
+(get {:foo :bar} :foo)
+```
+
+## Miscellaneous
+
+Several other things were missing in squint, like:
+
+- Support for `:pre` and `:post` in `fn`
+- Macro usages via an alias instead of `:refer`
+- Several core functions like `bit-and`, `bit-or`, `re-seq`, `fn?`, `subs`,
+  `max`, `min`, `every-pred` , etc. All of those got added while doing the port.
+
+## Development
+
+Aside from running tests I used [vite](https://vitejs.dev/) which is very easy to set
+up. Just create an `index.html` page, load your `.mjs` file from there using:
+
+``` html
+<script src="js/demo.mjs" type="module"></script>
+```
+
+and run:
+
+``` clojure
+$ npx vite --config vite.config.js public
+```
+
+where `public` is the directory that contains the `index.html` page.
+
+The most basic vite config:
+
+``` javascript
+export default {
+  base: './',
+};
+```
+
+This spins up a development server and automatically hot-reloads all compiled
+JavaScript.
+
+## Publishing to NPM
+
+Since the `.mjs` files are written to `dist` (as configured in `squint.edn`),
+publishing the project to NPM can be done by adding `"files": "dist"` to
+`package.json` To make the `dist/nextjournal/clojure_mode.mjs` file available
+when writing
+
+``` javascript
+import { default_extensions, complete_keymap } from '@nextjournal/clojure-mode';
+```
+
+I had to add
+
+``` clojure
+"exports": {".": "dist/nextjournal/clojure_mode.mjs"}
+```
+
+to `package.json`.
+
+After that it was just a matter adding a package name and version and hitting
+`npm publish` (the first time you're doing this, you need to add `--access public`
+when you want to publish the package publically).
+
+The package now lives on [NPM](https://npmjs.com/package/@nextjournal/clojure-mode)!
+
+## Use directly from CDN
+
+Having the package on NPM also lets you directly use it from an HTML page using
+a CDN.  The [jspm](https://jspm.org/) tool can convert a `package.json` into an
+[`importmap`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap).
+I did this for the [squint demo
+page](https://squint-cljs.github.io/squint/). There you can see clojure-mode
+compiled with squint in action, without having to use any build tooling, since
+everything is loaded directly from a CDN!
