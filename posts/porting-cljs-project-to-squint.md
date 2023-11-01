@@ -309,3 +309,10 @@ I did this for the [squint demo
 page](https://squint-cljs.github.io/squint/). There you can see clojure-mode
 compiled with squint in action, without having to use any build tooling, since
 everything is loaded directly from a CDN!
+
+## Conclusion
+
+It seems squint hits the sweet spot for a project like
+[clojure-mode](https://github.com/nextjournal/clojure-mode): where most of the
+code is JavaScript interop. In this blog I demonstrated to target both CLJS and
+squint with an existing library. Why choose if you can have them both.
