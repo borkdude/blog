@@ -9,7 +9,7 @@ Description: Porting a ClojureScript project to Squint
 compiler. I deliberately don't call it a CLJS compiler, since it has some
 differences with CLJS: all data structures in squint are just JS objects, arrays
 and iterators/generators. The standard library mimics ClojureScript in that it
-never mutates if the standard library doesn't mutate, e.g. `assoc` returns a new
+never mutates if CLJS doesn't mutate, e.g. `assoc` returns a new
 object and doesn't mutate the object argument.  This approach has a few benefits
 and of course a few drawbacks. Some of the benefits are that JS interop becomes
 considerably easier, the bundle size becomes way smaller, in some cases
