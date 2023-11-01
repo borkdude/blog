@@ -18,8 +18,8 @@ performance is better (but as always, this is very contextual) and sharing a
 library to NPM to be consumed by other JavaScript projects becomes easier as
 well. A few drawbacks of this approach are that we lose structural sharing of
 CLJS data structures (the squint lib mostly uses copy-on-write like how CLJS
-once started) and the fast equality checks you can get from structural sharing.
-Note that there is also squint's sister project,
+once started) and you lose the fast equality checks you can get from structural
+sharing.  Note that there is also squint's sister project,
 [cherry](https://github.com/squint-cljs/cherry) which, does use CLJS's immutable
 data structures, but you get a minimum of 350kb project size due to CLJS's
 standard library being bundled with it. This may or may not be worth it and may
