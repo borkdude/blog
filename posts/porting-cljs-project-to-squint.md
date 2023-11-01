@@ -71,7 +71,7 @@ scope for test.
 When running `npx squint compile` all the files in `:paths` are re-compiled,
 which is handy whe you want to distribute the project to NPM.
 
-## No-op macros
+## Stub macros
 
 In a lot of places the `js-interop` library was used to create literals, functions with JS object destructuring, etc, most of which squint already does out of the box.
 To accomodate this, I wrote a bunch of macros which basically did nothing and replaces the `j` alias with a namespace which mocks the `js-interop` library:
