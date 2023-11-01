@@ -52,6 +52,25 @@ accomodate targeting both CLJS and squint. So almost every `.cljs` file was rena
 
 The above expression checks whether we are inside NodeJS, which arguably could have been done without `goog-define` but my goal was to leave the original code as is.
 
+## Watcher
+
+To ease developing, I added a watcher to the squint compiler, which reads the `squint.edn` file in your project and then automatically compiles all `.cljs` and `.cljc` files in your project to a corresponding `.mjs` file in an `:output-dir` (the extension is configurable):
+
+`squint.edn`:
+``` clojure
+{:paths ["src-shared" "src-squint" "test"]
+ :output-dir "dist"}
+```
+
+The watcher can be started with `npx squint watch` (or `yarn squint watch` or
+`bun squint watch`).  In `src-shared` I put the files which are ported from the
+`src` directory, while `src-squint` has extra files that are specific for the
+squint port. The `src` directory contains CLJS-specific files that are not in
+scope for test.
+
+When running `npx squint compile` all the files in `:paths` are re-compiled,
+which is handy whe you want to distribute the project to NPM.
+
 ## No-op macros
 
 In a lot of places the `js-interop` library was used to create literals, functions with JS object destructuring, etc, most of which squint already does out of the box.
@@ -66,7 +85,40 @@ To accomodate this, I wrote a bunch of macros which basically did nothing and re
   #?(:squint (:require-macros [applied-science.js-interop :as j])))
 ```
 
+In squint, macros are (currently) loaded via the `:require-macros` section in a
+`ns` form. The squint compiler looks for a `.cljc` file within `:paths`, the
+loads this file using [SCI](https://github.com/babashka/sci), makes the
+transformation and the resumes compilation of the transformed form. The reason
+SCI is used is that squint doesn't know Clojure's data structures at runtime,
+but you can still use them at compile time. This model is pretty similar how
+CLJS executes macros on the JVM.
 
+The stub macros for `js-interop` look like this:
 
+``` clojure
+(ns applied-science.js-interop
+  (:refer-clojure :exclude [defn get get-in fn let select-keys assoc!]))
 
+(defmacro lit [x] x)
 
+(defmacro defn [& body]
+  `(clojure.core/defn ~@body))
+
+(defmacro get-in [& body]
+  `(clojure.core/get-in ~@body))
+
+(defmacro fn [& body]
+  `(clojure.core/fn ~@body))
+
+(defmacro let [& body]
+  `(clojure.core/let ~@body))
+
+(defmacro call-in [obj path & fs]
+  `(.. ~obj ~@(map #(symbol (str "-" %)) path) ~@(map list fs)))
+
+...
+```
+
+As you can see, most of the macros just defer to squint's default behavior. But
+a macro like `call-in`, which isn't part of squint, transforms to just raw JS
+interop.
