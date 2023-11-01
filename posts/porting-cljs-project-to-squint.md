@@ -34,7 +34,7 @@ Nextjournal which offers a Clojure mode for
 [CodeMirror](https://codemirror.net/) 6. A request was made some time ago to
 make this library usable directly from JavaScript as an NPM library. Since most
 of the code in this project is JS interop (using the excellent
-[js-interop](https://github.com/applied-science/js-interop) library it seemed
+[js-interop](https://github.com/applied-science/js-interop) library) it seemed
 like a good candidate for a squint port. In Martin Kavalar of Nextjournal's own
 words:
 
