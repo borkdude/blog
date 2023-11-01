@@ -193,11 +193,25 @@ cases. Running the squint tests in CI is now just a matter of running:
 $ node dist/nextjournal/clojure_mode_tests.mjs
 ```
 
-
 ## Truthiness
 
-Before doing the port, squint just used JS's own truthiness. This causes unexpected bugs with code like `(or (foo) 1)`.
-TODO: elaborate
+Once I got the tests running, I discovered some interesting bugs. Before doing
+the port, squint just used JS's own truthiness. This causes unexpected bugs with
+code like `(or (foo) 1)` when `foo` was a function that could return `0`. In
+JavaScript, `0` is falsey. This was by far the most important cause of bugs in
+the squint port. After experiencing this pain, I decided to adopt CLJS
+truthiness in squint, such that `(or 0 1)` returns `0`.
 
 ## Data structures as functions
+
+Another source of bugs was code like:
+
+``` clojure
+({:foo :bar} :foo)
+```
+
+In Squint, `{:foo :bar}` is just a JavaScript object and those cannot be called
+as functions (as of now). Of course, squint could be clever and just support
+literal collections in function position by emitting `(get {:foo :bar} :foo)`
+for those, but I'm not convinced 
 
