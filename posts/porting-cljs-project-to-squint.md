@@ -3,6 +3,9 @@ Date: 2023-11-01
 Tags: clojure, squint
 Description: Porting a ClojureScript project to Squint
 
+
+## Squint
+
 [Squint](https://github.com/squint-cljs/squint) is a ClojureScript syntax to JS
 compiler. I deliberately don't call it a CLJS compiler, since it has some
 differences with CLJS: all data structures in squint are just JS objects, arrays
@@ -23,7 +26,47 @@ standard library being bundled with it. This may or may not be worth it and may
 offset the drawbacks of squint for you. Let's just see how far we can get with
 just squint in porting a ClojureScript project.
 
+## Clojure-mode
+
 As a case study in this blog, we're going to look at
 [clojure-mode](https://github.com/nextjournal/clojure-mode), a project by
 Nextjournal which offers a Clojure mode for
-[CodeMirror](https://codemirror.net/) 6.
+[CodeMirror](https://codemirror.net/) 6. A request was made some time ago to
+make this library usable directly from JavaScript as an NPM library. Since most
+of the code in this project is Java interop (using the excellent
+[js-interop](https://github.com/applied-science/js-interop) library it seemed
+like a good candidate for a squint port. Martin Kavalar of Nextjournal asked me
+if I could do this in a way such that the original ClojureScript library would
+still be usable from ClojureScript as well. One of the ways to accomplish this
+is to use `.cljc` files.
+
+## Reader conditionals
+
+When porting the project, I added features and fixed bugs in squint to
+accomodate targeting both CLJS and squint. So almost every `.cljs` file was renamed to a `.cljc` file and CLJS-specific code like `goog-define` was re-implemented using a squint override:
+
+``` clojure
+#?(:squint (def node-js? (some? js/globalThis.process))
+   :cljs (goog-define node-js? false))
+```
+
+The above expression checks whether we are inside NodeJS, which arguably could have been done without `goog-define` but my goal was to leave the original code as is.
+
+## No-op macros
+
+In a lot of places the `js-interop` library was used to create literals, functions with JS object destructuring, etc, most of which squint already does out of the box.
+To accomodate this, I wrote a bunch of macros which basically did nothing and replaces the `j` alias with a namespace which mocks the `js-interop` library:
+
+``` clojure
+(ns nextjournal.clojure-mode
+  (:require ...
+            #?@(:squint []
+                :cljs [[applied-science.js-interop :as j]])
+            ...)
+  #?(:squint (:require-macros [applied-science.js-interop :as j])))
+```
+
+
+
+
+
