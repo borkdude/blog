@@ -313,5 +313,5 @@ everything is loaded directly from a CDN!
 
 It seems squint hits the sweet spot for a project like
 [clojure-mode](https://github.com/nextjournal/clojure-mode) where most of the
-code is JavaScript interop. In this blog I demonstrated to target both CLJS and
-squint with an existing library. CLJS or squint? Why not both.
+code is JavaScript interop. In this blog I demonstrated how to target both CLJS and
+squint with an existing library. CLJS or squint? Why not both!
