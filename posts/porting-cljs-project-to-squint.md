@@ -119,7 +119,7 @@ did nothing and replaces the `j` alias with a namespace which mocks the
 ```
 
 In squint, macros are (currently) loaded via the `:require-macros` section in a
-`ns` form. The squint compiler looks for a `.cljc` file within `:paths`, the
+`ns` form. The squint compiler looks for a `.cljc` file within `:paths`, then
 loads this file using [SCI](https://github.com/babashka/sci), makes the
 transformation and the resumes compilation of the transformed form. The reason
 SCI is used is that squint doesn't know Clojure's data structures at run-time,
