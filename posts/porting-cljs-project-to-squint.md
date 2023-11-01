@@ -186,7 +186,7 @@ yielding the following `ns` form in the test namespace:
 ```
 
 Note that instead of `(is (= ...))` I'm using Node's `assert.equal` which
-performans deep equality and gives nice error messages about non-equal
+performs deep equality and gives nice error messages about non-equal
 cases. Running the squint tests in CI is now just a matter of running:
 
 ``` shell
