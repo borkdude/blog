@@ -315,4 +315,4 @@ everything is loaded directly from a CDN!
 It seems squint hits the sweet spot for a project like
 [clojure-mode](https://github.com/nextjournal/clojure-mode): where most of the
 code is JavaScript interop. In this blog I demonstrated to target both CLJS and
-squint with an existing library. Why choose if you can have them both.
+squint with an existing library. CLJS or squint? Why not both.
