@@ -1,5 +1,5 @@
 Title: OSS updates October 2023
-Date: 2023-10-31
+Date: 2023-11-01
 Tags: clojure, oss updates
 Description: My Clojure OSS updates for October 2023
 

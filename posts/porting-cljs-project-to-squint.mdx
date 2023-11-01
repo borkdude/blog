@@ -1,0 +1,29 @@
+Title: Porting a ClojureScript project to Squint
+Date: 2023-11-01
+Tags: clojure, squint
+Description: Porting a ClojureScript project to Squint
+
+[Squint](https://github.com/squint-cljs/squint) is a ClojureScript syntax to JS
+compiler. I deliberately don't call it a CLJS compiler, since it has some
+differences with CLJS: all data structures in squint are just JS objects, arrays
+and iterators/generators. The standard library mimics ClojureScript in that it
+never mutates if the standard library doesn't mutate, e.g. `assoc` returns a new
+object and doesn't mutate the object argument.  This approach has a few benefits
+and of course a few drawbacks. Some of the benefits are that JS interop becomes
+considerably easier, the bundle size becomes way smaller, in some cases
+performance is better (but as always, this is very contextual) and sharing a
+library to NPM to be consumed by other JavaScript projects becomes easier as
+well. A few drawbacks of this approach are that we lose structural sharing of
+CLJS data structures (the squint lib mostly uses copy-on-write like how CLJS
+once started) and the fast equality checks you can get from structural sharing.
+Note that there is also squint's sister project,
+[cherry](https://github.com/squint-cljs/cherry) which, does use CLJS's immutable
+data structures, but you get a minimum of 350kb project size due to CLJS's
+standard library being bundled with it. This may or may not be worth it and may
+offset the drawbacks of squint for you. Let's just see how far we can get with
+just squint in porting a ClojureScript project.
+
+As a case study in this blog, we're going to look at
+[clojure-mode](https://github.com/nextjournal/clojure-mode), a project by
+Nextjournal which offers a Clojure mode for
+[CodeMirror](https://codemirror.net/) 6.
