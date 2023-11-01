@@ -50,18 +50,25 @@ accomplish this is to use `.cljc` files.
 ## Reader conditionals
 
 When porting the project, I added features and fixed bugs in squint to
-accomodate targeting both CLJS and squint. So almost every `.cljs` file was renamed to a `.cljc` file and CLJS-specific code like `goog-define` was re-implemented using a squint override:
+accomodate targeting both CLJS and squint. So almost every `.cljs` file was
+renamed to a `.cljc` file and CLJS-specific code like `goog-define` was
+re-implemented using a squint override:
 
 ``` clojure
 #?(:squint (def node-js? (some? js/globalThis.process))
    :cljs (goog-define node-js? false))
 ```
 
-The above expression checks whether we are inside NodeJS, which arguably could have been done without `goog-define` but my goal was to leave the original code as is.
+The above expression checks whether we are inside NodeJS, which arguably could
+have been done without `goog-define` but my goal was to leave the original code
+as is.
 
 ## Watcher
 
-To ease developing, I added a watcher to the squint compiler, which reads the `squint.edn` file in your project and then automatically compiles all `.cljs` and `.cljc` files in your project to a corresponding `.mjs` file in an `:output-dir` (the extension is configurable):
+To ease developing, I added a watcher to the squint compiler, which reads the
+`squint.edn` file in your project and then automatically compiles all `.cljs`
+and `.cljc` files in your project to a corresponding `.mjs` file in an
+`:output-dir` (the extension is configurable):
 
 `squint.edn`:
 ``` clojure
@@ -80,8 +87,11 @@ which is handy whe you want to distribute the project to NPM.
 
 ## Stub macros
 
-In a lot of places the `js-interop` library was used to create literals, functions with JS object destructuring, etc, most of which squint already does out of the box.
-To accomodate this, I wrote a bunch of macros which basically did nothing and replaces the `j` alias with a namespace which mocks the `js-interop` library:
+In a lot of places the `js-interop` library was used to create literals,
+functions with JS object destructuring, etc, most of which squint already does
+out of the box.  To accomodate this, I wrote a bunch of macros which basically
+did nothing and replaces the `j` alias with a namespace which mocks the
+`js-interop` library:
 
 ``` clojure
 (ns nextjournal.clojure-mode
@@ -129,3 +139,65 @@ The stub macros for `js-interop` look like this:
 As you can see, most of the macros just defer to squint's default behavior. But
 a macro like `call-in`, which isn't part of squint, transforms to just raw JS
 interop.
+
+## Tests
+
+Luckily the clojure-mode project has a lot of tests. They generally have this shape:
+
+``` clojure
+(deftest enter-and-indent
+  (are [input expected]
+      (= (apply-cmd commands/enter-and-indent input) expected)
+
+    "(|)" "(\n |)"
+    "((|))" "((\n  |))"
+    "(()|)" "(()\n |)"
+    "(a |b)" "(a\n  |b)"
+    "(a b|c)" "(a b\n  |c)"))
+```
+
+Squint does not have a testing framework. Currently my thinking is that users
+should just use Node's built-in testing framework when writing squint projects
+or whatever else people use for front-end testing. Initially I started porting the tests to top level `doseq` forms, like:
+
+``` clojure
+(doseq [[input expected]
+        (partition 2
+                   ["(|)" "(\n |)"
+                    "((|))" "((\n  |))"
+                    "(()|)" "(()\n |)"
+                    "(a |b)" "(a\n  |b)"
+                    "(a b|c)" "(a b\n  |c)"])]
+  (assert.equal (apply-cmd commands/enter-and-indent input) expected))
+```
+
+but this got old really fast since I needed to duplicate 17 tests with dozens of
+test cases each. So I wrote a really hacky macro which took the `deftest` +
+`are` forms and rewrote them to the `doseq` forms I initially wrote manually,
+yielding the following `ns` form in the test namespace:
+
+``` clojure
+(ns nextjournal.clojure-mode-tests
+  (:require #?@(:squint []
+                :cljs [[cljs.test :refer [are testing deftest]]])
+            ...
+            #?(:squint ["assert" :as assert]))
+  #?(:squint (:require-macros [nextjournal.clojure-mode-tests.macros :refer [deftest are testing]])))
+```
+
+Note that instead of `(is (= ...))` I'm using Node's `assert.equal` which
+performans deep equality and gives nice error messages about non-equal
+cases. Running the squint tests in CI is now just a matter of running:
+
+``` shell
+$ node dist/nextjournal/clojure_mode_tests.mjs
+```
+
+
+## Truthiness
+
+Before doing the port, squint just used JS's own truthiness. This causes unexpected bugs with code like `(or (foo) 1)`.
+TODO: elaborate
+
+## Data structures as functions
+
