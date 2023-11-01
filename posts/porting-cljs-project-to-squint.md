@@ -1,8 +1,7 @@
 Title: Porting a ClojureScript project to Squint
 Date: 2023-11-01
-Tags: clojure, squint
+Tags: clojure, clojurescript, squint
 Description: Porting a ClojureScript project to Squint
-
 
 ## Squint
 
