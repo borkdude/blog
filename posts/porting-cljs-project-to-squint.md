@@ -19,7 +19,7 @@ well. A few drawbacks of this approach are that we lose structural sharing of
 CLJS data structures (the squint lib mostly uses copy-on-write like how CLJS
 once started) and you lose the fast equality checks you can get from structural
 sharing.  Note that there is also squint's sister project,
-[cherry](https://github.com/squint-cljs/cherry) which, does use CLJS's immutable
+[cherry](https://github.com/squint-cljs/cherry) which does use CLJS's immutable
 data structures, but you get a minimum of 350kb project size due to CLJS's
 standard library being bundled with it and not being optimizable by ES6
 bundlers. Perhaps the extra bundle size offsets the drawbacks of squint's direct
