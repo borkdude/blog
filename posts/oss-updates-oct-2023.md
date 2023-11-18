@@ -63,7 +63,7 @@ Here are updates about the projects/libraries I've worked on last month.
 - [sci.configs](https://github.com/babashka/sci.configs): A collection of ready to be used SCI configs.
   - A configuration for [hoplon](https://github.com/hoplon/hoplon) and [javelin](https://github.com/hoplon/javelin) was added. You can play around with hoplon in a SCI-enabled environment [here](https://babashka.org/sci.configs/?gist=e83da19df3d2739861334171779f79d5)
 - [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.
-  - [#2207](https://github.com/clj-kondo/clj-kondo/issues/2207): New `:condition-always-true` linter, see [docs](doc/linters.md)
+  - [#2207](https://github.com/clj-kondo/clj-kondo/issues/2207): New `:condition-always-true` linter, see [docs](https://github.com/clj-kondo/clj-kondo/tree/master/doc/linters.md))
   - [#2013](https://github.com/clj-kondo/clj-kondo/issues/2013): Fix NPE and similar errors when linting an import with an illegal token
     <br>Published a new version (2023.10.20) with these changes:
   - [#1804](https://github.com/clj-kondo/clj-kondo/issues/1804): new linter `:self-requiring-namespace`
@@ -88,13 +88,13 @@ Here are updates about the projects/libraries I've worked on last month.
   - Support `docstring` in `def`
   - Handle multipe source `:paths` in a more robust fashion
   - [#344](https://github.com/squint-cljs/squint/issues/344): macros can't be used via aliases
-  - Add `squint.edn` support, see [docs](README.md#squintedn)
+  - Add `squint.edn` support, see [docs](https://github.com/squint-cljs/squint/tree/main/README.md#squintedn)
   - Add `watch` subcommand to watch `:paths` from `squint.edn`
   - Make generated `let` variable names in JS more deterministic, which helps hot reloading in React
-  - Added a [vite + react example project](examples/vite-react).
+  - Added a [vite + react example project](https://github.com/squint-cljs/squint/blob/main/examples/vite-react).
   - Resolve symbolic namespaces `(:require [foo.bar])` from `:paths`
   - Add `bit-and` and `bit-or`
-  - Include `lib/squint.core.umd.js` which defines a global `squint.core` object (easy to use in browsers, see [docs](README.md#compile-on-a-server-use-in-a-browser))
+  - Include `lib/squint.core.umd.js` which defines a global `squint.core` object (easy to use in browsers, see [docs](https://github.com/squint-cljs/squint/blob/main/README.md#compile-on-a-server-use-in-a-browser))
   - Add `subs`, `fn?`, `re-seq`
   - Add `squint.edn` with `:paths` to resolve macros from (via `:require-macros`)
 - [neil](https://github.com/babashka/neil): A CLI to add common aliases and features to deps.edn-based projects

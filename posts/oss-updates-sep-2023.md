@@ -63,7 +63,7 @@ Here are updates about the projects/libraries I've worked on last month.
 
 - [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.
   Published a new version (2023.09.07) with these changes:
-  - [#1332](https://github.com/clj-kondo/clj-kondo/issues/1332): New linter `:unused-alias`. See [docs](doc/linters.md).
+  - [#1332](https://github.com/clj-kondo/clj-kondo/issues/1332): New linter `:unused-alias`. See [docs](https://github.com/clj-kondo/clj-kondo/tree/master/doc/linters.md).
   - [#2143](https://github.com/clj-kondo/clj-kondo/issues/2143): false positive type warning for `clojure.set/project`
   - [#2145](https://github.com/clj-kondo/clj-kondo/issues/2145): support ignore hint on multi-arity branch of function definition
   - [#2147](https://github.com/clj-kondo/clj-kondo/issues/2147): use alternative solution as workaround for https://github.com/cognitect/transit-clj/issues/43
