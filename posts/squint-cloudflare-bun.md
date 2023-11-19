@@ -114,9 +114,9 @@ destructuring worked on the search params.
 
 Then a request is made to `https://adventofcode.com` to retrieve the input. When
 doing this from a non-browser, you don't get into any CORS issues. Note that we
-can nicely use `js-await` for waiting for promise results. A copy of the
-`Response` object was made and `"Access-Control-Allow-Origin" "*` was added to
-the headers to satisfy all the CORS ... stuff.
+can nicely use `js-await` for waiting for promise results. The text that
+`adventofcode.com` returned is passed back along with
+`"Access-Control-Allow-Origin" "*` headers to satisfy all the CORS ... stuff.
 
 I also noticed the browser playground was doing an `OPTION` request so I also
 need to handle those, returning the most permissive headers to satisfy the CORS
