@@ -102,7 +102,7 @@ out. While developing I noticed that the `URLSearchParams` object implements a
 so initially I couldn't use destructuring like this:
 
 ``` clojure
-(let [{:keys [foo]} (-> (js/URL. "https://foo.com?foo=1") :searchParams)] ...)
+(let [{:keys [foo]} (-> (js/URL. "https://foo.com?foo=1") :searchParams)] foo)
 ```
 
 to get `foo` out of this object. Similarly for the `Headers` object from
