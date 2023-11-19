@@ -19,8 +19,10 @@ A [Cloudflare worker](https://workers.cloudflare.com/) is tiny "serverless"
   free. A worker can be written in JavaScript, among other languages. Workers
   written in JavaScript can use the [Fetch
   API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) which
-  comprises `fetch`, `Request`, `Response`. Those three things are basically all
-  you need to build a worker.
+  comprises of `fetch`, `Request`, `Response` and more standardized stuff,
+  available as global objects in browsers, Node.js, deno, bun and other
+  browser-inspired JavaScript runtimes. These APIs are basically all you need to
+  build a worker.
 
 [Squint](https://github.com/squint-cljs/squint) is a ClojureScript dialect
 designed for easier JS interop and smaller bundle output. As such, it seems like
