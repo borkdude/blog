@@ -95,11 +95,11 @@ will be running at `https://hellow-world.<your-user>.workers.dev`.
 ## Proxy
 
 The final worker code can be seen below. The handler looks at an incoming
-request, whether it's a `GET` or `OPTION` request. In the handling of the `GET`
-request, the URL params `day`, `year` and `aoc-token` are pulled out. While
-developing I noticed that the `URLSearchParams` object implements a `Map`-like
-ad-hoc interface, but squint's `get` function wasn't aware of this, so initially
-I couldn't use destructuring like this:
+request, and decides whether it's a `GET` or `OPTION` request. In the handling
+of the `GET` request, the URL params `day`, `year` and `aoc-token` are pulled
+out. While developing I noticed that the `URLSearchParams` object implements a
+`Map`-like ad-hoc interface, but squint's `get` function wasn't aware of this,
+so initially I couldn't use destructuring like this:
 
 ``` clojure
 (let [{:keys [foo]} (-> (js/URL. "https://foo.com?foo=1") :searchParams)] ...)
