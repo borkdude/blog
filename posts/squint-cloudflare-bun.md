@@ -70,9 +70,14 @@ Now run `bun install squint-cljs` and then `bun squint watch`.  In parallel, run
 code and new requests will see the changes. This is very convenient for local
 development and testing.
 
-To bundle everything to a single file, run `bun build --minify --outdir=dist
-out/index.js`. Then you can run `bun dist/index.js` to prove to yourself that
-the standalone JS works.
+To bundle everything to a single file, run:
+
+``` shell
+bun build --minify --outdir=dist/out/index.js
+```
+
+Then you can run `bun dist/index.js` to prove to yourself that the standalone JS
+works.
 
 The standalone JavaScript file is somewhere around 2 kilobytes. Seriously: 2kb,
 that's it :)!
