@@ -26,7 +26,7 @@ A [Cloudflare worker](https://workers.cloudflare.com/) is tiny "serverless"
 
 [Squint](https://github.com/squint-cljs/squint) is a ClojureScript dialect
 designed for easier JS interop and smaller bundle output. As such, it seems like
-a good fit got Cloudflare workers. The smaller the code, the better the (cold)
+a good fit for Cloudflare workers. The smaller the code, the better the (cold)
 startup time.
 
 [Bun](https://bun.sh/) is a fast all-in-one JavaScript runtime / bundler /
