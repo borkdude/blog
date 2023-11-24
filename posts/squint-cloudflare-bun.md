@@ -1,6 +1,6 @@
 Title: Writing a Cloudflare worker with squint and bun
 Date: 2023-11-19
-Tags: clojure
+Tags: clojure, squint
 
 In this post I'll describe how to write a Cloudflare worker with squint and bun.
 
