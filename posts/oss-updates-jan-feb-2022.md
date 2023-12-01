@@ -82,7 +82,7 @@ Highlights:
 - See SCI improvements.
 - Bundled library updates
 
-## [Scittle](The Small Clojure Interpreter exposed for usage in browser script tags)
+## [Scittle](https://github.com/babashka/scittle) The Small Clojure Interpreter exposed for usage in browser script tags
 
 Published versions: v0.1.0 - v0.1.2.
 

@@ -115,7 +115,7 @@ Here are updates about the projects/libraries I've worked on last month.
   - Return map when `select-keys` is called with `nil`
   - nREPL server: print values through `cljs.pprint` ([@PEZ](https://github.com/PEZ))
   - Initial (incomplete!) nREPL server on Node.js: `npx squint nrepl-server :port 1888`
-  - Update/refactor [threejs](examples/threejs) example
+  - Update/refactor [threejs](https://github.com/squint-cljs/squint/examples/threejs) example
   - [#360](https://github.com/squint-cljs/squint/issues/360): `assoc-in!` should not mutate objects in the middle if they already exist
   - Evaluate `lazy-seq` body just once
   - Avoid stackoverflow with `min` and `max`
