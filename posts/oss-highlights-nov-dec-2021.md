@@ -21,7 +21,7 @@ I'd like to add that I'm also offering enterprise support for my OSS
 projects. It might be good to know there are options beyond sponsoring if your
 company needs an extra level of support for my OSS libraries. Recurring sponsors
 are eligible for a discount. Feel free to reach out via Twitter DM,
-[e-mail](michielborkent@gmail.com) or on Clojurians Slack to discuss options.
+[e-mail](mailto:michielborkent@gmail.com) or on Clojurians Slack to discuss options.
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Do you need help with <a href="https://twitter.com/hashtag/clojure?src=hash&amp;ref_src=twsrc%5Etfw">#clojure</a> <a href="https://twitter.com/hashtag/graalvm?src=hash&amp;ref_src=twsrc%5Etfw">#graalvm</a> compilation, <a href="https://twitter.com/hashtag/clojure?src=hash&amp;ref_src=twsrc%5Etfw">#clojure</a> static analysis/linting tools, or anything related to my <a href="https://twitter.com/hashtag/oss?src=hash&amp;ref_src=twsrc%5Etfw">#oss</a> projects? I&#39;m available for USD 150/hr. I also do custom license/support contracts if <a href="https://twitter.com/github?ref_src=twsrc%5Etfw">@github</a> sponsors doesn&#39;t fit your business.<a href="https://twitter.com/hashtag/cljkondo?src=hash&amp;ref_src=twsrc%5Etfw">#cljkondo</a> <a href="https://twitter.com/hashtag/babashka?src=hash&amp;ref_src=twsrc%5Etfw">#babashka</a> <a href="https://twitter.com/hashtag/sci?src=hash&amp;ref_src=twsrc%5Etfw">#sci</a></p>&mdash; (λ. borkdude) (@borkdude) <a href="https://twitter.com/borkdude/status/1475416703198707718?ref_src=twsrc%5Etfw">December 27, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
