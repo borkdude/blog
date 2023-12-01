@@ -12,7 +12,7 @@ To see previous OSS updates, go [here](https://blog.michielborkent.nl/tags/oss-u
 I'd like to thank all the sponsors and contributors that make this work
 possible! Being an OSS developer isn't always easy, especially since sponsors
 come and go over time. If you work at a company that uses my tools, it would
-mean a lot to me if you brought up the topic of open source sponsoring.
+mean a lot to me if you brought up the topic of open source sponsoring!
 
 Open the details section for more info.
 
