@@ -8,7 +8,9 @@
   {% endif %}
 </h1>
 {{body | safe}}
+{% if discuss-link %}
 <p>Discuss this post <a href="{{discuss}}">here</a>.</p>
+{% endif %}
 <p><i>Published: {{date}}</i></p>
 {% if tags %}
 <p>
@@ -16,7 +18,7 @@
   Tagged:
   {% for tag in tags %}
   <span class="tag">
-    <a href="tags/{{tag|escape-tag}}.html">{{tag}}</a>
+    <a href="tags/{{tag|escape-tag}}{{page-suffix}}">{{tag}}</a>
   </span>
   {% endfor %}
   </i>
