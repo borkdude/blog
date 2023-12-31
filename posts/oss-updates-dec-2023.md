@@ -10,7 +10,8 @@ To see previous OSS updates, go [here](https://blog.michielborkent.nl/tags/oss-u
 ## Happy new year!
 
 First all, as this is the last day of 2023, I wish you all a happy new
-year. Hopefully many goods things may happen in the Clojure ecosystem.
+year. Hopefully many goods things may happen in the Clojure ecosystem. I'm
+grateful many of you have sponsored my work in 2023!
 
 ## Sponsors
 
