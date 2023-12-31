@@ -52,16 +52,44 @@ local ~/dev and ~/dev/babashka dir (since github doesn't show all repos)
 
 Here are updates about the projects/libraries I've worked on last month.
 
+## 2023.12.15
+- [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.
+  Released 2023.12.15
+  - [#1990](https://github.com/clj-kondo/clj-kondo/issues/1990): Specify `:min-clj-kondo-version` in config.edn and warn when current version is too low ([@snasphysicist](https://github.com/snasphysicist))
+  - [#1753](https://github.com/clj-kondo/clj-kondo/issues/1753): New linter `:underscore-in-namespace` ([@cosineblast](https://github.com/cosineblast))
+  - [#2207](https://github.com/clj-kondo/clj-kondo/issues/2207): New `:condition-always-true` linter, see [docs](doc/linters.md)
+  - [#2235](https://github.com/clj-kondo/clj-kondo/issues/2235): New
+    `:multiple-async-in-deftest` linter: warn on multiple async blocks in
+    `cljs.test/deftest`, since only the first will run.
+  - [#2013](https://github.com/clj-kondo/clj-kondo/issues/2013): Fix NPE and similar errors when linting an import with an illegal token ([@cosineblast](https://github.com/cosineblast))
+  - [#2215](https://github.com/clj-kondo/clj-kondo/issues/2215): Passthrough hook should not affect linting
+  - [#2232](https://github.com/clj-kondo/clj-kondo/issues/2232): Bump analysis for clojure 1.12 (partitionv, etc)
+  - [#2223](https://github.com/clj-kondo/clj-kondo/issues/2223): Do not consider classes created with `deftype` a var that is referred with `:refer :all`
+  - [#2236](https://github.com/clj-kondo/clj-kondo/issues/2236): `:line-length` warnings cannot be `:clj-kondo/ignore`d
+  - [#2224](https://github.com/clj-kondo/clj-kondo/issues/2224): Give `#'foo/foo` and `(var foo/foo)` the same treatment with respect to private calls
+  - [#2239](https://github.com/clj-kondo/clj-kondo/issues/2239): Fix printing of unresolved var when going through `:macroexpand` hook
+
 
 - [clojure-mode](https://github.com/nextjournal/clojure-mode): Clojure/Script mode for CodeMirror 6.
   - Improved the eval-region extension: when you evaluate `#_(+ 1 2 3)|` the expression `(+ 1 2 3)` is evaluated
     Test it in the [squint playground](https://squint-cljs.github.io/squint/?repl=true&src=I18oKyAxIDIgMyk%3D).
+
+- [fs](https://github.com/babashka/fs) - File system utility library for Clojure
+  Released 0.5.20:
+  - [#119](https://github.com/babashka/fs/issues/119): `fs/delete-tree`: add `:force` flag to delete read-only directories/files. Set the flag to true in  `fs/with-temp-dir` ([@jlesquembre](https://github.com/jlesquembre))
+  - [#102](https://github.com/babashka/fs/issues/102): add `gzip` and `gunzip` functions
+  - [#113](https://github.com/babashka/fs/issues/113): `fs/glob`: enable `:hidden` (when not already set) when `pattern` starts with dot ([@eval](https://github.com/eval)).
+  - [#117](https://github.com/babashka/fs/issues/117): fix `fs/match` and `fs/glob` not finding files in root-folder ([@eval](https://github.com/eval)).
 
 - [cherry](https://github.com/squint-cljs/cherry): Experimental ClojureScript to ES6 module compiler
   - Released version 0.1.16 which adds which catches up with the latest compiler improvements in squint
 
 - [http-server](https://github.com/babashka/http-server): serve static assets
   - Released 0.1.12 with several new features
+
+- [babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting.
+  - Working towards a new release, planned for next month.
+
 
 
 - [squint](https://github.com/squint-cljs/squint): CLJS _syntax_ to JS compiler
@@ -147,41 +175,6 @@ Here are updates about the projects/libraries I've worked on last month.
   - A helper macro was improved such that you can define macros that are usable in SCI
   - The re-frame configuration now has support for `re-frame.alpha`. See [playground](https://babashka.org/sci.configs/).
 
-- [babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting.
-  A new release: 1.3.186!
-  <details>
-  - [Support self-contained binaries as uberjars!](https://github.com/babashka/babashka/wiki/Self-contained-executable#uberjar)
-  - Add `java.security.KeyFactory`, `java.security.spec.PKCS8EncodedKeySpec`, `java.net.URISyntaxException`, `javax.crypto.spec.IvParameterSpec`
-  - Fix babashka.process/exec wrt `babashka.process/*defaults*`
-  - [#1632](https://github.com/babashka/babashka/issues/1632): Partial fix for `(.readPassword (System/console))`
-  - Enable producing self-contained binaries using [uberjars](https://github.com/babashka/babashka/wiki/Self-contained-executable#uberjar)
-  - Bump httpkit to `2.8.0-beta3` (fixes GraalVM issue with virtual threads)
-  - Bump `deps.clj` and `fs`
-  - Expose `taoensso.timbre.appenders.core`
-  - nREPL: implement `ns-list` op
-  - SCI: optimize `swap!`, `deref` and `reset!` for normal atoms (rather than user-created `IAtom`s)
-  - Add test for [#1639](https://github.com/babashka/babashka/issues/1639)
-  - Upgrade to GraalVM 21.0.1
-  <br>Still unreleased:
-  - Add `java.util.ScheduledFuture`
-  - Support `Runnable` to be used without import
-  - Allow `catch` to be used as var name
-- [SCI](https://github.com/babashka/sci): Configurable Clojure/Script interpreter suitable for scripting and Clojure DSLs
-  <br>Released version 0.8.41<details>
-  - Bump edamame to 1.3.23
-  - [#889](https://github.com/babashka/sci/issues/889): allow `(def foo/foo 1)` when inside namespace `foo`
-  - [#891](https://github.com/babashka/sci/issues/891): reset file metadata on var when it's re-evaluated from other file
-  - [#893](https://github.com/babashka/sci/issues/893): expose `sci.async/eval-form` and `sci.async/eval-form+`
-  - Improve `sci.async/eval-string`, respect top-level `do` forms
-  - Add experimental new `:static-methods` option to override how static methods get evaluated.
-  - Expose `destructure`
-  - Macroexpand `(.foo bar)` form
-  - Optimize `deref`, `swap!`, `reset!` for host values
-  - Add `time` macro to core namespace
-  - [#896](https://github.com/babashka/sci/issues/896): allow `catch` to be used as var name
-- [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.
-  - New `:condition-always-true` and `:underscore-in-namespace` linters + couple of bugfixes. Release expected in December.
-
 ## Other projects
 
 These are (some of the) other projects I'm involved with but little to no activity
@@ -198,8 +191,6 @@ happened in the past month.
 - [http-client](https://github.com/babashka/http-client): babashka's http-client
 
 - [nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI
-
-- [fs](https://github.com/babashka/fs) - File system utility library for Clojure
 
 - [deps.clj](https://github.com/borkdude/deps.clj): A faithful port of the clojure CLI bash script to Clojure
 
