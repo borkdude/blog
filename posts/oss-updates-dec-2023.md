@@ -74,7 +74,7 @@ Here are updates about the projects/libraries I've worked on last month.
   - [#2239](https://github.com/clj-kondo/clj-kondo/issues/2239): Fix printing of unresolved var when going through `:macroexpand` hook
 
 - [quickblog](https://github.com/borkdude/quickblog): Light-weight static blog engine for Clojure and babashka
-  v0.3.3 and v0.3.4 released
+  v0.3.3 - v0.3.6 released
   - Fix caching in watch mode
   - [#86](https://github.com/borkdude/quickblog/issues/86): group archive page by year
   - [#85](https://github.com/borkdude/quickblog/issues/85): don't render discuss links when `:discuss-link` isn't set
@@ -103,7 +103,7 @@ Here are updates about the projects/libraries I've worked on last month.
   - [#117](https://github.com/babashka/fs/issues/117): fix `fs/match` and `fs/glob` not finding files in root-folder ([@eval](https://github.com/eval)).
 
 - [cherry](https://github.com/squint-cljs/cherry): Experimental ClojureScript to ES6 module compiler
-  - Released version 0.1.16 which adds which catches up with the latest compiler improvements in squint
+  - Released version 0.1.16 which catches up with the latest compiler improvements in squint and also adds the `clojure.set` namespace
 
 - [http-server](https://github.com/babashka/http-server): serve static assets
   - Released 0.1.12 with several new features
