@@ -61,7 +61,7 @@ Here are updates about the projects/libraries I've worked on last month.
   Released 2023.12.15
   - [#1990](https://github.com/clj-kondo/clj-kondo/issues/1990): Specify `:min-clj-kondo-version` in config.edn and warn when current version is too low ([@snasphysicist](https://github.com/snasphysicist))
   - [#1753](https://github.com/clj-kondo/clj-kondo/issues/1753): New linter `:underscore-in-namespace` ([@cosineblast](https://github.com/cosineblast))
-  - [#2207](https://github.com/clj-kondo/clj-kondo/issues/2207): New `:condition-always-true` linter, see [docs](doc/linters.md)
+  - [#2207](https://github.com/clj-kondo/clj-kondo/issues/2207): New `:condition-always-true` linter, see [docs](https://github.com/clj-kondo/clj-kondo/blob/master/doc/linters.md)
   - [#2235](https://github.com/clj-kondo/clj-kondo/issues/2235): New
     `:multiple-async-in-deftest` linter: warn on multiple async blocks in
     `cljs.test/deftest`, since only the first will run.
