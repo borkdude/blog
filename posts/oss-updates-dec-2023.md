@@ -7,12 +7,16 @@ In this post I'll give updates about open source I worked on during December 202
 
 To see previous OSS updates, go [here](https://blog.michielborkent.nl/tags/oss-updates.html).
 
+## Happy new year!
+
+First all, as this is the last day of 2023, I wish you all a happy new
+year. Hopefully many goods things may happen in the Clojure ecosystem.
+
 ## Sponsors
 
 I'd like to thank all the sponsors and contributors that make this work
-possible! Without you, the below projects would not be as mature or wouldn't
+possible. Without _you_, the below projects would not be as mature or wouldn't
 exist or be maintained at all.
-
 Open the details section for more info.
 
 <details>
@@ -52,7 +56,6 @@ local ~/dev and ~/dev/babashka dir (since github doesn't show all repos)
 
 Here are updates about the projects/libraries I've worked on last month.
 
-## 2023.12.15
 - [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.
   Released 2023.12.15
   - [#1990](https://github.com/clj-kondo/clj-kondo/issues/1990): Specify `:min-clj-kondo-version` in config.edn and warn when current version is too low ([@snasphysicist](https://github.com/snasphysicist))
@@ -69,6 +72,23 @@ Here are updates about the projects/libraries I've worked on last month.
   - [#2224](https://github.com/clj-kondo/clj-kondo/issues/2224): Give `#'foo/foo` and `(var foo/foo)` the same treatment with respect to private calls
   - [#2239](https://github.com/clj-kondo/clj-kondo/issues/2239): Fix printing of unresolved var when going through `:macroexpand` hook
 
+- [quickblog](https://github.com/borkdude/quickblog): Light-weight static blog engine for Clojure and babashka
+  v0.3.3 and v0.3.4 released
+  - Fix caching in watch mode
+  - [#86](https://github.com/borkdude/quickblog/issues/86): group archive page by year
+  - [#85](https://github.com/borkdude/quickblog/issues/85): don't render discuss links when `:discuss-link` isn't set
+  - [#84](https://github.com/borkdude/quickblog/issues/84): sort tags by post count
+  - [#80](https://github.com/borkdude/quickblog/issues/80): Generate an `about.html` when a template exists ([@elken](https://github.com/elken))
+  - [#78](https://github.com/borkdude/quickblog/issues/78): Allow configurable :page-suffix to omit `.html` from page links ([@anderseknert](https://github.com/anderseknert))
+  - [#76](https://github.com/borkdude/quickblog/pull/76): Remove livejs script tag
+    on render. ([@jmglov](https://github.com/jmglov))
+  - [#75](https://github.com/borkdude/quickblog/pull/75): Omit preview posts from
+    index. ([@jmglov](https://github.com/jmglov))
+  - Support capitalization of tags
+  - [#66](https://github.com/borkdude/quickblog/issues/66): Unambigous ordering of posts, sorting by date (descending), post title, and then file name.  ([@UnwarySage](https://github.com/UnwarySage))
+
+- [squint](https://github.com/squint-cljs/squint): CLJS _syntax_ to JS compiler
+  <br>Lots of stuff happened in December with squint! Too many to mention here, just check the [CHANGELOG.md](https://github.com/squint-cljs/squint/blob/main/CHANGELOG.md)
 
 - [clojure-mode](https://github.com/nextjournal/clojure-mode): Clojure/Script mode for CodeMirror 6.
   - Improved the eval-region extension: when you evaluate `#_(+ 1 2 3)|` the expression `(+ 1 2 3)` is evaluated
@@ -90,80 +110,16 @@ Here are updates about the projects/libraries I've worked on last month.
 - [babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting.
   - Working towards a new release, planned for next month.
 
+## Other projects
 
+These are (some of the) other projects I'm involved with but little to no activity
+happened in the past month.
 
-- [squint](https://github.com/squint-cljs/squint): CLJS _syntax_ to JS compiler
-  <br>Lots of stuff happened in November with squint! You could say that I've grown a little addicted to improving this project currently, driven by how users use it and also while developing the [playground](https://squint-cljs.github.io/squint/examples/aoc/index.html), a lot of potential improvements emerged..
-  <details>
-  - Restore backward compatibility with code that is compiled with older versions of squint
-  - Optimize various outputs for smaller size
-  - Add `js-in`
-  - Support `into` + `xform`
-  - Support `sort` on strings
-  - [#386](https://github.com/squint-cljs/squint/issues/386): allow expression in value position in map literal
-  - Improvements with respect to laziness in `mapcat` and `concat`
-  - Do not array mutate argument in `reverse`
-  - Escape JSX attribute vector value (and more)
-  - `map` + `transduce` support
-  - Fix `for` in REPL mode
-   - Throw when object is not iterable in `for`
-  - Make next lazy when input is lazy
-  - Fix playground shim (fixes issue in older versions of Safari)
-  - Add `js-mod` and `quot`
-  - [#380](https://github.com/squint-cljs/squint/issues/380): Don't emit space in between `#jsx` tags
-  - Add `re-find`
-  - Add `condp` macro
-  - Use `compare` as default compare function in `sort` (which fixes numerical sorting)
-  - Allow `assoc!` to be called on arbitrary classes (regression)
-  - Improve `get` to call `get` method when present.
-  - Allow keywords and collections to be used as functions in HOFs
-  - Make filter, etc aware of truthiness
-  - Reduce code size for truthiness checks
-  - Add `str/split-lines`
-  - Add `partition-by`
-  - Add `parse-long`
-  - Add `sort-by`
-  - Fix top level await
-  - Support multiple dimensions in `aset`
-  - Add `coercive-=` as alias for `==`
-  - Add `js-delete`
-  - Fix `min-key` and `max-key` and improve tests
-  - Add `min-key` and `max-key`
-  - Fix `defonce` in REPL-mode
-  - Fix `doseq` and `for` when binding name clashes with core var
-  - Several REPL improvements
-  - Improve [https://squint-cljs.github.io/squint/](https://squint-cljs.github.io/squint/)
-  - Allow alias name to be used as object in REPL mode
-  - Copy resources when using `squint compile` or `squint watch`
-  - Return map when `select-keys` is called with `nil`
-  - nREPL server: print values through `cljs.pprint` ([@PEZ](https://github.com/PEZ))
-  - Initial (incomplete!) nREPL server on Node.js: `npx squint nrepl-server :port 1888`
-  - Update/refactor [threejs](https://github.com/squint-cljs/squint/tree/main/examples/threejs) example
-  - [#360](https://github.com/squint-cljs/squint/issues/360): `assoc-in!` should not mutate objects in the middle if they already exist
-  - Evaluate `lazy-seq` body just once
-  - Avoid stackoverflow with `min` and `max`
-  - [#360](https://github.com/squint-cljs/squint/issues/360): fix assoc-in! with immutable objects in the middle
-  - Add `mod`, `object?`
-  - Optimize `get`
-  - Add [threejs](https://github.com/squint-cljs/squint/tree/main/examples/threejs) example
-  - [#357](https://github.com/squint-cljs/squint/issues/357): fix version in help text
-  - Fix iterating over objects
-  - Add `clojure.string`'s `triml`, `trimr`, `replace`
-  - Fix `examples/vite-react` by adding `public/index.html`
-  - Add `find`, `bounded-count`, `boolean?`, `merge-with`, `meta`, `with-meta`, `int?`, `ex-message`, `ex-cause`, `ex-info`
-  - Fix munging of reserved symbols in function arguments
-
-- [scittle-hoplon](https://jsfiddle.net/xbgj6v1q/1/): a custom scittle distribution with Hoplon. I helped developing the SCI configuration for Hoplon.
-
-- [gespensterfelder](https://squint-cljs.github.io/squint/examples/threejs/playground.html): a demo that Jack Rusher wrote using Three.js ported to squint.
-
+<details>
+<summary>Click for more details</summary>
 - [neil](https://github.com/babashka/neil): A CLI to add common aliases and features to deps.edn-based projects
-  Version 0.2.63 released which adds mvn search and some bugfixes
 
 - [CLI](https://github.com/babashka/cli): Turn Clojure functions into CLIs!
-  - Small bugfix around priority of `:exec-args` and `default`
-
-- [aoc-proxy](https://github.com/borkdude/aoc-proxy): a Cloudflare worker that can be used to fetch Advent of Code puzzle input from the browser (see [Advent of Code playground](https://squint-cljs.github.io/squint/examples/aoc/index.html))
 
 - [squint-macros](https://github.com/squint-cljs/squint-macros): a couple of
   macros that stand-in for
@@ -172,16 +128,7 @@ Here are updates about the projects/libraries I've worked on last month.
   compatible with squint and/or cherry.
 
 - [sci.configs](https://github.com/babashka/sci.configs): A collection of ready to be used SCI configs.
-  - A helper macro was improved such that you can define macros that are usable in SCI
-  - The re-frame configuration now has support for `re-frame.alpha`. See [playground](https://babashka.org/sci.configs/).
 
-## Other projects
-
-These are (some of the) other projects I'm involved with but little to no activity
-happened in the past month.
-
-<details>
-<summary>Click for more details</summary>
 - [grasp](https://github.com/borkdude/grasp): Grep Clojure code using clojure.spec regexes
 
 - [lein-clj-kondo](https://github.com/clj-kondo/lein-clj-kondo): a leiningen plugin for clj-kondo
@@ -216,7 +163,6 @@ happened in the past month.
 - [pod-babashka-buddy](https://github.com/babashka/pod-babashka-buddy): A pod around buddy core (Cryptographic Api for Clojure).
 - [gh-release-artifact](https://github.com/borkdude/gh-release-artifact): Upload artifacts to Github releases idempotently
 - [carve](https://github.com/borkdude/carve) - Remove unused Clojure vars
-- [quickblog](https://github.com/borkdude/quickblog): Light-weight static blog engine for Clojure and babashka
 - [4ever-clojure](https://github.com/oxalorg/4ever-clojure) - Pure CLJS version of 4clojure, meant to run forever!
 - [pod-babashka-lanterna](https://github.com/babashka/pod-babashka-lanterna): Interact with clojure-lanterna from babashka
 - [joyride](https://github.com/BetterThanTomorrow/joyride): VSCode CLJS scripting and REPL (via [SCI](https://github.com/babashka/sci))
