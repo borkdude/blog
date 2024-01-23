@@ -52,7 +52,7 @@ local ~/dev and ~/dev/babashka dir (since github doesn't show all repos)
 
 It is Advent of Code time of year again. You can solve puzzles in an online
 [squint](https://github.com/squint-cljs/squint) or
-[cherry](https://github.com/squint-cljs/cherry) playground [here](https://squint-cljs.github.io/squint/examples/aoc/index.html).
+[cherry](https://github.com/squint-cljs/cherry) playground [here](https://squint-cljs.github.io/squint/?src=OzsgSGVscGVyIGZ1bmN0aW9uczoKOzsgKGZldGNoLWlucHV0IHllYXIgZGF5KSAtIGdldCBBT0MgaW5wdXQKOzsgKGFwcGVuZCBzdHIpIC0gYXBwZW5kIHN0ciB0byBET00KOzsgKHNweSB4KSAtIGxvZyB4IHRvIGNvbnNvbGUgYW5kIHJldHVybiB4Cgo7OyBSZW1lbWJlciB0byB1cGRhdGUgdGhlIHllYXIgYW5kIGRheSBpbiB0aGUgZmV0Y2gtaW5wdXQgY2FsbC4KKGRlZiBpbnB1dCAoLT4%2BIChqcy1hd2FpdCAoZmV0Y2gtaW5wdXQgMjAyMiAxKSkKICAgICAgICAgICAgICNfc3B5CiAgICAgICAgICAgICBzdHIvc3BsaXQtbGluZXMKICAgICAgICAgICAgIChtYXB2IHBhcnNlLWxvbmcpKSkKCihkZWZuIHBhcnQtMQogIFtdCiAgKC0%2BPiBpbnB1dAogICAgKHBhcnRpdGlvbi1ieSBuaWw%2FKQogICAgKHRha2UtbnRoIDIpCiAgICAobWFwICMoYXBwbHkgKyAlKSkKICAgIChhcHBseSBtYXgpKSkKCihkZWZuIHBhcnQtMgogIFtdCiAgKC0%2BPiBpbnB1dAogICAgKHBhcnRpdGlvbi1ieSBuaWw%2FKQogICAgKHRha2UtbnRoIDIpCiAgICAobWFwICMoYXBwbHkgKyAlKSkKICAgIChzb3J0LWJ5IC0pCiAgICAodGFrZSAzKQogICAgKGFwcGx5ICspKSkKCih0aW1lIChwYXJ0LTEpKQojXyh0aW1lIChwYXJ0LTIpKQ%3D%3D&boilerplate=https%3A%2F%2Fgist.githubusercontent.com%2Fborkdude%2Fcf94b492d948f7f418aa81ba54f428ff%2Fraw%2Fa6e9992b079e20e21d753e8c75a7353c5908b225%2Faoc_ui.cljs&repl=true).
 
 Change the `/squint/` part of the url to `/cherry/` to switch ClojureScript
 dialect versions.
