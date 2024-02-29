@@ -13,10 +13,9 @@ I'd like to thank all the sponsors and contributors that make this work
 possible. Like you can read on [Bozhidar
 Batsov](https://metaredux.com/posts/2024/02/15/cider-community-impact.html)'s
 blog these aren't the easiest times for Open Source sponsored software. I have
-no reason to complain, but I have seen a consistent drop in sponsoring in the
-last year or so, similar to what Bozhidar describes. All the more reason to be
-thankful for those who sponsored my projects in the past and even more for those
-who keep doing so!
+no reason to complain, but I did see a similar drop in sponsoring in the last
+year. I'm thankful for those who sponsored my projects in the past and even more
+for those who keep doing so!
 
 Without _you_, the below projects would not be as mature or wouldn't
 exist or be maintained at all.
