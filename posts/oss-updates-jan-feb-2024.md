@@ -10,17 +10,28 @@ To see previous OSS updates, go [here](https://blog.michielborkent.nl/tags/oss-u
 ## Sponsors
 
 I'd like to thank all the sponsors and contributors that make this work
-possible. Without _you_, the below projects would not be as mature or wouldn't
-exist or be maintained at all. Open the details section for more info.
+possible. Like you can read on [Bozhidar
+Batsov](https://metaredux.com/posts/2024/02/15/cider-community-impact.html)'s
+blog these aren't the easiest times for Open Source sponsored software. I have
+no reason to complain, but I have seen a consistent drop in sponsoring in the
+last year or so, similar to what Bozhidar describes. All the more reason to be
+thankful for those who sponsored my projects in the past and even more for those
+who keep doing so!
 
-<details>
-<summary>Sponsor info</summary>
-Top tier sponsors:
+Without _you_, the below projects would not be as mature or wouldn't
+exist or be maintained at all.
+
+Current top tier sponsors:
 
 - [Clojurists Together](https://clojuriststogether.org/)
 - [Roam Research](https://roamresearch.com/)
 - [Nextjournal](https://nextjournal.com/)
 - [Cognitect](https://www.cognitect.com/)
+
+Open the details section for more info about sponsoring.
+
+<details>
+<summary>Sponsor info</summary>
 
 If you want to ensure that the projects I work on are sustainably maintained,
 you can sponsor this work in the following ways. Thank you!
@@ -46,20 +57,6 @@ local ~/dev and ~/dev/babashka dir (since github doesn't show all repos)
 ## Updates
 
 Here are updates about the projects/libraries I've worked on last month.
-
-- * squint / cherry
-- * babashka.json
-- * tools.bbuild / tools-deps-native
-- * edamame
-- * nbb
-- * clj-kondo
-- * http-client
-- * cli
-- babashka
-- babashka sub projects
-- process
-- * squint
-
 
 - [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.
   Released 2024.02.12
