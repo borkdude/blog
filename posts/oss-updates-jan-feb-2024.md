@@ -63,7 +63,7 @@ Here are updates about the projects/libraries I've worked on last month.
   - [#2278](https://github.com/clj-kondo/clj-kondo/issues/2278): `bigint` in CLJS is a known symbol in `extend-type`
   - [#2288](https://github.com/clj-kondo/clj-kondo/issues/2288): fix static method analysis and suppressing `:java-static-field-call` locally
   - [#2293](https://github.com/clj-kondo/clj-kondo/issues/2293): fix false positive static field call for `(Thread/interrupted)`
-  - [#2903](https://github.com/clj-kondo/clj-kondo/issues/2903): publish multi-arch Docker images (including linux aarch64)
+  - [#2093](https://github.com/clj-kondo/clj-kondo/issues/2093): publish multi-arch Docker images (including linux aarch64)
   - [#2274](https://github.com/clj-kondo/clj-kondo/issues/2274): Support clojure 1.12 new type hint notations
   - [#2260](https://github.com/clj-kondo/clj-kondo/issues/2260): calling static _field_ as function should warn, e.g. `(System/err)`
   - [#1917](https://github.com/clj-kondo/clj-kondo/issues/1917): detect string being called as function
