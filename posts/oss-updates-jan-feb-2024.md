@@ -25,7 +25,7 @@ Current top tier sponsors:
 - [Clojurists Together](https://clojuriststogether.org/)
 - [Roam Research](https://roamresearch.com/)
 - [Nextjournal](https://nextjournal.com/)
-- [Cognitect](https://www.cognitect.com/)
+- [Nubank](https://nubank.com.br)
 
 Open the details section for more info about sponsoring.
 
