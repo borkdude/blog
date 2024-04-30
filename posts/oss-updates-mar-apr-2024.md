@@ -1,9 +1,9 @@
-Title: OSS updates January and February 2024
+Title: OSS updates March and April 2024
 Date: 2024-04-30
 Tags: clojure, oss updates
 Description: My Clojure OSS updates for March and April 2024
 
-In this post I'll give updates about open source I worked on during January and February 2024.
+In this post I'll give updates about open source I worked on during March and April 2024.
 
 To see previous OSS updates, go [here](https://blog.michielborkent.nl/tags/oss-updates.html).
 
@@ -83,7 +83,7 @@ Here are updates about the projects/libraries I've worked on last month.
   - [#2278](https://github.com/clj-kondo/clj-kondo/issues/2278): `bigint` in CLJS is a known symbol in `extend-type`
   - [#2288](https://github.com/clj-kondo/clj-kondo/issues/2288): fix static method analysis and suppressing `:java-static-field-call` locally
   - [#2293](https://github.com/clj-kondo/clj-kondo/issues/2293): fix false positive static field call for `(Thread/interrupted)`
-  - [#2903](https://github.com/clj-kondo/clj-kondo/issues/2903): publish multi-arch Docker images (including linux aarch64)
+  - [#2296](https://github.com/clj-kondo/clj-kondo/issues/2296): publish multi-arch Docker images (including linux aarch64)
   - [#2295](https://github.com/clj-kondo/clj-kondo/issues/2295): lint case test symbols in list
   <br>Unreleased changed:
   - [#1035](https://github.com/clj-kondo/clj-kondo/issues/1035): Support SARIF output with `--config {:output {:format :sarif}}`
