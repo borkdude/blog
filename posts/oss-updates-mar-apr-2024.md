@@ -59,10 +59,6 @@ drwxr-xr-x@  27 borkdude  staff    864 Apr 22 14:25 scittle
 drwxr-xr-x   18 borkdude  staff    576 Apr 19 13:07 instaparse.bb
 drwxr-xr-x@  25 borkdude  staff    800 Apr 19 12:50 pod-babashka-instaparse
 drwxr-xr-x   32 borkdude  staff   1024 Apr 17 11:32 clojure-mode
-drwxr-xr-x@ 267 borkdude  staff   8544 Apr 17 11:29 homebrew-brew
-drwxr-xr-x@  47 borkdude  staff   1504 Apr 17 11:19 nbb
-drwxr-xr-x   42 borkdude  staff   1344 Apr 16 15:41 scratch
-drwxr-xr-x@  22 borkdude  staff    704 Apr 12 18:58 rewrite-edn
 -->
 
 ## Updates
@@ -82,6 +78,18 @@ Here are updates about the projects/libraries I've worked on last month.
   - Fix [#96](https://github.com/babashka/cli/issues/96): prevent false defaults from being removed/ignored
   - Fix [#91](https://github.com/babashka/cli/issues/91): keyword options and hyphen options should not mix
   - Fix [#89](https://github.com/babashka/cli/issues/89): long option never represents alias
+
+- [rewrite-edn](https://github.com/borkdude/rewrite-edn): Utility lib on top of
+  rewrite-clj with common operations to update EDN while preserving whitespace
+  and comments<br>
+  Released 0.4.8 with the following update:
+  - Add newline after adding new element to top level map with `assoc-in`
+
+- [nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI
+  - nbb bundle JS output will ignore `nbb.edn`
+  - [#351](https://github.com/babashka/nbb/issues/351): Update bun docs/example.
+  - Add `cljs.core/exists?`
+
 
 - [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.
   Released 2024.02.12
@@ -165,11 +173,6 @@ Here are updates about the projects/libraries I've worked on last month.
   - Support new `^[String]` metadata notation which desugars into `^{:param-tags [String]}`
   - Add `:map` and `:set` options to coerce map/set literals into customizable data structures, for example, an ordered collections to preserve key order.
 
-- [nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI
-  - Add `cljs.test/run-test` macro
-  - Add cljs.core/Atom
-  - Add promesa `promesify`
-
 - [http-client](https://github.com/babashka/http-client): babashka's http-client
   - [#45](https://github.com/babashka/http-client/issues/45): query param values are double encoded
 
@@ -209,9 +212,6 @@ happened in the past month.
 
 - [babashka.nrepl](https://github.com/babashka/babashka.nrepl): The nREPL server from babashka as a library, so it can be used from other SCI-based CLIs
 
-- [rewrite-edn](https://github.com/borkdude/rewrite-edn): Utility lib on top of
-  rewrite-clj with common operations to update EDN while preserving whitespace
-  and comments
 - [jet](https://github.com/borkdude/jet): CLI to transform between JSON, EDN, YAML and Transit using Clojure
 - [quickdoc](https://github.com/borkdude/quickdoc): Quick and minimal API doc generation for Clojure
 - [pod-babashka-go-sqlite3](https://github.com/babashka/pod-babashka-go-sqlite3): A babashka pod for interacting with sqlite3
