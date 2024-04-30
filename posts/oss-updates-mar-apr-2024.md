@@ -48,16 +48,6 @@ drwxr-xr-x@  79 borkdude  staff   2528 Apr 28 16:32 babashka
 drwxr-xr-x   22 borkdude  staff    704 Apr 26 16:19 bbin
 drwxr-xr-x   14 borkdude  staff    448 Apr 25 18:38 vite-plugin-squint
 drwxr-xr-x  432 borkdude  staff  13824 Apr 25 16:16 squint
-drwxr-xr-x   21 borkdude  staff    672 Apr 24 19:27 http-client
-drwxr-xr-x   17 borkdude  staff    544 Apr 23 17:04 clerk-table-stats
-drwxr-xr-x   55 borkdude  staff   1760 Apr 23 14:56 ductile
-drwxr-xr-x   44 borkdude  staff   1408 Apr 23 11:14 clerk
-drwxr-xr-x  192 borkdude  staff   6144 Apr 23 11:09 .
-drwxr-xr-x  103 borkdude  wheel   3296 Apr 22 16:25 cherry
-drwxr-xr-x@  56 borkdude  staff   1792 Apr 22 15:36 clj-kondo
-drwxr-xr-x@  27 borkdude  staff    864 Apr 22 14:25 scittle
-drwxr-xr-x   18 borkdude  staff    576 Apr 19 13:07 instaparse.bb
-drwxr-xr-x@  25 borkdude  staff    800 Apr 19 12:50 pod-babashka-instaparse
 -->
 
 ## Updates
@@ -93,41 +83,64 @@ Here are updates about the projects/libraries I've worked on last month.
   - Fix [#49](https://github.com/nextjournal/clojure-mode/issues/49): bug with hitting backspace after line comment
     Test it in the [squint playground](https://squint-cljs.github.io/squint/?repl=true&src=I18oKyAxIDIgMyk%3D).
 
-- [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.
-  Released 2024.02.12
+- [instaparse-bb](https://github.com/babashka/instaparse-bb): Use instaparse from babashka
+  - Serialize regexes in parse results
+
+- [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI<br>
+  Released v0.6.17
+  - [#77](https://github.com/babashka/babashka/issues/77): make dependency on browser (`js/document`) optional so scittle can run in webworkers, Node.js, etc.
+  - [#69](https://github.com/babashka/babashka/issues/69): executing script tag with src + whitespace doesn't work
+  - [#72](https://github.com/babashka/babashka/issues/72): add clojure 1.11 functions like `update-vals`
+  - [#75](https://github.com/babashka/babashka/issues/75): Support reader conditionals in source code
+
+
+- [cherry](https://github.com/squint-cljs/cherry): Experimental ClojureScript to ES6 module compiler
+  - [#127](https://github.com/squint-cljs/cherry/issues/127): fix duplicate `cherry-cljs` property in `package.json` which caused issues with some bundlers
+  - Bump squint common compiler code
+
+- [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.<br>
+  Released 2024.03.13
+  - Fix memory usage regression introduced in 2024.03.05
+  - [#2299](https://github.com/clj-kondo/clj-kondo/issues/2299): Add documentation for `:java-static-field-call`.
+  - [#1732](https://github.com/clj-kondo/clj-kondo/issues/1732): new linter: `:shadowed-fn-param` which warns on using the same parameter name twice, as in `(fn [x x])`
   - [#2276](https://github.com/clj-kondo/clj-kondo/issues/2276): New Clojure 1.12 array notation (`String*`) may occur outside of metadata
   - [#2278](https://github.com/clj-kondo/clj-kondo/issues/2278): `bigint` in CLJS is a known symbol in `extend-type`
   - [#2288](https://github.com/clj-kondo/clj-kondo/issues/2288): fix static method analysis and suppressing `:java-static-field-call` locally
   - [#2293](https://github.com/clj-kondo/clj-kondo/issues/2293): fix false positive static field call for `(Thread/interrupted)`
-  - [#2093](https://github.com/clj-kondo/clj-kondo/issues/2093): publish multi-arch Docker images (including linux aarch64)
-  - [#2274](https://github.com/clj-kondo/clj-kondo/issues/2274): Support clojure 1.12 new type hint notations
-  - [#2260](https://github.com/clj-kondo/clj-kondo/issues/2260): calling static _field_ as function should warn, e.g. `(System/err)`
-  - [#1917](https://github.com/clj-kondo/clj-kondo/issues/1917): detect string being called as function
-  - [#1923](https://github.com/clj-kondo/clj-kondo/issues/1923): Lint invalid fn name
-  - [#2256](https://github.com/clj-kondo/clj-kondo/issues/2256): enable `assert` in hooks
-  - [#2253](https://github.com/clj-kondo/clj-kondo/issues/2253): add support for `datomic-type-extensions` to datalog syntax checking
-  - [#2255](https://github.com/clj-kondo/clj-kondo/issues/2255): support `:exclude-files` in combination with linting from stdin + provided `--filename` argument
-  - [#2246](https://github.com/clj-kondo/clj-kondo/issues/2246): preserve metadata on symbol when going through `:macroexpand` hook
-  - [#2254](https://github.com/clj-kondo/clj-kondo/issues/2254): lint files in absence of config dir
-  - [#2251](https://github.com/clj-kondo/clj-kondo/issues/2251): support suppressing `:unused-value` using `:config-in-call`
-  - [#2266](https://github.com/clj-kondo/clj-kondo/issues/2266): suppress `:not-a-function` linter in reader tag
-  - [#2259](https://github.com/clj-kondo/clj-kondo/issues/2259): `ns-map` unmaps var defined prior in namespace
-  - [#2272](https://github.com/clj-kondo/clj-kondo/issues/2272): Report var usage in `if`/`when` condition as always truthy, e.g. `(when #'some-var 1)`
+  - [#2903](https://github.com/clj-kondo/clj-kondo/issues/2903): publish multi-arch Docker images (including linux aarch64)
+  - [#2295](https://github.com/clj-kondo/clj-kondo/issues/2295): lint case test symbols in list
+  <br>Unreleased changed:
+  - [#1035](https://github.com/clj-kondo/clj-kondo/issues/1035): Support SARIF output with `--config {:output {:format :sarif}}`
+  - [#2309](https://github.com/clj-kondo/clj-kondo/issues/2309): report unused for expression
+  - [#2135](https://github.com/clj-kondo/clj-kondo/issues/2135): fix regression with unused JavaScript namespace
+  - [#2302](https://github.com/clj-kondo/clj-kondo/issues/2302): New linter: `:equals-expected-position` to enforce expected value to be in first (or last) position. See [docs](https://github.com/clj-kondo/clj-kondo/blob/master/doc/linters.md)
+  - [#2304](https://github.com/clj-kondo/clj-kondo/issues/2304): Report unused value in `defn` body
+
+- [clerk](https://github.com/nextjournal/clerk)
+  - [#646](https://github.com/nextjournal/clerk/issues/646) Fix parsing + location issue which fixes compatibility with honey.sql
+
+- [http-client](https://github.com/babashka/http-client): babashka's http-client<br>
+  Released 0.4.17-19
+  - [#55](https://github.com/babashka/http-client/issues/55): allow `:body` be `java.net.http.HttpRequest$BodyPublisher`
+  - Support a Clojure function as `:client` option, mostly useful for testing
+  - [#49](https://github.com/babashka/http-client/issues/49): add `::oauth-token` interceptor
+  - [#52](https://github.com/babashka/http-client/issues/52): document `:throw` option
+
 
 - [squint](https://github.com/squint-cljs/squint): CLJS _syntax_ to JS compiler
-  - [#472](https://github.com/squint-cljs/squint/issues/472): Use consistent alias
-  - [#474](https://github.com/squint-cljs/squint/issues/474): fix JSX fragment
-  - [#475](https://github.com/squint-cljs/squint/issues/475): don't crash watcher on deleting file
-  - Add `simple-benchmark`
-  - [#468](https://github.com/squint-cljs/squint/issues/468): Keywords in JSX should render with hyphens
-  - [#466](https://github.com/squint-cljs/squint/issues/466): Fix `doseq` expression with `set!` in function return position
-  - [#462](https://github.com/squint-cljs/squint/issues/462): Add `"exports"` field to `package.json`
-  - [#460](https://github.com/squint-cljs/squint/issues/460): escape `<` and `>` in JSX strings
-  - [#458](https://github.com/squint-cljs/squint/issues/458): don't emit `null` in statement position
-  - [#455](https://github.com/squint-cljs/squint/issues/455): don't export non-public vars
-  - Fix infix operator in return position
-  - Allow playground to use JSX in non-REPL mode
-  - Add transducer arity to all existing core functions
+  - [#509](https://github.com/squint-cljs/squint/issues/509): Optimization: use arrow fn for implicit IIFE when possible
+  - Optimization: emit `const` in let expressions, which esbuild optimizes better
+  - Don't wrap arrow function in parens, see [this issue](https://github.com/squint-cljs/vite-plugin-squint/pull/12)
+  - Fix [#499](https://github.com/squint-cljs/squint/issues/499): add support for emitting arrow functions with `^:=>` metadata
+  - Fix [#505](https://github.com/squint-cljs/squint/issues/505): Support `:rename` in `:require`
+  - Fix [#490](https://github.com/squint-cljs/squint/issues/490): render css maps in html mode
+  - Fix [#502](https://github.com/squint-cljs/squint/issues/502): allow method names in `defclass` to override squint built-ins
+  - Fix [#496](https://github.com/squint-cljs/squint/issues/496): don't wrap strings in another set of quotes
+  - Fix rendering of attribute expressions in HTML (should be wrapped in quotes)
+  - Compile destructured function args to JS destructuring when annotated with `^:js`. This benefits working with vitest and playwright.
+  - [#481](https://github.com/squint-cljs/squint/issues/481): BREAKING, squint no longer automatically copies all non-compiled files to the `:output-dir`. This behavior is now explicit with `:copy-resources`, see docs.
+  - Add new `#html` reader for producing HTML literals using hiccup. See [docs](https://github.com/squint-cljs/squint?tab=readme-ov-file#html) and [playground example](https://squint-cljs.github.io/squint/?src=KG5zIG15ZWxlbWVudAogICg6cmVxdWlyZSBbc3F1aW50LmNvcmUgOnJlZmVyIFtkZWZjbGFzcyBqcy10ZW1wbGF0ZV1dCiAgIFsiaHR0cHM6Ly9lc20uc2gvbGl0IiA6YXMgbGl0XSkpCgooZGVmY2xhc3MgTXlFbGVtZW50CiAgKGV4dGVuZHMgbGl0L0xpdEVsZW1lbnQpCiAgKGZpZWxkIG5hbWUgIldvcmxkIikKICAoZmllbGQgY291bnQgMCkKCiAgKGNvbnN0cnVjdG9yIFtfXQogICAgKHN1cGVyKSkKCiAgT2JqZWN0CiAgKHJlbmRlciBbdGhpc10KICAgICNodG1sIF5saXQvaHRtbAogICAgWzpkaXYKICAgICBbOmgxIG5hbWVdCiAgICAgWzpidXR0b24geyJAY2xpY2siICguLW9uQ2xpY2sgdGhpcykKICAgICAgICAgICAgICAgOnBhcnQgImJ1dHRvbiJ9CiAgICAgICJDbGljayBjb3VudCAiIGNvdW50XV0pCgogIChvbkNsaWNrIFt0aGlzXQogICAgKHNldCEgY291bnQgKGluYyBjb3VudCkpCiAgICAoLmRpc3BhdGNoRXZlbnQgdGhpcyAobmV3IGpzL0N1c3RvbUV2ZW50ICJjb3VudC1jaGFuZ2VkIikpKSkKCihzZXQhICguLXByb3BlcnRpZXMgTXlFbGVtZW50KSAjanMgeyJjb3VudCIgI2pzIHt9fSkKCihqcy93aW5kb3cuY3VzdG9tRWxlbWVudHMuZGVmaW5lICJteS1lbGVtZW50IiBNeUVsZW1lbnQpCgooZGVmIGFwcCAob3IgKGpzL2RvY3VtZW50LnF1ZXJ5U2VsZWN0b3IgIiNhcHAiKQogICAgICAgICAgIChkb3RvIChqcy9kb2N1bWVudC5jcmVhdGVFbGVtZW50ICJkaXYiKQogICAgICAgICAgICAgKHNldCEgLWlkICJhcHAiKQogICAgICAgICAgICAgKGpzL2RvY3VtZW50LmJvZHkucHJlcGVuZCkpKSkKCihzZXQhICguLWlubmVySFRNTCBhcHApICNodG1sIFs6bXktZWxlbWVudF0p).
+  - [#483](https://github.com/squint-cljs/squint/issues/483): Fix operator precedence problem
 
 - [babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting.
   Two releases in the past two months with the following changes:
@@ -175,9 +188,6 @@ Here are updates about the projects/libraries I've worked on last month.
   - Support new `^[String]` metadata notation which desugars into `^{:param-tags [String]}`
   - Add `:map` and `:set` options to coerce map/set literals into customizable data structures, for example, an ordered collections to preserve key order.
 
-- [http-client](https://github.com/babashka/http-client): babashka's http-client
-  - [#45](https://github.com/babashka/http-client/issues/45): query param values are double encoded
-
 - [SCI](https://github.com/babashka/sci): Configurable Clojure/Script interpreter suitable for scripting and Clojure DSLs
   - Bump edamame
   - Add `hash-ordered-coll`
@@ -191,8 +201,6 @@ happened in the past month.
 <details>
 <summary>Click for more details</summary>
 - [http-server](https://github.com/babashka/http-server): serve static assets
-
-- [cherry](https://github.com/squint-cljs/cherry): Experimental ClojureScript to ES6 module compiler
 
 - [fs](https://github.com/babashka/fs) - File system utility library for Clojure
 
@@ -219,11 +227,9 @@ happened in the past month.
 - [pod-babashka-go-sqlite3](https://github.com/babashka/pod-babashka-go-sqlite3): A babashka pod for interacting with sqlite3
 - [pod-babashka-fswatcher](https://github.com/babashka/pod-babashka-fswatcher): babashka filewatcher pod
 - [lein2deps](https://github.com/borkdude/lein2deps): leiningen to deps.edn converter
-- [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
 - [sql pods](https://github.com/babashka/babashka-sql-pods): babashka pods for SQL databases
 - [cljs-showcase](https://github.com/borkdude/cljs-showcase): Showcase CLJS libs using SCI
 - [babashka.book](https://github.com/babashka/book): Babashka manual
-- [instaparse-bb](https://github.com/babashka/instaparse-bb)
 - [rewrite-clj](https://github.com/clj-commons/rewrite-clj): Rewrite Clojure code and edn
 - [pod-babashka-buddy](https://github.com/babashka/pod-babashka-buddy): A pod around buddy core (Cryptographic Api for Clojure).
 - [gh-release-artifact](https://github.com/borkdude/gh-release-artifact): Upload artifacts to Github releases idempotently
