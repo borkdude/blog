@@ -58,7 +58,6 @@ drwxr-xr-x@  56 borkdude  staff   1792 Apr 22 15:36 clj-kondo
 drwxr-xr-x@  27 borkdude  staff    864 Apr 22 14:25 scittle
 drwxr-xr-x   18 borkdude  staff    576 Apr 19 13:07 instaparse.bb
 drwxr-xr-x@  25 borkdude  staff    800 Apr 19 12:50 pod-babashka-instaparse
-drwxr-xr-x   32 borkdude  staff   1024 Apr 17 11:32 clojure-mode
 -->
 
 ## Updates
@@ -90,6 +89,9 @@ Here are updates about the projects/libraries I've worked on last month.
   - [#351](https://github.com/babashka/nbb/issues/351): Update bun docs/example.
   - Add `cljs.core/exists?`
 
+- [clojure-mode](https://github.com/nextjournal/clojure-mode): Clojure/Script mode for CodeMirror 6.
+  - Fix [#49](https://github.com/nextjournal/clojure-mode/issues/49): bug with hitting backspace after line comment
+    Test it in the [squint playground](https://squint-cljs.github.io/squint/?repl=true&src=I18oKyAxIDIgMyk%3D).
 
 - [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.
   Released 2024.02.12
