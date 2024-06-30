@@ -51,6 +51,9 @@ drwxr-xr-x@  79 borkdude  staff   2528 Apr 28 16:32 babashka
 
 Here are updates about the projects/libraries I've worked on last month.
 
+- [html](https://github.com/borkdude/html): Html generation library inspired by squint's html tag
+  - A **NEW** library for html generation that is both safe, performant, generates easy to understand code and works the same across CLJ and CLJS.
+
 - [babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting.
   Released v1.3.191 with the following changes:<br>
   - Fix [#1688](https://github.com/babashka/babashka/issues/1688): `use-fixtures` should add metadata to `*ns*`
@@ -70,6 +73,24 @@ Here are updates about the projects/libraries I've worked on last month.
   - Bump `babashka/fs`
   - Bump `org.babashka/http-client` to `0.4.18`
 
+- [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.<br>
+  - Fix [#2335](https://github.com/clj-kondo/clj-kondo/issues/2335): read causes side effect, thus not an unused value
+  - Fix [#2336](https://github.com/clj-kondo/clj-kondo/issues/2336): `do` and `doto` type checking ([@yuhan0](https://github.com/yuhan0))
+  - Fix [#2322](https://github.com/clj-kondo/clj-kondo/issues/2322): report locations for more reader errors ([@yuhan0](https://github.com/yuhan0))
+  - Imports were copied to `.clj-kondo/imports` but weren't pick up correctly. Thanks [@frenchy64](https://github.com/frenchy64) for reporting the bug.
+  - [#2333](https://github.com/clj-kondo/clj-kondo/issues/2333): Add location to invalid literal syntax errors
+  - [#2323](https://github.com/clj-kondo/clj-kondo/issues/2323): New linter `:redundant-str-call` which detects unnecessary `str` calls. Off by default.
+  - [#2302](https://github.com/clj-kondo/clj-kondo/issues/2302): New linter: `:equals-expected-position` to enforce expected value to be in first (or last) position. See [docs](https://github.com/clj-kondo/clj-kondo/blob/master/doc/linters.md)
+  - [#1035](https://github.com/clj-kondo/clj-kondo/issues/1035): Support SARIF output with `--config {:output {:format :sarif}}`
+  - [#2307](https://github.com/clj-kondo/clj-kondo/issues/2307): import configs to intermediate dir
+  - [#2309](https://github.com/clj-kondo/clj-kondo/issues/2309): Report unused `for` expression
+  - [#2315](https://github.com/clj-kondo/clj-kondo/issues/2315): Fix regression with unused JavaScript namespace
+  - [#2304](https://github.com/clj-kondo/clj-kondo/issues/2304): Report unused value in `defn` body
+  - [#2227](https://github.com/clj-kondo/clj-kondo/issues/2227): Allow `:flds` to be used in keys destructuring for ClojureDart
+  - [#2316](https://github.com/clj-kondo/clj-kondo/issues/2316): Handle ignore hint on protocol method
+  - [#2322](https://github.com/clj-kondo/clj-kondo/issues/2322): Add location to warning about invalid unicode character
+  - [#2319](https://github.com/clj-kondo/clj-kondo/issues/2319): Support `:discouraged-var` on global JS values, like `js/fetch`
+
 - [squint](https://github.com/squint-cljs/squint): CLJS _syntax_ to JS compiler
   - [#536](https://github.com/squint-cljs/squint/issues/536): HTML is not escaped in dynamic expression
   - [#537](https://github.com/squint-cljs/squint/issues/537): Fix `not`: wrap argument in parens
@@ -83,8 +104,13 @@ Here are updates about the projects/libraries I've worked on last month.
   - [#517](https://github.com/squint-cljs/squint/issues/517): Fix re-definition of class with `defclass` in REPL
   - [#522](https://github.com/squint-cljs/squint/issues/522): fix `nil` `#html` rendering issue
 
-- [html](https://github.com/borkdude/html): Html generation library inspired by squint's html tag
-  - A NEW library for html generation that is both safe, performant, generates easy to understand code and works the same across CLJ and CLJS.
+- [neil](https://github.com/babashka/neil): A CLI to add common aliases and features to deps.edn-based projects.<br>
+  Released version 0.3.65 with the following changes:
+  - [#209](https://github.com/babashka/neil/issues/209): add newlines between dependencies
+  - [#185](https://github.com/babashka/neil/issues/185): throw on non-existing library
+  - Bump `babashka.cli`
+  - Fetch latest stable `slipset/deps-deploy`, instead of hard-coding ([@vedang](https://github.com/vedang))
+  - Several emacs package improvements ([@agzam](https://github.com/agzam))
 
 - [cherry](https://github.com/squint-cljs/cherry): Experimental ClojureScript to ES6 module compiler
   - Fix [#130](https://github.com/squint-cljs/cherry/issues/130): fix predefined `:aliases` for cherry.embed
@@ -105,32 +131,6 @@ Here are updates about the projects/libraries I've worked on last month.
 
 - [deps.clj](https://github.com/borkdude/deps.clj): A faithful port of the clojure CLI bash script to Clojure
   - Upgrade/sync with clojure CLI v1.11.3.1463
-
-- [neil](https://github.com/babashka/neil): A CLI to add common aliases and features to deps.edn-based projects.<br>
-  Released version 0.3.65 with the following changes:
-  - [#209](https://github.com/babashka/neil/issues/209): add newlines between dependencies
-  - [#185](https://github.com/babashka/neil/issues/185): throw on non-existing library
-  - Bump `babashka.cli`
-  - Fetch latest stable `slipset/deps-deploy`, instead of hard-coding ([@vedang](https://github.com/vedang))
-  - Several emacs package improvements ([@agzam](https://github.com/agzam))
-
-- [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.<br>
-  - Fix [#2335](https://github.com/clj-kondo/clj-kondo/issues/2335): read causes side effect, thus not an unused value
-  - Fix [#2336](https://github.com/clj-kondo/clj-kondo/issues/2336): `do` and `doto` type checking ([@yuhan0](https://github.com/yuhan0))
-  - Fix [#2322](https://github.com/clj-kondo/clj-kondo/issues/2322): report locations for more reader errors ([@yuhan0](https://github.com/yuhan0))
-  - Imports were copied to `.clj-kondo/imports` but weren't pick up correctly. Thanks [@frenchy64](https://github.com/frenchy64) for reporting the bug.
-  - [#2333](https://github.com/clj-kondo/clj-kondo/issues/2333): Add location to invalid literal syntax errors
-  - [#2323](https://github.com/clj-kondo/clj-kondo/issues/2323): New linter `:redundant-str-call` which detects unnecessary `str` calls. Off by default.
-  - [#2302](https://github.com/clj-kondo/clj-kondo/issues/2302): New linter: `:equals-expected-position` to enforce expected value to be in first (or last) position. See [docs](https://github.com/clj-kondo/clj-kondo/blob/master/doc/linters.md)
-  - [#1035](https://github.com/clj-kondo/clj-kondo/issues/1035): Support SARIF output with `--config {:output {:format :sarif}}`
-  - [#2307](https://github.com/clj-kondo/clj-kondo/issues/2307): import configs to intermediate dir
-  - [#2309](https://github.com/clj-kondo/clj-kondo/issues/2309): Report unused `for` expression
-  - [#2315](https://github.com/clj-kondo/clj-kondo/issues/2315): Fix regression with unused JavaScript namespace
-  - [#2304](https://github.com/clj-kondo/clj-kondo/issues/2304): Report unused value in `defn` body
-  - [#2227](https://github.com/clj-kondo/clj-kondo/issues/2227): Allow `:flds` to be used in keys destructuring for ClojureDart
-  - [#2316](https://github.com/clj-kondo/clj-kondo/issues/2316): Handle ignore hint on protocol method
-  - [#2322](https://github.com/clj-kondo/clj-kondo/issues/2322): Add location to warning about invalid unicode character
-  - [#2319](https://github.com/clj-kondo/clj-kondo/issues/2319): Support `:discouraged-var` on global JS values, like `js/fetch`
 
 ## Other projects
 
