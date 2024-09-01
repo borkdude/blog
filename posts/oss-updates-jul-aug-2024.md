@@ -51,16 +51,36 @@ drwxr-xr-x@  79 borkdude  staff   2528 Apr 28 16:32 babashka
 
 Here are updates about the projects/libraries I've worked on last month.
 
-drwxr-xr-x@  56 borkdude  staff   1792 29 aug 17:42 clj-kondo
-drwxr-xr-x  432 borkdude  staff  13824 29 aug 12:05 squint
-drwxr-xr-x   43 borkdude  staff   1376 28 aug 19:12 clerk
-drwxr-xr-x   12 borkdude  staff    384 28 aug 11:43 sci.nrepl
-drwxr-xr-x  193 borkdude  staff   6176 27 aug 17:12 .
-drwxr-xr-x   23 borkdude  staff    736 27 aug 12:09 http-client
-drwxr-xr-x@  32 borkdude  staff   1024 27 aug 11:42 edamame
-drwxr-xr-x@  47 borkdude  staff   1504 23 aug 20:36 nbb
-drwxr-xr-x   13 borkdude  staff    416 23 aug 18:27 tools
-drwxr-xr-x@  79 borkdude  staff   2528 22 aug 20:23 babashka
+- [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.<br>
+  - Unreleased:
+  - [#2386](https://github.com/clj-kondo/clj-kondo/issues/2386): fix regression introduced in [#2364](https://github.com/clj-kondo/clj-kondo/issues/2364) in `letfn` (unreleased)
+  - v2024.08.29:
+  - [#2303](https://github.com/clj-kondo/clj-kondo/issues/2303): Support array class notation of Clojure 1.12 (`byte/1`)
+  - [#916](https://github.com/clj-kondo/clj-kondo/issues/916): New linter: `:destructured-or-binding-of-same-map` which warns about
+    `:or` defaults referring to bindings of same map, which is undefined and may result in broken
+    behavior
+  - [#2362](https://github.com/clj-kondo/clj-kondo/issues/2362): turn min-version warning into lint warning
+  - [#1603](https://github.com/clj-kondo/clj-kondo/issues/1603): Support Java classes in `:analyze-call` hook
+  - [#2369](https://github.com/clj-kondo/clj-kondo/issues/2369): false positive unused value in quoted list
+  - [#2374](https://github.com/clj-kondo/clj-kondo/issues/2374): Detect misplaced return Schemas ([@frenchy64](https://github.com/frenchy64))
+  - [#2364](https://github.com/clj-kondo/clj-kondo/issues/2364): performance: code that analyzed fn arity is ran twice
+  - [#2355](https://github.com/clj-kondo/clj-kondo/issues/2355): support `:as-alias` with current namespace without warning about self-requiring namespace
+  - v2024.08.01:
+  - [#2359](https://github.com/clj-kondo/clj-kondo/issues/2359): `@x` should warn with type error about `x` not being an IDeref, e.g. with `@inc`
+  - [#2345](https://github.com/clj-kondo/clj-kondo/issues/2345): Fix SARIF output and some enhancements ([@nxvipin](https://github.com/nxvipin))
+  - [#2335](https://github.com/clj-kondo/clj-kondo/issues/2335): read causes side effect, thus not an unused value
+  - [#2336](https://github.com/clj-kondo/clj-kondo/issues/2336): `do` and `doto` type checking ([@yuhan0](https://github.com/yuhan0))
+  - [#2322](https://github.com/clj-kondo/clj-kondo/issues/2322): report locations for more reader errors ([@yuhan0](https://github.com/yuhan0))
+  - [#2342](https://github.com/clj-kondo/clj-kondo/issues/2342): report unused maps, vectors, sets, regexes, functions as `:unused-value`
+  - [#2352](https://github.com/clj-kondo/clj-kondo/issues/2352): type mismatch error for `or` without arguments
+  - [#2344](https://github.com/clj-kondo/clj-kondo/issues/2344): copying configs and linting dependencies can now be done in one go with `--dependencies --copy-configs`
+  - [#2357](https://github.com/clj-kondo/clj-kondo/issues/2357): `:discouraged-namespace` can have `:level` per namespace
+
+- [babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting.
+  - Mostly bumped library dependencies and improvements in SCI
+
+- [edamame](https://github.com/borkdude/edamame): Configurable EDN/Clojure parser with location metadata
+  - Support new Clojure 1.12 array notation
 
 - [SCI](https://github.com/babashka/sci): Configurable Clojure/Script interpreter suitable for scripting and Clojure DSLs
   - Fix [#923](https://github.com/babashka/sci/issues/923): check for duplicate keys in dynamic set or map literals
@@ -68,6 +88,10 @@ drwxr-xr-x@  79 borkdude  staff   2528 22 aug 20:23 babashka
 
 - [cherry](https://github.com/squint-cljs/cherry): Experimental ClojureScript to ES6 module compiler
   - [#135](https://github.com/squint-cljs/cherry/issues/135): Fix UMD build
+
+- [nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI
+  - Bump org.babashka/cli
+  - Bump SCI
 
 - [quickdoc](https://github.com/borkdude/quickdoc): Quick and minimal API doc generation for Clojure
   - Fix [#39](https://github.com/borkdude/quickdoc/issues/39): fix link when var is named multiple times in docstring
@@ -86,77 +110,22 @@ drwxr-xr-x@  79 borkdude  staff   2528 22 aug 20:23 babashka
 - [fs](https://github.com/babashka/fs) - File system utility library for Clojure
   - [#132](https://github.com/babashka/fs/issues/132): add `read-link` to resolve symbolic link, without target of link needing to exist
 
-- [html](https://github.com/borkdude/html): Html generation library inspired by squint's html tag
-  - A **NEW** library for html generation that is both safe, performant, generates easy to understand code and works the same across CLJ and CLJS.
+- [tools](https://github.com/borkdude/tools): a set of [bbin](https://github.com/babashka/bbin/) installable scripts
+  - Updated antq
+  - Added `--minimize` option to the ddiff script
 
-- [babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting.
-  Released v1.3.191 with the following changes:<br>
-  - Fix [#1688](https://github.com/babashka/babashka/issues/1688): `use-fixtures` should add metadata to `*ns*`
-  - Fix [#1692](https://github.com/babashka/babashka/issues/1692): Add support for `ITransientSet` and `org.flatland/ordered-set`
-  - Bump org.flatland/ordered to `1.15.12`.
-  - Partially Fix [#1695](https://github.com/babashka/babashka/issues/1695): `--repl` arg handling should consume only one arg (itself) ([@bobisageek](https://github.com/bobisageek))
-  - Partially Fix [#1695](https://github.com/babashka/babashka/issues/1695): make `*command-line-args*` value available in the REPL ([@bobisageek](https://github.com/bobisageek))
-  - Fix [#1686](https://github.com/babashka/babashka/issues/1686): do not fetch dependencies/invoke java for `version`, `help`, and `describe` options ([@bobisageek](https://github.com/bobisageek))
-  - [#1696](https://github.com/babashka/babashka/issues/1696): add `clojure.lang.DynamicClassLoader` constructors ([@bobisageek](https://github.com/bobisageek))
-  - [#1696](https://github.com/babashka/babashka/issues/1696): add `clojure.core/*source-path*` (points to the same sci var as `*file*`) ([@bobisageek](https://github.com/bobisageek))
-  - [#1696](https://github.com/babashka/babashka/issues/1696): add `clojure.main/with-read-known` ([@bobisageek](https://github.com/bobisageek))
-  - [#1696](https://github.com/babashka/babashka/issues/1696): add `clojure.core.server/repl-read` ([@bobisageek](https://github.com/bobisageek))
-  - [#1696](https://github.com/babashka/babashka/issues/1696): make the `cognitect-labs/transcriptor` library work ([@bobisageek](https://github.com/bobisageek))
-  - [#1700](https://github.com/babashka/babashka/issues/1700): catch exceptions from resolving symbolic links during `bb.edn` lookup ([@bobisageek](https://github.com/bobisageek))
-  - Support `java.nio.channels.ByteChannel` + several other related interop
-  - Bump `nrepl/bencode` to `1.2.0`
-  - Bump `babashka/fs`
-  - Bump `org.babashka/http-client` to `0.4.18`
+- [http-client](https://github.com/babashka/http-client): babashka's http-client<br>
+  - Ensure that http-client works with Clojure 1.10 as the minimum supported Clojure version
 
-- [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.<br>
-  - Fix [#2335](https://github.com/clj-kondo/clj-kondo/issues/2335): read causes side effect, thus not an unused value
-  - Fix [#2336](https://github.com/clj-kondo/clj-kondo/issues/2336): `do` and `doto` type checking ([@yuhan0](https://github.com/yuhan0))
-  - Fix [#2322](https://github.com/clj-kondo/clj-kondo/issues/2322): report locations for more reader errors ([@yuhan0](https://github.com/yuhan0))
-  - Imports were copied to `.clj-kondo/imports` but weren't pick up correctly. Thanks [@frenchy64](https://github.com/frenchy64) for reporting the bug.
-  - [#2333](https://github.com/clj-kondo/clj-kondo/issues/2333): Add location to invalid literal syntax errors
-  - [#2323](https://github.com/clj-kondo/clj-kondo/issues/2323): New linter `:redundant-str-call` which detects unnecessary `str` calls. Off by default.
-  - [#2302](https://github.com/clj-kondo/clj-kondo/issues/2302): New linter: `:equals-expected-position` to enforce expected value to be in first (or last) position. See [docs](https://github.com/clj-kondo/clj-kondo/blob/master/doc/linters.md)
-  - [#1035](https://github.com/clj-kondo/clj-kondo/issues/1035): Support SARIF output with `--config {:output {:format :sarif}}`
-  - [#2307](https://github.com/clj-kondo/clj-kondo/issues/2307): import configs to intermediate dir
-  - [#2309](https://github.com/clj-kondo/clj-kondo/issues/2309): Report unused `for` expression
-  - [#2315](https://github.com/clj-kondo/clj-kondo/issues/2315): Fix regression with unused JavaScript namespace
-  - [#2304](https://github.com/clj-kondo/clj-kondo/issues/2304): Report unused value in `defn` body
-  - [#2227](https://github.com/clj-kondo/clj-kondo/issues/2227): Allow `:flds` to be used in keys destructuring for ClojureDart
-  - [#2316](https://github.com/clj-kondo/clj-kondo/issues/2316): Handle ignore hint on protocol method
-  - [#2322](https://github.com/clj-kondo/clj-kondo/issues/2322): Add location to warning about invalid unicode character
-  - [#2319](https://github.com/clj-kondo/clj-kondo/issues/2319): Support `:discouraged-var` on global JS values, like `js/fetch`
+- [sci.nrepl](https://github.com/babashka/sci.nrepl): nREPL server for SCI projects that run in the browser
+  - Mostly changes to accomodate running sci.nrepl with [clerk](https://github.com/nextjournal/clerk) viewer functions
+
+- [clerk](https://github.com/nextjournal/clerk): Moldable Live Programming for Clojure
+  - Mostly worked on making viewer functions available from `.cljs` files and allow working on them via a nREPL session
 
 - [squint](https://github.com/squint-cljs/squint): CLJS _syntax_ to JS compiler
-  - [#536](https://github.com/squint-cljs/squint/issues/536): HTML is not escaped in dynamic expression
-  - [#537](https://github.com/squint-cljs/squint/issues/537): Fix `not`: wrap argument in parens
-  - Return interop expression in function body
-  - Prefer value from props map over explicit value
-  - `#html` improvements, support `:&` for spreading props
-  - [#492](https://github.com/squint-cljs/squint/issues/492): defclass static methods and fields
-  - [#526](https://github.com/squint-cljs/squint/issues/526): Fix export of class name with dashes
-  - [#517](https://github.com/squint-cljs/squint/issues/517): Preserve state over REPL evals
-  - [#513](https://github.com/squint-cljs/squint/issues/513): Fix `shuffle` core function random distribution and performances
-  - [#517](https://github.com/squint-cljs/squint/issues/517): Fix re-definition of class with `defclass` in REPL
-  - [#522](https://github.com/squint-cljs/squint/issues/522): fix `nil` `#html` rendering issue
-
-- [neil](https://github.com/babashka/neil): A CLI to add common aliases and features to deps.edn-based projects.<br>
-  Released version 0.3.65 with the following changes:
-  - [#209](https://github.com/babashka/neil/issues/209): add newlines between dependencies
-  - [#185](https://github.com/babashka/neil/issues/185): throw on non-existing library
-  - Bump `babashka.cli`
-  - Fetch latest stable `slipset/deps-deploy`, instead of hard-coding ([@vedang](https://github.com/vedang))
-  - Several emacs package improvements ([@agzam](https://github.com/agzam))
-
-
-- [clojure-mode](https://github.com/nextjournal/clojure-mode): Clojure/Script mode for CodeMirror 6.
-  - Fix [#54](https://github.com/nextjournal/clojure-mode/issues/54): support slurping from within string literal
-
-- [pottery](https://github.com/brightin/pottery): A clojure library to interact with gettext and PO/POT files
-  - Contributed a few improvements to dealing with reader conditionals
-
-- [nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI
-  - Fix `cljs.pprint/print-table` + `with-out-str`
-  - Fixed `cljs.test/testing` macro to display strings correctly on test failure ([@jaidetree](https://github.com/jaidetree))
+  - Nikita Prokopov made the [squint logo](https://github.com/squint-cljs/squint/blob/main/logo/logo.svg)!
+  - [#542](https://github.com/squint-cljs/squint/issues/542): fix `run` on Windows
 
 ## Other projects
 
@@ -165,17 +134,17 @@ happened in the past month.
 
 <details>
 <summary>Click for more details</summary>
+- [html](https://github.com/borkdude/html): Html generation library inspired by squint's html tag
+- [neil](https://github.com/babashka/neil): A CLI to add common aliases and features to deps.edn-based projects.<br>
 - [rewrite-edn](https://github.com/borkdude/rewrite-edn): Utility lib on top of
   rewrite-clj with common operations to update EDN while preserving whitespace
   and comments
 - [instaparse-bb](https://github.com/babashka/instaparse-bb): Use instaparse from babashka
 - [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
-- [http-client](https://github.com/babashka/http-client): babashka's http-client<br>
 - [bbin](https://github.com/babashka/bbin): Install any Babashka script or project with one command<br>
 - [process](https://github.com/babashka/process): Clojure library for shelling out / spawning sub-processes
 - [babashka.json](https://github.com/babashka/json): babashka JSON library/adapter
 - [tools-deps-native](https://github.com/babashka/tools-deps-native) and [tools.bbuild](https://github.com/babashka/tools.bbuild): use tools.deps directly from babashka
-- [edamame](https://github.com/borkdude/edamame): Configurable EDN/Clojure parser with location metadata
 - [squint-macros](https://github.com/squint-cljs/squint-macros): a couple of
   macros that stand-in for
   [applied-science/js-interop](https://github.com/applied-science/js-interop)
