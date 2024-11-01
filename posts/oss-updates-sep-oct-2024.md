@@ -67,6 +67,8 @@ mentioned that 90% of survey respondents used babashka.
 
 <img src="https://pbs.twimg.com/media/GazP9WmbUAAACIr?format=jpg&name=4096x4096" width="80%"></img>
 
+If you are interested in a full stack web framework with babashka and squint, check out [borkweb](https://github.com/m3tti/borkweb).
+
 Here are updates about the projects/libraries I've worked on in the last two months.
 
 - [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.<br>
