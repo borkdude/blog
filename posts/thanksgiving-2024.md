@@ -29,6 +29,8 @@ With gratitude,
 
 Michiel Borkent / @borkdude
 
+<img src="https://files.mastodon.social/media_attachments/files/113/554/454/795/737/364/original/71cc0eaf53606ff3.png">
+
 PS: if you aren't sponsoring, but are interested, here are the main ways to do
 so:
 
