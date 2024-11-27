@@ -1,4 +1,4 @@
-Title: Thanksgiving 2024
+Title: Thanks for giving!
 Date: 2024-11-27
 Tags: sponsors
 Description: Thanks for giving!
