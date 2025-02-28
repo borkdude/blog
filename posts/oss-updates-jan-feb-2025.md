@@ -72,6 +72,19 @@ Here are updates about the projects/libraries I've worked on in the last two mon
   - [#2483](https://github.com/clj-kondo/clj-kondo/issues/2483): add `api/quote-node` and `api/quote-node?` to hooks API ([@camsaul](https://github.com/camsaul))
   - [#2490](https://github.com/clj-kondo/clj-kondo/issues/2490): restore unofficial support for ignore hints via metadata
 
+- [squint](https://github.com/squint-cljs/squint): CLJS _syntax_ to JS compiler
+  - Fix [#609](https://github.com/squint-cljs/squint/issues/609): make `remove` return a transducer when no collection is provided
+  - Fix [#611](https://github.com/squint-cljs/squint/issues/611): Implement the `set?` function ([@jonasseglare](https://github.com/jonasseglare))
+  - Fix [#613](https://github.com/squint-cljs/squint/issues/613): Optimize `aset`
+  - Fix [#626](https://github.com/squint-cljs/squint/issues/XXX): Implement `take-last`
+  - Fix [#615](https://github.com/squint-cljs/squint/issues/615): `(zero? "0")` should return `false`
+  - Fix [#617](https://github.com/squint-cljs/squint/issues/617): `deftype` field name munging problem
+  - Fix [#618](https://github.com/squint-cljs/squint/issues/618): Named multi-arity `fn` args don't get munged ([@grayrest](https://github.com/grayrest))
+  - Fix [#622](https://github.com/squint-cljs/squint/issues/622): operator precendence issue with `|` and `if`
+  - Add `clojure.string` functions `lower-case`, `upper-case`, `capitalize` ([@plexus](https://github.com/plexus))
+  - Fix [#605](https://github.com/squint-cljs/squint/issues/605): merge command line `--paths` with `squint.edn` config properly
+  - Fix [#607](https://github.com/squint-cljs/squint/issues/607): make `mapcat` return a transducer if no collections are provided ([@jonasseglare](https://github.com/jonasseglare))
+
 - [babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting.
   - Experimenting upgrading to new beta core.async, work in is a branch ready to be merged
   - [#1785](https://github.com/babashka/babashka/issues/1785): Allow subclasses of `Throwable` to have instance methods invoked ([@bobisageek](https://github.com/bobisageek))
@@ -109,19 +122,6 @@ Here are updates about the projects/libraries I've worked on in the last two mon
   ([@lread](https://github.com/lread))
   - [#40](https://github.com/borkdude/rewrite-edn/issues/40): `update` now indents new entries in same way as `assoc`
   ([@lread](https://github.com/lread))
-
-- [squint](https://github.com/squint-cljs/squint): CLJS _syntax_ to JS compiler
-  - Fix [#609](https://github.com/squint-cljs/squint/issues/609): make `remove` return a transducer when no collection is provided
-  - Fix [#611](https://github.com/squint-cljs/squint/issues/611): Implement the `set?` function ([@jonasseglare](https://github.com/jonasseglare))
-  - Fix [#613](https://github.com/squint-cljs/squint/issues/613): Optimize `aset`
-  - Fix [#626](https://github.com/squint-cljs/squint/issues/XXX): Implement `take-last`
-  - Fix [#615](https://github.com/squint-cljs/squint/issues/615): `(zero? "0")` should return `false`
-  - Fix [#617](https://github.com/squint-cljs/squint/issues/617): `deftype` field name munging problem
-  - Fix [#618](https://github.com/squint-cljs/squint/issues/618): Named multi-arity `fn` args don't get munged ([@grayrest](https://github.com/grayrest))
-  - Fix [#622](https://github.com/squint-cljs/squint/issues/622): operator precendence issue with `|` and `if`
-  - Add `clojure.string` functions `lower-case`, `upper-case`, `capitalize` ([@plexus](https://github.com/plexus))
-  - Fix [#605](https://github.com/squint-cljs/squint/issues/605): merge command line `--paths` with `squint.edn` config properly
-  - Fix [#607](https://github.com/squint-cljs/squint/issues/607): make `mapcat` return a transducer if no collections are provided ([@jonasseglare](https://github.com/jonasseglare))
 
 ## Other projects
 
