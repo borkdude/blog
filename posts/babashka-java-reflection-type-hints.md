@@ -13,7 +13,7 @@ Consider the following Clojure code:
 
 I didn't use any type hints, but the names of the var should give you an idea what's happening:
 
-- a threadpool is created
+- a thread pool is created
 - a piece of work in the form of a function is submitted
 - the thread-pool returns a future which we can dereference to do a blocking wait and get the result.
 
@@ -83,7 +83,7 @@ the function.
 
 So far, babashka has relied exclusively on runtime reflection to implement Java
 interop. So we do get into a problem with the above snippet, unless we add type
-hints. But so far babashka, or more spefically,
+hints. But so far babashka, or more specifically,
 [SCI](https://github.com/babashka/sci) hasn't made use of type hints to
 determine the most suitable method. The Clojure _compiler_ does this, but as you
 know, SCI interprets code and doesn't make use of the clojure Compiler. It does
@@ -100,7 +100,7 @@ this code:
 @fut ;;=> 3
 ```
 
-will consistenly return `3` and when changing `Callable` to `Runnable`, you'll
+will consistently return `3` and when changing `Callable` to `Runnable`, you'll
 get `nil`. Note that the above snippet will still have the ambiguous behavior in
 Clojure, since it doesn't have enough type hints to figure out the right method
 at compile time and `clojure.lang.Reflector` does nothing with type hints. Once
