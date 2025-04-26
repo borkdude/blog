@@ -62,8 +62,9 @@ where we don't rely on reflection:
 ``` clojure
 (set! *warn-on-reflection* true)
 
-(def thread-pool (java.util.concurrent.Executors/newCachedThreadPool))
-(def fut (.submit ^java.util.concurrent.ThreadPoolExecutor thread-pool ^Runnable (fn [] 3)))
+(def ^java.util.concurrent.ThreadPoolExecutor thread-pool
+  (java.util.concurrent.Executors/newCachedThreadPool))
+(def fut (.submit thread-pool ^Runnable (fn [] 3)))
 @fut  ;; => nil
 ```
 
@@ -72,8 +73,9 @@ Now let's do the same with `Callable`:
 ``` clojure
 (set! *warn-on-reflection* true)
 
-(def thread-pool (java.util.concurrent.Executors/newCachedThreadPool))
-(def fut (.submit ^java.util.concurrent.ThreadPoolExecutor thread-pool ^Callable (fn [] 3)))
+(def ^java.util.concurrent.ThreadPoolExecutor thread-pool
+  (java.util.concurrent.Executors/newCachedThreadPool))
+(def fut (.submit thread-pool ^Callable (fn [] 3)))
 @fut ;; => 3
 ```
 
