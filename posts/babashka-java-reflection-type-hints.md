@@ -37,7 +37,7 @@ from `java.util.concurrent.AbstractExecutorService`):
 - `public <T> Future<T> submit(Runnable task, T result)`
 - `public <T> Future<T> submit(Callable<T> task)`
 
-Only two of those match the number of arguments we used in the snippets, so we are left with:
+Only two of those match the number of arguments we used in the snippet, so we are left with:
 
 - `public Future<?> submit(Runnable task)`
 - `public <T> Future<T> submit(Callable<T> task)`
