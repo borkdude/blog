@@ -104,9 +104,9 @@ this code:
 
 will consistently return `3` and when changing `Callable` to `Runnable`, you'll
 get `nil`. Note that the above snippet will still have the ambiguous behavior in
-Clojure, since it doesn't have enough type hints to figure out the right method
-at compile time and `clojure.lang.Reflector` does nothing with type hints. Once
-JVM Clojure finds out that you're calling `.submit` on a
+JVM Clojure, since it doesn't have enough type hints to figure out the right
+method at compile time and `clojure.lang.Reflector` does nothing with type
+hints. Once JVM Clojure finds out that you're calling `.submit` on a
 `java.util.concurrent.ExecutorService` though, the code will run with the
 expected method.
 
