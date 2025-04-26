@@ -11,7 +11,7 @@ Consider the following Clojure code:
 @fut ;;=> ?
 ```
 
-I didn't use any type hints, but the names of the var should give you an idea what's happening:
+I didn't use any type hints, but the names of the vars should give you an idea what's happening:
 
 - a thread pool is created
 - a piece of work in the form of a function is submitted
