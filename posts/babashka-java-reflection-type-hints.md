@@ -15,7 +15,7 @@ I didn't use any type hints, but the names of the vars should give you an idea w
 
 - a thread pool is created
 - a piece of work in the form of a function is submitted
-- the thread-pool returns a future which we can dereference to do a blocking wait and get the result.
+- the thread pool returns a future which we can dereference to do a blocking wait and get the result.
 
 What result would you expect this program to give? My initial guess would be `3`.
 
