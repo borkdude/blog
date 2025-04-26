@@ -112,3 +112,6 @@ Can you think of more methods in the Java standard library which have this
 ambiguity when relying solely on Clojure reflection? I'd love to hear about
 those to see if they work reliably in babashka given some extra help through
 type hints.
+
+Thanks to [Tim Pote](https://github.com/potetm) for thinking along when fixing
+the issues in babashka and reading a preview of this blog post.
