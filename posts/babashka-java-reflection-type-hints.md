@@ -52,8 +52,8 @@ method. The java documentation mentions the `submit` method with the `Runnable`
 argument first, but this isn't necessarily the order in which Java reflection
 will list those methods. I have found out that the order may even be
 indeterministic over multiple CI runs and JVM implementations or versions. What
-the exact cause of this indeterminism is, I haven't found out yet, but I
-painfully found out that it exists 😅.
+the exact cause of this indeterminism is, I don't know, but I found out the hard
+that it exists 😅.
 
 So when does the above snippet return `nil`? If it chooses the `Runnable`
 overload. Let me show this using a snippet that uses JVM Clojure type hinting,
