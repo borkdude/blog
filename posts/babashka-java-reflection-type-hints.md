@@ -55,9 +55,10 @@ indeterministic over multiple CI runs and JVM implementations or versions. What
 the exact cause of this indeterminism is, I don't know, but I found out the hard
 that it exists 😅.
 
-So when does the above snippet return `nil`? If it chooses the `Runnable`
-overload. Let me show this using a snippet that uses JVM Clojure type hinting,
-where we don't rely on reflection:
+So when does the above snippet return `nil`? When it chooses the `Runnable`
+overload, since `Runnable` is an interface with `run` method that returns `void`
+(which is `nil` in Clojure). Let me show this using a snippet that uses JVM
+Clojure type hinting, where we don't rely on reflection:
 
 ``` clojure
 (set! *warn-on-reflection* true)
