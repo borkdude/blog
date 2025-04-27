@@ -91,11 +91,11 @@ hints. But so far babashka, or more specifically,
 determine the most suitable method. The Clojure _compiler_ does this, but as you
 know, SCI interprets code and doesn't make use of the clojure Compiler. It does
 use a forked version of `clojure.lang.Reflector`, clojure's runtime reflection
-code, though. So far, pretty much the only change to that code was making some
-methods public that were used internally by
+code, aptly renamed to `sci.impl.Reflector`. So far, pretty much the only change
+to that code was making some methods public that were used internally by
 [SCI](https://github.com/babashka/sci). To fix the above problem, SCI now
-actually makes use of type hints. So in the newly published version of babashka,
-this code:
+actually makes use of type hints and passes these to `sci.impl.Reflector`. So in
+the newly published version of babashka, this code:
 
 ``` clojure
 (def thread-pool (java.util.concurrent.Executors/newCachedThreadPool))
