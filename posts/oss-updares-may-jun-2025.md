@@ -45,11 +45,6 @@ you can sponsor this work in the following ways. Thank you!
 sources: https://github.com/borkdude
 local ~/dev and ~/dev/babashka dir (since github doesn't show all repos)
 
-
-drwxr-xr-x   20 borkdude  staff    640 20 jun. 16:34 lein2deps
-drwxr-xr-x@  25 borkdude  staff    800 19 jun. 22:38 sci.configs
-drwxr-xr-x   10 borkdude  staff    320 19 jun. 18:00 graalvm-demos
-drwxr-xr-x@  27 borkdude  staff    864 17 jun. 23:49 scittle
 drwxr-xr-x@  51 borkdude  staff   1632 17 jun. 22:35 nbb
 drwxr-xr-x   24 borkdude  staff    768 13 jun. 14:45 fusebox
 drwxr-xr-x   28 borkdude  staff    896 12 jun. 14:43 promesa
@@ -57,16 +52,9 @@ drwxr-xr-x   32 borkdude  staff   1024 11 jun. 23:11 markdown
 drwxr-xr-x   13 borkdude  staff    416  9 jun. 23:40 nrepl-client
 drwxr-xr-x   25 borkdude  staff    800  9 jun. 12:16 martian
 drwxr-xr-x   22 borkdude  staff    704  8 jun. 15:20 speculative
-drwxr-xr-x   21 borkdude  staff    672  6 jun. 20:26 clojure-mcp
 drwxr-xr-x   23 borkdude  staff    736  6 jun. 13:35 http-client
-drwxr-xr-x   16 borkdude  staff    512  5 jun. 14:50 lein-clj-kondo
-drwxr-xr-x   10 borkdude  staff    320  5 jun. 14:45 pod-registry
 drwxr-xr-x   13 borkdude  staff    416  3 jun. 15:22 unused-deps
 drwxr-xr-x   21 borkdude  staff    672 20 mei  22:50 markdown-clj
-drwxr-xr-x   21 borkdude  staff    672 19 mei  17:36 hiccup
-drwxr-xr-x    6 borkdude  staff    192 16 mei  13:43 bencode-js
-drwxr-xr-x   58 borkdude  staff   1856 13 mei  12:11 ductile
-drwxr-xr-x   36 borkdude  staff   1152 12 mei  20:55 malli
 drwxr-xr-x  124 borkdude  wheel   3968 12 mei  20:53 cherry
 drwxr-xr-x   21 borkdude  staff    672  5 mei  10:45 quickdoc
 drwxr-xr-x   18 borkdude  staff    576  2 mei  12:15 instaparse.bb
@@ -75,32 +63,11 @@ drwxr-xr-x   32 borkdude  staff   1024  2 mei  11:09 rewrite-clj
 
 babashka sub dir checken
 
-drwxr-xr-x@  21 borkdude  staff       672 26 jun. 15:22 .git
-drwxr-xr-x    7 borkdude  staff       224 25 jun. 21:08 target
-drwxr-xr-x@  81 borkdude  staff      2592 25 jun. 21:07 .
--rw-r--r--    1 borkdude  staff      6995 25 jun. 21:07 project.clj
 drwxr-xr-x@  50 borkdude  staff      1600 25 jun. 21:07 sci
--rw-r--r--    1 borkdude  staff     94524 24 jun. 15:30 CHANGELOG.md
--rw-r--r--    1 borkdude  staff     14267 24 jun. 14:42 deps.edn
--rwxr-xr-x    1 borkdude  staff      5554 24 jun. 10:48 install
--rwxr-xr-x    1 borkdude  staff  69894608 23 jun. 21:26 bb
-drwxr-xr-x@ 923 borkdude  staff     29536 23 jun. 21:25 reports
--rw-r--r--    1 borkdude  staff     43452 23 jun. 21:25 metabom.jar
-drwxr-xr-x  213 borkdude  staff      6816 20 jun. 16:53 ..
--rw-r--r--@   1 borkdude  staff         2 19 jun. 23:25 .lein-failures
--rw-r--r--    1 borkdude  staff       164 19 jun. 23:07 scratch.clj
-drwxr-xr-x@   9 borkdude  staff       288 18 jun. 14:06 resources
--rw-r--r--    1 borkdude  staff       617 17 jun. 23:23 .gitignore
-drwxr-xr-x@   8 borkdude  staff       256 17 jun. 23:17 .clj-kondo
--rw-r--r--@   1 borkdude  staff        20 17 jun. 23:17 .lein-env
-drwxr-xr-x@  27 borkdude  staff       864 17 jun. 12:34 tmp
--rw-r--r--@   1 borkdude  staff     24944 13 jun. 23:13 .lein-repl-history
-drwxr-xr-x  364 borkdude  staff     11648 13 jun. 17:47 .cpcache
 drwxr-xr-x@  21 borkdude  staff       672 12 jun. 15:14 pods
 drwxr-xr-x@  26 borkdude  staff       832  7 jun. 14:29 fs
 drwxr-xr-x@  35 borkdude  staff      1120  3 jun. 21:40 deps.clj
--rw-r--r--    1 borkdude  staff     24080  3 jun. 17:16 README.md
--rwxr-xr-x    1 borkdude  staff  70043136  2 jun. 16:32 bb-markdown
+
 -->
 
 ## Updates
@@ -216,6 +183,27 @@ Here are updates about the projects/libraries I've worked on in the last two mon
   - [#2547](https://github.com/clj-kondo/clj-kondo/issues/2547): make redundant-fn-wrapper report only for all cljc branches
   - [#2531](https://github.com/clj-kondo/clj-kondo/issues/2531): add `:name` data to `:unresolved-namespace` finding for clojure-lsp
 
+- [sci.configs](https://github.com/babashka/sci.configs): A collection of ready to be used SCI configs.
+  - A configuration for [replicant](https://github.com/cjohansen/replicant/) was added
+
+- [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
+  - **v0.7.23 (2025-06-18)**
+  - [#107](https://github.com/babashka/scittle/issues/107): add `replicant` plugin ([@jeroenvandijk](https://github.com/jeroenvandijk))
+  - [#102](https://github.com/babashka/scittle/issues/102): add `applied-science/js-interop` plugin ([@chr15m](https://github.com/chr15m))
+  - [#105](https://github.com/babashka/scittle/issues/105): add `goog.string/htmlEscape` ([@ikappaki](https://github.com/ikappaki) )
+  - [#113](https://github.com/babashka/scittle/issues/113): add `unchecked-set` and `unchecked-get`
+
+- [nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI
+  - **1.3.204 (2025-05-15)**
+  - [#389](https://github.com/babashka/nbb/issues/389): fix regression caused by [#387](https://github.com/babashka/nbb/issues/387)
+  - **1.3.203 (2025-05-13)**
+  - [#387](https://github.com/babashka/nbb/issues/387): bump `import-meta-resolve` to fix deprecation warnings on Node 22+
+  - **1.3.202 (2025-05-12)**
+  - Fix nbb nrepl server for Deno
+  - **1.3.201 (2025-05-08)**
+  - Deno improvements for loading `jsr:` and `npm:` deps, including react in combination with reagent
+  - [#382](https://github.com/babashka/nbb/issues/382): prefix all node imports with `node:`
+
 - [SCI](https://github.com/babashka/sci): Configurable Clojure/Script interpreter suitable for scripting
   - Fix [#957](https://github.com/babashka/sci/issues/957): `sci.async/eval-string+` should return promise with `:val nil` for ns form rather than `:val <Promise>`
   - Fix [#959](https://github.com/babashka/sci/issues/959): Java interop improvement: instance method invocation now leverages type hints
@@ -252,9 +240,6 @@ Here are updates about the projects/libraries I've worked on in the last two mon
   - Add `add-tap`
   - Bump squint compiler common which brings in new `#html` id and class shortcuts + additional features and optimizations, such as an optimization for `aset`
 
-- [nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI
-  - Add better Deno + `jsr:` dependency support, stay tuned.
-
 - [instaparse-bb](https://github.com/babashka/instaparse-bb): Use instaparse from babashka
   - Several improvements which makes babashka compatible with [test.chuck](https://github.com/gfredericks/test.chuck). See [this screenshot](https://files.mastodon.social/media_attachments/files/114/437/768/756/996/338/original/b8ebcb333f287e5c.png)!
 
@@ -277,15 +262,12 @@ happened in the past month.
 <summary>Click for more details</summary>
 - [rewrite-edn](https://github.com/borkdude/rewrite-edn): Utility lib on top of
 - [deps.clj](https://github.com/borkdude/deps.clj): A faithful port of the clojure CLI bash script to Clojure
-- [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
 - [rewrite-clj](https://github.com/clj-commons/rewrite-clj): Rewrite Clojure code and edn
 - [pod-babashka-go-sqlite3](https://github.com/babashka/pod-babashka-go-sqlite3): A babashka pod for interacting with sqlite3
 - [tools-deps-native](https://github.com/babashka/tools-deps-native) and [tools.bbuild](https://github.com/babashka/tools.bbuild): use tools.deps directly from babashka
 - [http-client](https://github.com/babashka/http-client): babashka's http-client<br>
 - [http-server](https://github.com/babashka/http-server): serve static assets
 - [bbin](https://github.com/babashka/bbin): Install any Babashka script or project with one comman
-- [sci.configs](https://github.com/babashka/sci.configs): A collection of ready to be used SCI configs.
-  - Added a configuration for `cljs.spec.alpha` and related namespaces
 - [qualify-methods](https://github.com/borkdude/qualify-methods)
   - Initial release of experimental tool to rewrite instance calls to use fully
     qualified methods (Clojure 1.12 only0
