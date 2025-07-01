@@ -45,16 +45,7 @@ you can sponsor this work in the following ways. Thank you!
 sources: https://github.com/borkdude
 local ~/dev and ~/dev/babashka dir (since github doesn't show all repos)
 
-drwxr-xr-x@  81 borkdude  staff   2592 25 jun. 21:07 babashka
-drwxr-xr-x   40 borkdude  staff   1280 25 jun. 15:50 clerk
-drwxr-xr-x   53 borkdude  staff   1696 24 jun. 23:24 scratch
-drwxr-xr-x  615 borkdude  staff  19680 24 jun. 21:23 squint
-drwxr-xr-x@ 336 borkdude  staff  10752 24 jun. 16:13 homebrew-brew
-drwxr-xr-x   25 borkdude  staff    800 24 jun. 14:37 hickory
-drwxr-xr-x   11 borkdude  staff    352 23 jun. 12:35 dejavu
-drwxr-xr-x   10 borkdude  staff    320 23 jun. 12:31 cas-client
-drwxr-xr-x@  57 borkdude  staff   1824 20 jun. 23:47 clj-kondo
-drwxr-xr-x  213 borkdude  staff   6816 20 jun. 16:53 .
+
 drwxr-xr-x   20 borkdude  staff    640 20 jun. 16:34 lein2deps
 drwxr-xr-x@  25 borkdude  staff    800 19 jun. 22:38 sci.configs
 drwxr-xr-x   10 borkdude  staff    320 19 jun. 18:00 graalvm-demos
@@ -165,6 +156,9 @@ Here are updates about the projects/libraries I've worked on in the last two mon
   - Bump `deps.clj` to `1.12.1.1550`
   - Bump `http-client` to `0.4.23`
 
+- [clerk](https://github.com/nextjournal/clerk): Moldable Live Programming for Clojure
+  - Make clerk compatible with babashka
+
 - [quickblog](https://github.com/borkdude/quickblog): light-weight static blog engine for Clojure and babashka
   - **0.4.7 (2025-06-12)**
   - Switch to [Nextjournal Markdown](https://github.com/nextjournal/markdown) for markdown rendering
@@ -190,41 +184,37 @@ Here are updates about the projects/libraries I've worked on in the last two mon
   - **1.4.30**
   - [#120](https://github.com/borkdude/edamame/issues/120): fix `:auto-resolve-ns` failing case
 
-- [clerk](https://github.com/nextjournal/clerk): Moldable Live Programming for Clojure
-  - Replace tools.analyzer with a more light-weight analyzer which also adds support for Clojure 1.12
-
 - [squint](https://github.com/squint-cljs/squint): CLJS _syntax_ to JS compiler
-  - [#653](https://github.com/squint-cljs/squint/issues/653): respect `:context expr` in `compile-string`
-  - [#657](https://github.com/squint-cljs/squint/issues/657): respect `:context expr` in `set!` expression
-  - [#659](https://github.com/squint-cljs/squint/issues/659): fix invalid code produced for REPL mode with respect to `return`
-  - [#651](https://github.com/squint-cljs/squint/issues/651) Support `:require` + `:rename` + allow renamed value to be used in other :require clause
-  - Fix [#649](https://github.com/squint-cljs/squint/issues/649): reset ns when compiling file and fix initial global object
-  - Fix [#647](https://github.com/squint-cljs/squint/issues/647): emit explicit `null` when written in else branch of `if`
-  - Fix [#640](https://github.com/squint-cljs/squint/issues/640): don't emit anonymous function if it is a statement ([@jonasseglare](https://github.com/jonasseglare))
-  - Fix [#643](https://github.com/squint-cljs/squint/issues/643): Support lexicographic compare of arrays ([@jonasseglare](https://github.com/jonasseglare))
-  - Fix [#602](https://github.com/squint-cljs/squint/issues/602): support hiccup-style shorthand for id and class attributes in `#jsx` and `#html`
-  - Fix [#635](https://github.com/squint-cljs/squint/issues/635): `range` fixes
-  - Fix [#636](https://github.com/squint-cljs/squint/issues/636): add `run!`
-  - `defclass`: elide constructor when not provided
-  - Fix [#603](https://github.com/squint-cljs/squint/issues/603): don't emit multiple returns
-  - Drop constructor requirement for `defclass`
+  - [#678](https://github.com/squint-cljs/squint/issues/678): Implement `random-uuid` ([@rafaeldelboni](https://github.com/rafaeldelboni))
+  - **v0.8.149 (2025-06-19)**
+  - [#671](https://github.com/squint-cljs/squint/issues/671): Implement `trampoline` ([@rafaeldelboni](https://github.com/rafaeldelboni))
+  - Fix [#673](https://github.com/squint-cljs/squint/issues/673): remove experimental atom as promise option since it causes unexpected behavior
+  - Fix [#672](https://github.com/squint-cljs/squint/issues/672): alias may contain dots
+  - **v0.8.148 (2025-05-25)**
+  - Fix [#669](https://github.com/squint-cljs/squint/issues/669): munge refer-ed + renamed var
+  - **v0.8.147 (2025-05-09)**
+  - Fix [#661](https://github.com/squint-cljs/squint/issues/661): support `throw` in expression position
+  - Fix [#662](https://github.com/squint-cljs/squint/issues/662): Fix extending protocol from other namespace to `nil`
+  - Better solution for multiple expressions in return context in combination with pragmas
+  - Add an [ajv](examples/ajv) example
 
 - [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.<br>
+  - [#2560](https://github.com/clj-kondo/clj-kondo/issues/2560): NEW linter: `:locking-suspicious-lock`: report when locking is used on a single arg, interned value or local object
+  - [#2555](https://github.com/clj-kondo/clj-kondo/issues/2555): false positive with `clojure.string/replace` and `partial` as replacement fn
+  - **2025.06.05**
+  - [#2541](https://github.com/clj-kondo/clj-kondo/issues/2541): NEW linter: `:discouraged-java-method`. See [docs](https://github.com/clj-kondo/clj-kondo/blob/master/doc/linters.md)
   - [#2522](https://github.com/clj-kondo/clj-kondo/issues/2522): support `:config-in-ns` on `:missing-protocol-method`
   - [#2524](https://github.com/clj-kondo/clj-kondo/issues/2524): support `:redundant-ignore` on `:missing-protocol-method`
-  - [#1292](https://github.com/clj-kondo/clj-kondo/issues/1292): NEW linter: `:missing-protocol-method`. See [docs](https://github.com/clj-kondo/clj-kondo/blob/master/doc/linters.md)
-  - [#2512](https://github.com/clj-kondo/clj-kondo/issues/2512): support vars ending with `.`, e.g. `py.` according to clojure analyzer
-  - [#2516](https://github.com/clj-kondo/clj-kondo/issues/2516): add new `--repro` flag to ignore home configuration
-  - [#2493](https://github.com/clj-kondo/clj-kondo/issues/2493): reduce image size of native image
-  - [#2496](https://github.com/clj-kondo/clj-kondo/issues/2496): Malformed `deftype` form results in `NPE`
-  - [#2499](https://github.com/clj-kondo/clj-kondo/issues/2499): Fix `(alias)` bug ([@Noahtheduke](https://github.com/Noahtheduke))
-  - [#2492](https://github.com/clj-kondo/clj-kondo/issues/2492): Report unsupported escape characters in strings
-  - [#2502](https://github.com/clj-kondo/clj-kondo/issues/2502): add end locations to invalid symbol
-  - [#2511](https://github.com/clj-kondo/clj-kondo/issues/2511): fix multiple parse errors caused by incomplete forms
-  - document var-usages location info edge cases ([@sheluchin](https://github.com/sheluchin))
-  - Upgrade to GraalVM 24
-  - Bump datalog parser
-  - Bump built-in cache
+  - [#2536](https://github.com/clj-kondo/clj-kondo/issues/2536): false positive with `format` and whitespace flag after percent
+  - [#2535](https://github.com/clj-kondo/clj-kondo/issues/2535): false positive `:missing-protocol-method` when using alias in method
+  - [#2534](https://github.com/clj-kondo/clj-kondo/issues/2534): make `:redundant-ignore` aware of `.cljc`
+  - [#2527](https://github.com/clj-kondo/clj-kondo/issues/2527): add test for using ns-group + config-in-ns for `:missing-protocol-method` linter
+  - [#2218](https://github.com/clj-kondo/clj-kondo/issues/2218): use `ReentrantLock` to coordinate writes to cache directory within same process
+  - [#2533](https://github.com/clj-kondo/clj-kondo/issues/2533): report inline def under fn and defmethod
+  - [#2521](https://github.com/clj-kondo/clj-kondo/issues/2521): support `:langs` option in `:discouraged-var` to narrow to specific language
+  - [#2529](https://github.com/clj-kondo/clj-kondo/issues/2529): add `:ns` to `&env` in `:macroexpand-hook` macros when executing in CLJS
+  - [#2547](https://github.com/clj-kondo/clj-kondo/issues/2547): make redundant-fn-wrapper report only for all cljc branches
+  - [#2531](https://github.com/clj-kondo/clj-kondo/issues/2531): add `:name` data to `:unresolved-namespace` finding for clojure-lsp
 
 - [SCI](https://github.com/babashka/sci): Configurable Clojure/Script interpreter suitable for scripting
   - Fix [#957](https://github.com/babashka/sci/issues/957): `sci.async/eval-string+` should return promise with `:val nil` for ns form rather than `:val <Promise>`
