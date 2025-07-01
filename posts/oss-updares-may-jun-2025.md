@@ -45,17 +45,6 @@ you can sponsor this work in the following ways. Thank you!
 sources: https://github.com/borkdude
 local ~/dev and ~/dev/babashka dir (since github doesn't show all repos)
 
-drwxr-xr-x@  51 borkdude  staff   1632 17 jun. 22:35 nbb
-drwxr-xr-x   24 borkdude  staff    768 13 jun. 14:45 fusebox
-drwxr-xr-x   28 borkdude  staff    896 12 jun. 14:43 promesa
-drwxr-xr-x   32 borkdude  staff   1024 11 jun. 23:11 markdown
-drwxr-xr-x   13 borkdude  staff    416  9 jun. 23:40 nrepl-client
-drwxr-xr-x   25 borkdude  staff    800  9 jun. 12:16 martian
-drwxr-xr-x   22 borkdude  staff    704  8 jun. 15:20 speculative
-drwxr-xr-x   23 borkdude  staff    736  6 jun. 13:35 http-client
-drwxr-xr-x   13 borkdude  staff    416  3 jun. 15:22 unused-deps
-drwxr-xr-x   21 borkdude  staff    672 20 mei  22:50 markdown-clj
-drwxr-xr-x  124 borkdude  wheel   3968 12 mei  20:53 cherry
 drwxr-xr-x   21 borkdude  staff    672  5 mei  10:45 quickdoc
 drwxr-xr-x   18 borkdude  staff    576  2 mei  12:15 instaparse.bb
 drwxr-xr-x   26 borkdude  staff    832  2 mei  12:10 cli
@@ -213,13 +202,50 @@ Here are updates about the projects/libraries I've worked on in the last two mon
   - Bump edamame to `1.4.28`
 
 - [quickdoc](https://github.com/borkdude/quickdoc): Quick and minimal API doc generation for Clojure
+  - **v0.2.5 (2025-05-01)**
   - Fix [#32](https://github.com/borkdude/quickdoc/issues/32): fix anchor links to take into account var names that differ only by case
+  - **v0.2.4 (2025-05-01)**
   - Revert source link in var title and move back to `<sub>`
   - Specify clojure 1.11 as the minimal Clojure version in `deps.edn`
   - Fix macro information
   - Fix [#39](https://github.com/borkdude/quickdoc/issues/39): fix link when var is named multiple times in docstring
   - Upgrade clj-kondo to `2025.04.07`
   - Add explicit `org.babashka/cli` dependency
+
+
+- [Nextjournal Markdown](https://github.com/nextjournal/markdown)
+  - **0.7.186**
+  - Make library more GraalVM `native-image` friendly
+  - **0.7.184**
+  - Consolidate utils in `nextjournal.markdown.utils`
+  - **0.7.181**
+  - Hiccup JVM compatibility for fragments (see [#34](https://github.com/nextjournal/markdown/issues/34))
+  - Support HTML blocks (`:html-block`) and inline HTML (`:html-inline`) (see [#7](https://github.com/nextjournal/markdown/issues/7))
+  - Bump commonmark to 0.24.0
+  - Bump markdown-it to 14.1.0
+  - Render `:code` according to spec into `<pre>` and `<code>` block with language class (see [#39](https://github.com/nextjournal/markdown/issues/39))
+  - No longer depend on `applied-science/js-interop`
+  - Accept parsed result in `->hiccup` function
+  - Expose `nextjournal.markdown.transform` through main `nextjournal.markdown` namespace
+  - Stabilize API and no longer mark library alpha
+
+- [babashka.nrepl-client](https://github.com/babashka/nrepl-client)
+  - Add `:responses` key with raw responses
+
+- [speculative](https://github.com/borkdude/speculative)
+  - Add spec for `even?`
+
+- [http-client](https://github.com/babashka/http-client): babashka's http-client
+  -  **0.4.23 (2025-06-06)**
+  - [#75](https://github.com/babashka/http-client/issues/75): override existing content type header in multipart request
+  - Accept `:request-method` in addition to `:request` to align more with other clients
+  - Accept `:url` in addition to `:uri` to align more with other clients
+
+- [unused-deps](https://github.com/borkdude/unused-deps): Find unused deps in a clojure project
+  - This is a brand new project!
+
+- [cherry](https://github.com/squint-cljs/cherry): Experimental ClojureScript to ES6 module compiler
+  - Fix `cherry.embed` which is used by malli
 
 - [CLI](https://github.com/babashka/cli): Turn Clojure functions into CLIs!
   - [#119](https://github.com/babashka/cli/issues/119): `format-table` now formats multiline cells appropriately ([@lread](https://github.com/lread))
@@ -234,11 +260,6 @@ Here are updates about the projects/libraries I've worked on in the last two mon
 - [html](https://github.com/borkdude/html): Html generation library inspired by squint's html tag
   - Fix [#3](https://github.com/borkdude/html/issues/3): allow dynamic attribute value: `(html [:a {:a (+ 1 2 3)}])`
   - Fix [#9](https://github.com/borkdude/html/issues/9): shortcuts for id and classes
-
-- [cherry](https://github.com/squint-cljs/cherry): Experimental ClojureScript to ES6 module compiler
-  - Add `cljs.pprint/pprint`
-  - Add `add-tap`
-  - Bump squint compiler common which brings in new `#html` id and class shortcuts + additional features and optimizations, such as an optimization for `aset`
 
 - [instaparse-bb](https://github.com/babashka/instaparse-bb): Use instaparse from babashka
   - Several improvements which makes babashka compatible with [test.chuck](https://github.com/gfredericks/test.chuck). See [this screenshot](https://files.mastodon.social/media_attachments/files/114/437/768/756/996/338/original/b8ebcb333f287e5c.png)!
@@ -265,7 +286,6 @@ happened in the past month.
 - [rewrite-clj](https://github.com/clj-commons/rewrite-clj): Rewrite Clojure code and edn
 - [pod-babashka-go-sqlite3](https://github.com/babashka/pod-babashka-go-sqlite3): A babashka pod for interacting with sqlite3
 - [tools-deps-native](https://github.com/babashka/tools-deps-native) and [tools.bbuild](https://github.com/babashka/tools.bbuild): use tools.deps directly from babashka
-- [http-client](https://github.com/babashka/http-client): babashka's http-client<br>
 - [http-server](https://github.com/babashka/http-server): serve static assets
 - [bbin](https://github.com/babashka/bbin): Install any Babashka script or project with one comman
 - [qualify-methods](https://github.com/borkdude/qualify-methods)
