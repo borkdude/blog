@@ -1,8 +1,7 @@
 Title: OSS updates May and June 2025
-Date: 2025-06-30
+Date: 2025-07-01
 Tags: clojure, oss updates
 Description: My Clojure OSS updates for May and June 2025
-Preview: true
 
 In this post I'll give updates about open source I worked on during May and June 2025.
 
@@ -42,26 +41,14 @@ you can sponsor this work in the following ways. Thank you!
 
 <!--
 
-sources: https://github.com/borkdude
-local ~/dev and ~/dev/babashka dir (since github doesn't show all repos)
-
-drwxr-xr-x   21 borkdude  staff    672  5 mei  10:45 quickdoc
-drwxr-xr-x   18 borkdude  staff    576  2 mei  12:15 instaparse.bb
-drwxr-xr-x   26 borkdude  staff    832  2 mei  12:10 cli
-drwxr-xr-x   32 borkdude  staff   1024  2 mei  11:09 rewrite-clj
-
-babashka sub dir checken
-
-drwxr-xr-x@  50 borkdude  staff      1600 25 jun. 21:07 sci
-drwxr-xr-x@  21 borkdude  staff       672 12 jun. 15:14 pods
-drwxr-xr-x@  26 borkdude  staff       832  7 jun. 14:29 fs
-drwxr-xr-x@  35 borkdude  staff      1120  3 jun. 21:40 deps.clj
+- ls -lat ~/dev
+- babashka sub dir checken
 
 -->
 
 ## Updates
 
-Here are updates about the projects/libraries I've worked on in the last two months.
+Here are updates about the projects/libraries I've worked on in the last two months, 19 in total!
 
 - [babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting.
   - Bump edamame (support old-style `#^` metadata)
@@ -111,6 +98,26 @@ Here are updates about the projects/libraries I've worked on in the last two mon
   - Fix `resolve` when `*ns*` is bound to symbol
   - Bump `deps.clj` to `1.12.1.1550`
   - Bump `http-client` to `0.4.23`
+
+- [SCI](https://github.com/babashka/sci): Configurable Clojure/Script interpreter suitable for scripting
+  - **0.10.47 (2025-06-27)**
+  - Security issue: function recursion can be forced by returning internal keyword as return value
+  - Fix [#975](https://github.com/babashka/sci/issues/975): Protocol method should have :protocol var on metadata
+  - Fix [#971](https://github.com/babashka/sci/issues/971): fix `satisfies?` for protocol that is extended to `nil`
+  - Fix [#977](https://github.com/babashka/sci/issues/977): Can't analyze sci.impl.analyzer with splint
+  - **0.10.46 (2025-06-18)**
+  - Fix [#957](https://github.com/babashka/sci/issues/957): `sci.async/eval-string+` should return promise with `:val nil` for ns form rather than `:val <Promise>`
+  - Fix [#959](https://github.com/babashka/sci/issues/959): Java interop improvement: instance method invocation now leverages type hints
+  - Bump edamame to `1.4.30`
+  - Give metadata `:type` key priority in `type` implementation
+  - Fix [#967](https://github.com/babashka/sci/issues/967): `ns-name` should work on symbols
+  - Fix [#969](https://github.com/babashka/sci/issues/969): `^:clojure.core/eval-file` metadata should affect binding of `*file*` during evaluation
+  - Sync `sci.impl.Reflector` with changes in `clojure.lang.Reflector` in clojure 1.12.1
+  - Fix `:static-methods` option for class with different name in host
+  - Fix [#973](https://github.com/babashka/sci/issues/973): support `with-redefs` on core vars, e.g. `intern`. The fix for this
+    issue entailed quite a big refactor of internals which removes "magic"
+    injection of ctx in core vars that need it.
+  - Add `unchecked-set` and `unchecked-get` for CLJS compatibility
 
 - [clerk](https://github.com/nextjournal/clerk): Moldable Live Programming for Clojure
   - Make clerk compatible with babashka
@@ -193,14 +200,6 @@ Here are updates about the projects/libraries I've worked on in the last two mon
   - Deno improvements for loading `jsr:` and `npm:` deps, including react in combination with reagent
   - [#382](https://github.com/babashka/nbb/issues/382): prefix all node imports with `node:`
 
-- [SCI](https://github.com/babashka/sci): Configurable Clojure/Script interpreter suitable for scripting
-  - Fix [#957](https://github.com/babashka/sci/issues/957): `sci.async/eval-string+` should return promise with `:val nil` for ns form rather than `:val <Promise>`
-  - Fix [#959](https://github.com/babashka/sci/issues/959): Java interop improvement: instance method invocation now leverages type hints
-  - Fix [#942](https://github.com/babashka/sci/issues/942): improve error location of invalid destructuring
-  - Add `volatile?` to core vars
-  - Fix [#950](https://github.com/babashka/sci/issues/950): interop on local in CLJS
-  - Bump edamame to `1.4.28`
-
 - [quickdoc](https://github.com/borkdude/quickdoc): Quick and minimal API doc generation for Clojure
   - **v0.2.5 (2025-05-01)**
   - Fix [#32](https://github.com/borkdude/quickdoc/issues/32): fix anchor links to take into account var names that differ only by case
@@ -211,7 +210,6 @@ Here are updates about the projects/libraries I've worked on in the last two mon
   - Fix [#39](https://github.com/borkdude/quickdoc/issues/39): fix link when var is named multiple times in docstring
   - Upgrade clj-kondo to `2025.04.07`
   - Add explicit `org.babashka/cli` dependency
-
 
 - [Nextjournal Markdown](https://github.com/nextjournal/markdown)
   - **0.7.186**
@@ -244,35 +242,15 @@ Here are updates about the projects/libraries I've worked on in the last two mon
 - [unused-deps](https://github.com/borkdude/unused-deps): Find unused deps in a clojure project
   - This is a brand new project!
 
+- [fs](https://github.com/babashka/fs) - File system utility library for Clojure
+  - [#147](https://github.com/babashka/fs/issues/147): `fs/unzip` should allow selective extraction of files ([@sogaiu](https://github.com/sogaiu))
+  - [#145](https://github.com/babashka/fs/issues/145): `fs/modified-since` works only with ms precision but should support the precision of the filesystem
+
 - [cherry](https://github.com/squint-cljs/cherry): Experimental ClojureScript to ES6 module compiler
   - Fix `cherry.embed` which is used by malli
 
-- [CLI](https://github.com/babashka/cli): Turn Clojure functions into CLIs!
-  - [#119](https://github.com/babashka/cli/issues/119): `format-table` now formats multiline cells appropriately ([@lread](https://github.com/lread))
-  - Remove `pom.xml` and `project.clj` for cljdoc
-  - [#116](https://github.com/babashka/cli/issues/116): Un-deprecate `:collect` option to support custom transformation of arguments to collections ([@lread](https://github.com/lread))
-  - Support `:collect` in `:spec`
-
-- [process](https://github.com/babashka/process): Clojure library for shelling out / spawning sub-processes
-  - [#163](https://github.com/babashka/process/issues/163), [#164](https://github.com/babashka/process/issues/164): Program resolution strategy for `exec` and Windows now matches macOS/Linux/PowerShell ([@lread](https://github.com/lread))
-  - Fix memory leak by executing shutdown hook when process finishes earlier than VM exit ([@maxweber](https://github.com/maxweber))
-
-- [html](https://github.com/borkdude/html): Html generation library inspired by squint's html tag
-  - Fix [#3](https://github.com/borkdude/html/issues/3): allow dynamic attribute value: `(html [:a {:a (+ 1 2 3)}])`
-  - Fix [#9](https://github.com/borkdude/html/issues/9): shortcuts for id and classes
-
-- [instaparse-bb](https://github.com/babashka/instaparse-bb): Use instaparse from babashka
-  - Several improvements which makes babashka compatible with [test.chuck](https://github.com/gfredericks/test.chuck). See [this screenshot](https://files.mastodon.social/media_attachments/files/114/437/768/756/996/338/original/b8ebcb333f287e5c.png)!
-
-- [edamame](https://github.com/borkdude/edamame): Configurable EDN/Clojure parser with location metadata
-  - [#117](https://github.com/borkdude/edamame/issues/117): throw on triple colon keyword
-
-- [fs](https://github.com/babashka/fs) - File system utility library for Clojure
-  - [#141](https://github.com/babashka/fs/issues/141): `fs/match` doesn't match when root dir contains glob or regex characters in path
-  - [#138](https://github.com/babashka/fs/issues/138): Fix `fs/update-file` to support paths ([@rfhayashi](https://github.com/rfhayashi))
-
-- [sql pods](https://github.com/babashka/babashka-sql-pods): babashka pods for SQL databases
-  - Upgrade to GraalVM 23, fixes encoding issue with Korean characters
+- [deps.clj](https://github.com/borkdude/deps.clj): A faithful port of the clojure CLI bash script to Clojure
+  - Released several versions catching up with the clojure CLI
 
 ## Other projects
 
@@ -281,8 +259,12 @@ happened in the past month.
 
 <details>
 <summary>Click for more details</summary>
+- [CLI](https://github.com/babashka/cli): Turn Clojure functions into CLIs!
+- [process](https://github.com/babashka/process): Clojure library for shelling out / spawning sub-processes
+- [html](https://github.com/borkdude/html): Html generation library inspired by squint's html tag
+- [instaparse-bb](https://github.com/babashka/instaparse-bb): Use instaparse from babashka
+- [sql pods](https://github.com/babashka/babashka-sql-pods): babashka pods for SQL databases
 - [rewrite-edn](https://github.com/borkdude/rewrite-edn): Utility lib on top of
-- [deps.clj](https://github.com/borkdude/deps.clj): A faithful port of the clojure CLI bash script to Clojure
 - [rewrite-clj](https://github.com/clj-commons/rewrite-clj): Rewrite Clojure code and edn
 - [pod-babashka-go-sqlite3](https://github.com/babashka/pod-babashka-go-sqlite3): A babashka pod for interacting with sqlite3
 - [tools-deps-native](https://github.com/babashka/tools-deps-native) and [tools.bbuild](https://github.com/babashka/tools.bbuild): use tools.deps directly from babashka
