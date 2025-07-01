@@ -38,7 +38,6 @@ you can sponsor this work in the following ways. Thank you!
 - [Patreon](https://www.patreon.com/borkdude)
 - [Clojurists Together](https://www.clojuriststogether.org/)
 
-On to the projects that I've been working on!
 </details>
 
 <!--
@@ -46,10 +45,6 @@ On to the projects that I've been working on!
 sources: https://github.com/borkdude
 local ~/dev and ~/dev/babashka dir (since github doesn't show all repos)
 
-drwxr-xr-x   15 borkdude  staff    480 26 jun. 15:11 polyglot-embedding-demo
-drwxr-xr-x@  18 borkdude  staff    576 26 jun. 15:07 blog
-drwxr-xr-x@  27 borkdude  staff    864 26 jun. 14:58 quickblog
-drwxr-xr-x@  35 borkdude  staff   1120 26 jun. 11:02 edamame
 drwxr-xr-x@  81 borkdude  staff   2592 25 jun. 21:07 babashka
 drwxr-xr-x   40 borkdude  staff   1280 25 jun. 15:50 clerk
 drwxr-xr-x   53 borkdude  staff   1696 24 jun. 23:24 scratch
@@ -122,25 +117,78 @@ drwxr-xr-x@  35 borkdude  staff      1120  3 jun. 21:40 deps.clj
 Here are updates about the projects/libraries I've worked on in the last two months.
 
 - [babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting.
-  - Improve Java reflection based on provided type hints (read blog post [here](https://blog.michielborkent.nl/babashka-java-reflection-type-hints.html))
-  - Add compatibility with the [fusebox](https://github.com/potetm/fusebox) library
-  - Fix virtual `ThreadBuilder` interop
-  - Add `java.util.concurrent.ThreadLocalRandom`
-  - Add `java.util.concurrent.locks.ReentrantLock`
-  - Add classes:
-    - `java.time.chrono.ChronoLocalDate`
-    - `java.time.temporal.TemporalUnit`
-    - `java.time.chrono.ChronoLocalDateTime`
-    - `java.time.chrono.ChronoZonedDateTime`
-    - `java.time.chrono.Chronology`
-  - [#1806](https://github.com/babashka/babashka/issues/1806): Add `cheshire.factory` namespace ([@lread](https://github.com/lread))
-  - Bump GraalVM to `24`
-  - Bump SCI to `0.9.45`
-  - Bump edamame to `1.4.28`
-  - [#1801](https://github.com/babashka/babashka/issues/1801): Add `java.util.regex.PatternSyntaxException`
-  - Bump core.async to `1.8.735`
-  - Bump cheshire to `6.0.0`
-  - Bump babashka.cli to `0.8.65`
+  - Bump edamame (support old-style `#^` metadata)
+  - Bump SCI: fix `satisfies?` for protocol extended to `nil`
+  - Bump rewrite-clj to `1.2.50`
+  - **1.12.204 (2025-06-24)**
+  - Compatibility with [clerk](https://github.com/nextjournal/clerk)'s main branch
+  - [#1834](https://github.com/babashka/babashka/issues/1834): make `taoensso/trove` work in bb by exposing another `timbre` var
+  - Bump `timbre` to `6.7.1`
+  - Protocol method should have `:protocol` meta
+  - Add `print-simple`
+  - Make bash install script work on Windows for GHA
+  - Upgrade Jsoup to `1.21.1`
+  - **1.12.203 (2025-06-18)**
+  - Support `with-redefs` + `intern` (see SCI issue [#973](https://github.com/babashka/sci/issues/973)
+  - [#1832](https://github.com/babashka/babashka/issues/1832): support `clojure.lang.Var/intern`
+  - Re-allow `init` as task name
+  - **1.12.202 (2025-06-15)**
+  - Support `clojure.lang.Var/{get,clone,reset}ThreadBindingFrame` for JVM Clojure compatibility
+  - [#1741](https://github.com/babashka/babashka/issues/1741): fix `taoensso.timbre/spy` and include test
+  - Add `taoensso.timbre/set-ns-min-level!` and `taoensso.timbre/set-ns-min-level`
+  - **1.12.201 (2025-06-12)**
+  - [#1825](https://github.com/babashka/babashka/issues/1825): Add [Nextjournal Markdown](https://github.com/nextjournal/markdown) as built-in Markdown library
+  - Promesa compatibility (pending PR [here](https://github.com/funcool/promesa/pull/160))
+  - Upgrade clojure to `1.12.1`
+  - [#1818](https://github.com/babashka/babashka/issues/1818): wrong argument order in `clojure.java.io/resource` implementation
+  - Add `java.text.BreakIterator`
+  - Add classes for compatibility with [promesa](https://github.com/funcool/promesa):
+    - `java.lang.Thread$Builder$OfPlatform`
+    - `java.util.concurrent.ForkJoinPool`
+    - `java.util.concurrent.ForkJoinPool$ForkJoinWorkerThreadFactory`
+    - `java.util.concurrent.ForkJoinWorkerThread`
+    - `java.util.concurrent.SynchronousQueue`
+  - Add `taoensso.timbre/set-min-level!`
+  - Add `taoensso.timbre/set-config!`
+  - Bump `fs` to `0.5.26`
+  - Bump `jsoup` to `1.20.1`
+  - Bump `edamame` to `1.4.30`
+  - Bump `taoensso.timbre` to `6.7.0`
+  - Bump `pods`: more graceful error handling when pod quits unexpectedly
+  - [#1815](https://github.com/babashka/babashka/issues/1815): Make install-script wget-compatible ([@eval](https://github.com/eval))
+  - [#1822](https://github.com/babashka/babashka/issues/1822): `type` should prioritize `:type` metadata
+  - `ns-name` should work on symbols
+  - `:clojure.core/eval-file` should affect `*file*` during eval
+  - [#1179](https://github.com/babashka/babashka/issues/1179): run `:init` in tasks only once
+  - [#1823](https://github.com/babashka/babashka/issues/1823): run `:init` in tasks before task specific requires
+  - Fix `resolve` when `*ns*` is bound to symbol
+  - Bump `deps.clj` to `1.12.1.1550`
+  - Bump `http-client` to `0.4.23`
+
+- [quickblog](https://github.com/borkdude/quickblog): light-weight static blog engine for Clojure and babashka
+  - **0.4.7 (2025-06-12)**
+  - Switch to [Nextjournal Markdown](https://github.com/nextjournal/markdown) for markdown rendering
+    The minimum babashka version to be used with quickblog is now v1.12.201 since it comes with Nextjournal Markdown built-in.
+  - Link to previous and next posts; see "Linking to previous and next posts" in
+    the README ([@jmglov](https://github.com/jmglov))
+  - Fix flaky caching tests ([@jmglov](https://github.com/jmglov))
+  - Fix argument passing in test runner ([@jmglov](https://github.com/jmglov))
+  - Add `--date` to api/new. ([@jmglov](https://github.com/jmglov))
+  - Support Selmer template for new posts in api/new; see [Templates > New
+    posts](README.md#new-posts) in README. ([@jmglov](https://github.com/jmglov))
+  - Add 'language-xxx' to pre/code blocks
+  - Fix README.md with working version in quickstart example
+  - Fix [#104](https://github.com/borkdude/quickblog/issues/104): fix caching with respect to previews
+  - Fix [#104](https://github.com/borkdude/quickblog/issues/104): document `:preview` option
+
+- [edamame](https://github.com/borkdude/edamame): configurable EDN and Clojure parser with location metadata and more
+  - **1.4.31 (2025-06-25)**
+  - Fix [#124](https://github.com/borkdude/edamame/issues/124): add `:imports` to `parse-ns-form`
+  - Fix [#125](https://github.com/borkdude/edamame/issues/125): Support `#^:foo` deprecated metadata reader macro ([@NoahTheDuke](https://github.com/NoahTheDuke))
+  - Fix [#127](https://github.com/borkdude/edamame/issues/127): expose `continue` value that indicates continue-ing parsing ([@NoahTheDuke](https://github.com/NoahTheDuke))
+  - Fix [#122](https://github.com/borkdude/edamame/issues/122): let `:auto-resolve-ns` affect syntax-quote
+  - **1.4.30**
+  - [#120](https://github.com/borkdude/edamame/issues/120): fix `:auto-resolve-ns` failing case
 
 - [clerk](https://github.com/nextjournal/clerk): Moldable Live Programming for Clojure
   - Replace tools.analyzer with a more light-weight analyzer which also adds support for Clojure 1.12
