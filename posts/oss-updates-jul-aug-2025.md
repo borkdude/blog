@@ -68,7 +68,11 @@ SCI, the interpreter under the hood of babashka and several other projects, got 
 ```
 
 In the expression `(alter-var-root #'config (constantly config))` the var `#'config` was mistaken for the local `config` since SCI's analyzer used a `resolve`-like function that also resolves locals. This fails horribly. In 6 years of SCI it's the first time I encountered this bug though. After fixing this problem, I noticed that babashka's CI acted up. On every commit, babashka CI tests dozens of Clojure libraries by running their test suites. I noticed that specter's tests were failing. It turned out that one test actually worked prior to fixing the above bug exactly because the SCI analyzer's `resolve` returned a node that evaluated to a local value. But there is no way I could just leave that bug in, so I had to make a pull request to specter as well to set this straight. A new specter version was released that works both with older version of babashka and the new version.
+
+One other headscratcher in SCI was on the ClojureScript side of things and had to do with munging. In interop like `(.-foo-bar #js {:foo-bar 1})` ClojureScript munges the field name in the interop form to `foo_bar` but in the object it stays `"foo-bar"`. The munging of this name wasn't applied in SCI as an oversight. So in SCI (and thus in nbb, joyride, scittle, etc.) the above expression would return `1` whereas in ClojureScript it would return `nil`. In contrast, `(.-foo-bar #js {:foo_bar 1})` would return `nil` in SCI but `1` in CLJS. Although fixing this could mean a breaking change in SCI-based scripting environments I decided to align it with CLJS anyway, as switching between SCI and CLJS should not introduce these kinds of surprises.
+
 Other improvements in SCI were made in the area of better using type hints on instance method interop.
+
 
 And then there’s clj-kondo, the linter that is supposed to spark joy ✨, as far as a linter is able to do that in a developer's life. Two new linters were added, including one that catches suspicious uses of locking. This linter was inspired by a similar rule in splint. Lots of smaller improvements were made like sorting findings and imported files such that they are consistent across multiple runs that use the `--parallel` option and across operating systems. And as usual bugfixes and preventing false positives.
 
