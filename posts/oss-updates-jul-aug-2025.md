@@ -1,5 +1,5 @@
 Title: OSS updates July and August 2025
-Date: 2025-08-04
+Date: 2025-08-05
 Tags: clojure, oss updates
 Description: My Clojure OSS updates for July and August 2025
 
