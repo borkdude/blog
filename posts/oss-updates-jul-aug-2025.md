@@ -48,96 +48,63 @@ you can sponsor this work in the following ways. Thank you!
 
 -->
 
+## News
+
+- I'll be doing a talk related to babashka at the [conj 2025](https://www.2025.clojure-conj.org/schedule)!
+
 ## Updates
 
 Here are updates about the projects/libraries I've worked on in the last two months, 19 in total!
 
 - [babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting.
-  - Bump edamame (support old-style `#^` metadata)
-  - Bump SCI: fix `satisfies?` for protocol extended to `nil`
-  - Bump rewrite-clj to `1.2.50`
-  - **1.12.204 (2025-06-24)**
-  - Compatibility with [clerk](https://github.com/nextjournal/clerk)'s main branch
-  - [#1834](https://github.com/babashka/babashka/issues/1834): make `taoensso/trove` work in bb by exposing another `timbre` var
-  - Bump `timbre` to `6.7.1`
-  - Protocol method should have `:protocol` meta
-  - Add `print-simple`
-  - Make bash install script work on Windows for GHA
-  - Upgrade Jsoup to `1.21.1`
-  - **1.12.203 (2025-06-18)**
-  - Support `with-redefs` + `intern` (see SCI issue [#973](https://github.com/babashka/sci/issues/973)
-  - [#1832](https://github.com/babashka/babashka/issues/1832): support `clojure.lang.Var/intern`
-  - Re-allow `init` as task name
-  - **1.12.202 (2025-06-15)**
-  - Support `clojure.lang.Var/{get,clone,reset}ThreadBindingFrame` for JVM Clojure compatibility
-  - [#1741](https://github.com/babashka/babashka/issues/1741): fix `taoensso.timbre/spy` and include test
-  - Add `taoensso.timbre/set-ns-min-level!` and `taoensso.timbre/set-ns-min-level`
-  - **1.12.201 (2025-06-12)**
-  - [#1825](https://github.com/babashka/babashka/issues/1825): Add [Nextjournal Markdown](https://github.com/nextjournal/markdown) as built-in Markdown library
-  - Promesa compatibility (pending PR [here](https://github.com/funcool/promesa/pull/160))
-  - Upgrade clojure to `1.12.1`
-  - [#1818](https://github.com/babashka/babashka/issues/1818): wrong argument order in `clojure.java.io/resource` implementation
-  - Add `java.text.BreakIterator`
-  - Add classes for compatibility with [promesa](https://github.com/funcool/promesa):
-    - `java.lang.Thread$Builder$OfPlatform`
-    - `java.util.concurrent.ForkJoinPool`
-    - `java.util.concurrent.ForkJoinPool$ForkJoinWorkerThreadFactory`
-    - `java.util.concurrent.ForkJoinWorkerThread`
-    - `java.util.concurrent.SynchronousQueue`
-  - Add `taoensso.timbre/set-min-level!`
-  - Add `taoensso.timbre/set-config!`
-  - Bump `fs` to `0.5.26`
-  - Bump `jsoup` to `1.20.1`
-  - Bump `edamame` to `1.4.30`
-  - Bump `taoensso.timbre` to `6.7.0`
-  - Bump `pods`: more graceful error handling when pod quits unexpectedly
-  - [#1815](https://github.com/babashka/babashka/issues/1815): Make install-script wget-compatible ([@eval](https://github.com/eval))
-  - [#1822](https://github.com/babashka/babashka/issues/1822): `type` should prioritize `:type` metadata
-  - `ns-name` should work on symbols
-  - `:clojure.core/eval-file` should affect `*file*` during eval
-  - [#1179](https://github.com/babashka/babashka/issues/1179): run `:init` in tasks only once
-  - [#1823](https://github.com/babashka/babashka/issues/1823): run `:init` in tasks before task specific requires
-  - Fix `resolve` when `*ns*` is bound to symbol
-  - Bump `deps.clj` to `1.12.1.1550`
-  - Bump `http-client` to `0.4.23`
+  - Bump clojure to `1.12.2`
+  - [#1843](https://github.com/babashka/babashka/issues/1843): BREAKING (potententially): non-daemon thread handling change. Similar
+    to JVM clojure, babashka now waits for non-daemon threads to finish. This
+    means you don't have to append `@(promise)` anymore when you spawn an
+    httpkit server, for example. For futures and agents, bb uses a thread pool
+    that spawns daemon threads, so that pool isn't preventing an exit. This
+    behavior is similar to `clojure -X`. You can get back the old behavior where
+    bb always forced an exit and ignored running non-daemon threads with
+    `--force-exit`.
+  - [#1690](https://github.com/babashka/babashka/issues/1690): bind `clojure.test/*test-out*` to same print-writer as `*out*` in nREPL server
+  - Add `Compiler/demunge`
+  - Add `clojure.lang.TaggedLiteral/create`
+  - Add `java.util.TimeZone/setDefault`
+  - Add `println-str`
+  - SCI: Var literal or special form gets confused with local of same name
+  - [#1852](https://github.com/babashka/babashka/issues/1852): `(.getContextClassLoader (Thread/currentThread))` should be able to return results from babashka classpath
+  - Bump `deps.clj` to `1.12.2.1565`
+  - Bind more vars like `*warn-on-reflection*` during `load{string,reader}` (same as JVM Clojure) so can load code in other than than the main thread
+  - [#1845](https://github.com/babashka/babashka/issues/1845): expose `cheshire.generate/{add-encoder,encode-str}`
+  - Bump timbre to `6.8.0`
+  - Bump clojure.tools.logging to `1.3.0`
+  - Improve interop using type hints on qualified instance methods
+  - Bump Jsoup to `1.21.2`
+  - Bump `fs` to `0.5.7`
+  - Bump `cheshire` to `6.1.0`
+  - Pods: no exception on destroy when there's still calls in progress
 
 - [SCI](https://github.com/babashka/sci): Configurable Clojure/Script interpreter suitable for scripting
-  - **0.10.47 (2025-06-27)**
-  - Security issue: function recursion can be forced by returning internal keyword as return value
-  - Fix [#975](https://github.com/babashka/sci/issues/975): Protocol method should have :protocol var on metadata
-  - Fix [#971](https://github.com/babashka/sci/issues/971): fix `satisfies?` for protocol that is extended to `nil`
-  - Fix [#977](https://github.com/babashka/sci/issues/977): Can't analyze sci.impl.analyzer with splint
-  - **0.10.46 (2025-06-18)**
-  - Fix [#957](https://github.com/babashka/sci/issues/957): `sci.async/eval-string+` should return promise with `:val nil` for ns form rather than `:val <Promise>`
-  - Fix [#959](https://github.com/babashka/sci/issues/959): Java interop improvement: instance method invocation now leverages type hints
-  - Bump edamame to `1.4.30`
-  - Give metadata `:type` key priority in `type` implementation
-  - Fix [#967](https://github.com/babashka/sci/issues/967): `ns-name` should work on symbols
-  - Fix [#969](https://github.com/babashka/sci/issues/969): `^:clojure.core/eval-file` metadata should affect binding of `*file*` during evaluation
-  - Sync `sci.impl.Reflector` with changes in `clojure.lang.Reflector` in clojure 1.12.1
-  - Fix `:static-methods` option for class with different name in host
-  - Fix [#973](https://github.com/babashka/sci/issues/973): support `with-redefs` on core vars, e.g. `intern`. The fix for this
-    issue entailed quite a big refactor of internals which removes "magic"
-    injection of ctx in core vars that need it.
-  - Add `unchecked-set` and `unchecked-get` for CLJS compatibility
+  - Add `println-str`
+  - Fix [#997](https://github.com/babashka/sci/issues/997): Var is mistaken for local when used under the same name in a `let` body
+  - Fix regression introduced in [#987](https://github.com/babashka/sci/issues/987)
+  - Fix [#963](https://github.com/babashka/sci/issues/963): respect `:param-tags` on qualified instance method
+  - Add `*suppress-read*`
+  - Add `load-reader`
+  - Fix [#872](https://github.com/babashka/sci/issues/872): `*loaded-libs*` is now the single source of truth about loaded libs
+  - Fix [#981](https://github.com/babashka/sci/issues/981): respect type hint on instance method callee
+  - Add core dynamic vars like `*warn-on-reflection*` and bind them during
+    `load-string` etc. such that `set!`-ing then in a `future` works.
+  - Fix [#984](https://github.com/babashka/sci/issues/984): support alternative `set!` syntax in CLJS
+  - Fix [#987](https://github.com/babashka/sci/issues/987): method or property name in interop should be munged
+  - Fix [#986](https://github.com/babashka/sci/issues/986): preserve error location for js static method
+  - Fix [#990](https://github.com/babashka/sci/issues/990): fix `merge-opts` with `:bindings` + deprecate `:bindings` (replaced by `:namespaces {'user ...}`)
 
 - [clerk](https://github.com/nextjournal/clerk): Moldable Live Programming for Clojure
-  - Make clerk compatible with babashka
-
-- [quickblog](https://github.com/borkdude/quickblog): light-weight static blog engine for Clojure and babashka
-  - **0.4.7 (2025-06-12)**
-  - Switch to [Nextjournal Markdown](https://github.com/nextjournal/markdown) for markdown rendering
-    The minimum babashka version to be used with quickblog is now v1.12.201 since it comes with Nextjournal Markdown built-in.
-  - Link to previous and next posts; see "Linking to previous and next posts" in
-    the README ([@jmglov](https://github.com/jmglov))
-  - Fix flaky caching tests ([@jmglov](https://github.com/jmglov))
-  - Fix argument passing in test runner ([@jmglov](https://github.com/jmglov))
-  - Add `--date` to api/new. ([@jmglov](https://github.com/jmglov))
-  - Support Selmer template for new posts in api/new
-  - Add 'language-xxx' to pre/code blocks
-  - Fix README.md with working version in quickstart example
-  - Fix [#104](https://github.com/borkdude/quickblog/issues/104): fix caching with respect to previews
-  - Fix [#104](https://github.com/borkdude/quickblog/issues/104): document `:preview` option
+  - Upgrade to Reagent and fix unsafe HTML rendering
+  - Add viewers for HTML markdown nodes
+  - Support file watching in babashka
+  - Support server side rendering of formulas using KaTeX
 
 - [edamame](https://github.com/borkdude/edamame): configurable EDN and Clojure parser with location metadata and more
   - **1.4.31 (2025-06-25)**
@@ -149,17 +116,21 @@ Here are updates about the projects/libraries I've worked on in the last two mon
   - [#120](https://github.com/borkdude/edamame/issues/120): fix `:auto-resolve-ns` failing case
 
 - [squint](https://github.com/squint-cljs/squint): CLJS _syntax_ to JS compiler
+  - v0.8.153 (2025-08-31)
+  - Fix [#704](https://github.com/squint-cljs/squint/issues/704): `while` didn't compile correctly
+  - Add `clojure.string/includes?`
+  - Emit less code for varargs functions
+  - Fix solidJS example
+  - Documentation improvements ([@lread](https://github.com/lread))
+  - Fix [#697](https://github.com/squint-cljs/squint/issues/697): `ClassCastException` in statement function when passed Code records
+  - v0.8.152 (2025-07-18)
+  - Fix [#680](https://github.com/squint-cljs/squint/issues/680): support import attributes using `:with` option in require, e.g. `:with {:type :json}`
+  - v0.8.151 (2025-07-15)
+  - Implement `not=` as function
+  - Fix [#684](https://github.com/squint-cljs/squint/issues/684): JSX output
+  - v0.8.150 (2025-07-09)
   - [#678](https://github.com/squint-cljs/squint/issues/678): Implement `random-uuid` ([@rafaeldelboni](https://github.com/rafaeldelboni))
-  - **v0.8.149 (2025-06-19)**
-  - [#671](https://github.com/squint-cljs/squint/issues/671): Implement `trampoline` ([@rafaeldelboni](https://github.com/rafaeldelboni))
-  - Fix [#673](https://github.com/squint-cljs/squint/issues/673): remove experimental atom as promise option since it causes unexpected behavior
-  - Fix [#672](https://github.com/squint-cljs/squint/issues/672): alias may contain dots
-  - **v0.8.148 (2025-05-25)**
-  - Fix [#669](https://github.com/squint-cljs/squint/issues/669): munge refer-ed + renamed var
-  - **v0.8.147 (2025-05-09)**
-  - Fix [#661](https://github.com/squint-cljs/squint/issues/661): support `throw` in expression position
-  - Fix [#662](https://github.com/squint-cljs/squint/issues/662): Fix extending protocol from other namespace to `nil`
-  - Better solution for multiple expressions in return context in combination with pragmas
+  - Fix [#681](https://github.com/squint-cljs/squint/issues/681): support unsafe HTML via `[:$ ...]` tag
 
 - [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.<br>
   - [#2560](https://github.com/clj-kondo/clj-kondo/issues/2560): NEW linter: `:locking-suspicious-lock`: report when locking is used on a single arg, interned value or local object
@@ -183,22 +154,20 @@ Here are updates about the projects/libraries I've worked on in the last two mon
   - A configuration for [replicant](https://github.com/cjohansen/replicant/) was added
 
 - [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
-  - **v0.7.23 (2025-06-18)**
-  - [#107](https://github.com/babashka/scittle/issues/107): add `replicant` plugin ([@jeroenvandijk](https://github.com/jeroenvandijk))
-  - [#102](https://github.com/babashka/scittle/issues/102): add `applied-science/js-interop` plugin ([@chr15m](https://github.com/chr15m))
-  - [#105](https://github.com/babashka/scittle/issues/105): add `goog.string/htmlEscape` ([@ikappaki](https://github.com/ikappaki) )
-  - [#113](https://github.com/babashka/scittle/issues/113): add `unchecked-set` and `unchecked-get`
+  - v0.7.27 (2025-08-21)
+  - [#95](https://github.com/babashka/scittle/issues/121): support string requires
+    of `globalThis` js deps ([@chr15m](https://github.com/chr15m)). See
+    [docs](https://github.com/babashka/scittle/blob/main/doc/js-libraries.md).
+  - Potentially breaking: `(.-foo-bar {})` now behaves as `{}.foo_bar`, i.e. the property or method name is munged.
+  - v0.7.26 (2025-08-20)
+  - [#121](https://github.com/babashka/scittle/issues/121): add `cjohansen/dataspex` plugin ([@jeroenvandijk](https://github.com/jeroenvandijk))
+  - [#118](https://github.com/babashka/scittle/issues/118): add `goog.string/format` ([@jeroenvandijk](https://github.com/jeroenvandijk))
+  - Support alternative `(set! #js {} -a 1)` CLJS syntax (by bumping SCI)
+  - Add source maps to distribution
+  - Add dev versions of all modules in the `dev` folder of the distribution + a `dev/scitte.cljs-devtools.js` module
 
 - [nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI
-  - **1.3.204 (2025-05-15)**
-  - [#389](https://github.com/babashka/nbb/issues/389): fix regression caused by [#387](https://github.com/babashka/nbb/issues/387)
-  - **1.3.203 (2025-05-13)**
-  - [#387](https://github.com/babashka/nbb/issues/387): bump `import-meta-resolve` to fix deprecation warnings on Node 22+
-  - **1.3.202 (2025-05-12)**
-  - Fix nbb nrepl server for Deno
-  - **1.3.201 (2025-05-08)**
-  - Deno improvements for loading `jsr:` and `npm:` deps, including react in combination with reagent
-  - [#382](https://github.com/babashka/nbb/issues/382): prefix all node imports with `node:`
+  - nREPL improvement for vim-fireplace
 
 - [quickdoc](https://github.com/borkdude/quickdoc): Quick and minimal API doc generation for Clojure
   - **v0.2.5 (2025-05-01)**
@@ -212,20 +181,7 @@ Here are updates about the projects/libraries I've worked on in the last two mon
   - Add explicit `org.babashka/cli` dependency
 
 - [Nextjournal Markdown](https://github.com/nextjournal/markdown)
-  - **0.7.186**
-  - Make library more GraalVM `native-image` friendly
-  - **0.7.184**
-  - Consolidate utils in `nextjournal.markdown.utils`
-  - **0.7.181**
-  - Hiccup JVM compatibility for fragments (see [#34](https://github.com/nextjournal/markdown/issues/34))
-  - Support HTML blocks (`:html-block`) and inline HTML (`:html-inline`) (see [#7](https://github.com/nextjournal/markdown/issues/7))
-  - Bump commonmark to 0.24.0
-  - Bump markdown-it to 14.1.0
-  - Render `:code` according to spec into `<pre>` and `<code>` block with language class (see [#39](https://github.com/nextjournal/markdown/issues/39))
-  - No longer depend on `applied-science/js-interop`
-  - Accept parsed result in `->hiccup` function
-  - Expose `nextjournal.markdown.transform` through main `nextjournal.markdown` namespace
-  - Stabilize API and no longer mark library alpha
+  - Drop KaTeX dependency by inlining TeXMath lib
 
 - [babashka.nrepl-client](https://github.com/babashka/nrepl-client)
   - Add `:responses` key with raw responses
@@ -243,14 +199,35 @@ Here are updates about the projects/libraries I've worked on in the last two mon
   - This is a brand new project!
 
 - [fs](https://github.com/babashka/fs) - File system utility library for Clojure
-  - [#147](https://github.com/babashka/fs/issues/147): `fs/unzip` should allow selective extraction of files ([@sogaiu](https://github.com/sogaiu))
-  - [#145](https://github.com/babashka/fs/issues/145): `fs/modified-since` works only with ms precision but should support the precision of the filesystem
+  - Documentation improvements
+  - Fix wrong typehint
 
 - [cherry](https://github.com/squint-cljs/cherry): Experimental ClojureScript to ES6 module compiler
-  - Fix `cherry.embed` which is used by malli
+  - `not=` is now a function
+
+- [CLI](https://github.com/babashka/cli): Turn Clojure functions into CLIs!
+  - [#122](https://github.com/babashka/cli/issues/122): introduce new
+    `:repeated-opts` option to enforce repeating the option for accepting multiple
+    values (e.g. `--foo 1 --foo 2` rather than `--foo 1 2`)
 
 - [deps.clj](https://github.com/borkdude/deps.clj): A faithful port of the clojure CLI bash script to Clojure
+  - Fixed Java download program that respects `CLJ_JVM_OPTS` for downloading tools jar.
   - Released several versions catching up with the clojure CLI
+
+- [pod-babashka-fswatcher](https://github.com/babashka/pod-babashka-fswatcher): babashka filewatcher pod
+  - Pod protocol fix: don't send done with async messages
+  - Robustness improvements
+  - Bump fsnotify
+
+- [sci.nrepl](https://github.com/babashka/sci.nrepl): nREPL server for SCI projects that run in the browser
+  - Send current working directory in describe message (for tools like clojure-mcp)
+  - Add `"session-closed"` to close op reply
+
+- [pod-babashka-go-sqlite3](https://github.com/babashka/pod-babashka-go-sqlite3): A babashka pod for interacting with sqlite3
+  - JSON1 support
+
+- [specter](https://github.com/redplanetlabs/specter): Clojure(Script)'s missing piece
+  - Fix babashka support by removing optimizations that only worked due to SCI bug
 
 ## Other projects
 
@@ -259,14 +236,14 @@ happened in the past month.
 
 <details>
 <summary>Click for more details</summary>
-- [CLI](https://github.com/babashka/cli): Turn Clojure functions into CLIs!
+
+- [quickblog](https://github.com/borkdude/quickblog): light-weight static blog engine for Clojure and babashka
 - [process](https://github.com/babashka/process): Clojure library for shelling out / spawning sub-processes
 - [html](https://github.com/borkdude/html): Html generation library inspired by squint's html tag
 - [instaparse-bb](https://github.com/babashka/instaparse-bb): Use instaparse from babashka
 - [sql pods](https://github.com/babashka/babashka-sql-pods): babashka pods for SQL databases
 - [rewrite-edn](https://github.com/borkdude/rewrite-edn): Utility lib on top of
 - [rewrite-clj](https://github.com/clj-commons/rewrite-clj): Rewrite Clojure code and edn
-- [pod-babashka-go-sqlite3](https://github.com/babashka/pod-babashka-go-sqlite3): A babashka pod for interacting with sqlite3
 - [tools-deps-native](https://github.com/babashka/tools-deps-native) and [tools.bbuild](https://github.com/babashka/tools.bbuild): use tools.deps directly from babashka
 - [http-server](https://github.com/babashka/http-server): serve static assets
 - [bbin](https://github.com/babashka/bbin): Install any Babashka script or project with one comman
@@ -275,7 +252,6 @@ happened in the past month.
     qualified methods (Clojure 1.12 only0
 - [neil](https://github.com/babashka/neil): A CLI to add common aliases and features to deps.edn-based projects.<br>
 - [tools](https://github.com/borkdude/tools): a set of [bbin](https://github.com/babashka/bbin/) installable scripts
-- [sci.nrepl](https://github.com/babashka/sci.nrepl): nREPL server for SCI projects that run in the browser
 - [babashka.json](https://github.com/babashka/json): babashka JSON library/adapter
 - [squint-macros](https://github.com/squint-cljs/squint-macros): a couple of
   macros that stand-in for
@@ -287,7 +263,6 @@ happened in the past month.
 - [http-kit](https://github.com/http-kit/http-kit): Simple, high-performance event-driven HTTP client+server for Clojure.
 - [babashka.nrepl](https://github.com/babashka/babashka.nrepl): The nREPL server from babashka as a library, so it can be used from other SCI-based CLIs
 - [jet](https://github.com/borkdude/jet): CLI to transform between JSON, EDN, YAML and Transit using Clojure
-- [pod-babashka-fswatcher](https://github.com/babashka/pod-babashka-fswatcher): babashka filewatcher pod
 - [lein2deps](https://github.com/borkdude/lein2deps): leiningen to deps.edn converter
 - [cljs-showcase](https://github.com/borkdude/cljs-showcase): Showcase CLJS libs using SCI
 - [babashka.book](https://github.com/babashka/book): Babashka manual
