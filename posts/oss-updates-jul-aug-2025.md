@@ -50,7 +50,7 @@ you can sponsor this work in the following ways. Thank you!
 
 ## Updates
 
-Although summer hit Europe and I made a train trip to Switzerland for some hiking, OSS activity continued in the borkiverse. 20 projects saw updates. As usual, babashka, SCI and clj-kondo saw the most activity.
+Although summer hit Europe and I made a train trip to Switzerland for some hiking with my wife, OSS activity continued in the borkiverse. 20 projects saw updates. As usual, babashka, SCI and clj-kondo saw the most activity.
 
 <img src="assets/mb-switzerland-2025.jpeg" width="50%" align="center">
 
