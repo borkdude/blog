@@ -48,13 +48,35 @@ you can sponsor this work in the following ways. Thank you!
 
 -->
 
-## News
-
-- I'll be doing a talk related to babashka at the [conj 2025](https://www.2025.clojure-conj.org/schedule)!
-
 ## Updates
 
-Here are updates about the projects/libraries I've worked on in the last two months, 19 in total!
+Although summer hit Europe and I made train trip to Switzerland for some hiking, OSS activity continued in the borkiverse. 20 projects saw updates. As usual, babashka, SCI and clj-kondo saw the most activity.
+
+One of the big things I’m looking forward to is speaking at [Clojure Conj 2025](https://www.2025.clojure-conj.org/schedule). At the risk of sounding a bit pretentious, the title of my talk is "Making Tools Developers Actually Use". Babashka started as a quirky interpreter "nobody had asked for" but now many Clojure developers don't want to live without it. Clj-kondo started out as a minimal proof-of-concept linter and now is widely used tool in Clojurian's every day toolset and available even in Cursive today. In the talk I want to reflect on what makes a tool something developers (like myself) actually want to use. I'm excited about this opportunity and about my first time visiting the Conj. Given the rest of the schedule, it's something I wouldn't want to miss.
+
+For babashka, my main focus has been making it feel even more like regular Clojure. One example is the change in how non-daemon threads are handled. Previously, people had to add sometimes add `@(promise)` to keep an httpkit server alive. Now babashka behaves like JVM Clojure: if you spawn non-daemon threads, the process waits for them. It’s a small change, but it brings consistency with JVM Clojure, something I'm always aiming for more with babashka. If you want the old behavior, you can still use `--force-exit`. Another change that was introduced is that when code is evaluated through `load-string` or `Compiler/load` (which is the same thing in bb), vars like `*warn-on-reflection*` are bound. This fixes a problem with loading code in non-main threads. E.g. `@(future (load-string "(set! *warn-on-reflection* true)))"` would fail in previous versions of babashka. You might wonder why you would ever want to do this. Well, a similar thing happens when you execute babashka tasks in parallel and that's where I ran into this problem.
+
+SCI, the interpreter under the hood of babashka and several other projects, got some critical fixes as well. I detected one somewhat embarrasing bug when loading `clojure+.hashp` in babashka. It had code that looked like:
+
+
+``` clojure
+(def config {})
+(let [config {}
+      _ (alter-var-root #'config (constantly config))
+     ]
+  ...)
+```
+
+In the expression `(alter-var-root #'config (constantly config))` the var `#'config` was mistaken for the local `config` since SCI's analyzer used a `resolve`-like function that also resolves locals. This fails horribly. In 6 years of SCI it's the first time I encountered this bug though. After fixing this problem, I noticed that babashka's CI acted up. On every commit, babashka CI tests dozens of Clojure libraries by running their test suites. I noticed that specter's tests were failing. It turned out that one test actually worked prior to fixing the above bug exactly because the SCI analyzer's `resolve` returned a node that evaluated to a local value. But there is no way I could just leave that bug in, so I had to make a pull request to specter as well to set this straight. A new specter version was released that works both with older version of babashka and the new version.
+Other improvements in SCI were made in the area of better using type hints on instance method interop.
+
+And then there’s clj-kondo, the linter that is supposed to spark joy ✨, as far as a linter is able to do that in a developer's life. Two new linters were added, including one that catches suspicious uses of locking. This linter was inspired by a similar rule in splint. Lots of smaller improvements were made like sorting findings and imported files such that they are consistent across multiple runs that use the `--parallel` option and across operating systems. And as usual bugfixes and preventing false positives.
+
+One happy improvement to [scittle]() is that referencing a library that was introduced by a `<script>` tag now was made a lot easier. You can find the docs about that [here](https://github.com/babashka/scittle/blob/main/doc/js-libraries.md). The tl;dr of this is that when a library registers itself as a global, you can just use that global in `:require` now: `(require '["JSConfetti" :as confetti])`.
+
+Of course, none of this happens in isolation. I’m deeply grateful to the community and the sponsors who make this work sustainable: Clojurists Together, Roam Research, Nextjournal, Nubank, and many other companies and individuals. Every bit of support means I can keep refining these tools, fixing edge cases, and thinking about the long-term direction.
+
+Here are updates about the projects/libraries I've worked on in the last two months in detail, 21 in total!
 
 - [babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting.
   - Bump clojure to `1.12.2`
@@ -100,20 +122,40 @@ Here are updates about the projects/libraries I've worked on in the last two mon
   - Fix [#986](https://github.com/babashka/sci/issues/986): preserve error location for js static method
   - Fix [#990](https://github.com/babashka/sci/issues/990): fix `merge-opts` with `:bindings` + deprecate `:bindings` (replaced by `:namespaces {'user ...}`)
 
+- [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.<br>
+  - Unreleased
+  - [#2588](https://github.com/clj-kondo/clj-kondo/issues/2588): false positive type mismatch about `symbol` accepting var
+  - Require clojure `1.10.3` is the minimum clojure version
+  - [#2564](https://github.com/clj-kondo/clj-kondo/issues/2564): detect calling set with wrong number of arguments
+  - [#2257](https://github.com/clj-kondo/clj-kondo/issues/2257): support ignore hint on invalid symbol
+  - Sort findings on filename, row, column and now additionally on message too
+  - [#2602](https://github.com/clj-kondo/clj-kondo/issues/2602): Sort auto-imported configs to avoid differences based on OS or file system
+  - [#2603](https://github.com/clj-kondo/clj-kondo/issues/2603): warn on `:inline-def` with nested `deftest`
+  - [#2606](https://github.com/clj-kondo/clj-kondo/issues/2606): make it easy for users to know how inline-config files should be version controlled ([@lread](https://github.com/lread))
+  - [#2610](https://github.com/clj-kondo/clj-kondo/issues/2610): ignores may show up unordered due to macros
+  - [#2615](https://github.com/clj-kondo/clj-kondo/issues/2615): emit `inline-configs` `config.edn` in a git-diff-friendly way ([@lread](https://github.com/lread))
+  - 2025.07.28
+  - [#2580](https://github.com/clj-kondo/clj-kondo/issues/2580): false positive type mismatch with quoted value
+  - Fix some `:locking-suspicious-lock` false positives
+  - [#2582](https://github.com/clj-kondo/clj-kondo/issues/2582): `:condition-always-true` false positives
+  - 2025.07.26
+  - [#2560](https://github.com/clj-kondo/clj-kondo/issues/2560): NEW linter: `:locking-suspicious-lock`: report when locking is used on a single arg, interned value or local object
+  - [#2519](https://github.com/clj-kondo/clj-kondo/issues/2519): NEW linter: `:unresolved-protocol-method`. See [docs](https://github.com/clj-kondo/clj-kondo/blob/master/doc/linters.md) ([@emerson-matos](https://github.com/emerson-matos))
+  - [#2555](https://github.com/clj-kondo/clj-kondo/issues/2555): false positive with `clojure.string/replace` and `partial` as replacement fn
+  - [#2566](https://github.com/clj-kondo/clj-kondo/issues/2566): Expand `:condition-always-true` check. ([@NoahTheDuke](https://github.com/NoahTheDuke))
+  - [#2350](https://github.com/clj-kondo/clj-kondo/issues/2350): support `schema.core/defprotocol` ([@emerson-matos](https://github.com/emerson-matos))
+  - [#2571](https://github.com/clj-kondo/clj-kondo/issues/2571): false positive unresolved symbol when ignoring expression that goes through macroexpansion hook
+  - [#2575](https://github.com/clj-kondo/clj-kondo/issues/2575): false positive type mismatch with nested keyword call and `str`
+  - Bump SCI to `0.10.47`
+  - Drop memoization for hook fns and configuration, solves memory issue with Cursive + big projects like metabase
+  - Optimizations to compensate for dropping caching, performance should be similar (or better depending on the size of your project)
+  - [#2568](https://github.com/clj-kondo/clj-kondo/issues/2568): support `:deprecated-namespace` for `.cljc` namespaces
+
 - [clerk](https://github.com/nextjournal/clerk): Moldable Live Programming for Clojure
   - Upgrade to Reagent and fix unsafe HTML rendering
   - Add viewers for HTML markdown nodes
   - Support file watching in babashka
   - Support server side rendering of formulas using KaTeX
-
-- [edamame](https://github.com/borkdude/edamame): configurable EDN and Clojure parser with location metadata and more
-  - **1.4.31 (2025-06-25)**
-  - Fix [#124](https://github.com/borkdude/edamame/issues/124): add `:imports` to `parse-ns-form`
-  - Fix [#125](https://github.com/borkdude/edamame/issues/125): Support `#^:foo` deprecated metadata reader macro ([@NoahTheDuke](https://github.com/NoahTheDuke))
-  - Fix [#127](https://github.com/borkdude/edamame/issues/127): expose `continue` value that indicates continue-ing parsing ([@NoahTheDuke](https://github.com/NoahTheDuke))
-  - Fix [#122](https://github.com/borkdude/edamame/issues/122): let `:auto-resolve-ns` affect syntax-quote
-  - **1.4.30**
-  - [#120](https://github.com/borkdude/edamame/issues/120): fix `:auto-resolve-ns` failing case
 
 - [squint](https://github.com/squint-cljs/squint): CLJS _syntax_ to JS compiler
   - v0.8.153 (2025-08-31)
@@ -132,27 +174,6 @@ Here are updates about the projects/libraries I've worked on in the last two mon
   - [#678](https://github.com/squint-cljs/squint/issues/678): Implement `random-uuid` ([@rafaeldelboni](https://github.com/rafaeldelboni))
   - Fix [#681](https://github.com/squint-cljs/squint/issues/681): support unsafe HTML via `[:$ ...]` tag
 
-- [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.<br>
-  - [#2560](https://github.com/clj-kondo/clj-kondo/issues/2560): NEW linter: `:locking-suspicious-lock`: report when locking is used on a single arg, interned value or local object
-  - [#2555](https://github.com/clj-kondo/clj-kondo/issues/2555): false positive with `clojure.string/replace` and `partial` as replacement fn
-  - **2025.06.05**
-  - [#2541](https://github.com/clj-kondo/clj-kondo/issues/2541): NEW linter: `:discouraged-java-method`. See [docs](https://github.com/clj-kondo/clj-kondo/blob/master/doc/linters.md)
-  - [#2522](https://github.com/clj-kondo/clj-kondo/issues/2522): support `:config-in-ns` on `:missing-protocol-method`
-  - [#2524](https://github.com/clj-kondo/clj-kondo/issues/2524): support `:redundant-ignore` on `:missing-protocol-method`
-  - [#2536](https://github.com/clj-kondo/clj-kondo/issues/2536): false positive with `format` and whitespace flag after percent
-  - [#2535](https://github.com/clj-kondo/clj-kondo/issues/2535): false positive `:missing-protocol-method` when using alias in method
-  - [#2534](https://github.com/clj-kondo/clj-kondo/issues/2534): make `:redundant-ignore` aware of `.cljc`
-  - [#2527](https://github.com/clj-kondo/clj-kondo/issues/2527): add test for using ns-group + config-in-ns for `:missing-protocol-method` linter
-  - [#2218](https://github.com/clj-kondo/clj-kondo/issues/2218): use `ReentrantLock` to coordinate writes to cache directory within same process
-  - [#2533](https://github.com/clj-kondo/clj-kondo/issues/2533): report inline def under fn and defmethod
-  - [#2521](https://github.com/clj-kondo/clj-kondo/issues/2521): support `:langs` option in `:discouraged-var` to narrow to specific language
-  - [#2529](https://github.com/clj-kondo/clj-kondo/issues/2529): add `:ns` to `&env` in `:macroexpand-hook` macros when executing in CLJS
-  - [#2547](https://github.com/clj-kondo/clj-kondo/issues/2547): make redundant-fn-wrapper report only for all cljc branches
-  - [#2531](https://github.com/clj-kondo/clj-kondo/issues/2531): add `:name` data to `:unresolved-namespace` finding for clojure-lsp
-
-- [sci.configs](https://github.com/babashka/sci.configs): A collection of ready to be used SCI configs.
-  - A configuration for [replicant](https://github.com/cjohansen/replicant/) was added
-
 - [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
   - v0.7.27 (2025-08-21)
   - [#95](https://github.com/babashka/scittle/issues/121): support string requires
@@ -166,37 +187,20 @@ Here are updates about the projects/libraries I've worked on in the last two mon
   - Add source maps to distribution
   - Add dev versions of all modules in the `dev` folder of the distribution + a `dev/scitte.cljs-devtools.js` module
 
+- [edamame](https://github.com/borkdude/edamame): configurable EDN and Clojure parser with location metadata and more
+  - Fix [#132](https://github.com/borkdude/edamame/issues/132): Add counterpart to Clojure's `*suppress-read*`: `:suppress-read`
+
+- [sci.configs](https://github.com/babashka/sci.configs): A collection of ready to be used SCI configs.
+  - Add config for dataspex
+
 - [nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI
   - nREPL improvement for vim-fireplace
-
-- [quickdoc](https://github.com/borkdude/quickdoc): Quick and minimal API doc generation for Clojure
-  - **v0.2.5 (2025-05-01)**
-  - Fix [#32](https://github.com/borkdude/quickdoc/issues/32): fix anchor links to take into account var names that differ only by case
-  - **v0.2.4 (2025-05-01)**
-  - Revert source link in var title and move back to `<sub>`
-  - Specify clojure 1.11 as the minimal Clojure version in `deps.edn`
-  - Fix macro information
-  - Fix [#39](https://github.com/borkdude/quickdoc/issues/39): fix link when var is named multiple times in docstring
-  - Upgrade clj-kondo to `2025.04.07`
-  - Add explicit `org.babashka/cli` dependency
 
 - [Nextjournal Markdown](https://github.com/nextjournal/markdown)
   - Drop KaTeX dependency by inlining TeXMath lib
 
 - [babashka.nrepl-client](https://github.com/babashka/nrepl-client)
   - Add `:responses` key with raw responses
-
-- [speculative](https://github.com/borkdude/speculative)
-  - Add spec for `even?`
-
-- [http-client](https://github.com/babashka/http-client): babashka's http-client
-  -  **0.4.23 (2025-06-06)**
-  - [#75](https://github.com/babashka/http-client/issues/75): override existing content type header in multipart request
-  - Accept `:request-method` in addition to `:request` to align more with other clients
-  - Accept `:url` in addition to `:uri` to align more with other clients
-
-- [unused-deps](https://github.com/borkdude/unused-deps): Find unused deps in a clojure project
-  - This is a brand new project!
 
 - [fs](https://github.com/babashka/fs) - File system utility library for Clojure
   - Documentation improvements
@@ -226,8 +230,24 @@ Here are updates about the projects/libraries I've worked on in the last two mon
 - [pod-babashka-go-sqlite3](https://github.com/babashka/pod-babashka-go-sqlite3): A babashka pod for interacting with sqlite3
   - JSON1 support
 
+- [http-server](https://github.com/babashka/http-server): serve static assets
+  - 0.1.15
+  - [#22](https://github.com/babashka/http-server/issues/22): fix off-by-one error in range requests ([@jyn514](https://github.com/jyn514))
+  - 0.1.14
+  - [#21](https://github.com/babashka/http-server/issues/21): Add `:not-found` option for handling unfound files. The option is a function of the request and should return a map with `:status` and `:body`.
+  - [#19](https://github.com/babashka/http-server/issues/19): Add text/html MIME types for asp and aspx file extensions ([@respatialized](https://github.com/respatialized))
+  - 0.1.13
+  - [#16](https://github.com/babashka/http-server/issues/16): support range requests ([jmglov](https://github.com/jmglov))
+  - [#13](https://github.com/babashka/http-server/issues/13): add an ending slash to the dir link, and don't encode the slashes ([@KDr2](https://github.com/KDr2))
+  - [#12](https://github.com/babashka/http-server/issues/12): Add headers to index page (rather than just file responses)
+
+Contributions to third party projects:
+
 - [specter](https://github.com/redplanetlabs/specter): Clojure(Script)'s missing piece
   - Fix babashka support by removing optimizations that only worked due to SCI bug
+
+- [clojure-test-suite](https://github.com/jank-lang/clojure-test-suite): Dialect-independent tests for clojure.core, and others, focused on characterizing how Clojure JVM behaves so that other dialects to reach parity.
+  - Added babashka to the test suite
 
 ## Other projects
 
@@ -237,6 +257,9 @@ happened in the past month.
 <details>
 <summary>Click for more details</summary>
 
+- [quickdoc](https://github.com/borkdude/quickdoc): Quick and minimal API doc generation for Clojure
+- [unused-deps](https://github.com/borkdude/unused-deps): Find unused deps in a clojure project
+- [http-client](https://github.com/babashka/http-client): babashka's http-client
 - [quickblog](https://github.com/borkdude/quickblog): light-weight static blog engine for Clojure and babashka
 - [process](https://github.com/babashka/process): Clojure library for shelling out / spawning sub-processes
 - [html](https://github.com/borkdude/html): Html generation library inspired by squint's html tag
@@ -245,7 +268,6 @@ happened in the past month.
 - [rewrite-edn](https://github.com/borkdude/rewrite-edn): Utility lib on top of
 - [rewrite-clj](https://github.com/clj-commons/rewrite-clj): Rewrite Clojure code and edn
 - [tools-deps-native](https://github.com/babashka/tools-deps-native) and [tools.bbuild](https://github.com/babashka/tools.bbuild): use tools.deps directly from babashka
-- [http-server](https://github.com/babashka/http-server): serve static assets
 - [bbin](https://github.com/babashka/bbin): Install any Babashka script or project with one comman
 - [qualify-methods](https://github.com/borkdude/qualify-methods)
   - Initial release of experimental tool to rewrite instance calls to use fully
@@ -253,6 +275,7 @@ happened in the past month.
 - [neil](https://github.com/babashka/neil): A CLI to add common aliases and features to deps.edn-based projects.<br>
 - [tools](https://github.com/borkdude/tools): a set of [bbin](https://github.com/babashka/bbin/) installable scripts
 - [babashka.json](https://github.com/babashka/json): babashka JSON library/adapter
+- [speculative](https://github.com/borkdude/speculative)
 - [squint-macros](https://github.com/squint-cljs/squint-macros): a couple of
   macros that stand-in for
   [applied-science/js-interop](https://github.com/applied-science/js-interop)
