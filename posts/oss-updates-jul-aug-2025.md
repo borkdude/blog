@@ -58,7 +58,7 @@ One of the big things I’m looking forward to is speaking at [Clojure Conj 2025
 
 For babashka, my main focus has been making it feel even more like regular Clojure. One example is the change in how non-daemon threads are handled. Previously, people had to sometimes add sometimes `@(promise)` to keep an httpkit server alive. Now babashka behaves like `clojure -X` in this regard: if you spawn non-daemon threads, the process waits for them. It’s looks like a small change, but it brings consistency with JVM Clojure, something I'm always aiming for more with babashka. If you want the old behavior, you can still use `--force-exit`. While implementing this I hit an interesting bug with [GraalVM](https://github.com/oracle/graal/issues/12116) and also found out that `clojure -X` sometimes stalls when using agents. Maybe more on this next time.
 
-Another change that was introduced is that when code is evaluated through `load-string` or `Compiler/load` (which is the same thing in bb), vars like `*warn-on-reflection*` are bound. This fixes a problem with loading code in non-main threads. E.g. `@(future (load-string "(set! *warn-on-reflection* true)))"` would fail in previous versions of babashka. You might wonder why you would ever want to do this. Well, a similar thing happens when you execute babashka tasks in parallel and that's where I ran into this problem.
+Another change that was introduced is that when code is evaluated through `load-string` or `Compiler/load` (which is the same thing in bb), vars like `*warn-on-reflection*` are bound. This fixes a problem with loading code in non-main threads. E.g. `@(future (load-string "(set! *warn-on-reflection* true)"))` would fail in previous versions of babashka. You might wonder why you would ever want to do this. Well, a similar thing happens when you execute babashka tasks in parallel and that's where I ran into this problem.
 
 SCI, the interpreter under the hood of babashka and several other projects, got some critical fixes as well. I detected one somewhat embarrasing bug when loading `clojure+.hashp` in babashka. It had code that looked like:
 
@@ -84,7 +84,7 @@ One happy improvement to [scittle]() is that referencing a library that was intr
 
 Of course, none of this happens in isolation. I’m deeply grateful to the community and the sponsors who make this work sustainable: Clojurists Together, Roam Research, Nextjournal, Nubank, and many other companies and individuals. Every bit of support means I can keep refining these tools, fixing edge cases, and thinking about the long-term direction.
 
-Here are updates about the projects/libraries I've worked on in the last two months in detail, 21 in total!
+Here are updates about the projects/libraries I've worked on in the last two months in detail.
 
 - [babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting.
   - Bump clojure to `1.12.2`
