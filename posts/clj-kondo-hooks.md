@@ -61,7 +61,7 @@ and in the issue on Github
 After more experimentation I decided that the transformation should happen
 direcly on rewrite-clj nodes in order to preserve location information. This led
 to the current implementation of the `:analyze-call` hook, documented
-[here](https://github.com/borkdude/clj-kondo/blob/master/doc/config.md#hooks).
+[here](https://github.com/borkdude/clj-kondo/blob/master/doc/hooks.md).
 Additionally, some library specific example config + hook code is provided
 [here](https://github.com/borkdude/clj-kondo/tree/master/examples), showing how
 to make clj-kondo understand [Rum](https://github.com/tonsky/rum)'s `defc` macro
