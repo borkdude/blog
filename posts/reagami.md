@@ -163,7 +163,7 @@ hiccup as the only child. Read along with the comments again.
 
 ## Putting it all together
 
-Reagemi's only public function is called `render` which is just:
+Reagami's only public function is called `render` which is just:
 
 ``` clojure
 (defn render [root hiccup]
