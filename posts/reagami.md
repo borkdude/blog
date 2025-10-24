@@ -122,9 +122,9 @@ a library. One problem I encountered with Idiomorph is that it doesn't preserve
 event listeners. There's also [Snabbdom](https://github.com/snabbdom/snabbdom),
 a small but effective vDOM library that you could use. But where's the fun in
 that, if you can make your own naive patch function. Here we go! When we render
-a component for the first time, Reagami calls `patch` with the root node and the
-rendered hiccup as the only child, usually something like `div#app` or
-`div#container`. Read along with the comments again.
+a component for the first time, Reagami calls `patch` with the root node
+(usually something like `(js/document.querySelector "#app")`) and the rendered
+hiccup as the only child. Read along with the comments again.
 
 ``` clojure
 (defn- patch [parent new-children]
