@@ -2,11 +2,11 @@ Title: Reagami: a Reagent-like library in less than 100 lines of Squint CLJS
 Date: 2025-10-24
 Tags: clojure, squint, clojurescript, reagent
 
-Recently I've been excited by [Eucalypt](https://github.com/chr15m/eucalypt), a
+Recently I've been excited about [Eucalypt](https://github.com/chr15m/eucalypt), a
 Reagent-clone in pure [Squint](https://github.com/squint-cljs/squint).  For
 those who don't know Squint, it is a CLJS dialect that re-uses JS features as
 much as possible. Maps and vectors compile directly to objects and arrays for
-example. The standard library mimics that of Clojure(Script) and collections,
+example. The standard library mimics that of Clojure(Script). Collections,
 although they are mutable in JS, are treated immutably via shallow-copying.  You
 can build small apps in Eucalypt starting at about 9kb gzip. When looking at the
 code, I wondered if we could make an ultra-simple Reagent-like library with less
@@ -176,7 +176,7 @@ with `atom` and `add-watch`.  Here's an example of this:
 
 ``` clojure
 (ns my-app
-  (:require ["https://esm.sh/reagami@0.0.6" :refer [render]]) )
+  (:require ["https://esm.sh/reagami@0.0.8" :as reagemi]))
 
 (def state (atom {:counter 0}))
 
@@ -186,16 +186,21 @@ with `atom` and `add-watch`.  Here's an example of this:
    [:button {:on-click #(swap! state update :counter inc)}
     "Click me!"]])
 
-(defn do-render []
-  (render (js/document.querySelector "#app") [my-component]))
+(defn render []
+  (reagami/render (js/document.querySelector "#app") [my-component]))
 
 (add-watch state ::render (fn [_ _ _ _]
-                            (do-render)))
+                            (render)))
 
-(do-render)
+(render)
 ```
 
 That's it: a Reagent-like library in less than 100 lines of code!
+
+Further ideas:
+
+- Blending hiccup and patching so we don't even need to create DOM nodes for stuff that hasn't changed
+- Better patching by looking at IDs or keys
 
 Here are some examples you can play with on the Squint playground:
 
