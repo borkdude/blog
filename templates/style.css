@@ -15,7 +15,7 @@ a {
 }
 
 .wrapper {
-  max-width: 800px;
+  max-width: 80ch;
   margin: 0 auto 0 auto;
   padding: 0 15px;
 }
