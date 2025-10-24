@@ -201,6 +201,7 @@ That's it: a Reagent-like library in less than 100 lines of code!
 Further ideas:
 
 - Blending hiccup and patching so we don't even need to create DOM nodes for stuff that hasn't changed
+- Or remember the hiccup we generated on the previous change, compare that since that's more efficient? (I believe Eucalypt does this).
 - Better patching by looking at IDs or keys
 
 Here are some examples you can play with on the Squint playground:
