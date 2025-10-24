@@ -1,4 +1,4 @@
-Title: Reagami: ultra-small (<4kb) reactive apps using Squint and hiccup
+Title: Reagami: a Reagent-like library in less than 100 lines of Squint CLJS
 Date: 2025-10-24
 Tags: clojure, squint, clojurescript, reagent
 
