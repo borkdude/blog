@@ -108,11 +108,12 @@ That's it! Pretty simple.
 
 ## Patching the DOM
 
-If we simply just re-insert the generated DOM nodes from the hiccup, then we
-have several problems. E.g. when we are typing in an input field and we insert a
-new input field, we lose focus. Also we lose event handlers, although this isn't
-really an issue if we re-generate them via the hiccup-to-DOM function above.
-A better approach is to cleverly patch the DOM and re-use existing DOM nodes when possible.
+If we simply just re-insert the generated hiccup DOM nodes into the DOM every
+time something changes, then we have several problems. E.g. when we are typing
+in an input field and we insert a new input field, we lose focus. Also we lose
+event handlers, although this isn't really an issue if we re-generate them via
+the hiccup-to-DOM function above.  A better approach is to cleverly patch the
+DOM and re-use existing DOM nodes when possible.
 
 The `patch` function takes a parent node, some child nodes and tries to re-use
 or insert the children. There are several libraries that do this far more
