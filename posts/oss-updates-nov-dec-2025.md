@@ -45,6 +45,35 @@ you can sponsor this work in the following ways. Thank you!
 - ls -lat ~/dev
 - babashka sub dir checken
 
+drwxr-xr-x   42 borkdude  staff   1344 23 dec. 23:46 clerk
+drwxr-xr-x@  27 borkdude  staff    864 23 dec. 17:03 scittle
+drwxr-xr-x   16 borkdude  staff    512 23 dec. 11:17 lein-clj-kondo
+drwxr-xr-x   10 borkdude  staff    320 23 dec. 11:15 pod-registry
+drwxr-xr-x@ 385 borkdude  staff  12320 23 dec. 11:12 homebrew-brew
+drwxr-xr-x   40 borkdude  staff   1280 22 dec. 20:43 clojurescript
+drwxr-xr-x   63 borkdude  staff   2016 22 dec. 17:44 ductile
+drwxr-xr-x@  82 borkdude  staff   2624 21 dec. 17:11 babashka
+drwxr-xr-x   32 borkdude  staff   1024 19 dec. 23:03 neil
+drwxr-xr-x@  50 borkdude  staff   1600 19 dec. 17:21 nbb
+drwxr-xr-x  181 borkdude  wheel   5792 18 dec. 23:22 cherry
+drwxr-xr-x  939 borkdude  staff  30048 18 dec. 11:53 squint
+drwxr-xr-x    9 borkdude  staff    288 16 dec. 20:57 babashka.brew
+drwxr-xr-x   16 borkdude  staff    512 11 dec. 17:22 cherry-mac-app-test
+drwxr-xr-x  231 borkdude  staff   7392 10 dec. 13:58 .
+drwxr-xr-x   12 borkdude  staff    384  9 dec. 17:14 dependency
+drwxr-xr-x   32 borkdude  staff   1024  9 dec. 15:26 markdown
+drwxr-xr-x   62 borkdude  staff   1984  9 dec. 12:26 scratch
+drwxr-xr-x@  27 borkdude  staff    864  8 dec. 19:49 quickblog
+drwxr-xr-x@  36 borkdude  staff   1152  5 dec. 11:38 edamame
+drwxr-xr-x   26 borkdude  staff    832  4 dec. 13:14 polylith
+drwxr-xr-x   15 borkdude  staff    480  4 dec. 11:57 conf
+drwxr-xr-x   21 borkdude  staff    672  2 dec. 11:36 deflet
+drwxr-xr-x@  18 borkdude  staff    576 29 nov. 17:52 blog
+drwxr-xr-x   30 borkdude  staff    960 28 nov. 14:41 clojure-lsp
+drwxr-xr-x   13 borkdude  staff    416 22 nov. 16:09 parmezan
+drwxr-xr-x   26 borkdude  staff    832 22 nov. 13:10 cli
+drwxr-xr-x   30 borkdude  staff    960 18 nov. 15:40 reagami
+
 -->
 
 ## Updates
