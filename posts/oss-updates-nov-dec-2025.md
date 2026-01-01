@@ -201,7 +201,7 @@ Edamame: configurable EDN and Clojure parser with location metadata and more
   - Fix extra newline in codeblock
 
 - [quickblog](https://github.com/borkdude/quickblog): light-weight static blog engine for Clojure and babashka
-  - Add support for a blog contained within another website; see [Serving an alternate content root](README.md#serving-an-alternate-content-root) in README.  ([@jmglov](https://github.com/jmglov))
+  - Add support for a blog contained within another website; see [Serving an alternate content root](https://github.com/borkdude/quickblog/README.md#serving-an-alternate-content-root) in README.  ([@jmglov](https://github.com/jmglov))
 
 - [nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI
   - [#395](https://github.com/babashka/nbb/issues/395): fix `vim-fireplace` infinite loop on nREPL session close.
