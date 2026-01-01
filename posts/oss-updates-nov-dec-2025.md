@@ -60,7 +60,7 @@ tools developers actually use" will come online soon.
 ### Babashka conf and Dutch Clojure Days 2026
 
 In 2026 I'm organizing Babashka Conf 2026. It will be an afternoon event (13:00-17:00) hosted in the Forum hall of the beautiful public library of Amsterdam.
-More information [here](https://babashka.org/conf/). Get your ticket via [Meetup.com](https://www.meetup.com/the-dutch-clojure-meetup/events/312079164/) (currently there's a wait list, but more places will come available once speakers are confirmed). CfP will open mid January.
+More information [here](https://babashka.org/conf/). Get your ticket via [Meetup.com](https://www.meetup.com/the-dutch-clojure-meetup/events/312079164/) (currently there's a waiting list, but more places will come available once speakers are confirmed). CfP will open mid January.
 The day after babashka conf, Dutch Clojure Days 2026 will be happening. It's not too late to get your talk proposal in. More info [here](https://clojuredays.org/).
 
 ### Projects
@@ -202,6 +202,8 @@ Edamame: configurable EDN and Clojure parser with location metadata and more
 
 - [quickblog](https://github.com/borkdude/quickblog): light-weight static blog engine for Clojure and babashka
   - Add support for a blog contained within another website; see [Serving an alternate content root](https://github.com/borkdude/quickblog/README.md#serving-an-alternate-content-root) in README.  ([@jmglov](https://github.com/jmglov))
+  - Upgrade babashka/http-server to 0.1.14
+  - Fix `:blog-image-alt` option being ignored when using CLI (`bb quickblog render`)
 
 - [nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI
   - [#395](https://github.com/babashka/nbb/issues/395): fix `vim-fireplace` infinite loop on nREPL session close.
