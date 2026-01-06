@@ -63,6 +63,10 @@ In 2026 I'm organizing Babashka Conf 2026. It will be an afternoon event (13:00-
 More information [here](https://babashka.org/conf/). Get your ticket via [Meetup.com](https://www.meetup.com/the-dutch-clojure-meetup/events/312079164/) (currently there's a waiting list, but more places will come available once speakers are confirmed). CfP will open mid January.
 The day after babashka conf, Dutch Clojure Days 2026 will be happening. It's not too late to get your talk proposal in. More info [here](https://clojuredays.org/).
 
+### Clojurists Together: long term funding
+
+I'm happy to announce that I'm among the 5 developers that were granted Long term support for 2026. Thanks to all who voted! Read the announcement [here](https://www.clojuriststogether.org/news/clojurists-together-2026-annual-funding-announcement/).
+
 ### Projects
 
 Here are updates about the projects/libraries I've worked on in the last two months in detail.
