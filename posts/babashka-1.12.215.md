@@ -151,6 +151,8 @@ Here's a complete counter example you can save as a single file and run with `bb
 
 <img src="assets/1.12.215-counter.png" style="max-width:100%" alt="charm.clj counter example running in babashka">
 
+More examples can be found [here](https://github.com/TimoKramer/charm.clj/tree/main/docs/examples#readme).
+
 ### Deftype with map interfaces
 
 Until now, `deftype` in babashka couldn't implement JVM interfaces like
