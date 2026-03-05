@@ -53,7 +53,7 @@ I spent a lot of time making SCI's `deftype`, `case`, and `macroexpand-1` match 
 
 After seeing [charm.clj](https://codeberg.org/timokramer/charm.clj), a terminal UI library, I decided to incorporate JLine3 into babashka so people can build terminal UIs. The goal is to be able to run rebel-readline + nREPL from source in babashka, but this is still work in progress (e.g. the compliment PR is still pending). Since I had JLine anyway, babashka also got a major REPL upgrade with multi-line editing, tab completion, ghost text, and persistent history.
 
-On the CLJS side, SCI, scittle, and nbb all gained `async/await` support.
+I've been working on `async/await` support for ClojureScript ([CLJS-3470](https://clojure.atlassian.net/browse/CLJS-3470)), inspired by how squint handles it. I also implemented it in SCI (scittle, nbb etc. use SCI as a library), though the approach there is different since SCI is an interpreter.
 
 Last but not least, I started [cream](https://github.com/borkdude/cream), an experimental native binary that runs full JVM Clojure with fast startup using GraalVM's Crema. Unlike babashka, it supports runtime bytecode generation (`definterface`, `deftype`, `gen-class`). It currently depends on a fork of Clojure and GraalVM EA, so it's not production-ready yet.
 
@@ -150,6 +150,10 @@ Here are updates about the projects/libraries I've worked on in the last two mon
 
 Contributions to third party projects:
 
+- [ClojureScript](https://github.com/clojure/clojurescript):
+  - Working on `async/await` support ([CLJS-3470](https://clojure.atlassian.net/browse/CLJS-3470)). I also implemented this in SCI, scittle, and nbb.
+  - [CLJS-3471](https://clojure.atlassian.net/browse/CLJS-3471): fix printing of negative zero
+  - [CLJS-3472](https://clojure.atlassian.net/browse/CLJS-3472): `str` on var that is `set!` returns empty string
 - [editscript](https://github.com/juji-io/editscript): Added babashka support, deps.edn for git dep usage, fixed CLJS tests
 - [riddley](https://github.com/ztellman/riddley): Added babashka compatibility, clj-kondo config
 - [cloverage](https://github.com/cloverage/cloverage): Added babashka compatibility, migrated tools.cli from deprecated `cli/cli` to `cli/parse-opts`, bumped riddley
