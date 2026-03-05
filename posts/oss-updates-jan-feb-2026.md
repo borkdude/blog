@@ -51,7 +51,7 @@ Hope to see many of you there!
 
 I spent a lot of time making SCI's `deftype`, `case`, and `macroexpand-1` match JVM Clojure more closely. As a result, libraries like riddley, cloverage, specter, editscript, and compliment now work in babashka.
 
-After seeing [charm.clj](https://codeberg.org/timokramer/charm.clj), a terminal UI library, I decided to incorporate JLine3 into babashka so people can build terminal UIs. The goal is to be able to run rebel-readline + nREPL from source in babashka, but this is still work in progress (e.g. the compliment PR is still pending). Since I had JLine anyway, babashka also got a major REPL upgrade with multi-line editing, tab completion, ghost text, and persistent history.
+After seeing [charm.clj](https://codeberg.org/timokramer/charm.clj), a terminal UI library, I decided to incorporate JLine3 into babashka so people can build terminal UIs. Since I had JLine anyway, I also gave babashka's console REPL a major upgrade with multi-line editing, tab completion, ghost text, and persistent history. A next goal is to run rebel-readline + nREPL from source in babashka, but that's still work in progress (e.g. the compliment PR is still pending).
 
 I've been working on `async/await` support for ClojureScript ([CLJS-3470](https://clojure.atlassian.net/browse/CLJS-3470)), inspired by how squint handles it. I also implemented it in SCI (scittle, nbb etc. use SCI as a library), though the approach there is different since SCI is an interpreter.
 
