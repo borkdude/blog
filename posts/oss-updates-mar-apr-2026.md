@@ -71,7 +71,7 @@ The [cljfmt](https://github.com/weavejester/cljfmt) library, also by [@weavejest
 
 Several SCI fixes were made to improve Clojure compatibility between babashka and Clojure. E.g. records can now support extending to `IFn` which was a blocker for some Clojure libs that tried to run in `bb` so far.
 
-Clj-kondo `2026.04.15` got a few new linters thanks to [@jramosg](https://github.com/jramosg) for stewarding most of these. It also has better out of the box [potemkin](https://github.com/clj-commons/potemkin) support and a wave of performance improvements by [@alexander-yakushev](https://github.com/alexander-yakushev).
+Clj-kondo `2026.04.15` got a few new linters thanks to [@jramosg](https://github.com/jramosg) for stewarding most of these. It also has better out of the box [potemkin](https://github.com/clj-commons/potemkin) support, and [@alexander-yakushev](https://github.com/alexander-yakushev) contributed a wave of performance improvements.
 
 Here are updates about the projects/libraries I've worked on in the last two months in more detail.
 
