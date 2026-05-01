@@ -58,14 +58,14 @@ My upstream work to enable `async/await` in ClojureScript was merged in the begi
 
 I'll be presenting this work at the Dutch Clojure Days.
 
-I worked on making [rebel-readline](https://github.com/bhauman/rebel-readline/tree/master/rebel-readline) bb compatible. This work is now merged. The work involved mainly exposing more JLine stuff and making sure rebel-readline didn't hit any internal JLine APIs.
+[Rebel-readline](https://github.com/bhauman/rebel-readline/tree/master/rebel-readline) is now bb compatible. The work involved mainly exposing more JLine stuff and making sure rebel-readline didn't hit any internal JLine APIs.
 One step to drive this to completion was to make a dependency, [compliment](https://github.com/alexander-yakushev/compliment/), bb compatible. Thanks both to Bruce and Alexander for the cooperation.
 
 [Squint](https://github.com/squint-cljs/squint) now supports `cljs.test` and multimethods!
 
 On the [cream](https://github.com/borkdude/cream) front, I put in effort to make the binary smaller and have been keeping up with the new GraalVM EA releases. I've been posting bug reports to the crema maintainer. Currently there's still an unfixed bug around core.async that I have trouble reproducing in pure Java. I also added lots of library tests to CI so I can ensure stability in the long run. For now it remains experimental, but the direction is promising.
 
-I made a performance PR to [weavejester/dependency](https://github.com/weavejester/dependency), speeding it up significantly in some scenarios, so [clerk](https://github.com/nextjournal/clerk) notebooks render faster.
+A performance PR to [weavejester/dependency](https://github.com/weavejester/dependency) speeds up `depend`, `depends?` and `topo-sort` significantly, so [clerk](https://github.com/nextjournal/clerk) notebooks render faster.
 
 The [cljfmt](https://github.com/weavejester/cljfmt) library, also by [@weavejester](https://github.com/weavejester), now fully runs from source in babashka. The Java diff library that wasn't bb-compatible was replaced with [text-diff](https://github.com/borkdude/text-diff), but only for the babashka path. The JVM build of cljfmt still uses the original Java diff library, with a possible switch later once text-diff has matured.
 
