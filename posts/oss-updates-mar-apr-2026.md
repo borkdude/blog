@@ -43,7 +43,7 @@ you can sponsor this work in the following ways. Thank you!
 
 ### Babashka conf and Dutch Clojure Days 2026
 
-Babashka Conf 2026 is happening on May 8th in the OBA Oosterdok library in Amsterdam! David Nolen, primary maintainer of ClojureScript, will be our keynote speaker. We're excited to have [Nubank](https://international.nubank.com.br/careers/), [Exoscale](https://www.exoscale.com/jobs/), Bob, Itonomi and Flexiana as sponsors. Nubank and Exoscale are hiring. Wendy Randolph will be our event host. For the schedule and other info, see [babashka.org/conf](https://babashka.org/conf/). Join the babashka-conf Slack channel on Clojurians Slack for last minute communication.
+Babashka Conf 2026 is happening on May 8th in the OBA Oosterdok library in Amsterdam! David Nolen, primary maintainer of ClojureScript, will be our keynote speaker. We're excited to have [Nubank](https://international.nubank.com.br/careers/), [Exoscale](https://www.exoscale.com/jobs/), [Bob](https://github.com/bobisageek), [Itonomi](https://itonomi.com) and [Flexiana](https://flexiana.com) as sponsors. Nubank and Exoscale are hiring. Wendy Randolph will be our event host. For the schedule and other info, see [babashka.org/conf](https://babashka.org/conf/). Join the babashka-conf Slack channel on Clojurians Slack for last minute communication.
 The day after babashka conf, [Dutch Clojure Days 2026](https://clojuredays.org/) will be happening, so you can enjoy a whole weekend of Clojure in Amsterdam.
 Hope to see many of you there!
 
@@ -51,7 +51,7 @@ Hope to see many of you there!
 
 In the last two months I spent significant time organizing babashka conf, but made progress in several projects as well.
 
-My upstream work to enable `async/await` in ClojureScript was merged in the beginning of March. I implemented it similarly to squint. Thanks David! Also `deftest` now supports an `^:async` annotation so you can use `async/await` and don't need to mess around with the `cljs.test/async` macro anymore:
+My upstream work to enable `async/await` in ClojureScript was merged in the beginning of March. I implemented it similarly to squint. Thanks David for reviewing and merging. Also `deftest` now supports an `^:async` annotation so you can use `async/await` and don't need to mess around with the `cljs.test/async` macro anymore:
 
 - [CLJS-3470](https://clojure.atlassian.net/browse/CLJS-3470) `async/await`
 - [CLJS-3476](https://clojure.atlassian.net/browse/CLJS-3476) `async deftest`
