@@ -43,7 +43,7 @@ you can sponsor this work in the following ways. Thank you!
 
 ### Babashka conf and Dutch Clojure Days 2026
 
-Babashka Conf 2026 is happening on May 8th in the OBA Oosterdok library in Amsterdam! David Nolen, primary maintainer of ClojureScript, will be our keynote speaker. We're excited to have Nubank, Exoscale, Bob, Itonomi and Flexiana as sponsors. Wendy Randolph will be our event host. For the schedule and other info, see [babashka.org/conf](https://babashka.org/conf/). Join the babashka-conf Slack channel on Clojurians Slack for last minute communication.
+Babashka Conf 2026 is happening on May 8th in the OBA Oosterdok library in Amsterdam! David Nolen, primary maintainer of ClojureScript, will be our keynote speaker. We're excited to have [Nubank](https://international.nubank.com.br/careers/), [Exoscale](https://www.exoscale.com/jobs/), Bob, Itonomi and Flexiana as sponsors. Nubank and Exoscale are hiring. Wendy Randolph will be our event host. For the schedule and other info, see [babashka.org/conf](https://babashka.org/conf/). Join the babashka-conf Slack channel on Clojurians Slack for last minute communication.
 The day after babashka conf, [Dutch Clojure Days 2026](https://clojuredays.org/) will be happening, so you can enjoy a whole weekend of Clojure in Amsterdam.
 Hope to see many of you there!
 
