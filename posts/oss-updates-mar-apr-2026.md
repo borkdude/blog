@@ -1,5 +1,5 @@
 Title: OSS updates March and April 2026
-Date: 2026-05-01
+Date: 2026-05-04
 Tags: clojure, oss updates
 Description: My Clojure OSS updates for March and April 2026
 
@@ -114,8 +114,7 @@ Updates per project below. Bullets are highlights; see each project's `CHANGELOG
   - Include SCI types in `ns-map`
   - [Full changelog](https://github.com/babashka/sci/blob/master/CHANGELOG.md)
 
-- [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.<br>
-  Special thanks to [@jramosg](https://github.com/jramosg) and [@alexander-yakushev](https://github.com/alexander-yakushev) for their significant contributions in this release.
+- [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.
   - Released 2026.04.15
   - [#2788](https://github.com/clj-kondo/clj-kondo/issues/2788): NEW linter: `:not-nil?` which suggests `(some? x)` instead of `(not (nil? x))`, and similar patterns with `when-not` and `if-not` (default level: `:off`)
   - [#2520](https://github.com/clj-kondo/clj-kondo/issues/2520): NEW linter: `:protocol-method-arity-mismatch` which warns when a protocol method is implemented with an arity that doesn't match any arity declared in the protocol ([@jramosg](https://github.com/jramosg))
@@ -164,7 +163,7 @@ Updates per project below. Bullets are highlights; see each project's `CHANGELOG
 - [fs](https://github.com/babashka/fs): file system utility library for Clojure
   - Released 0.5.32 and 0.5.33
   - [#232](https://github.com/babashka/fs/issues/232): add `touch` fn ([@lread](https://github.com/lread) & [@borkdude](https://github.com/borkdude))
-  - [#197](https://github.com/babashka/fs/issues/197): docstring review - step 1: consistent arg naming, improved docstrings, added `Coercions and Returns` / `Argument Naming Conventions` sections to README ([@lread](https://github.com/lread))
+  - [#197](https://github.com/babashka/fs/issues/197): docstring review: consistent arg naming, improved docstrings, added `Coercions and Returns` / `Argument Naming Conventions` sections to README ([@lread](https://github.com/lread))
   - [#231](https://github.com/babashka/fs/issues/231): get/set attribute functions were never following links. They now respect the `:nofollow-links` option ([@lread](https://github.com/lread))
   - [#254](https://github.com/babashka/fs/issues/254): fix `split-ext` and `extension` on dotfiles with parent dirs (e.g. `foo/.gitignore`)
   - [#202](https://github.com/babashka/fs/issues/202): `gzip` & `gunzip` now honor dest dir when specified ([@lread](https://github.com/lread))
