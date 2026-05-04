@@ -237,14 +237,13 @@ Updates per project below. Bullets are highlights; see each project's `CHANGELOG
   - [#145](https://github.com/borkdude/deps.clj/pull/145): support for installing in FreeBSD and Windows bash environments including MINGW64, MSYS_NT and Cygwin ([@ikappaki](https://github.com/ikappaki))
   - Catch up with Clojure CLI 1.12.4.1618
 
-- NEW: [text-diff](https://github.com/borkdude/text-diff): small colorized text diff utility for Clojure (extracted as a bb-friendly replacement for cljfmt's Java diff dep)
-
 Contributions to third party projects:
 
 - [ClojureScript](https://github.com/clojure/clojurescript):
   - [CLJS-3470](https://clojure.atlassian.net/browse/CLJS-3470): added `async/await` support (merged!)
   - [CLJS-3476](https://clojure.atlassian.net/browse/CLJS-3476): added `async deftest` support (merged!)
 - [weavejester/dependency](https://github.com/weavejester/dependency): improve performance of `depend`, `depends?`, and `topo-sort`
+- [weavejester/cljfmt](https://github.com/weavejester/cljfmt): [#404](https://github.com/weavejester/cljfmt/pull/404) babashka compatibility via new [text-diff](https://github.com/borkdude/text-diff) lib (merged!)
 - [Engelberg/instaparse](https://github.com/Engelberg/instaparse): submitted [#242](https://github.com/Engelberg/instaparse/pull/242) for babashka compatibility. Required `:bb` reader conditionals to replace the `AutoFlattenSeq` deftype with plain vectors plus metadata markers, swap the `Segment` deftype for a `reify`-based `CharSequence`, and add a CI test runner. Open, awaiting review.
 
 ## Other projects
