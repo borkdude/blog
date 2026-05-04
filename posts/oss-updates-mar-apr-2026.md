@@ -51,7 +51,7 @@ Hope to see many of you there!
 
 In the last two months I spent significant time organizing babashka conf, but made progress in several projects as well.
 
-My upstream work to enable `async/await` in ClojureScript was merged in the beginning of March. I implemented it similarly to squint. Thanks David for reviewing and merging. Also `deftest` now supports an `^:async` annotation so you can use `async/await` and don't need to mess around with the `cljs.test/async` macro anymore:
+My upstream work to enable `async/await` in ClojureScript was merged in the beginning of March. The implementation mirrors squint. Thanks David for reviewing and merging. Also `deftest` now supports an `^:async` annotation so you can use `async/await` and don't need to mess around with the `cljs.test/async` macro anymore:
 
 - [CLJS-3470](https://clojure.atlassian.net/browse/CLJS-3470) `async/await`
 - [CLJS-3476](https://clojure.atlassian.net/browse/CLJS-3476) `async deftest`
