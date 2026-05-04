@@ -246,6 +246,7 @@ Contributions to third party projects:
   - [CLJS-3470](https://clojure.atlassian.net/browse/CLJS-3470): added `async/await` support (merged!)
   - [CLJS-3476](https://clojure.atlassian.net/browse/CLJS-3476): added `async deftest` support (merged!)
 - [weavejester/dependency](https://github.com/weavejester/dependency): improve performance of `depend`, `depends?`, and `topo-sort`
+- [Engelberg/instaparse](https://github.com/Engelberg/instaparse): submitted [#242](https://github.com/Engelberg/instaparse/pull/242) for babashka compatibility. Required `:bb` reader conditionals to replace `AutoFlattenSeq` deftype with plain vectors + metadata markers, wrap `Parser` records as callable fns, and add a CI test runner. Open, awaiting review.
 
 ## Other projects
 
