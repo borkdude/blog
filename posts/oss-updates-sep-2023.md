@@ -143,6 +143,7 @@ happened in the past month.
 
 <details>
 <summary>Click for more details</summary>
+
 - [jet](https://github.com/borkdude/jet): CLI to transform between JSON, EDN, YAML and Transit using Clojure
 - [quickdoc](https://github.com/borkdude/quickdoc): Quick and minimal API doc generation for Clojure
 - [nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI

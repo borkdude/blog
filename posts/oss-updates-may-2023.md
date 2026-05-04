@@ -115,6 +115,7 @@ happened in the past month.
 
 <details>
 <summary>Click for more details</summary>
+
 - [edamame](https://github.com/borkdude/edamame): Configurable EDN/Clojure parser with location metadata
   - Improvements for reading namespaced maps
 - [babashka.book](https://github.com/babashka/book): Babashka manual

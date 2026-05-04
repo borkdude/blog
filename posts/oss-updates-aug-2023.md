@@ -107,6 +107,7 @@ happened in the past month.
 
 <details>
 <summary>Click for more details</summary>
+
 - [pod-babashka-fswatcher](https://github.com/babashka/pod-babashka-fswatcher): babashka filewatcher pod
 - [edamame](https://github.com/borkdude/edamame): Configurable EDN/Clojure parser with location metadata
 - [lein-clj-kondo](https://github.com/clj-kondo/lein-clj-kondo): a leiningen plugin for clj-kondo

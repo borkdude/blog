@@ -118,6 +118,7 @@ happened in the past month.
 
 <details>
 <summary>Click for more details</summary>
+
 - [neil](https://github.com/babashka/neil): A CLI to add common aliases and features to deps.edn-based projects
 
 - [CLI](https://github.com/babashka/cli): Turn Clojure functions into CLIs!

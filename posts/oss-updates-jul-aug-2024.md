@@ -134,6 +134,7 @@ happened in the past month.
 
 <details>
 <summary>Click for more details</summary>
+
 - [html](https://github.com/borkdude/html): Html generation library inspired by squint's html tag
 - [neil](https://github.com/babashka/neil): A CLI to add common aliases and features to deps.edn-based projects.<br>
 - [rewrite-edn](https://github.com/borkdude/rewrite-edn): Utility lib on top of

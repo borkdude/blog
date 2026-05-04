@@ -167,6 +167,7 @@ happened in the past month.
 
 <details>
 <summary>Click for more details</summary>
+
 - [process](https://github.com/babashka/process): Clojure library for shelling out / spawning sub-processes
 - [babashka.json](https://github.com/babashka/json): babashka JSON library/adapter
 - [tools-deps-native](https://github.com/babashka/tools-deps-native) and [tools.bbuild](https://github.com/babashka/tools.bbuild): use tools.deps directly from babashka

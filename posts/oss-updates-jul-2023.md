@@ -98,6 +98,7 @@ happened in the past month.
 
 <details>
 <summary>Click for more details</summary>
+
 - [sql pods](https://github.com/babashka/babashka-sql-pods): babashka pods for SQL databases
 - [CLI](https://github.com/babashka/cli): Turn Clojure functions into CLIs!
 - [cljs-showcase](https://github.com/borkdude/cljs-showcase): Showcase CLJS libs using SCI

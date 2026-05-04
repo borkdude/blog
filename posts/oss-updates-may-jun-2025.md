@@ -257,6 +257,7 @@ happened in the past month.
 
 <details>
 <summary>Click for more details</summary>
+
 - [CLI](https://github.com/babashka/cli): Turn Clojure functions into CLIs!
 - [process](https://github.com/babashka/process): Clojure library for shelling out / spawning sub-processes
 - [html](https://github.com/borkdude/html): Html generation library inspired by squint's html tag

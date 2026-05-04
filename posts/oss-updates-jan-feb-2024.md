@@ -169,6 +169,7 @@ happened in the past month.
 
 <details>
 <summary>Click for more details</summary>
+
 - [http-server](https://github.com/babashka/http-server): serve static assets
 
 - [cherry](https://github.com/squint-cljs/cherry): Experimental ClojureScript to ES6 module compiler

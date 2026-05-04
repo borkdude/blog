@@ -139,6 +139,7 @@ happened in the past month.
 
 <details>
 <summary>Click for more details</summary>
+
 - [rewrite-edn](https://github.com/borkdude/rewrite-edn): Utility lib on top of
   rewrite-clj with common operations to update EDN while preserving whitespace
   and comments

@@ -194,6 +194,7 @@ happened in the past month.
 
 <details>
 <summary>Click for more details</summary>
+
 - [edamame](https://github.com/borkdude/edamame): Configurable EDN/Clojure parser with location metadata
 - [quickdoc](https://github.com/borkdude/quickdoc): Quick and minimal API doc generation for Clojure
 - [CLI](https://github.com/babashka/cli): Turn Clojure functions into CLIs!<br>

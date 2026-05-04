@@ -115,6 +115,7 @@ happened in the past month.
 
 <details>
 <summary>Click for more details</summary>
+
 - [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
 - [nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI
 - [http-client](https://github.com/babashka/http-client): Babashka's http-client

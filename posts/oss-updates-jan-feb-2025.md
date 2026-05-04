@@ -130,6 +130,7 @@ happened in the past month.
 
 <details>
 <summary>Click for more details</summary>
+
 - [CLI](https://github.com/babashka/cli): Turn Clojure functions into CLIs!
 - [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
 - [nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI

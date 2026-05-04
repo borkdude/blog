@@ -170,6 +170,7 @@ happened in the past month.
 
 <details>
 <summary>Click for more details</summary>
+
 - [pod-babashka-go-sqlite3](https://github.com/babashka/pod-babashka-go-sqlite3): A babashka pod for interacting with sqlite3
 - [unused-deps](https://github.com/borkdude/unused-deps): Find unused deps in a clojure project
 - [pod-babashka-fswatcher](https://github.com/babashka/pod-babashka-fswatcher): babashka filewatcher pod

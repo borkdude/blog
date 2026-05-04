@@ -179,6 +179,7 @@ happened in the past month.
 
 <details>
 <summary>Click for more details</summary>
+
 - [rewrite-edn](https://github.com/borkdude/rewrite-edn): Utility lib on top of
 - [deps.clj](https://github.com/borkdude/deps.clj): A faithful port of the clojure CLI bash script to Clojure
 - [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI

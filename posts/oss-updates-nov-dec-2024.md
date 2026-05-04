@@ -163,6 +163,7 @@ happened in the past month.
 
 <details>
 <summary>Click for more details</summary>
+
 - [SCI](https://github.com/babashka/sci): Configurable Clojure/Script interpreter suitable for scr- [cherry](https://github.com/squint-cljs/cherry): Experimental ClojureScript to ES6 module compil- [http-server](https://github.com/babashka/http-server): serve static assets
 - [bbin](https://github.com/babashka/bbin): Install any Babashka script or project with one comman
 - [sci.configs](https://github.com/babashka/sci.configs): A collection of ready to be used SCI configs.

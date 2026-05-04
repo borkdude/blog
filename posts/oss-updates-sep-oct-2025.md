@@ -204,6 +204,7 @@ happened in the past month.
 
 <details>
 <summary>Click for more details</summary>
+
 - [CLI](https://github.com/babashka/cli): Turn Clojure functions into CLIs!
 - [pod-babashka-fswatcher](https://github.com/babashka/pod-babashka-fswatcher): babashka filewatcher pod
 - [sci.nrepl](https://github.com/babashka/sci.nrepl): nREPL server for SCI projects that run in the browser

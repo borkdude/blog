@@ -200,6 +200,7 @@ happened in the past month.
 
 <details>
 <summary>Click for more details</summary>
+
 - [grasp](https://github.com/borkdude/grasp): Grep Clojure code using clojure.spec regexes
 
 - [lein-clj-kondo](https://github.com/clj-kondo/lein-clj-kondo): a leiningen plugin for clj-kondo

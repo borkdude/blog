@@ -253,6 +253,7 @@ happened in the past two months.
 
 <details>
 <summary>Click for more details</summary>
+
 - [scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
 - [pod-babashka-go-sqlite3](https://github.com/babashka/pod-babashka-go-sqlite3): A babashka pod for interacting with sqlite3
 - [unused-deps](https://github.com/borkdude/unused-deps): Find unused deps in a clojure project
