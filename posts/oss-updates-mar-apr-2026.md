@@ -73,7 +73,7 @@ Several SCI fixes were made to improve Clojure compatibility between babashka an
 
 Clj-kondo `2026.04.15` got a few new linters thanks to [@jramosg](https://github.com/jramosg) for stewarding most of these. It also has better out of the box [potemkin](https://github.com/clj-commons/potemkin) support, and [@alexander-yakushev](https://github.com/alexander-yakushev) contributed a wave of performance improvements.
 
-Here are updates about the projects/libraries I've worked on in the last two months in more detail.
+Updates per project below. Bullets are highlights; see each project's `CHANGELOG.md` for the full list.
 
 - NEW: [text-diff](https://github.com/borkdude/text-diff): colorized text diff utility for Clojure
 
