@@ -75,8 +75,6 @@ Clj-kondo `2026.04.15` got a few new linters thanks to [@jramosg](https://github
 
 Updates per project below. Bullets are highlights; see each project's `CHANGELOG.md` for the full list.
 
-- NEW: [text-diff](https://github.com/borkdude/text-diff): colorized text diff utility for Clojure
-
 - [babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting.
   - Released 1.12.216, 1.12.217 and 1.12.218
   - Support rebel-readline as external REPL provider:
@@ -238,6 +236,8 @@ Updates per project below. Bullets are highlights; see each project's `CHANGELOG
   - Released 1.12.4.1618
   - [#145](https://github.com/borkdude/deps.clj/pull/145): support for installing in FreeBSD and Windows bash environments including MINGW64, MSYS_NT and Cygwin ([@ikappaki](https://github.com/ikappaki))
   - Catch up with Clojure CLI 1.12.4.1618
+
+- NEW: [text-diff](https://github.com/borkdude/text-diff): small colorized text diff utility for Clojure (extracted as a bb-friendly replacement for cljfmt's Java diff dep)
 
 Contributions to third party projects:
 
