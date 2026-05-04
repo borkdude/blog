@@ -98,7 +98,8 @@ Here are updates about the projects/libraries I've worked on in the last two mon
   - [#1969](https://github.com/babashka/babashka/issues/1969): include `java.net.Proxy` and `java.net.Proxy$Type` Java classes ([@jeeger](https://github.com/jeeger))
   - [#1939](https://github.com/babashka/babashka/issues/1939): disable JLine backslash escaping/shell history commands ([@bobisageek](https://github.com/bobisageek))
   - Performance improvements for math operations and for calling functions on locals
-  - Add cp437 (IBM437) charset support and many new classes to reflection config (`java.lang.reflect.Constructor`, `java.lang.reflect.Executable`, `java.util.stream.Collectors`, `java.util.Comparator` for `reify`, etc.)
+  - Add cp437 (IBM437) charset support
+  - Add many new classes to reflection config: `java.lang.reflect.Constructor`, `java.lang.reflect.Executable`, `java.util.stream.Collectors`, `java.util.Comparator` (for `reify`), and more
   - Bump JLine to 4.0.12, cheshire to 6.2.0, `nextjournal.markdown` to 0.7.255, edamame to 1.5.39, `data.xml` to 0.2.0-alpha11, `jsoup` to 1.22.2, rewrite-clj to 1.2.54, tools.cli to 1.4.256, transit-clj to 1.1.357, fs to 0.5.32
   - [Full changelog](https://github.com/babashka/babashka/blob/master/CHANGELOG.md)
 
