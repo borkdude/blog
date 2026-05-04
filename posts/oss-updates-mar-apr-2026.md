@@ -61,7 +61,7 @@ I'll be presenting this work at the Dutch Clojure Days.
 [Rebel-readline](https://github.com/bhauman/rebel-readline/tree/master/rebel-readline) is now bb compatible. The work involved mainly exposing more JLine stuff and making sure rebel-readline didn't hit any internal JLine APIs.
 One step to drive this to completion was to make a dependency, [compliment](https://github.com/alexander-yakushev/compliment/), bb compatible. Thanks both to Bruce and Alexander for the cooperation.
 
-[Squint](https://github.com/squint-cljs/squint) now supports `cljs.test` and multimethods!
+[Squint](https://github.com/squint-cljs/squint) now supports `cljs.test` and multimethods! [clojure-mode](https://github.com/nextjournal/clojure-mode) was ported to use the new `cljs.test`.
 
 On the [cream](https://github.com/borkdude/cream) front, I put in effort to make the binary smaller and have been keeping up with the new GraalVM EA releases. I've been posting bug reports to the crema maintainer. Currently there's still an unfixed bug around core.async that I have trouble reproducing in pure Java. I also added lots of library tests to CI so I can ensure stability in the long run. For now it remains experimental, but the direction is promising.
 
