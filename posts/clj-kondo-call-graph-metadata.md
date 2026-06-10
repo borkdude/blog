@@ -3,7 +3,7 @@ Date: 2026-06-10
 Tags: clojure, clj-kondo, babashka
 Description: Using clj-kondo analysis data and a babashka pod to find all transitive var relations
 
-Today fellow Clojurian Søren Knudsen asked the following question on Slack:
+Today fellow Clojurian Søren Knudsen asked the following question on [Clojurians Slack](https://clojurians.net/):
 
 > Say I'd like an overview of which fns in my Clojurescript app don't have `:x` metadata and aren't children of functions that have `:x`.
 > I'd love this overview as data.
