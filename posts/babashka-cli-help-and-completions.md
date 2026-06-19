@@ -33,6 +33,12 @@ nitty-gritty.
 One extra bonus feature is the nested command notation instead of the "table".
 This already existed in Babashka CLI for a while, but it's now exposed for users.
 
+The features described in this post are available as of Babashka CLI v0.11.73:
+
+```clojure
+org.babashka/cli {:mvn/version "0.11.73"}
+```
+
 Let's dig into an example to learn more about the new features!
 
 ## Writing our own git
