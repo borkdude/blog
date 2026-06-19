@@ -312,14 +312,19 @@ list	List the existing remotes
 
 After holding off and thinking about these issues for a couple of years, I finally bit the bullet and added help and completion support to Babashka CLI. Hope you'll enjoy it!
 
-More exciting stuff is coming soon. The new Babashka CLI will be integrated into
+More exciting related stuff is coming soon. The new Babashka CLI will be integrated into
 babashka of course, but also babashka [tasks](https://book.babashka.org/#tasks)
 will be pimped with automatic help and cmopletions. I'm not yet done with that
 work though.
 
+Meanwhile I've been porting over
+[squint](https://github.com/squint-cljs/squint/pull/835) and
+[neil](https://github.com/babashka/neil/pull/263) over to the automatic help
+already.
+
 Special thanks to
 
-- [Nextjournal](https://github.com/nextjournal) whose app I'm taking as a case study for this work
+- [Nextjournal](https://github.com/nextjournal) whose commercial app I'm taking as a case study for this work
 - [Clojurists Together](https://www.clojuriststogether.org/)
 - [Sponsors on Github](http://github.com/sponsors/borkdude)
 
