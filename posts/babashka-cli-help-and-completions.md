@@ -327,5 +327,15 @@ Meanwhile I've been porting
 [neil](https://github.com/babashka/neil/pull/263) over to the automatic help
 already.
 
-A special shout-out to [@lread](https://github.com/lread) for a ton of documentation review and improvements, and general maintenance. Thanks to [@sohalt](https://github.com/sohalt) for the initial shell completions work back in 2024 that I picked up again for this release. Thanks also to [Nextjournal](https://github.com/nextjournal) whose commercial app I'm taking as a case study for this work, and last but not least to [Clojurists Together](https://www.clojuriststogether.org/) and [Sponsors on Github](http://github.com/sponsors/borkdude) for giving me the time to work on this.
+A special shout-out to [@lread](https://github.com/lread) for a ton of
+documentation review and improvements, and general maintenance. Thanks to
+[@sohalt](https://github.com/sohalt) for the initial shell completions work back
+in 2024 that I picked up again for this release. Thanks to
+[@plexus](https://github.com/plexus) for his excellent Lambdaisland CLI
+[talk](https://www.youtube.com/watch?v=SqoFY0bQJDQ) at Babashka
+Conf 2026. Thanks also to [Nextjournal](https://github.com/nextjournal) whose
+commercial app I'm taking as a case study for this work, and last but not least
+to [Clojurists Together](https://www.clojuriststogether.org/) and [Sponsors on
+Github](http://github.com/sponsors/borkdude) for giving me the time to work on
+this.
 
