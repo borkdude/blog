@@ -1,7 +1,7 @@
-Title: Automatic help and completions in babashka CLI
+Title: Automatic help and completions in Babashka CLI
 Date: 2026-06-18
 Tags: clojure, babashka, cli
-Description: Automatic help and completions in babashka CLI
+Description: Automatic help and completions in Babashka CLI
 
 [Babashka CLI](https://github.com/babashka/cli) is a library to write command
 line tools. It is available in babashka by default. This library was born out of
@@ -11,10 +11,10 @@ raw EDN on the command line, which to me isn't a good user experience
 than in bash and zsh). Babashka wants to give Clojure users a good scripting
 experience, no matter what OS or shell you are using.
 
-While babashka CLI had all the ingredients for parsing and formatting options
+While Babashka CLI had all the ingredients for parsing and formatting options
 (for help) and for multi-command (or subcommand) style (e.g. `git remote show
 origin`) invocations, you still had to write your own `--help` functionality.
-Also babashka CLI didn't offer anything for getting shell completions. These two
+Also Babashka CLI didn't offer anything for getting shell completions. These two
 gaps existed as open Github issues for about three years now. What held me back
 in implementing these features was: A) I found help output for multi-command
 CLIs always a bit too opinionated. Every CLI I knew was doing it
@@ -127,7 +127,7 @@ Save this code as `mygit.clj` and make it executable.
 chmod +x mygit.clj
 ```
 
-Note that at the time of writing, babashka CLI version 0.11.73 isn't part of the newly released bb yet. This is coming soon, but there's more work to be done in babashka, to make babashka tasks even more awesome, which is going to be using part of the new CLI functionality. Stay tuned. For now you can add this snippet to the top of your code to make a bb script pick up on the newest CLI version:
+Note that at the time of writing, Babashka CLI version 0.11.73 isn't part of the newly released bb yet. This is coming soon, but there's more work to be done in babashka, to make babashka tasks even more awesome, which is going to be using part of the new CLI functionality. Stay tuned. For now you can add this snippet to the top of your code to make a bb script pick up on the newest CLI version:
 
 ```
 (require '[babashka.deps :as deps])
@@ -259,7 +259,7 @@ As of today, Babashka CLI supports `bash`, `zsh`, `fish`, `powershell` and `nush
 
 We're just going to show here how to get completions for `zsh` but the process is very similar for other shells.
 
-The `./mygit.clj org.babashka.cli/completions snippet --shell zsh` invocation spits out a `zsh` snippet to stdout specific to this CLI. The `org.babashka.cli/completions` is inserted by babashka CLI.
+The `./mygit.clj org.babashka.cli/completions snippet --shell zsh` invocation spits out a `zsh` snippet to stdout specific to this CLI. The `org.babashka.cli/completions` is inserted by Babashka CLI.
 
 To enable completions in zsh (after `compinit`), run:
 
