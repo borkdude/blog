@@ -30,16 +30,15 @@ and I worked on in 2024. Additionally I used Claude Code to get this work over
 the hump. Studying how Powershell or nushell completions work _in detail_ just
 isn't that interesting to me and I was happy to defer most of the shell-specific
 nitty-gritty.
-One extra bonus feature that was already in Babashka CLI for a
-while is the nested command notation instead of the "table". While this alreaxy
-existed in CLI for a while, it's now exposed for users.
+One extra bonus feature is the nested command notation instead of the "table".
+This already existed in Babashka CLI for a while, but it's now exposed for users.
 
 Let's dig into an example to learn more about the new features!
 
 ## Writing our own git
 
 Yeah, we're going to write our own git, but don't worry, we'll not write our own VCS! We'll leave that up to [Zach Oakes](https://www.youtube.com/@xeuxeuxeuxeu). Just the CLI interface this time and we'll let ourselves off the hook with `println` to fake the implementation.
-So here's a bit of code for you to look at. There's a bunch of functions like `clone`, `log`, `checkout` etc. that just print some info to stdout. The `tree` describes the command structure. And the `dispatch` call a the end dispatches the commmand line arguments over the tree.
+So here's a bit of code for you to look at. There's a bunch of functions like `clone`, `log`, `checkout` etc. that just print some info to stdout. The `tree` describes the command structure. And the `dispatch` call at the end dispatches the command line arguments over the tree.
 
 ```clojure
 #!/usr/bin/env bb
@@ -116,11 +115,11 @@ So here's a bit of code for you to look at. There's a bunch of functions like `c
 (apply -main *command-line-args*)
 ```
 
-The `:prog` value is used in help output and represents the `_program_`
+The `:prog` value is used in help output and represents the *program*
 name. The `:help true` setting activates automatic help support. The automatic
 help support re-uses the already existing `:desc` (for options) /`:doc` (for
 commands) documentation values. When `:validate` is a set of keywords,
-auto-completion will pick up on this to autocomplete an option.
+auto-completion will pick up on this to autocomplete that option's value.
 
 Save this code as `mygit.clj` and make it executable.
 
@@ -137,8 +136,8 @@ Note that at the time of writing, babashka CLI version x.y.z isn't part of the n
 ```
 
 
-Now we can invoke this script with `./mygit.clj`. The usage line below will display `"mygit`"`, because of the
-`:prog` setting, it's display name, independent of how the script is invoked.
+Now we can invoke this script with `./mygit.clj`. The usage line below will display `mygit`, because of the
+`:prog` setting, its display name, independent of how the script is invoked.
 
 So let's invoke it in a couple of different ways:
 
@@ -158,7 +157,7 @@ Added remote origin -> https://example.com/repo.git
 
 ## Automatic help
 
-The `:help true` option to `dispatch` enriches the command tree with `--help` / `-h` options at every level, including the top level of the tree. It will also include a terse error message when invalid command line options are provided. So this is the opinionated help support that you can use as a good default, but don't have to use if you want to do your own thing. When `--help`/`-h` is invoked explicitly, the exit code will be `0` and help output is printed to stdoud. On invalid input, output is printed to `stderr` and the exit code will be `1`.
+The `:help true` option to `dispatch` enriches the command tree with `--help` / `-h` options at every level, including the top level of the tree. It will also include a terse error message when invalid command line options are provided. So this is the opinionated help support that you can use as a good default, but don't have to use if you want to do your own thing. When `--help`/`-h` is invoked explicitly, the exit code will be `0` and help output is printed to stdout. On invalid input, output is printed to `stderr` and the exit code will be `1`.
 
 This is what top level help output looks like: `./mygit.clj --help`:
 
@@ -203,7 +202,7 @@ Babashka CLI supports the `:args->opts` option to coalesce arguments into option
 
 In our git implementation (unlike the real one), the `remote` command does not invoke a function on its own. It just provides a `:doc` value, describing what the group of child commands are for.
 
-Run `./mygit.clj remote --help` lists the group's children:
+Running `./mygit.clj remote --help` lists the group's children:
 
 ```
 Usage: mygit remote [options] <command>
@@ -223,7 +222,7 @@ Run "mygit remote <command> --help" for more information on a command.
 Run "mygit --help" for global options.
 ```
 
-Invoking `./mygit.clj remote add --help` show the help of `remote add`, with both positional arguments in the usage line:
+Invoking `./mygit.clj remote add --help` shows the help of `remote add`, with both positional arguments in the usage line:
 
 ```
 Usage: mygit remote add [options] <name> <url>
@@ -268,7 +267,7 @@ To enable completions in zsh (after `compinit`), run:
 source <(./mygit.clj org.babashka.cli/completions snippet --shell zsh)
 ```
 
-This enables completions for commands and options, showing descriptinos on the side. Already used options are not suggested again, unless they are expected to be used multiple times.
+This enables completions for commands and options, showing descriptions on the side. Already used options are not suggested again, unless they are expected to be used multiple times.
 
 ```
 $ ./mygit.clj remote <TAB>
@@ -314,10 +313,10 @@ After holding off and thinking about these issues for a couple of years, I final
 
 More exciting related stuff is coming soon. The new Babashka CLI will be integrated into
 babashka of course, but also babashka [tasks](https://book.babashka.org/#tasks)
-will be pimped with automatic help and cmopletions. I'm not yet done with that
+will be pimped with automatic help and completions. I'm not yet done with that
 work though.
 
-Meanwhile I've been porting over
+Meanwhile I've been porting
 [squint](https://github.com/squint-cljs/squint/pull/835) and
 [neil](https://github.com/babashka/neil/pull/263) over to the automatic help
 already.
