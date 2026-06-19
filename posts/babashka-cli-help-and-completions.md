@@ -127,11 +127,11 @@ Save this code as `mygit.clj` and make it executable.
 chmod +x mygit.clj
 ```
 
-Note that at the time of writing, babashka CLI version x.y.z isn't part of the newly released bb yet. This is coming soon, but there's more work to be done in babashka, to make babashka tasks even more awesome, which is going to be using part of the new CLI functionality. Stay tuned. For now you can add this snippet to the top of your code to make a bb script pick up on the newest CLI version:
+Note that at the time of writing, babashka CLI version 0.11.73 isn't part of the newly released bb yet. This is coming soon, but there's more work to be done in babashka, to make babashka tasks even more awesome, which is going to be using part of the new CLI functionality. Stay tuned. For now you can add this snippet to the top of your code to make a bb script pick up on the newest CLI version:
 
 ```
 (require '[babashka.deps :as deps])
-(deps/add-deps '{:deps {org.babashka/cli {:mvn/version "x.y.z"}}})
+(deps/add-deps '{:deps {org.babashka/cli {:mvn/version "0.11.73"}}})
 (require '[babashka.cli] :reload)
 ```
 
@@ -321,9 +321,5 @@ Meanwhile I've been porting
 [neil](https://github.com/babashka/neil/pull/263) over to the automatic help
 already.
 
-Special thanks to
-
-- [Nextjournal](https://github.com/nextjournal) whose commercial app I'm taking as a case study for this work
-- [Clojurists Together](https://www.clojuriststogether.org/)
-- [Sponsors on Github](http://github.com/sponsors/borkdude)
+A special shout-out to [@lread](https://github.com/lread) for a ton of documentation review and improvements, and general maintenance. Thanks to [@sohalt](https://github.com/sohalt) for the initial shell completions work back in 2024 that I picked up again for this release. Thanks also to [Nextjournal](https://github.com/nextjournal) whose commercial app I'm taking as a case study for this work, and last but not least to [Clojurists Together](https://www.clojuriststogether.org/) and [Sponsors on Github](http://github.com/sponsors/borkdude) for giving me the time to work on this.
 
