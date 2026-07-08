@@ -2,7 +2,6 @@ Title: OSS updates May and June 2026
 Date: 2026-07-06
 Tags: clojure, oss updates
 Description: My Clojure OSS updates for May and June 2026
-Preview: true
 
 In this post I'll give updates about open source I worked on during May and June 2026.
 
