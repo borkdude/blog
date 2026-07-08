@@ -51,7 +51,7 @@ The day after, [Dutch Clojure Days 2026](https://clojuredays.org/) rounded out a
 
 <img src="assets/babashka-conf-2026.jpg" width="70%" align="center" alt="Babashka Conf 2026 speakers and organizers">
 
-<em>From left to right: David Nolen, Jen Myers, Adrian Smith, Josh Glover, Rahul Dé, Arne Brasseur, Christoph Neumann, Timo Kramer, Jynn Nelson, Wendy Randolph.</em>
+<em>Babashka Conf 2026. From left to right: David Nolen, Jen Myers, Adrian Smith, Josh Glover, Rahul Dé, Arne Brasseur, Christoph Neumann, Timo Kramer, Jynn Nelson, Wendy Randolph.</em>
 
 ### Upcoming: babashka workshop at the Clojure/conj
 
