@@ -296,7 +296,7 @@ Each leaf uses `:exec-fn` to point to a function:
   (println "seeding" env))
 ```
 
-A top-level `:exec-fn` can handle `bb db`. Without one:
+A top-level `:exec-fn` can handle `bb db`. When no command is specified:
 
 ```console
 $ bb db
@@ -365,8 +365,8 @@ Run "bb db <command> --help" for more information on a command.
 Migration code is in resources/migrations.
 ```
 
-For settings that require code, `:cli` may contain a fully qualified var
-symbol:
+For tasks that require code outside of `bb.edn`, `:cli` may contain a fully
+qualified var symbol:
 
 `bb.edn`:
 ```clojure
