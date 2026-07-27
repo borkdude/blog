@@ -56,7 +56,8 @@ specification.
   (:require [babashka.tasks :refer [clojure]]))
 
 (defn dev
-  {:org.babashka/cli {:spec {:port {:coerce :int :default 8080}}}}
+  {:org.babashka/cli {:spec {:port {:coerce :int
+                                    :default 8080}}}}
   [opts]
   (clojure "-X:dev" opts))
 ```
