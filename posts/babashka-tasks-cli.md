@@ -2,7 +2,6 @@ Title: Babashka tasks with automatic help and completions
 Date: 2026-07-27
 Tags: clojure, babashka, cli, tasks
 Description: Babashka tasks with automatic help and completions
-Preview: true
 
 [Babashka tasks](https://book.babashka.org/#tasks) is a project task manager
 that is part of babashka since May 2021.  It's a practical way to manage a
