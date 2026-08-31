@@ -41,7 +41,7 @@ Some of the API decisions like `defcfn` are clearly inspired by [coffi](https://
 ## Install
 
 To use `babashka.ffi` and libraries that build on it, you have to use a dynamically linked version of babashka. On Mac and Windows this was always the default. On Linux, the static binary was preferred historically since it did not depend on your system's libc and zlib.
-In this release we flip this default to a mostly-dynamic binary. All the shared C libraries that babashka needs are statically linked, except glibc. Babashka on Linux is built in a container that pins the glibc version to the lowest one possible so it should work on all mainstream LTS versions of Linux today. If you still prefer the static binary, you can use the install script with the `--static` flag.
+In this release we flip this default to a mostly-static binary: all the shared C libraries that babashka needs are statically linked, and glibc is the only dynamically linked part. The aarch64 binary, although it carries `-static` in its name, was already built this way. Babashka on Linux is built in a container that pins the glibc version to the lowest one possible so it should work on all mainstream LTS versions of Linux today. If you still prefer the fully static binary, you can use the install script with the `--static` flag.
 If you use a package manager or a GitHub Action to install babashka, it may not yet be up to date with this new policy. If that is the case, feel free to open an issue at the babashka GitHub repo and I'll reach out to get this fixed. Meanwhile you can install babashka using the installer script on GitHub to a temporary directory to get a second installation of babashka with FFI enabled:
 
 ```
