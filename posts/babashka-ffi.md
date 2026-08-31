@@ -1,4 +1,4 @@
-Title: Babashka 1.13.220 gets FFI!
+Title: Babashka 1.13.220 gets FFI
 Date: 2026-08-31
 Tags: clojure, babashka, ffi, tasks
 Description: Babashka 1.13.220: call C libraries directly with babashka.ffi
