@@ -69,7 +69,7 @@ To validate the design of babashka.ffi, I built a few shiny [demos](https://gith
 - [python.clj](https://github.com/babashka/ffi/blob/main/examples/python.clj):
   embedded CPython calling back into Clojure
 
-<img src="assets/1.13.220-pacman.png" style="max-width:100%" alt="pac-man running in babashka through babashka.ffi and raylib">
+<img src="assets/1.13.220-pacman.png" style="max-width:420px;width:100%" alt="pac-man running in babashka through babashka.ffi and raylib">
 
 A one-liner to try these demos:
 
