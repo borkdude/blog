@@ -30,7 +30,7 @@
 
   publish {:doc "Publish to blog.michielborkent.nl"
            :depends [render]
-           :task (shell "rsync -a --delete public/ borkdude@michielborkent.nl:~/devblog")}
+           :task (shell "rsync -a --delete public/ borkdude@37.27.85.48:/srv/blog.michielborkent.nl")}
 
   clean {:doc "Remove .work and public directory"
          :task (do (fs/delete-tree ".work")
