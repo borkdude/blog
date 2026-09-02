@@ -76,7 +76,7 @@ To validate the design I wrote four libraries with it:
 [babashka.duckdb](https://github.com/babashka/babashka.duckdb),
 [babashka.postgres](https://github.com/babashka/babashka.postgres) and
 [filewatcher](https://github.com/babashka/filewatcher).
-Each one exercised a different corner of the API and none of them forced a change to it.
+Each one exercised a different corner of the API, along with some examples based on raylib. PacMan is particularly cool:
 
 <img src="assets/1.13.220-pacman.png" style="max-width:420px;width:100%" alt="pac-man running in babashka through babashka.ffi and raylib">
 
