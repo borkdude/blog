@@ -9,8 +9,8 @@ To see previous OSS updates, go [here](https://blog.michielborkent.nl/tags/oss-u
 
 ## Sponsors
 
-I'd like to thank all the sponsors and contributors that make this work
-possible. Without you, the below projects would not be as mature or wouldn't
+I'd like to thank all the sponsors and contributors who make this work
+possible. Without you, the projects below would not be as mature or would not
 exist or be maintained at all! So a sincere thank you to everyone who
 contributes to the sustainability of these projects.
 
@@ -32,7 +32,7 @@ If you want to ensure that the projects I work on are sustainably maintained,
 you can sponsor this work in the following ways. If you work for a company that
 uses my OSS, please ask your employer, that would be even better. Thank you!
 
-- [Github Sponsors](https://github.com/sponsors/borkdude)
+- [GitHub Sponsors](https://github.com/sponsors/borkdude)
 - The [Babashka](https://opencollective.com/babashka) or [Clj-kondo](https://opencollective.com/clj-kondo) OpenCollective
 - [Ko-fi](https://ko-fi.com/borkdude)
 - [Patreon](https://www.patreon.com/borkdude)
@@ -43,7 +43,7 @@ uses my OSS, please ask your employer, that would be even better. Thank you!
 
 ## Updates
 
-In the past two months it was summer time in Europe. Due to a couple of
+In the past two months it was summertime in Europe. Due to a couple of
 heatwaves, it was the perfect time to spend inside and enjoy my new air
 conditioning, while coding ;-).
 
@@ -59,17 +59,17 @@ Also in the middle of July, [clj-kondo](https://github.com/clj-kondo/clj-kondo) 
 E.g. when you write `(defn foo [x] (inc x))` we can infer that `foo` is a function that takes a number. I took this principle as far as I could while preventing false positives.
 Of course, clj-kondo supports the latest Clojure 1.13 destructuring changes too.
 
-In second half of July I spent significant time on improving babashka tasks with automatic help and completions, backed by [babashka.cli](https://github.com/babashka/cli).
+In the second half of July I spent significant time on improving babashka tasks with automatic help and completions, backed by [babashka.cli](https://github.com/babashka/cli).
 You can read all about that in this blog post: [Babashka tasks with automatic help and completions](https://blog.michielborkent.nl/babashka-tasks-cli.html)
 
-In August I had the pleasure to give a talk about [Reagami](https://github.com/borkdude/reagami) at [Func Prog Sweden](https://www.meetup.com/func-prog-sweden/events/315394699/). In the talk I give an interactive demo of how to use Reagami in a
+In August I had the pleasure of giving a talk about [Reagami](https://github.com/borkdude/reagami) at [Func Prog Sweden](https://www.meetup.com/func-prog-sweden/events/315394699/). In the talk I gave an interactive demo of how to use Reagami in a
 Squint project through a REPL. I also went into detail on the algorithm that
 powers the fast DOM diffing. While preparing for the talk, I added SSR to Reagami too.
-You can view the talk on Youtube:
+You can view the talk on YouTube:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/X0PowSdliXs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-The last weeks of August I created [`babashka.ffi`](https://github.com/babashka/ffi), a new namespace in babashka to call C libraries.
+The last few weeks of August I created [`babashka.ffi`](https://github.com/babashka/ffi), a new namespace in babashka to call C libraries.
 See my previous blog post: [Babashka 1.13.220 gets FFI](https://blog.michielborkent.nl/babashka-ffi.html).
 To validate the design I wrote four libraries with it:
 [babashka.sqlite](https://github.com/babashka/babashka.sqlite),
@@ -80,13 +80,13 @@ Each one exercised a different corner of the API and none of them forced a chang
 
 <img src="assets/1.13.220-pacman.png" style="max-width:420px;width:100%" alt="pac-man running in babashka through babashka.ffi and raylib">
 
-Right now I'm looking forward to give a [babashka
+Right now I'm looking forward to giving a [babashka
 workshop](https://2026.clojure-conj.org/workshops) at the Clojure/conj together
 with Rahul Dé. We're still polishing the workshop material behind the scenes and I'm excited to see how it's turning out.
 I'm sure it'll be a lot of fun and hope to catch many of you there.
 
-In between all of this, I also worked on [squint](https://github.com/squint-cljs/squint). It now has the proper core protocols so you can plug in your own collections to be used with core functions.
-E.g. you can use [Immutable.js](https://squint-cljs.github.io/squint/?src=gzip%3AH4sIAAAAAAAAE42UQW%2FjNhCF7%2FoVD%2BmFBFZKk7YXB2haFHtYNLlsgF4MHxhpHHNNUrKGUu0W%2Fe%2FFkJIdxHHaG4d6Mxp%2BfBwVGJ0zh5e%2BHUJTAGrR026wPWF5tYmx48X1NbGveHNtvR%2BieXb0y0%2FVTfXjFRaGYf1K66K4u8OX%2BXP1aDoYhsHa9hzL2hlm8G6wIcKbrlC0jxSaMh46gvXXj6YrgC8PbbsdZKVKl5ZYemwR1iuo6oUicqS1iH9lbmtroh0pZRiJc8Ioep70Y5Krsm5DNDZwuaXDfdKJamNYVLlkbkOVjT3WEk1DjiKdZL%2B1Q4jUTFWHELH0oivZ%2FkXwWfT7H1%2BpGerc23Ys%2BxRJzTVssFESpj0PtQ5YmrrGmP64hqxT60k7%2F9Y5qqNtw3yeb1JuvyoAQNk11Eh1bPt77HXawxGDCnGDPb7X8%2BpGHyVTF8ceaKYnQZLTMZEkUUtBph32WufWPvsuHuTm3%2FRIsj%2FRqR2ZfqbzeTfYMUtkJedo44Z6EdJuME5uJe3oM3M9WI4X3ZUJnBlMci44zMG%2BcliOPnSYSI4OS8H7DnOws8Mc7EXruJN13AcX7bAXYTfwBk7I%2Fw%2Fu7sTdXeDuzri7S9yfKC7gyT9Tzxvb4fmA0biBzmA%2FUXwP3xs8nA8keHg%2Bzzt4%2BISHP8AzVTNNc6r2H3T4RIcv0OEzOvyKjmpoHVD%2BbL0vgKuvVA8925HcAXUbRurjG1vyJzBFhgmNjEFGbHGcqdU3LgAx6ic8yesLDR5NV%2BGBzEgMGqk%2FxI0NLyDHBOPaQNVVASzTCFB1m%2BY3Xo8BqMn8FZQ3XW524gN5xPGoeqILIm%2B6LMqDotyOp1mRZ21%2BGGlc5NytnlejjAuVR3yl58G0SCfYzxDhD6U8pinnu7%2BXN7hdYXmDH1b%2FaF2o2Tr3b5RJpzXu7hB7ceJULNCfWZbM8W6OLpYqWyx%2F1jiFU7peSeFb3P4L62gMqiQHAAA%3D) with Squint. I'm thinking about lite-weight immutable persistent data structures for squint, but so far I haven't had much need for them, outside of Advent of Code puzzles.
+In between all of this, I also worked on [squint](https://github.com/squint-cljs/squint). It now supports the core protocols, so you can plug in your own collections and use them with core functions.
+E.g. you can use [Immutable.js](https://squint-cljs.github.io/squint/?src=gzip%3AH4sIAAAAAAAAE42UQW%2FjNhCF7%2FoVD%2BmFBFZKk7YXB2haFHtYNLlsgF4MHxhpHHNNUrKGUu0W%2Fe%2FFkJIdxHHaG4d6Mxp%2BfBwVGJ0zh5e%2BHUJTAGrR026wPWF5tYmx48X1NbGveHNtvR%2BieXb0y0%2FVTfXjFRaGYf1K66K4u8OX%2BXP1aDoYhsHa9hzL2hlm8G6wIcKbrlC0jxSaMh46gvXXj6YrgC8PbbsdZKVKl5ZYemwR1iuo6oUicqS1iH9lbmtroh0pZRiJc8Ioep70Y5Krsm5DNDZwuaXDfdKJamNYVLlkbkOVjT3WEk1DjiKdZL%2B1Q4jUTFWHELH0oivZ%2FkXwWfT7H1%2BpGerc23Ys%2BxRJzTVssFESpj0PtQ5YmrrGmP64hqxT60k7%2F9Y5qqNtw3yeb1JuvyoAQNk11Eh1bPt77HXawxGDCnGDPb7X8%2BpGHyVTF8ceaKYnQZLTMZEkUUtBph32WufWPvsuHuTm3%2FRIsj%2FRqR2ZfqbzeTfYMUtkJedo44Z6EdJuME5uJe3oM3M9WI4X3ZUJnBlMci44zMG%2BcliOPnSYSI4OS8H7DnOws8Mc7EXruJN13AcX7bAXYTfwBk7I%2Fw%2Fu7sTdXeDuzri7S9yfKC7gyT9Tzxvb4fmA0biBzmA%2FUXwP3xs8nA8keHg%2Bzzt4%2BISHP8AzVTNNc6r2H3T4RIcv0OEzOvyKjmpoHVD%2BbL0vgKuvVA8925HcAXUbRurjG1vyJzBFhgmNjEFGbHGcqdU3LgAx6ic8yesLDR5NV%2BGBzEgMGqk%2FxI0NLyDHBOPaQNVVASzTCFB1m%2BY3Xo8BqMn8FZQ3XW524gN5xPGoeqILIm%2B6LMqDotyOp1mRZ21%2BGGlc5NytnlejjAuVR3yl58G0SCfYzxDhD6U8pinnu7%2BXN7hdYXmDH1b%2FaF2o2Tr3b5RJpzXu7hB7ceJULNCfWZbM8W6OLpYqWyx%2F1jiFU7peSeFb3P4L62gMqiQHAAA%3D) with Squint. I'm thinking about lightweight immutable persistent data structures for squint, but so far I haven't had much need for them, outside of Advent of Code puzzles.
 
 The above was all about making existing projects better. But I also had a few new creative ideas:
 
@@ -96,7 +96,7 @@ The above was all about making existing projects better. But I also had a few ne
 
 Here are some highlights per project. See each project's `CHANGELOG.md` for the full list.
 
-- [Babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting.
+- [Babashka](https://github.com/babashka/babashka): native, fast-starting Clojure interpreter for scripting.
   - 1.13.220: Add experimental [`babashka.ffi`](https://github.com/babashka/ffi): call C functions in shared libraries straight from babashka and JVM Clojure! See the [guide](https://github.com/babashka/ffi/blob/main/doc/guide.md)
   - 1.13.220: On Linux, the install script installs the dynamic binary by default. It installs the static binary on musl systems and on systems with glibc older than 2.17. The `--static` and `--dynamic` options override the automatic selection
   - 1.13.220: `:exec-args` can sit directly on a task, not only under `:cli`, the way `(exec ...)` already reads it. Before, it was ignored on an `:exec-fn` or `:cmd` task
@@ -120,13 +120,13 @@ Here are some highlights per project. See each project's `CHANGELOG.md` for the 
 - [babashka.ffi](https://github.com/babashka/ffi): call C functions in shared libraries from Clojure. New library, also usable from JVM Clojure. See the [guide](https://github.com/babashka/ffi/blob/main/doc/guide.md) and the [examples](https://github.com/babashka/ffi/tree/main/examples). The API is experimental
 
 - [babashka.sqlite](https://github.com/babashka/babashka.sqlite): SQLite for babashka through `babashka.ffi`
-  - Uses the SQLite shared library that macOS, Linux and Windows already ship, so there is nothing to install
+  - Uses the SQLite shared library that macOS, Linux and Windows already ship with, so there is nothing to install
   - `with-conn`, queries, aggregates, transactions, `last-insert-rowid`, interrupt, and `create-function!` for defining a Clojure function callable from SQL
   - CI green on three operating systems
 
 - [babashka.duckdb](https://github.com/babashka/babashka.duckdb): DuckDB for babashka through `babashka.ffi`
   - Query CSV files directly with SQL, results as Clojure data
-  - honeysql support, thread safety, prepared statement cleanup
+  - HoneySQL support, thread safety, prepared statement cleanup
 
 - [babashka.postgres](https://github.com/babashka/babashka.postgres): PostgreSQL for babashka through `babashka.ffi` and libpq
   - `connect`, `close!`, `with-conn`, `query`, `execute!`, `with-transaction`, `in-transaction?`, `cancel!`, `json`, `jsonb`, `version`, `server-version`
@@ -170,7 +170,7 @@ Here are some highlights per project. See each project's `CHANGELOG.md` for the 
   - [#1882](https://github.com/clj-kondo/clj-kondo/issues/1882): built-in support for `clojure.test.check.clojure-test/defspec`
   - [#2877](https://github.com/clj-kondo/clj-kondo/issues/2877): warn when `#_` before an unmatched reader conditional discards the next form. E.g. `[#_#?(:cljs 1) 2]` reads as `[]` in `:clj` and will warn.
   - Vars defined in `comment` forms no longer count for `:shadowed-var`, `:unused-private-var` and `:inline-def`.
-  - Performance: use a record for var usages: -13.5% allocation, ~5-10% faster linting. More performance work by [@alexander-yakushev](https://github.com/alexander-yakushev)
+  - Performance: use a record for var usages: 13.5% less allocation, ~5-10% faster linting. More performance work by [@alexander-yakushev](https://github.com/alexander-yakushev)
   - The minimum Clojure version to run clj-kondo on the JVM is now `1.11`.
   - [Full changelog](https://github.com/clj-kondo/clj-kondo/blob/master/CHANGELOG.md)
 
@@ -228,7 +228,7 @@ Here are some highlights per project. See each project's `CHANGELOG.md` for the 
   - Fix emitted import specifiers on Windows: backslashes are normalized via the path resolution now shared with squint
   - [Full changelog](https://github.com/squint-cljs/cherry/blob/main/CHANGELOG.md)
 
-- [Choq](https://github.com/squint-cljs/choq): a ~5MB binary running the cherry compiler on embedded QuickJS
+- [Choq](https://github.com/squint-cljs/choq): a ~5 MB binary running the cherry compiler on embedded QuickJS
   - New project. Runs [cherry](https://github.com/squint-cljs/cherry) inside [quickjs-ng](https://github.com/quickjs-ng/quickjs) via [rquickjs](https://github.com/DelSkayn/rquickjs)
   - No JIT, so hot code is slower than Node.js, Bun or Deno, but the binary is small, startup is fast and memory use stays low. A Hono app serves around 30k requests per second locally, using less memory than the same app on Node.js or Bun
   - An install script for macOS, Linux and Windows, and dev release binaries
@@ -267,12 +267,12 @@ Here are some highlights per project. See each project's `CHANGELOG.md` for the 
   - `el!` for calling Emacs Lisp names that are not valid Clojure symbols
 
 - [nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI
-  - ClojureScript JIT compilation. Nbb now bundles a SCI that compiles interpreted function bodies to JavaScript at runtime via `js/Function`. This is enabled by default. Loops, numerical computations and JS interop become much faster due to this
+  - ClojureScript JIT compilation. Nbb now bundles a SCI that compiles interpreted function bodies to JavaScript at runtime via `js/Function`. This is enabled by default. This makes loops, numerical computations and JS interop much faster
   - Nbb now ships [babashka.fs](https://github.com/babashka/fs) as a built-in library. The full file system API (`glob`, `copy`, `move`, `create-dirs`, `delete-tree`, `with-temp-dir`, path helpers and more) is available via `(require '[babashka.fs :as fs])`, matching Babashka
   - Support implementing CLJS protocols (e.g. `ILookup`, etc) on `deftype` and `defrecord`
   - Support [editscript](https://github.com/juji-io/editscript): CLJS `deftype`/`defrecord` field interop, `set!` on `^:unsynchronized-mutable` fields, add `cljs.core` type classes like `PersistentHashMap`, `write-all` and `goog.math.Long`
   - [#416](https://github.com/babashka/nbb/issues/416): Fix problem with `prn` in nREPL
-  - SCI got pretty complete now when it comes to CLJS capabilities so I don't see a reason why nbb couldn't run existing CLJS libraries unless they relied on very specific macros that require the JVM. So if you have anything that doesn't run, challenge welcome in [#nbb](https://app.slack.com/client/T03RZGPFR/C029PTWD3HR)!
+  - SCI now covers most CLJS capabilities, so nbb should run existing CLJS libraries unless they rely on very specific macros that require the JVM. If you have anything that does not run, please report it in [#nbb](https://app.slack.com/client/T03RZGPFR/C029PTWD3HR)!
 
 - [Scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
   - ClojureScript JIT compilation. Scittle now bundles a SCI that compiles interpreted function bodies to JavaScript at runtime via `js/Function`. This is enabled by default
@@ -312,13 +312,13 @@ Here are some highlights per project. See each project's `CHANGELOG.md` for the 
   - Two variants: a default Truffle JIT build, and a 49MB `--small` build without it
 
 - [clj-kondo-browser](https://github.com/borkdude/clj-kondo-browser): a static Clojure source browser built from clj-kondo analysis
-  - New prototype. Renders a codebase as a static HTML page where every symbol links to its definition and usages, scope aware, so a local is linked only within its scope
+  - New prototype. Renders a codebase as a static HTML page where every symbol links to its definition and usages, scope-aware, so a local is linked only within its scope
   - Runs clj-kondo as a pod and gets the classpath from [deps.clj](https://github.com/borkdude/deps.clj)
 
 - [grasp](https://github.com/borkdude/grasp): Grep Clojure code using clojure.spec regexes
   - Babashka compatibility ([#34](https://github.com/borkdude/grasp/pull/34))
 
-- [deps.clj](https://github.com/borkdude/deps.clj): a faithful port of the clojure CLI bash script to Clojure
+- [deps.clj](https://github.com/borkdude/deps.clj): a faithful port of the Clojure CLI Bash script to Clojure
   - As always, catching up with the most recent Clojure CLI versions
 
 - [lein-clj-kondo](https://github.com/clj-kondo/lein-clj-kondo) and [clj-kondo-bb](https://github.com/clj-kondo/clj-kondo-bb): released alongside each clj-kondo release
@@ -330,13 +330,13 @@ Here are some highlights per project. See each project's `CHANGELOG.md` for the 
 
 ## Other projects
 
-These are (some of the) other projects I'm involved with but little to no activity
+These are some other projects I'm involved with, but little to no activity
 happened in the past two months.
 
 <details>
 <summary>Click for more details</summary>
 
-- [quickblog](https://github.com/borkdude/quickblog): light-weight static blog engine for Clojure and babashka
+- [quickblog](https://github.com/borkdude/quickblog): lightweight static blog engine for Clojure and babashka
 - [quickdoc](https://github.com/borkdude/quickdoc): Quick and minimal API doc generation for Clojure
 - [neil](https://github.com/babashka/neil): A CLI to add common aliases and features to deps.edn-based projects
 - [pod-babashka-go-sqlite3](https://github.com/babashka/pod-babashka-go-sqlite3): A babashka pod for interacting with sqlite3
@@ -345,13 +345,13 @@ happened in the past two months.
 - [pod-babashka-fswatcher](https://github.com/babashka/pod-babashka-fswatcher): babashka filewatcher pod
 - [sci.nrepl](https://github.com/babashka/sci.nrepl): nREPL server for SCI projects that run in the browser
 - [babashka.nrepl-client](https://github.com/babashka/nrepl-client)
-- [sci.configs](https://github.com/babashka/sci.configs): A collection of ready to be used SCI configs.
+- [sci.configs](https://github.com/babashka/sci.configs): A collection of ready-to-use SCI configs.
 - [rewrite-edn](https://github.com/borkdude/rewrite-edn): Utility lib on top of rewrite-clj
 - [rewrite-clj](https://github.com/clj-commons/rewrite-clj): Rewrite Clojure code and edn
 - [tools-deps-native](https://github.com/babashka/tools-deps-native) and [tools.bbuild](https://github.com/babashka/tools.bbuild): use tools.deps directly from babashka
 - [bbin](https://github.com/babashka/bbin): Install any Babashka script or project with one command
 - [graal-build-time](https://github.com/clj-easy/graal-build-time): initialize Clojure classes at build time for GraalVM native-image
-- [html](https://github.com/borkdude/html): Html generation library inspired by squint's html tag
+- [html](https://github.com/borkdude/html): HTML generation library inspired by squint's HTML tag
 - [qualify-methods](https://github.com/borkdude/qualify-methods): experimental tool to rewrite instance calls to use fully qualified methods (Clojure 1.12 only)
 - [tools](https://github.com/borkdude/tools): a set of [bbin](https://github.com/babashka/bbin/) installable scripts
 - [babashka.json](https://github.com/babashka/json): babashka JSON library/adapter
@@ -366,15 +366,15 @@ happened in the past two months.
 - [lein2deps](https://github.com/borkdude/lein2deps): leiningen to deps.edn converter
 - [cljs-showcase](https://github.com/borkdude/cljs-showcase): Showcase CLJS libs using SCI
 - [babashka.book](https://github.com/babashka/book): Babashka manual
-- [pod-babashka-buddy](https://github.com/babashka/pod-babashka-buddy): A pod around buddy core (Cryptographic Api for Clojure).
-- [gh-release-artifact](https://github.com/borkdude/gh-release-artifact): Upload artifacts to Github releases idempotently
+- [pod-babashka-buddy](https://github.com/babashka/pod-babashka-buddy): A pod around buddy core (Cryptographic API for Clojure).
+- [gh-release-artifact](https://github.com/borkdude/gh-release-artifact): Upload artifacts to GitHub releases idempotently
 - [carve](https://github.com/borkdude/carve) - Remove unused Clojure vars
 - [4ever-clojure](https://github.com/oxalorg/4ever-clojure) - Pure CLJS version of 4clojure, meant to run forever!
 - [pod-babashka-lanterna](https://github.com/babashka/pod-babashka-lanterna): Interact with clojure-lanterna from babashka
 - [clj2el](https://borkdude.github.io/clj2el/): transpile Clojure to elisp
 - [deflet](https://github.com/borkdude/deflet): make let-expressions REPL-friendly!
 - [deps.add-lib](https://github.com/borkdude/deps.add-lib): Clojure 1.12's add-lib feature for leiningen and/or other environments without a specific version of the clojure CLI
-- [process](https://github.com/babashka/process): Clojure library for shelling out / spawning sub-processes
+- [process](https://github.com/babashka/process): Clojure library for shelling out / spawning subprocesses
 - [parmezan](https://github.com/borkdude/parmezan): fixes unbalanced or unexpected parens or other delimiters in Clojure files
 
 </details>
