@@ -91,7 +91,7 @@ E.g. you can use [Immutable.js](https://squint-cljs.github.io/squint/?src=gzip%3
 The above was all about making existing projects better. But I also had a few new creative ideas:
 
 - [Choq](https://github.com/squint-cljs/choq): [Cherry](https://github.com/squint-cljs/cherry) hosted on QuickJS, nREPL included.
-- [Buzz](https://github.com/borkdude/buzz): web apps with server-side state, on the JVM or babashka, no Node.js. I wrote [tube-pod](https://github.com/borkdude/tube-pod) and [multi-snake](https://github.com/borkdude/multi-snake) with it.
+- [Buzz](https://github.com/borkdude/buzz): a cross client-server framework that lets you write web-apps on the JVM or babashka without any JS tooling, while still having full JS expressivity via Squint. I wrote [tube-pod](https://github.com/borkdude/tube-pod) and [multi-snake](https://github.com/borkdude/multi-snake) with it.
 - [Cljbang.el](https://github.com/borkdude/cljbang.el): A Clojure-like language that runs as Emacs Lisp
 
 Here are some highlights per project. See each project's `CHANGELOG.md` for the full list.
