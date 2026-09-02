@@ -45,6 +45,10 @@ uses my OSS, please ask your employer, that would be even better. Thank you!
 
 <!-- INTRO: Michiel writes the personal intro here -->
 
+### Talk at Func Prog Sweden
+
+On August 11th I gave a talk about [Reagami](https://github.com/borkdude/reagami) at [Func Prog Sweden](https://www.meetup.com/func-prog-sweden/events/315394699/): fold your state into the DOM, a minimal zero-deps Reagent-like in Squint and CLJS. Richard Feldman previewed Roc 0.1.0 in the same session. The recording is [here](https://www.youtube.com/watch?v=X0PowSdliXs).
+
 ### Upcoming: babashka workshop at the Clojure/conj
 
 Rahul Dé and I are hosting a babashka workshop at the [Clojure/conj 2026](https://2026.clojure-conj.org/workshops). We spent time this cycle building the material: a hands-on run through the whole lifecycle of a babashka tool, from a quick script to a published, installable CLI app. Topics include `bb.edn` tasks, the built-in libraries, tests, a CLI with subcommands and automatic help, a terminal UI, a small web app, and publishing with [bbin](https://github.com/babashka/bbin). Every concept comes with an exercise and it all builds toward one culminating app.
@@ -238,6 +242,7 @@ Here are some highlights per project. See each project's `CHANGELOG.md` for the 
   - Move reordered nodes with `moveBefore` where the browser has it, so a moved subtree keeps its iframe state, animations, focus and selection ([#54](https://github.com/borkdude/reagami/issues/54))
   - Custom element support: `value`, `checked`, `selected` and `disabled` are set as attributes on a tag with a hyphen, custom events reach the element through `addEventListener`, and the same rule applies in SSR. Includes a [web component example](https://github.com/borkdude/reagami/tree/main/examples/web-component)
   - Fix a memory leak with `:on-render` nodes, and performance work on the vdom
+  - I gave a talk about Reagami at [Func Prog Sweden](https://www.youtube.com/watch?v=X0PowSdliXs)
 
 - [cljbang](https://github.com/borkdude/cljbang.el): a Clojure-like language that runs as Emacs Lisp
   - Compiles Clojure forms to Emacs Lisp forms and evaluates them in the running Emacs. No subprocess and no transpiled text, following the same approach as squint
