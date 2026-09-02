@@ -97,19 +97,24 @@ The above was all about making existing projects better. But I also had a few ne
 Here are some highlights per project. See each project's `CHANGELOG.md` for the full list.
 
 - [Babashka](https://github.com/babashka/babashka): native, fast starting Clojure interpreter for scripting.
-  - 1.13.220: [`babashka.ffi`](https://github.com/babashka/ffi), calling C functions in shared libraries from babashka and JVM Clojure. See the [guide](https://github.com/babashka/ffi/blob/main/doc/guide.md) and the [release post](https://blog.michielborkent.nl/babashka-ffi.html)
-  - 1.13.220: Linux dynamic binaries now require glibc 2.28 and link everything else statically. The install script picks the static binary on musl and on older glibc, and `--static`/`--dynamic` override it
-  - 1.13.220: `:exec-args` may sit directly on a task, a task's `:cli` spec adds to the runner-level spec instead of replacing it, an `:exec-fn` task actually runs when another task `:depends` on it, and the options it declares parse for the dependent task and show up under `Inherited options`
-  - 1.13.220: `:cmd` may be a symbol naming a var holding the command tree, whose namespace loads on demand
-  - 1.13.219: tasks get automatic `--help` and shell completions through `:exec-fn` and `:cmd`. See the [blog post](https://blog.michielborkent.nl/babashka-tasks-cli.html). These keys are experimental and may still change based on feedback
-  - SCI call site caching for instance and static methods, constructors and fields: interop calls up to 5x faster
-  - Clojure 1.13 map destructuring with `:keys!`, `:syms!`, `:strs!`, `:select`, `:all` and `:defaults`, plus `req!` and `some-vals`
-  - [#1321](https://github.com/babashka/babashka/issues/1321): implement `clojure.core/Inst` on records, types and `reify`
-  - [#2054](https://github.com/babashka/babashka/issues/2054): a `proxy` of `java.io.Writer` supports one-argument `write` and `append`, so binding `*out*` to it works
-  - [#1918](https://github.com/babashka/babashka/issues/1918): fall back to `$HOME` when the OS supplies no home directory, e.g. for LDAP users
+  - 1.13.220: Add experimental [`babashka.ffi`](https://github.com/babashka/ffi): call C functions in shared libraries straight from babashka and JVM Clojure! See the [guide](https://github.com/babashka/ffi/blob/main/doc/guide.md)
+  - 1.13.220: On Linux, the install script installs the dynamic binary by default. It installs the static binary on musl systems and on systems with glibc older than 2.17. The `--static` and `--dynamic` options override the automatic selection
+  - 1.13.220: `:exec-args` can sit directly on a task, not only under `:cli`, the way `(exec ...)` already reads it. Before, it was ignored on an `:exec-fn` or `:cmd` task
+  - 1.13.220: A task's `:cli` spec adds to the runner-level `:tasks {:cli {:spec ...}}` instead of replacing it. An option from the runner level keeps its coercion and default, and `--help` lists it under `Inherited options`
+  - 1.13.220: A task with `:exec-fn` runs when another task `:depends` on it. Before, it did nothing
+  - 1.13.220: Options declared by an `:exec-fn` task named in `:depends` also parse for the CLI task that runs, with their coercion and default. `--help` lists them under `Inherited options`
+  - 1.13.220: `:cmd` can be a symbol naming a var that holds the command tree, like `:cli`. Its namespace loads on demand
+  - 1.13.220: Shell completion offers inherited options (via `:depends`) too
+  - 1.13.220: SCI: call site caching for instance and static methods, constructors and fields. Interop calls are up to 5x faster
+  - 1.13.219: Tasks get automatic `--help` and shell completions, through the new `:exec-fn` and `:cmd` keys. See [the blog post](https://blog.michielborkent.nl/babashka-tasks-cli.html)! These task keys should be considered experimental and may change in a future version of babashka, depending on feedback from the community
+  - 1.13.219: Clojure 1.13 map destructuring: `:keys!`, `:syms!`, `:strs!`, `&` inside a directive, `:select`, `:all` and `:defaults`. Adds `req!` and `some-vals` to `clojure.core`
+  - [#1321](https://github.com/babashka/babashka/issues/1321): support implementing the `clojure.core/Inst` protocol on records, types and reify, and with `extend-protocol` and `extend-type`
+  - [#2054](https://github.com/babashka/babashka/issues/2054): a `proxy` of `java.io.Writer` supports the one-argument `write` and `append`, so binding `*out*` to it works
+  - [#1918](https://github.com/babashka/babashka/issues/1918): fall back to `$HOME` when the OS does not supply a home directory, e.g. for LDAP users in the static binary
   - [#1994](https://github.com/babashka/babashka/issues/1994): fix `:eval` and `:print` options of `clojure.main/repl` being ignored in the interactive REPL ([@jeroenvandijk](https://github.com/jeroenvandijk))
-  - Class additions from [@weavejester](https://github.com/weavejester) ([#1985](https://github.com/babashka/babashka/issues/1985), [#1986](https://github.com/babashka/babashka/issues/1986), [#1987](https://github.com/babashka/babashka/issues/1987), [#1988](https://github.com/babashka/babashka/issues/1988)), [@paintparty](https://github.com/paintparty) ([#1982](https://github.com/babashka/babashka/issues/1982)) and [@christoph-frick](https://github.com/christoph-frick) ([#2003](https://github.com/babashka/babashka/issues/2003))
-  - Bumps: JLine 4.4.0, GraalVM 25.0.4, http-kit 2.9.0-beta4 which fixes four security advisories, Clojure 1.12.5, hiccup 2.0.0 final, jsoup 1.23.2, selmer 1.13.5
+  - Bump jline to 4.4.0: security hardening, a rewritten signal path for the FFM terminal, Kitty keyboard protocol
+  - [#2021](https://github.com/babashka/babashka/issues/2021): bump http-kit to 2.9.0-beta4, which fixes four security advisories
+  - Class additions by [@weavejester](https://github.com/weavejester) ([#1985](https://github.com/babashka/babashka/issues/1985), [#1986](https://github.com/babashka/babashka/issues/1986), [#1987](https://github.com/babashka/babashka/issues/1987), [#1988](https://github.com/babashka/babashka/issues/1988)), [@paintparty](https://github.com/paintparty) ([#1982](https://github.com/babashka/babashka/issues/1982)) and [@christoph-frick](https://github.com/christoph-frick) ([#2003](https://github.com/babashka/babashka/issues/2003))
   - [Full changelog](https://github.com/babashka/babashka/blob/master/CHANGELOG.md)
 
 - [babashka.ffi](https://github.com/babashka/ffi): call C functions in shared libraries from Clojure. New library, also usable from JVM Clojure. See the [guide](https://github.com/babashka/ffi/blob/main/doc/guide.md) and the [examples](https://github.com/babashka/ffi/tree/main/examples). The API is experimental
@@ -134,71 +139,93 @@ Here are some highlights per project. See each project's `CHANGELOG.md` for the 
   - A watcher keeps the process alive until `close`
 
 - [SCI](https://github.com/babashka/sci): Configurable Clojure/Script interpreter suitable for scripting
-  - ClojureScript JIT compilation: interpreted function bodies compile to JavaScript at runtime via `js/Function`, on by default, over 20x faster on a tight numeric loop. Falls back to the interpreter when `eval` is unavailable, and works under `:advanced`. Disable with `js/globalThis.SCI_DISABLE_JIT = true` or `:closure-defines {sci.core/disable-jit true}`
-  - Native CLJS protocol support ([#639](https://github.com/babashka/sci/issues/639)): SCI code implements protocols like `ILookup` on `deftype`, `defrecord` and `reify`, and host code calling those methods dispatches into the SCI implementation, under `:advanced` too
-  - CLJS: `deftype` and `defrecord` fields are JS accessors on the prototype, and `set!` on a field accepts `^:unsynchronized-mutable` and `^:volatile-mutable` ([#1063](https://github.com/babashka/sci/pull/1063))
-  - New `:unrestricted` option on `init` and `eval-string`, scoped to the context it was passed to. BREAKING: `enable-unrestricted-access!` now throws and `sci.impl.unrestrict` is removed, since the old flag was process-global and leaked into nested contexts
-  - Support async functions with `:async true` in the attr map of `defn`
-  - Call site caching for JVM instance and static methods, constructors and fields
+  - ClojureScript JIT compilation. SCI on CLJS compiles interpreted function bodies to JavaScript at runtime via `js/Function`. This is enabled by default and needs no configuration. When JIT is enabled, loops and numerical computations become much faster (and, in unrestricted contexts, JS interop too)
+  - When `eval` is unavailable (e.g. under a Content Security Policy) SCI falls back to the interpreter. Results, error messages and error locations should be identical. And of course, it works under `:advanced` compilation
+  - You can turn JIT off at runtime with `js/globalThis.SCI_DISABLE_JIT = true` before loading SCI, or in your Google Closure compile settings with `:closure-defines {sci.core/disable-jit true}`
+  - More CLJS JIT performance improvements. Up to 20x on arithmetic-dense code for >2 arity. Keyword lookups, `instance?` and js globals no longer fall back to the interpreter
+  - ClojureScript: native protocol support ([#639](https://github.com/babashka/sci/issues/639)). SCI code can implement CLJS protocols on `deftype`, `defrecord` and `reify`, and host code calling protocol methods on such instances dispatches into the sci implementations. Works under `:advanced` compilation
+  - [#1063](https://github.com/babashka/sci/pull/1063): CLJS: `deftype` and `defrecord` fields are JS accessors on the type's prototype: `(.-field x)` works on instances, `(set! (.-field x) v)` mutates deftype fields
+  - New `:unrestricted` option on `init` and `eval-string`: when `true`, evaluated code may mutate built-in vars and CLJS instance interop skips `:classes` checks. The option applies only to the context it was passed to
+  - BREAKING: `enable-unrestricted-access!` now throws. Use the `:unrestricted` option instead. The old function set a process-global flag that leaked into nested contexts
+  - Support async functions by adding `:async true` in the attr map of `defn`
+  - Caches resolved JVM instance methods per call site for performance
   - Fix [babashka#2030](https://github.com/babashka/babashka/issues/2030): `aset` on a primitive array was reflective and 170x slower than `aset-double`
-  - Errors thrown inside a `loop` now report a located stack frame for the `loop` form
+  - Errors thrown inside a `loop` now report a located stack frame for the `loop` form instead of a frame without location (all platforms, including babashka)
   - [Full changelog](https://github.com/babashka/sci/blob/master/CHANGELOG.md)
 
 - [clj-kondo](https://github.com/clj-kondo/clj-kondo): static analyzer and linter for Clojure code that sparks joy.
-  - Type checker: infer a parameter's type from how it is used in the body, type the keys and values of destructured maps, flow map types from function return values into destructured bindings, flag keys that are provably nil, and narrow a local guarded by a known predicate
-  - Built-in analysis moved to Clojure 1.13.0-alpha4. Param type inference over the core sources grew argument type coverage of `clojure.core` from 23 to 150 vars
-  - [#721](https://github.com/clj-kondo/clj-kondo/issues/721): NEW linter `:constant-condition`, on by default, warns on a condition whose truthiness is the same on every run. Replaces `:condition-always-true` and takes over the `cond` catch-all from `:unreachable-code`
-  - Clojure 1.13 map destructuring: `:keys!`, `:syms!`, `:strs!`, `:select` and `:defaults`, with required keys reported at call sites, plus the matching syntax errors from CLJ-2961, CLJ-2954, CLJ-2964 and CLJ-2966
-  - [#2943](https://github.com/clj-kondo/clj-kondo/issues/2943): when an `:analyze-call` hook rewrites a call, check the arity of the original function but not its parameter types
-  - [#2900](https://github.com/clj-kondo/clj-kondo/issues/2900): `:discouraged-var` gets a per-var `:positions` option to limit the warning to call position or value position
-  - [#2851](https://github.com/clj-kondo/clj-kondo/issues/2851): NEW linter `:seq-rest`, suggests `(next x)` over `(seq (rest x))`, default `:off` ([@tomdl89](https://github.com/tomdl89))
+  - Type checker: infer the type of a function param from how it is used in the body. E.g. `(defn f [s] (subs s 1)) (f 42)` will warn, since the evidence `(subs s 1)` tells us that `s` should be a string.
+  - Type checker: infer the value type of a destructured map key from how it is used in the body. E.g. `(defn f [{:keys [x]}] (inc x)) (f {:x "foo"})` will warn. A key whose use rejects nil and that has no `:or` default is required.
+  - Type checker: a destructured binding gets the value type of its key when the map's type is known, including through function return maps. E.g. `(defn cfg [] {:port "8080"}) (let [{:keys [port]} (cfg)] (inc port))` will warn.
+  - Type checker: a key missing from a map literal is provably nil, also through destructuring, keyword access chains and function return maps. E.g. `(inc (:y {}))` will warn.
+  - Type checker: narrow the type of a local in the then-branch of `if` or the body of `when` when it is guarded by a known predicate. E.g. `(if (string? x) (inc x) ...)` will warn.
+  - Built-in analysis now uses Clojure 1.13.0-alpha4. Param type inference over the core sources grows the arg type coverage of `clojure.core` from 23 to 150 vars. E.g. `(interleave 1 [2])` and `(mod "a" 2)` will warn.
+  - [#721](https://github.com/clj-kondo/clj-kondo/issues/721): NEW linter: `:constant-condition`: warn on a condition whose truthiness is the same on every run. On by default. Replaces `:condition-always-true`, whose config and ignores still apply to always-true conditions, and takes over the `cond` catch-all warning from `:unreachable-code`
+  - Clojure 1.13 CLJ-2961: infer required keys from `:keys!`, `:syms!` and `:strs!` and report them at call sites
+  - [#2874](https://github.com/clj-kondo/clj-kondo/issues/2874): Clojure 1.13 CLJ-2964: support `:select` in map destructuring. The bound map's keys are known to the type checker
+  - Clojure 1.13 CLJ-2966: support `:defaults` in map destructuring, error when used without `:or`
+  - [#2943](https://github.com/clj-kondo/clj-kondo/issues/2943): Type checker: when an `:analyze-call` hook rewrites a call, clj-kondo checks the arity of the original function but not its parameter types.
+  - [#2900](https://github.com/clj-kondo/clj-kondo/issues/2900): `:discouraged-var`: new per-var `:positions` option (a set or vector of `:call` and/or `:value`) to limit the warning to call position or value position. A var passed to a higher-order function such as `map` counts as `:value`.
+  - [#2851](https://github.com/clj-kondo/clj-kondo/issues/2851): NEW linter: `:seq-rest`: suggest using `(next x)` over `(seq (rest x))`. Defaults to `:off` ([@tomdl89](https://github.com/tomdl89))
   - [#1882](https://github.com/clj-kondo/clj-kondo/issues/1882): built-in support for `clojure.test.check.clojure-test/defspec`
-  - [#2877](https://github.com/clj-kondo/clj-kondo/issues/2877): warn when `#_` before an unmatched reader conditional discards the next form
-  - Vars defined in `comment` forms no longer count for `:shadowed-var`, `:unused-private-var` and `:inline-def`
-  - Performance: var usages and bindings are records, hot analyzer and linter functions were split so they stay under the JIT compilation size limit, and more rewrite-clj internals were optimized ([@alexander-yakushev](https://github.com/alexander-yakushev))
-  - Fixes from [@jramosg](https://github.com/jramosg), [@subotac](https://github.com/subotac) and [@nikbad](https://github.com/nikbad)
-  - The minimum Clojure version to run clj-kondo on the JVM is now 1.11
+  - [#2877](https://github.com/clj-kondo/clj-kondo/issues/2877): warn when `#_` before an unmatched reader conditional discards the next form. E.g. `[#_#?(:cljs 1) 2]` reads as `[]` in `:clj` and will warn.
+  - Vars defined in `comment` forms no longer count for `:shadowed-var`, `:unused-private-var` and `:inline-def`.
+  - Performance: use a record for var usages: -13.5% allocation, ~5-10% faster linting. More performance work by [@alexander-yakushev](https://github.com/alexander-yakushev)
+  - The minimum Clojure version to run clj-kondo on the JVM is now `1.11`.
   - [Full changelog](https://github.com/clj-kondo/clj-kondo/blob/master/CHANGELOG.md)
 
 - [babashka CLI](https://github.com/babashka/cli): Turn Clojure functions into CLIs!
-  - [#197](https://github.com/babashka/cli/pull/197): `:positional` spec marker, giving positional args their own `Arguments:` section in help and refusing them as options, plus `:restrict-args` to error on positional args nothing consumed
-  - [#219](https://github.com/babashka/cli/issues/219): `:cmd-aliases` gives a command alternative names that dispatch like the command itself
-  - Attached short option values like getopt: `-J-Dfoo=bar` binds `"-Dfoo=bar"` and `-p80` binds `80`. Flag letters may precede the valued option in a cluster
-  - [#216](https://github.com/babashka/cli/issues/216): an interior hyphen in a cluster of flags is an error instead of silently ending option parsing
-  - Help shows the dispatch-level `:spec` under `Inherited options:`, and `format-command-help` accepts `:spec` so a standalone call shows the same options as `dispatch`
-  - `dispatch`: the command named on the command line wins over the `:exec-args` of its ancestors
-  - Add ordered `:enum` values for validation, help and completion, and `:doc`/`:epilog` as a vector of lines
-  - Completion fixes for zsh, fish and nushell, including registering the fish snippet with `--keep-order` so options keep their emitted order
-  - [#199](https://github.com/babashka/cli/pull/199): fix a hang on variadic arguments that were not collected
+  - [#197](https://github.com/babashka/cli/pull/197): [`:positional`](https://github.com/babashka/cli#positional) spec marker: positional args get their own `Arguments:` help section and may not be passed as options
+  - [#197](https://github.com/babashka/cli/pull/197): [`:restrict-args`](https://github.com/babashka/cli#restrict-args): error on positional args not consumed by `:args->opts`
+  - [#219](https://github.com/babashka/cli/issues/219): `:cmd-aliases` on a table entry or tree node gives a command one or more alternative names.
+  - A short option that declares a non-boolean `:coerce` takes the rest of its token as its value, like getopt: `-J-Dfoo=bar` binds `"-Dfoo=bar"`, `-p80` binds `80`. Flag letters may precede the valued option in a cluster: with `:b` a flag and `:a` valued, `-ba x` parses as `-b -a x`
+  - [#216](https://github.com/babashka/cli/issues/216): in a cluster of flags, where no letter takes a value, an interior hyphen is an error instead of silently ending option parsing.
+  - Help: show the dispatch-level `:spec` options under `Inherited options:`. The parser always accepted these options, but help did not show them
+  - Help: `format-command-help` accepts `:spec`, the dispatch-level spec, so a standalone call shows the same options as `dispatch`
+  - `dispatch`: the command named on the command line wins over the `:exec-args` of its ancestors. A value the user typed at an ancestor level still wins over both
+  - Add ordered `:enum` values for validation, help and completion
+  - Support `:doc` and `:epilog` as a vector of lines, joined with newlines
+  - [#198](https://github.com/babashka/cli/pull/198): `:cmd` may be a [vector of `[name command]` pairs](https://github.com/babashka/cli#command-formats), preserving command order without `:cmd-order`
+  - [#199](https://github.com/babashka/cli/pull/199): fix hang on variadic arguments that weren't "collected" (e.g. `(repeat :k)`)
+  - [#203](https://github.com/babashka/cli/pull/203): `parse-opts*` resolves `:spec` so its `:coerce`/`:collect` entries steer parsing like in `parse-opts`
+  - Completion: the fish snippet registers with `--keep-order`, so fish offers options in the order they are emitted, long option before its short alias, rather than sorting short options first
+  - zsh completion: offer a command's options without typing a dash first, by opting the registered program names out of zsh's `prefix-needed` style
   - Thanks to [@lread](https://github.com/lread) for continued documentation review and maintenance
   - [Full changelog](https://github.com/babashka/cli/blob/master/CHANGELOG.md)
 
 - [Squint](https://github.com/squint-cljs/squint): CLJS _syntax_ to JS compiler
-  - A large protocol push, preparing for immutable and persistent collections in `squint.immutable`: `ILookup`, `IAssociative`, `IMap`, `ICounted`, `IKVReduce`, `ICollection`, `IEmptyableCollection`, `IEquiv`, `ISet`, `IStack`, `IIndexed`, `IVector`, `IWriter`, `IPrintWithWriter`, `IHash`, `IEncodeJS`, `IMeta`, `IWithMeta`, `ISeqable`, `IDeref`, `IReset`, `ISwap`, `IWatchable`, `IAtom` and the transient protocols. Core functions dispatch through them on custom types
-  - `defrecord`, `record?` and the `IRecord` marker protocol. Records keep their type through `assoc`, degrade to a plain map on `dissoc` of a basis field, and print as `#TypeName{:a 1}`
-  - `clojure.set` dispatches through the collection protocols, so results keep the input's type
-  - Dozens of core functions now throw or behave exactly like CLJS on edge cases instead of the old loose JS semantics
-  - Clojure 1.13 destructuring, and `& {:keys [...]}` destructures a map so both the kwargs and trailing-map call styles work ([#975](https://github.com/squint-cljs/squint/issues/975))
-  - `:as-alias` in `ns` `:require`, and `:require-global`/`:refer-global` for globals loaded via a script tag
-  - `:squint/compile-time` opt-in for macro and compile-time namespaces. See [doc/compile-time.md](https://github.com/squint-cljs/squint/blob/main/doc/compile-time.md)
-  - A `defmacro` is compile-time only and no longer emitted to the runtime module, matching CLJS
-  - The CLI reports the file, line and column of a compile error and exits non-zero
-  - vite HMR supports `^:dev/after-load` and `^:dev/before-load` hooks like shadow-cljs, and `defmulti` uses `defonce` in REPL mode so a reload keeps its registered methods
-  - [#977](https://github.com/squint-cljs/squint/issues/977): `recur` inside `try` no longer emits an illegal `continue`
-  - `.indexOf` on a lazy seq uses reference equality like a JS array, keeping `=` out of a bundle that only builds lazy seqs and shrinking a `conj` bundle from 3801 to 2215 bytes
-  - Protocol method dispatch uses `Symbol.for`, so pulling in multiple copies of `squint.core` does not break it
+  - Preparatory release before adding immutable + persistent collections in `squint.immutable`. Added a lot of protocols and made sure core functions work properly with them
+  - Add the `ILookup`, `IAssociative`, `IMap`, `ICounted`, `IKVReduce`, `ICollection`, `IEmptyableCollection` and `IEquiv` protocols. `get`, `assoc`, `contains?`, `find`, `dissoc`, `count`, `reduce-kv`, `conj`, `empty` and `=` dispatch to them on custom types. Plain objects and arrays keep their fast paths
+  - Add the `IStack`, `IIndexed`, `IVector`, `IWriter` and `IPrintWithWriter` protocols, `write-all`, and an `ITransientVector` `-pop!` slot; `nth`, `peek`, `pop`, `pop!`, `subvec`, `vec`, `vector?`, `sequential?`, `set?`, `map?`, `seq`, `=` and printing dispatch to custom collection types
+  - Add `equiv`, `hash`, `hash-ordered-coll`, `hash-unordered-coll` and the `IHash` protocol. `hash` follows `equiv`: plain mutable objects and arrays hash by reference
+  - Add the `IMeta` and `IWithMeta` protocols; `meta` and `with-meta` dispatch through them and the internal meta symbol property is gone
+  - `clojure.set` dispatches through the collection protocols: results keep the input's type, membership tests against a protocol set are value-based, and `rename-keys`/`map-invert` no longer mutate a record
+  - Add `defrecord`, `record?` and the `IRecord` marker protocol. Records store their fields as own string-keyed properties and implement the map-facing protocols, so keyword lookup, `keys`, `seq`, `assoc`, `conj` and `=` work through the regular core functions. `assoc` keeps the record type, `dissoc` of a basis field gives a plain map, printing gives `#TypeName{:a 1}`
+  - Clojure 1.13 destructuring: `:keys!`/`:syms!`/`:strs!` for required keys, `&` inside them for keys required but not bound, `:select`, `:all`, `:defaults`, and `:or` by key
+  - Fix [#975](https://github.com/squint-cljs/squint/issues/975): `& {:keys [...]}` now destructures a map instead of the raw rest args, and a seq destructured as a map is read as kwargs
+  - Fix [#977](https://github.com/squint-cljs/squint/issues/977): `recur` inside `try` no longer emits an illegal `continue`
+  - Support `:as-alias` in `ns` `:require` like CLJS: no runtime import, only a compile-time alias so a namespaced keyword such as `::alias/x` resolves
+  - Add `:require-global` and `:refer-global` to `ns`, binding globals loaded via a script tag to consts without emitting an import
+  - Add `:squint/compile-time` opt-in mechanism for macro/compile-time namespaces. See [doc/compile-time.md](https://github.com/squint-cljs/squint/blob/main/doc/compile-time.md)
+  - A `defmacro` is compile-time only: no longer emitted to the runtime module, and `:refer`ing a macro no longer emits a runtime import for it, matching CLJS
+  - The CLI reports the file, line and column of a compile error and exits non-zero, instead of dumping the raw exception
+  - Fix [#957](https://github.com/squint-cljs/squint/issues/957): vite HMR: support `^:dev/after-load` + `^:dev/before-load` hooks similar to shadow-cljs
+  - `.indexOf` on a lazy seq now uses reference equality like a JS array, not value equality. This diverges from CLJS but keeps `=` out of any bundle that only builds lazy seqs, shrinking a `conj` bundle from 3801 to 2215 bytes
+  - Use `Symbol.for` for protocol method dispatch, so pulling in multiple copies of squint.core (e.g. via http://esm.sh/) does not break protocol dispatch
   - [Full changelog](https://github.com/squint-cljs/squint/blob/main/CHANGELOG.md)
 
 - [Cherry](https://github.com/squint-cljs/cherry): Experimental ClojureScript to ES6 module compiler
-  - Cherry and squint now share the macro scan and lookup, path resolution, CLI implementation, nREPL server and vite plugin
-  - CLI: `--help`, argument validation, shell completion, a `watch` command, an `nrepl-server` command, `cherry.edn` instead of `squint.edn`, and compile errors reported with file, line and column
-  - A vite plugin with a browser REPL over nREPL and `^:dev/after-load` / `^:dev/before-load` hooks
-  - Add `cherry.test`, a `clojure.test`-compatible API requirable as `cljs.test` or `clojure.test`, with a `report` multimethod dispatching like cljs.test
-  - Add `reify`, `defmulti`/`defmethod` and `vswap!`. Dynamic vars compile to squint's box scheme, so `set!` and `binding` work across ESM modules
-  - `defprotocol` `:extend-via-metadata` impls resolve under the fully qualified method symbol, so Replicant's own test suite passes under cherry
-  - Fix `deftype` implementing cljs.core protocols such as `Inst`, `IIterable` and `IAtom`, whose marker properties were Closure-renamed in the precompiled core. The externs list and the protocol set are now generated and the build fails on drift
-  - [#190](https://github.com/squint-cljs/cherry/issues/190): share `PROTOCOL_SENTINEL` with coexisting CLJS runtimes in the same JS realm
-  - Fix emitted import specifiers on Windows
+  - Add `cherry.test` with `clojure.test`-compatible testing API, requirable as `cljs.test` or `clojure.test`
+  - `cherry.test/report` is a multimethod dispatching on `[*current-reporter* type]` like cljs.test, so reporting can be extended with `defmethod`
+  - Add a vite plugin with browser REPL over nREPL and `^:dev/after-load` / `^:dev/before-load` hot-reload hooks, sharing squint's implementation: `import cherry from 'cherry-cljs/vite.js'`
+  - Add `reify`, `defmulti`/`defmethod` and the `vswap!` macro. `#'foo` emits foo's value, like squint
+  - Dynamic vars compile to squint's box scheme, so `set!` and `binding` work across ESM modules. cljs.core dynamic vars are exported as accessor boxes proxying the real var
+  - `defprotocol` `:extend-via-metadata` impls resolve under the fully qualified method symbol, so replicant's mutation-log renderer works: replicant's own test suite passes under cherry
+  - Fix `deftype` implementing cljs.core protocols such as `Inst`, `IIterable` and `IAtom`: their marker properties were Closure-renamed in the precompiled core and missing from the emitter's core protocol set. The externs list and the set are now generated from cljs.core's protocols (`bb gen-externs`) and the build fails on drift
+  - Fix [#190](https://github.com/squint-cljs/cherry/issues/190): share `PROTOCOL_SENTINEL` with coexisting CLJS runtimes in the same JS realm
+  - Share the macro scan and macro lookup with squint. Namespaces flagged `{:squint/compile-time true}` load only their compile-time part into the macro environment, like squint
+  - CLI: `--help`/`-h`, argument validation and error messages via babashka.cli's `dispatch`, like squint. Adds `watch` and `nrepl-server` commands, shell tab completion, and reads options from `cherry.edn` instead of `squint.edn`
+  - Fix emitted import specifiers on Windows: backslashes are normalized via the path resolution now shared with squint
   - [Full changelog](https://github.com/squint-cljs/cherry/blob/main/CHANGELOG.md)
 
 - [Choq](https://github.com/squint-cljs/choq): a ~5MB binary running the cherry compiler on embedded QuickJS
@@ -223,12 +250,15 @@ Here are some highlights per project. See each project's `CHANGELOG.md` for the 
   - Runs at [multi-snake.michielborkent.nl](https://multi-snake.michielborkent.nl)
 
 - [Reagami](https://github.com/borkdude/reagami): A minimal zero-deps Reagent-like for Squint and CLJS
-  - Add `reagami.ssr`, rendering hiccup to an HTML string on the JVM, babashka, squint and CLJS. `reagami.core/render` hydrates a server-rendered page by adopting the existing DOM instead of clearing the root
-  - Add [create-reagami-app](https://github.com/borkdude/reagami/tree/main/create-reagami-app): `npm create reagami-app my-app` scaffolds a Vite project with hot reload and a browser nREPL
-  - **Breaking**: `:on-render` takes a map, `(fn [{:keys [node lifecycle state save]}])`, and the hook chooses its own state through `save` instead of returning it
+  - Add `reagami.ssr` to render hiccup to an HTML string on the JVM, Babashka, Squint and CLJS. See [Server-side rendering](https://github.com/borkdude/reagami#server-side-rendering)
+  - `reagami.core/render` (the regular render function) now hydrates a server-rendered page. It adopts the existing DOM instead of clearing the root
+  - Add [create-reagami-app](https://github.com/borkdude/reagami/tree/main/create-reagami-app). Run `npm create reagami-app my-app` to create a Vite project with hot reload and a browser nREPL
+  - **Breaking**: `:on-render` now takes a map: `(fn [{:keys [node lifecycle state save]}])`. Call `save` with a value to keep it for the next call, and read it back as `state`. In previous versions, the hook took three arguments and its return value became the state
   - Move reordered nodes with `moveBefore` where the browser has it, so a moved subtree keeps its iframe state, animations, focus and selection ([#54](https://github.com/borkdude/reagami/issues/54))
-  - Custom element support: `value`, `checked`, `selected` and `disabled` are set as attributes on a tag with a hyphen, custom events reach the element through `addEventListener`, and the same rule applies in SSR. Includes a [web component example](https://github.com/borkdude/reagami/tree/main/examples/web-component)
-  - Fix a memory leak with `:on-render` nodes, and performance work on the vdom
+  - Set `value`, `checked`, `selected` and `disabled` on a tag with a hyphen as attributes, not as JS properties. A custom element observes attributes, so a property never had any effect. Native elements still handle them as properties
+  - Custom events, e.g. `:on-rated`, now reach the element through `addEventListener`, because a browser only wires an `on*` property for standard events
+  - Add [web component example](https://github.com/borkdude/reagami/tree/main/examples/web-component). A `<todo-list>` custom element, used from Squint, from JavaScript with and without Reagami
+  - Fix memory leak with `:on-render` nodes and other `:on-render` improvements
   - I gave a talk about Reagami at [Func Prog Sweden](https://www.youtube.com/watch?v=X0PowSdliXs)
 
 - [cljbang](https://github.com/borkdude/cljbang.el): a Clojure-like language that runs as Emacs Lisp
@@ -237,16 +267,17 @@ Here are some highlights per project. See each project's `CHANGELOG.md` for the 
   - `el!` for calling Emacs Lisp names that are not valid Clojure symbols
 
 - [nbb](https://github.com/babashka/nbb): Scripting in Clojure on Node.js using SCI
-  - Ships the SCI ClojureScript JIT, so loops, numerical code and JS interop are much faster
-  - Ships [babashka.fs](https://github.com/babashka/fs) as a built-in library, matching babashka
-  - Support implementing CLJS protocols such as `ILookup` on `deftype` and `defrecord`, which also makes [editscript](https://github.com/juji-io/editscript) work
-  - [#416](https://github.com/babashka/nbb/issues/416): fix `prn` in nREPL
-  - SCI is fairly complete on CLJS now, so existing CLJS libraries should mostly run under nbb. If you find one that does not, the challenge is welcome in [#nbb](https://app.slack.com/client/T03RZGPFR/C029PTWD3HR)
+  - ClojureScript JIT compilation. Nbb now bundles a SCI that compiles interpreted function bodies to JavaScript at runtime via `js/Function`. This is enabled by default. Loops, numerical computations and JS interop become much faster due to this
+  - Nbb now ships [babashka.fs](https://github.com/babashka/fs) as a built-in library. The full file system API (`glob`, `copy`, `move`, `create-dirs`, `delete-tree`, `with-temp-dir`, path helpers and more) is available via `(require '[babashka.fs :as fs])`, matching Babashka
+  - Support implementing CLJS protocols (e.g. `ILookup`, etc) on `deftype` and `defrecord`
+  - Support [editscript](https://github.com/juji-io/editscript): CLJS `deftype`/`defrecord` field interop, `set!` on `^:unsynchronized-mutable` fields, add `cljs.core` type classes like `PersistentHashMap`, `write-all` and `goog.math.Long`
+  - [#416](https://github.com/babashka/nbb/issues/416): Fix problem with `prn` in nREPL
+  - SCI got pretty complete now when it comes to CLJS capabilities so I don't see a reason why nbb couldn't run existing CLJS libraries unless they relied on very specific macros that require the JVM. So if you have anything that doesn't run, challenge welcome in [#nbb](https://app.slack.com/client/T03RZGPFR/C029PTWD3HR)!
 
 - [Scittle](https://github.com/babashka/scittle): Execute Clojure(Script) directly from browser script tags via SCI
-  - Ships the SCI ClojureScript JIT
-  - Added the [helitorus demo](https://babashka.org/scittle/helitorus.html) to show the difference
-  - Bump reagent to 1.2.0, re-frame to 1.4.7, replicant to 2026.06.2 and shadow-cljs to 3.4.11
+  - ClojureScript JIT compilation. Scittle now bundles a SCI that compiles interpreted function bodies to JavaScript at runtime via `js/Function`. This is enabled by default
+  - Include [helitorus demo](https://babashka.org/scittle/helitorus.html) to show improved JIT
+  - Bump `reagent` to 1.2.0, `re-frame` to 1.4.7, `replicant` to 2026.06.2 and `shadow-cljs` to 3.4.11
 
 - [squint-inline](https://github.com/squint-cljs/squint-inline): write squint functions and inline expressions in a ClojureScript project
   - New project. Squint operates on JavaScript objects and arrays, so `assoc`, `update-in` and `select-keys` work on those without `js->clj` and `clj->js`
@@ -254,16 +285,18 @@ Here are some highlights per project. See each project's `CHANGELOG.md` for the 
   - Squint functions can call each other across namespaces, and JS module references work inside squint bodies
 
 - [Edamame](https://github.com/borkdude/edamame): configurable EDN and Clojure parser with location metadata and more
-  - Speed up parsing by holding parse context in record fields instead of the extmap: ~10% faster on the JVM, ~4% on ClojureScript
-  - With `:auto-resolve-ns`, respect `:refer` plus rename, qualify syntax-quoted imported classes with the full classname, and leave method, constructor and dotted symbols as-is, matching Clojure
+  - Speed up parsing by holding parse context in record fields instead of the extmap: ~10% faster on JVM, ~4% on ClojureScript
+  - Respect `:refer` + rename in `:auto-resolve-ns`
+  - With `:auto-resolve-ns`, qualify syntax-quoted imported classes (e.g. `` `Date `` with `(:import [java.util Date])`) with the full classname
+  - With `:auto-resolve-ns`, leave method, constructor and dotted syntax-quoted symbols (`` `.toString ``, `` `Bar. ``, `` `foo.bar ``) as-is, matching Clojure
   - Do not resolve function literal params in a syntax quote
-  - ClojureDart: parse zero literals correctly, and make plain readers non-indexing to match tools.reader ([#144](https://github.com/borkdude/edamame/pull/144))
+  - ClojureDart: fix parsing zero literals and make plain readers non-indexing, matching tools.reader ([#144](https://github.com/borkdude/edamame/pull/144))
 
 - [fs](https://github.com/babashka/fs): file system utility library for Clojure
   - Released 0.5.34, which ships the Node.js support mentioned in the previous update as the `@babashka/fs` npm package
 
 - [http-client](https://github.com/babashka/http-client): HTTP client for Clojure and babashka
-  - [#80](https://github.com/babashka/http-client/issues/80): `:proxy` accepts a function of the request URI, to select a proxy per request ([@jeeger](https://github.com/jeeger))
+  - [#80](https://github.com/babashka/http-client/issues/80): accept a function of the request URI in `:proxy` to select a proxy per request ([@jeeger](https://github.com/jeeger))
 
 - [http-server](https://github.com/babashka/http-server): serve static assets
   - Range requests: inclusive `Content-Range` last-pos per RFC 9110, suffix ranges (`bytes=-N`, previously a 500), clamping last-pos beyond EOF, reading the full range, and a test suite ([@slagyr](https://github.com/slagyr))
@@ -282,19 +315,18 @@ Here are some highlights per project. See each project's `CHANGELOG.md` for the 
   - New prototype. Renders a codebase as a static HTML page where every symbol links to its definition and usages, scope aware, so a local is linked only within its scope
   - Runs clj-kondo as a pod and gets the classpath from [deps.clj](https://github.com/borkdude/deps.clj)
 
+- [grasp](https://github.com/borkdude/grasp): Grep Clojure code using clojure.spec regexes
+  - Babashka compatibility ([#34](https://github.com/borkdude/grasp/pull/34))
+
 - [deps.clj](https://github.com/borkdude/deps.clj): a faithful port of the clojure CLI bash script to Clojure
   - As always, catching up with the most recent Clojure CLI versions
 
 - [lein-clj-kondo](https://github.com/clj-kondo/lein-clj-kondo) and [clj-kondo-bb](https://github.com/clj-kondo/clj-kondo-bb): released alongside each clj-kondo release
 
-Contributions to third party projects:
-
-- [Clerk](https://github.com/nextjournal/clerk): Moldable Live Programming for Clojure. Bumped SCI through 0.15.58 and cherry, and used the cherry notebook to show the JIT timing a tight loop and to show `:async` functions ([#821](https://github.com/nextjournal/clerk/issues/821) for the dead notebook links)
-- [Replicant](https://github.com/cjohansen/replicant): added a `test:cherry` task so Replicant's suite runs under cherry as well as squint, and moved `replicant.dom` back to `.cljs`
-- [Joyride](https://github.com/BetterThanTomorrow/joyride): updated SCI to 0.15.56, bringing the ClojureScript JIT to VS Code scripting
-- [nextjournal/markdown](https://github.com/nextjournal/markdown): default renderers for HTML nodes now point at the README instead of reporting an unknown node type ([#69](https://github.com/nextjournal/markdown/issues/69))
-- [crustimoney](https://github.com/aroemers/crustimoney): added babashka support
-- [grasp](https://github.com/borkdude/grasp): babashka compatibility ([#34](https://github.com/borkdude/grasp/pull/34))
+<!-- Contributions to third party projects: nothing big enough to list this
+     cycle. Fill this in next time. What was there and got cut: clerk (SCI
+     and cherry bumps), replicant (a test:cherry task), joyride (SCI bump),
+     nextjournal/markdown (#69), crustimoney (babashka support). -->
 
 ## Other projects
 
