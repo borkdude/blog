@@ -112,14 +112,7 @@ Here are some highlights per project. See each project's `CHANGELOG.md` for the 
   - Bumps: JLine 4.4.0, GraalVM 25.0.4, http-kit 2.9.0-beta4 which fixes four security advisories, Clojure 1.12.5, hiccup 2.0.0 final, jsoup 1.23.2, selmer 1.13.5
   - [Full changelog](https://github.com/babashka/babashka/blob/master/CHANGELOG.md)
 
-- [babashka.ffi](https://github.com/babashka/ffi): call C functions in shared libraries from Clojure
-  - New library, extracted from babashka so it also runs on the JVM
-  - `defcfn`, `cfn`, `load-library`, `load-system-library`, arenas, struct and union layouts, arrays, callbacks and variadic calls
-  - A `place` concept, inspired by Specter's paths, for reading from and writing to structs and unions
-  - ADR 0004 settled the argument order across the whole API: an arena is mandatory for `alloc`, an offset is always the last argument, `alloc` and `slice` accept a struct layout where they accept a size, and `layout-of` is memoized. Layout resolution got 6 to 12 times faster as a side effect
-  - Ships a clj-kondo export, and the repo lints itself with the hook it exports
-  - A [guide](https://github.com/babashka/ffi/blob/main/doc/guide.md) with a performance section, and [examples](https://github.com/babashka/ffi/tree/main/examples) covering raylib, GTK 4, PortAudio and CPython
-  - The API is experimental. It needs exposure and your feedback
+- [babashka.ffi](https://github.com/babashka/ffi): call C functions in shared libraries from Clojure. New library, also usable from JVM Clojure. See the [guide](https://github.com/babashka/ffi/blob/main/doc/guide.md) and the [examples](https://github.com/babashka/ffi/tree/main/examples). The API is experimental
 
 - [babashka.sqlite](https://github.com/babashka/babashka.sqlite): SQLite for babashka through `babashka.ffi`
   - Uses the SQLite shared library that macOS, Linux and Windows already ship, so there is nothing to install
