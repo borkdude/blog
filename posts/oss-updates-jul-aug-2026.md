@@ -48,16 +48,18 @@ heatwaves, it was the perfect time to spend inside and enjoy my new air
 conditioning, while coding ;-).
 
 The first half of July was mostly spent on improving performance and
-compatibility of SCI on CLJS. I can say with confidence that SCI on CLJS is now
-about as fast as compiled ClojureScript and implementing core protocols on
-custom types now also works. There's hardly anything you can't do in SCI that
-you can do in compiled CLJS with comparable performance. I released new versions of [scittle](https://github.com/babashka/scittle/releases/tag/v0.8.32) and [nbb](https://github.com/babashka/nbb/releases/tag/v1.5.211) that take full advantage of this.
+compatibility of [SCI](https://github.com/babashka/sci) on CLJS. SCI now
+JIT-compiles interpreted function bodies to JavaScript at runtime, which closes
+a lot of the gap with compiled ClojureScript: a tight numeric loop went from
+~175ms to ~7ms, over 20 times faster than the interpreter. Implementing core
+protocols on custom types now also works. There's hardly anything you can't do
+in SCI that you can do in compiled CLJS. I released new versions of [scittle](https://github.com/babashka/scittle/releases/tag/v0.8.32) and [nbb](https://github.com/babashka/nbb/releases/tag/v1.5.211) that take full advantage of this.
 
-Also in the first half of July, clj-kondo got a pretty cool enhancement. It infers types of function arguments from how they are used.
+Also in the middle of July, [clj-kondo](https://github.com/clj-kondo/clj-kondo) got a pretty cool enhancement. It infers types of function arguments from how they are used.
 E.g. when you write `(defn foo [x] (inc x))` we can infer that `foo` is a function that takes a number. I took this principle as far as I could while preventing false positives.
 Of course, clj-kondo supports the latest Clojure 1.13 destructuring changes too.
 
-In second half of July I spent significant time on improving babashka tasks with automatic help and completions, backed by babashka.cli.
+In second half of July I spent significant time on improving babashka tasks with automatic help and completions, backed by [babashka.cli](https://github.com/babashka/cli).
 You can read all about that in this blog post: [Babashka tasks with automatic help and completions](https://blog.michielborkent.nl/babashka-tasks-cli.html)
 
 In August I had the pleasure to give a talk about [Reagami](https://github.com/borkdude/reagami) at [Func Prog Sweden](https://www.meetup.com/func-prog-sweden/events/315394699/). In the talk I give an interactive demo of how to use Reagami in a
@@ -67,23 +69,29 @@ You can view the talk on Youtube:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/X0PowSdliXs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-The last weeks of August I created `babashka.ffi`, a new namespace in babashka to call C libraries.
+The last weeks of August I created [`babashka.ffi`](https://github.com/babashka/ffi), a new namespace in babashka to call C libraries.
 See my previous blog post: [Babashka 1.13.220 gets FFI](https://blog.michielborkent.nl/babashka-ffi.html).
+To validate the design I wrote four libraries with it:
+[babashka.sqlite](https://github.com/babashka/babashka.sqlite),
+[babashka.duckdb](https://github.com/babashka/babashka.duckdb),
+[babashka.postgres](https://github.com/babashka/babashka.postgres) and
+[filewatcher](https://github.com/babashka/filewatcher).
+Each one exercised a different corner of the API and none of them forced a change to it.
 
 <img src="assets/1.13.220-pacman.png" style="max-width:420px;width:100%" alt="pac-man running in babashka through babashka.ffi and raylib">
 
 Right now I'm looking forward to give a [babashka
-workshop](https://2026.clojure-conj.org/workshops) at the Clojure/Conj together
+workshop](https://2026.clojure-conj.org/workshops) at the Clojure/conj together
 with Rahul Dé. We're still polishing the workshop material behind the scenes and I'm excited to see how it's turning out.
 I'm sure it'll be a lot of fun and hope to catch many of you there.
 
-In between all of this, I also worked on squint. It now has the proper core protocols so you can plug in your own collections to be used with core functions.
+In between all of this, I also worked on [squint](https://github.com/squint-cljs/squint). It now has the proper core protocols so you can plug in your own collections to be used with core functions.
 E.g. you can use [Immutable.js](https://squint-cljs.github.io/squint/?src=gzip%3AH4sIAAAAAAAAE42UQW%2FjNhCF7%2FoVD%2BmFBFZKk7YXB2haFHtYNLlsgF4MHxhpHHNNUrKGUu0W%2Fe%2FFkJIdxHHaG4d6Mxp%2BfBwVGJ0zh5e%2BHUJTAGrR026wPWF5tYmx48X1NbGveHNtvR%2BieXb0y0%2FVTfXjFRaGYf1K66K4u8OX%2BXP1aDoYhsHa9hzL2hlm8G6wIcKbrlC0jxSaMh46gvXXj6YrgC8PbbsdZKVKl5ZYemwR1iuo6oUicqS1iH9lbmtroh0pZRiJc8Ioep70Y5Krsm5DNDZwuaXDfdKJamNYVLlkbkOVjT3WEk1DjiKdZL%2B1Q4jUTFWHELH0oivZ%2FkXwWfT7H1%2BpGerc23Ys%2BxRJzTVssFESpj0PtQ5YmrrGmP64hqxT60k7%2F9Y5qqNtw3yeb1JuvyoAQNk11Eh1bPt77HXawxGDCnGDPb7X8%2BpGHyVTF8ceaKYnQZLTMZEkUUtBph32WufWPvsuHuTm3%2FRIsj%2FRqR2ZfqbzeTfYMUtkJedo44Z6EdJuME5uJe3oM3M9WI4X3ZUJnBlMci44zMG%2BcliOPnSYSI4OS8H7DnOws8Mc7EXruJN13AcX7bAXYTfwBk7I%2Fw%2Fu7sTdXeDuzri7S9yfKC7gyT9Tzxvb4fmA0biBzmA%2FUXwP3xs8nA8keHg%2Bzzt4%2BISHP8AzVTNNc6r2H3T4RIcv0OEzOvyKjmpoHVD%2BbL0vgKuvVA8925HcAXUbRurjG1vyJzBFhgmNjEFGbHGcqdU3LgAx6ic8yesLDR5NV%2BGBzEgMGqk%2FxI0NLyDHBOPaQNVVASzTCFB1m%2BY3Xo8BqMn8FZQ3XW524gN5xPGoeqILIm%2B6LMqDotyOp1mRZ21%2BGGlc5NytnlejjAuVR3yl58G0SCfYzxDhD6U8pinnu7%2BXN7hdYXmDH1b%2FaF2o2Tr3b5RJpzXu7hB7ceJULNCfWZbM8W6OLpYqWyx%2F1jiFU7peSeFb3P4L62gMqiQHAAA%3D) with Squint. I'm thinking about lite-weight immutable persistent data structures for squint, but so far I haven't had much need for them, outside of Advent of Code puzzles.
 
 The above was all about making existing projects better. But I also had a few new creative ideas:
 
-- [Choq](https://github.com/squint-cljs/choq): Cherry hosted on QuickJS, nREPL included.
-- Buzz: 
+- [Choq](https://github.com/squint-cljs/choq): [Cherry](https://github.com/squint-cljs/cherry) hosted on QuickJS, nREPL included.
+- [Buzz](https://github.com/borkdude/buzz): web apps with server-side state, on the JVM or babashka, no Node.js. I wrote [tube-pod](https://github.com/borkdude/tube-pod) and [multi-snake](https://github.com/borkdude/multi-snake) with it.
 - [Cljbang.el](https://github.com/borkdude/cljbang.el): A Clojure-like language that runs as Emacs Lisp
 
 Here are some highlights per project. See each project's `CHANGELOG.md` for the full list.
