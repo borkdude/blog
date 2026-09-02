@@ -43,135 +43,48 @@ uses my OSS, please ask your employer, that would be even better. Thank you!
 
 ## Updates
 
-<!-- INTRO: Michiel writes the personal intro here -->
+In the past two months it was summer time in Europe. Due to a couple of
+heatwaves, it was the perfect time to spend inside and enjoy my new air
+conditioning, while coding ;-).
 
-<!-- ============================================================
-NEWS: these paragraphs are yours to write too. Facts only below.
-Delete this block when done.
+The first half of July was mostly spent on improving performance and
+compatibility of SCI on CLJS. I can say with confidence that SCI on CLJS is now
+about as fast as compiled ClojureScript and implementing core protocols on
+custom types now also works. There's hardly anything you can't do in SCI that
+you can do in compiled CLJS with comparable performance. I released new versions of [scittle](https://github.com/babashka/scittle/releases/tag/v0.8.32) and [nbb](https://github.com/babashka/nbb/releases/tag/v1.5.211) that take full advantage of this.
 
-TALK, Func Prog Sweden, Tuesday August 11 2026, streamed on their
-YouTube channel.
- - Your talk: "Introduction of Reagami". Their blurb: "Fold your
-   state into the DOM! A minimal zero-deps Reagent-like in Squint
-   and CLJS."
- - Richard Feldman gave "A Preview of Roc 0.1.0" in the same session.
- - Intro by Magnus Sedlacek.
- - Recording: https://www.youtube.com/watch?v=X0PowSdliXs
- - Event: https://www.meetup.com/func-prog-sweden/events/315394699/
+Also in the first half of July, clj-kondo got a pretty cool enhancement. It infers types of function arguments from how they are used.
+E.g. when you write `(defn foo [x] (inc x))` we can infer that `foo` is a function that takes a number. I took this principle as far as I could while preventing false positives.
+Of course, clj-kondo supports the latest Clojure 1.13 destructuring changes too.
 
-WORKSHOP, Clojure/conj 2026, with Rahul De.
- - https://2026.clojure-conj.org/workshops
- - Announced in the previous post already, so this is an update, not
-   an announcement. What is new: you built the material this cycle.
-   The repo babashka/bb-workshop-conj26 has 12 commits in the window,
-   covering a TUI section, Windows and Windows-on-ARM support, an
-   identicon exercise, a password/clipboard exercise, and CI.
- - Topics, from the CfP text in that repo: dev environment setup,
-   bb.edn tasks, the built-in libraries (fs, process, http-client),
-   tests, a CLI with subcommands and automatic help, a TUI, a small
-   web app, publishing to GitHub or as a bbin-installable tool.
-   Every concept has an exercise, building toward one culminating
-   CLI app.
+In second half of July I spent significant time on improving babashka tasks with automatic help and completions, backed by babashka.cli.
+You can read all about that in this blog post: [Babashka tasks with automatic help and completions](https://blog.michielborkent.nl/babashka-tasks-cli.html)
 
-BABASHKA CONF: no new date to announce. Previous posts pointed at
-https://babashka.org/conf/ for news. Keep or drop as you like.
-============================================================ -->
+In August I had the pleasure to give a talk about [Reagami](https://github.com/borkdude/reagami) at [Func Prog Sweden](https://www.meetup.com/func-prog-sweden/events/315394699/). In the talk I give an interactive demo of how to use Reagami in a
+Squint project through a REPL. I also went into detail on the algorithm that
+powers the fast DOM diffing. While preparing for the talk, I added SSR to Reagami too.
+You can view the talk on Youtube:
 
-### Blog posts
+<iframe width="560" height="315" src="https://www.youtube.com/embed/X0PowSdliXs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-Besides this update I published two blog posts in the past two months:
+The last weeks of August I created `babashka.ffi`, a new namespace in babashka to call C libraries.
+See my previous blog post: [Babashka 1.13.220 gets FFI](https://blog.michielborkent.nl/babashka-ffi.html).
 
-- [Babashka tasks with automatic help and completions](https://blog.michielborkent.nl/babashka-tasks-cli.html)
-- [Babashka 1.13.220 gets FFI](https://blog.michielborkent.nl/babashka-ffi.html)
+<img src="assets/1.13.220-pacman.png" style="max-width:420px;width:100%" alt="pac-man running in babashka through babashka.ffi and raylib">
 
-### Projects
+Right now I'm looking forward to give a [babashka
+workshop](https://2026.clojure-conj.org/workshops) at the Clojure/Conj together
+with Rahul Dé. We're still polishing the workshop material behind the scenes and I'm excited to see how it's turning out.
+I'm sure it'll be a lot of fun and hope to catch many of you there.
 
-<!-- ============================================================
-NARRATIVE: write this section yourself. Nothing below this line
-was written by you, so all of it goes. Delete this whole comment
-block when done.
+In between all of this, I also worked on squint. It now has the proper core protocols so you can plug in your own collections to be used with core functions.
+E.g. you can use [Immutable.js](https://squint-cljs.github.io/squint/?src=gzip%3AH4sIAAAAAAAAE42UQW%2FjNhCF7%2FoVD%2BmFBFZKk7YXB2haFHtYNLlsgF4MHxhpHHNNUrKGUu0W%2Fe%2FFkJIdxHHaG4d6Mxp%2BfBwVGJ0zh5e%2BHUJTAGrR026wPWF5tYmx48X1NbGveHNtvR%2BieXb0y0%2FVTfXjFRaGYf1K66K4u8OX%2BXP1aDoYhsHa9hzL2hlm8G6wIcKbrlC0jxSaMh46gvXXj6YrgC8PbbsdZKVKl5ZYemwR1iuo6oUicqS1iH9lbmtroh0pZRiJc8Ioep70Y5Krsm5DNDZwuaXDfdKJamNYVLlkbkOVjT3WEk1DjiKdZL%2B1Q4jUTFWHELH0oivZ%2FkXwWfT7H1%2BpGerc23Ys%2BxRJzTVssFESpj0PtQ5YmrrGmP64hqxT60k7%2F9Y5qqNtw3yeb1JuvyoAQNk11Eh1bPt77HXawxGDCnGDPb7X8%2BpGHyVTF8ceaKYnQZLTMZEkUUtBph32WufWPvsuHuTm3%2FRIsj%2FRqR2ZfqbzeTfYMUtkJedo44Z6EdJuME5uJe3oM3M9WI4X3ZUJnBlMci44zMG%2BcliOPnSYSI4OS8H7DnOws8Mc7EXruJN13AcX7bAXYTfwBk7I%2Fw%2Fu7sTdXeDuzri7S9yfKC7gyT9Tzxvb4fmA0biBzmA%2FUXwP3xs8nA8keHg%2Bzzt4%2BISHP8AzVTNNc6r2H3T4RIcv0OEzOvyKjmpoHVD%2BbL0vgKuvVA8925HcAXUbRurjG1vyJzBFhgmNjEFGbHGcqdU3LgAx6ic8yesLDR5NV%2BGBzEgMGqk%2FxI0NLyDHBOPaQNVVASzTCFB1m%2BY3Xo8BqMn8FZQ3XW524gN5xPGoeqILIm%2B6LMqDotyOp1mRZ21%2BGGlc5NytnlejjAuVR3yl58G0SCfYzxDhD6U8pinnu7%2BXN7hdYXmDH1b%2FaF2o2Tr3b5RJpzXu7hB7ceJULNCfWZbM8W6OLpYqWyx%2F1jiFU7peSeFb3P4L62gMqiQHAAA%3D) with Squint. I'm thinking about lite-weight immutable persistent data structures for squint, but so far I haven't had much need for them, outside of Advent of Code puzzles.
 
-Order of importance for this cycle:
+The above was all about making existing projects better. But I also had a few new creative ideas:
 
- 1. babashka.ffi + babashka 1.13.220. The lead story.
- 2. The four FFI libraries: babashka.sqlite, babashka.duckdb,
-    babashka.postgres, filewatcher.
- 3. Tasks: :exec-fn/:cmd in 1.13.219 (July), :depends composition
-    in 1.13.220 (August).
- 4. SCI ClojureScript JIT, and the downstream releases it carried
-    into nbb, scittle, joyride, clerk.
- 5. clj-kondo type checker inference + :constant-condition.
- 6. squint protocol push, cherry catching up and sharing internals.
- 7. New: choq, buzz (+ tube-pod, multi-snake), cljbang.
- 8. reagami SSR + create-reagami-app.
-
-STORY MATERIAL, all true, none of it in any CHANGELOG.
-Source is ~/Dropbox/notes/dev-todo.md unless noted.
-
- - ffi/free accepted global-arena memory and called C free() on it,
-   silently, because the global arena shares the global scope with
-   C memory. Found while walking every function for the argument
-   order ADR. Your note: "One ownership model makes that a mistake
-   the API no longer invites."
-   See dev-todo, section "ffi, the PR series", ADR 0004 entry.
-
- - The argument-order pass itself: rules A (safety, two args that
-   can hold the same kind of value never trade places between
-   arities), B (optional goes last, unless it is the SOURCE, which
-   goes first, like clojure.core/resolve), C (adjacent parameter
-   types stay disjoint so at least one direction of a swap throws).
-   Rule 1 of the first draft was deleted for being wrong about slice.
-   alloc lost its unscoped form and now requires an arena. No malloc
-   replaces it: across all four libraries, NO ffi/free call ever
-   released memory a C function returned. Every one released our own
-   alloc.
-
- - babashka.sqlite needed sqlite3_initialize. Found via a Windows
-   jump-to-NULL.
-   See dev-todo, "ffi libraries (2026-08-21)".
-
- - The alpine static bb reports "cannot find library z" even when
-   /usr/lib/libz.so.1 exists, because a failed dlopen surfaces as
-   not-found and the real cause hides in the ex cause. Found
-   2026-08-31 on the docker image. Still open.
-
- - bb CI never runs a >=4-arg trampoline on Windows, because the C
-   test lib is skipped there. Known blind spot.
-
- - The quickdoc :overrides "bug" that was not a bug: your bb.edn task
-   passed the map UNQUOTED, and a task body is evaluated, so ' is not
-   EDN. Cost you a debugging session. Also: the branch that skipped
-   deftype vars unconditionally got withdrawn because some libraries
-   want ->Foo documented.
-   See dev-todo, "quickdoc".
-
- - sqlite4clj ported to babashka.ffi and validated natively on plain
-   master bb: CRUD, both blob roundtrips, callbacks, the whole session
-   extension, through the BUNDLED library. The API needed nothing new.
-   Decided not to upstream; the fork is the home.
-
- - Buzz: the sources-and-topics redesign is on an unmerged branch and
-   must NOT be described as shipped. What is on main: async rendering
-   by default, :render-interval-ms default 20, a failing render
-   contained to its own connection.
-
-ASSETS AVAILABLE, place where you want them:
-
- - assets/1.13.220-pacman.png
-   <img src="assets/1.13.220-pacman.png" style="max-width:420px;width:100%" alt="pac-man running in babashka through babashka.ffi and raylib">
-
- - The SQLite create-function! snippet, if you want it here rather
-   than leaving it to the FFI post:
-
-   (require '[babashka.sqlite :as sq])
-
-   (sq/with-conn [db nil]
-     (sq/create-function! db "initials"
-       (fn [s] (apply str (map first (clojure.string/split s #" ")))))
-     (sq/query db ["select initials(?) i" "gerald jay sussman"]))
-   ;;=> [{:i "gjs"}]
-
-============================================================ -->
+- [Choq](https://github.com/squint-cljs/choq): Cherry hosted on QuickJS, nREPL included.
+- Buzz: 
+- [Cljbang.el](https://github.com/borkdude/cljbang.el): A Clojure-like language that runs as Emacs Lisp
 
 Here are some highlights per project. See each project's `CHANGELOG.md` for the full list.
 
