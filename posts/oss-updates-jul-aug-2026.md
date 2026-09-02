@@ -45,15 +45,37 @@ uses my OSS, please ask your employer, that would be even better. Thank you!
 
 <!-- INTRO: Michiel writes the personal intro here -->
 
-### Talk at Func Prog Sweden
+<!-- ============================================================
+NEWS: these paragraphs are yours to write too. Facts only below.
+Delete this block when done.
 
-On August 11th I gave a talk about [Reagami](https://github.com/borkdude/reagami) at [Func Prog Sweden](https://www.meetup.com/func-prog-sweden/events/315394699/): fold your state into the DOM, a minimal zero-deps Reagent-like in Squint and CLJS. Richard Feldman previewed Roc 0.1.0 in the same session. The recording is [here](https://www.youtube.com/watch?v=X0PowSdliXs).
+TALK, Func Prog Sweden, Tuesday August 11 2026, streamed on their
+YouTube channel.
+ - Your talk: "Introduction of Reagami". Their blurb: "Fold your
+   state into the DOM! A minimal zero-deps Reagent-like in Squint
+   and CLJS."
+ - Richard Feldman gave "A Preview of Roc 0.1.0" in the same session.
+ - Intro by Magnus Sedlacek.
+ - Recording: https://www.youtube.com/watch?v=X0PowSdliXs
+ - Event: https://www.meetup.com/func-prog-sweden/events/315394699/
 
-### Upcoming: babashka workshop at the Clojure/conj
+WORKSHOP, Clojure/conj 2026, with Rahul De.
+ - https://2026.clojure-conj.org/workshops
+ - Announced in the previous post already, so this is an update, not
+   an announcement. What is new: you built the material this cycle.
+   The repo babashka/bb-workshop-conj26 has 12 commits in the window,
+   covering a TUI section, Windows and Windows-on-ARM support, an
+   identicon exercise, a password/clipboard exercise, and CI.
+ - Topics, from the CfP text in that repo: dev environment setup,
+   bb.edn tasks, the built-in libraries (fs, process, http-client),
+   tests, a CLI with subcommands and automatic help, a TUI, a small
+   web app, publishing to GitHub or as a bbin-installable tool.
+   Every concept has an exercise, building toward one culminating
+   CLI app.
 
-Rahul Dé and I are hosting a babashka workshop at the [Clojure/conj 2026](https://2026.clojure-conj.org/workshops). We spent time this cycle building the material: a hands-on run through the whole lifecycle of a babashka tool, from a quick script to a published, installable CLI app. Topics include `bb.edn` tasks, the built-in libraries, tests, a CLI with subcommands and automatic help, a terminal UI, a small web app, and publishing with [bbin](https://github.com/babashka/bbin). Every concept comes with an exercise and it all builds toward one culminating app.
-
-News about the next Babashka Conf will appear at [babashka.org/conf](https://babashka.org/conf/).
+BABASHKA CONF: no new date to announce. Previous posts pointed at
+https://babashka.org/conf/ for news. Keep or drop as you like.
+============================================================ -->
 
 ### Blog posts
 
@@ -64,41 +86,92 @@ Besides this update I published two blog posts in the past two months:
 
 ### Projects
 
-Babashka got FFI. `babashka.ffi` lets you call C functions in shared libraries straight from a babashka script, and it is also a standalone library for JVM Clojure. It builds on `java.lang.foreign` and makes you manage memory through arenas, so you get exceptions instead of segfaults that tear down your REPL, and `with-open` releases what you allocated. Some of the API, like `defcfn`, is inspired by [coffi](https://github.com/IGJoshua/coffi), so thanks to Joshua Suskalo for leading the way. It is not a copy though. You can hand `defcfn` an explicit library, or a function or delay that resolves to one, and there is a `place` concept, inspired by Specter's paths, for reading from and writing to structs and unions.
+<!-- ============================================================
+NARRATIVE: write this section yourself. Nothing below this line
+was written by you, so all of it goes. Delete this whole comment
+block when done.
 
-To validate the design I wrote [demos](https://github.com/babashka/ffi/tree/main/examples) rather than unit tests alone: pac-man with the classic ghost personalities, a textured raycaster in the spirit of Doom, a helix around a torus, a native GTK 4 window rendering from an atom, an arpeggio through a realtime PortAudio callback, and embedded CPython calling back into Clojure. All of them run from a babashka script.
+Order of importance for this cycle:
 
-<img src="assets/1.13.220-pacman.png" style="max-width:420px;width:100%" alt="pac-man running in babashka through babashka.ffi and raylib">
+ 1. babashka.ffi + babashka 1.13.220. The lead story.
+ 2. The four FFI libraries: babashka.sqlite, babashka.duckdb,
+    babashka.postgres, filewatcher.
+ 3. Tasks: :exec-fn/:cmd in 1.13.219 (July), :depends composition
+    in 1.13.220 (August).
+ 4. SCI ClojureScript JIT, and the downstream releases it carried
+    into nbb, scittle, joyride, clerk.
+ 5. clj-kondo type checker inference + :constant-condition.
+ 6. squint protocol push, cherry catching up and sharing internals.
+ 7. New: choq, buzz (+ tube-pod, multi-snake), cljbang.
+ 8. reagami SSR + create-reagami-app.
 
-Writing libraries turned out to be the better design test. Four of them were born this cycle: [babashka.sqlite](https://github.com/babashka/babashka.sqlite), [babashka.duckdb](https://github.com/babashka/babashka.duckdb), [babashka.postgres](https://github.com/babashka/babashka.postgres) and [filewatcher](https://github.com/babashka/filewatcher). They cover use cases that pods already covered, but each one exercised a different corner of the FFI API, and after the argument-order pass none of them forced another change. One thing you could not do through a pod is define a Clojure function inside SQLite:
+STORY MATERIAL, all true, none of it in any CHANGELOG.
+Source is ~/Dropbox/notes/dev-todo.md unless noted.
 
-```clojure
-(require '[babashka.sqlite :as sq])
+ - ffi/free accepted global-arena memory and called C free() on it,
+   silently, because the global arena shares the global scope with
+   C memory. Found while walking every function for the argument
+   order ADR. Your note: "One ownership model makes that a mistake
+   the API no longer invites."
+   See dev-todo, section "ffi, the PR series", ADR 0004 entry.
 
-(sq/with-conn [db nil]
-  (sq/create-function! db "initials"
-    (fn [s] (apply str (map first (clojure.string/split s #" ")))))
-  (sq/query db ["select initials(?) i" "gerald jay sussman"]))
-;;=> [{:i "gjs"}]
-```
+ - The argument-order pass itself: rules A (safety, two args that
+   can hold the same kind of value never trade places between
+   arities), B (optional goes last, unless it is the SOURCE, which
+   goes first, like clojure.core/resolve), C (adjacent parameter
+   types stay disjoint so at least one direction of a swap throws).
+   Rule 1 of the first draft was deleted for being wrong about slice.
+   alloc lost its unscoped form and now requires an arena. No malloc
+   replaces it: across all four libraries, NO ffi/free call ever
+   released memory a C function returned. Every one released our own
+   alloc.
 
-Shipping FFI meant changing what a default Linux babashka is. To use `java.lang.foreign` you need a dynamically linked binary, and on Linux the static one was the historical default. The dynamic Linux amd64 binary now links every C library statically except glibc, so it no longer needs `libz.so.1` at run time, and the install script probes your system and falls back to the fully static binary when the glibc version is too old. If your package manager or GitHub Action is not up to date with this yet, open an issue at the babashka repo and I'll reach out.
+ - babashka.sqlite needed sqlite3_initialize. Found via a Windows
+   jump-to-NULL.
+   See dev-todo, "ffi libraries (2026-08-21)".
 
-Babashka tasks were the other half of the release story. In July, `:exec-fn` and `:cmd` arrived: point a task at a function or a command tree and it routes through `babashka.cli/dispatch`, giving it `--help`, subcommands and shell completion for free. In August those tasks learned to compose. A task can `:depends` on another CLI task, and the dependency's options parse, coerce, show up under `Inherited options` in `--help`, and get offered by the completion. There is a post on the first half linked above, and the second half is in the [FFI post](https://blog.michielborkent.nl/babashka-ffi.html).
+ - The alpine static bb reports "cannot find library z" even when
+   /usr/lib/libz.so.1 exists, because a failed dlopen surfaces as
+   not-found and the real cause hides in the ex cause. Found
+   2026-08-31 on the docker image. Still open.
 
-SCI on ClojureScript now compiles interpreted function bodies to JavaScript at runtime through `js/Function`. This is on by default and needs no configuration. A tight numeric loop went from ~175ms to ~7ms, over 20 times faster, and arithmetic-dense code above arity 2 saw up to 20x as well. When `eval` is unavailable, for instance under a Content Security Policy, SCI falls back to the interpreter with identical results, error messages and error locations. It works under `:advanced` compilation. Everything downstream got this for free: [nbb](https://github.com/babashka/nbb), [scittle](https://github.com/babashka/scittle), [joyride](https://github.com/BetterThanTomorrow/joyride) and [clerk](https://github.com/nextjournal/clerk) all shipped releases carrying it. On the JVM side, SCI learned to cache resolved instance and static methods, constructors and fields per call site, which makes interop in babashka up to 5x faster.
+ - bb CI never runs a >=4-arg trampoline on Windows, because the C
+   test lib is skipped there. Known blind spot.
 
-clj-kondo's type checker learned a lot this cycle. It now derives argument types from how a parameter is used in the body, so `(defn f [s] (subs s 1))` followed by `(f 42)` warns. It types the keys and values of destructured maps, flows map types from return values into destructured bindings, flags keys that are provably nil, and narrows a local's type inside a predicate guard. Running param type inference over the core sources grew argument type coverage of `clojure.core` from 23 to 150 vars. Combined with that, the new `:constant-condition` linter, on by default, finds conditions whose truthiness never changes. In regression tests it found several cases of `filter` and `remove` results used as conditions, which are always true since they always return a seq. Clojure 1.13's map destructuring landed too, in clj-kondo, babashka, SCI and squint: `:keys!`, `:syms!`, `:strs!`, `:select`, `:all` and `:defaults`, with required keys reported at call sites.
+ - The quickdoc :overrides "bug" that was not a bug: your bb.edn task
+   passed the map UNQUOTED, and a task body is evaluated, so ' is not
+   EDN. Cost you a debugging session. Also: the branch that skipped
+   deftype vars unconditionally got withdrawn because some libraries
+   want ->Foo documented.
+   See dev-todo, "quickdoc".
 
-Squint moved a long way toward CLJS semantics. Release 0.14.203 was preparatory work for immutable and persistent collections in `squint.immutable`, and getting there meant adding most of the CLJS collection protocols and making the core functions dispatch through them. `ILookup`, `IAssociative`, `IMap`, `ICounted`, `ICollection`, `IEquiv`, `ISet`, `IStack`, `IIndexed`, `IVector`, `IHash`, `IMeta`, `IWithMeta`, `ISeqable`, the transient protocols and the atom protocols are all there, so a custom type participates in `get`, `assoc`, `count`, `conj`, `seq`, `=`, `hash`, `meta` and printing. Dozens of core functions were also lined up with CLJS on throwing and edge cases. Alongside that, `defrecord` arrived, `clojure.set` dispatches through the protocols, and the REPL, nREPL and vite integration got a long list of fixes.
+ - sqlite4clj ported to babashka.ffi and validated natively on plain
+   master bb: CRUD, both blob roundtrips, callbacks, the whole session
+   extension, through the BUNDLED library. The API needed nothing new.
+   Decided not to upstream; the fork is the home.
 
-Cherry caught up with all of it. Cherry and squint now share the macro scan, macro lookup, path resolution, CLI implementation, nREPL server and vite plugin, so a fix in one lands in both. Cherry got `reify`, `defmulti`/`defmethod`, `vswap!`, dynamic vars through squint's box scheme, a `cherry.test` namespace that is `clojure.test`-compatible and requirable as `cljs.test`, and a browser REPL. Replicant's own test suite passes under cherry now.
+ - Buzz: the sources-and-topics redesign is on an unmerged branch and
+   must NOT be described as shipped. What is on main: async rendering
+   by default, :render-interval-ms default 20, a failing render
+   contained to its own connection.
 
-Two new experiments came out of wondering what else a small runtime could be. [Choq](https://github.com/squint-cljs/choq) is a roughly 5MB binary that runs the cherry compiler inside an embedded [QuickJS](https://github.com/quickjs-ng/quickjs) engine. QuickJS has no JIT, so hot code is slower than on Node.js, Bun or Deno, but the binary is small, startup is fast and memory use stays low. In local measurements a Hono app serves around 30k requests per second and uses less memory than the same app on Node.js or Bun. It is meant as a lighter alternative for scripts and small servers, in the same spirit as babashka next to the JVM. [Cljbang](https://github.com/borkdude/cljbang.el) is a Clojure-like language that compiles to Emacs Lisp forms and evaluates them in the running Emacs. No subprocess, no transpiled text. It follows the same approach as squint.
+ASSETS AVAILABLE, place where you want them:
 
-[Buzz](https://github.com/borkdude/buzz) is the third experiment and the one I keep coming back to. You write a web application with the JVM or babashka only. State lives on the server, and the UI is compiled to JavaScript by squint and rendered by [Reagami](https://github.com/borkdude/reagami), so no ClojureScript toolchain and no Node.js are involved. Rendering is asynchronous by default and coalesces at 20ms, and a failing render is contained to its own connection. I wrote two applications on it to find out whether the idea holds: [tube-pod](https://github.com/borkdude/tube-pod), which turns YouTube links into a private podcast feed you can subscribe to in any player, and [multi-snake](https://github.com/borkdude/multi-snake), snake for as many players as show up, all on one board held in one atom on the server. It runs at [multi-snake.michielborkent.nl](https://multi-snake.michielborkent.nl).
+ - assets/1.13.220-pacman.png
+   <img src="assets/1.13.220-pacman.png" style="max-width:420px;width:100%" alt="pac-man running in babashka through babashka.ffi and raylib">
 
-Reagami itself grew server-side rendering. `reagami.ssr` renders hiccup to an HTML string on the JVM, babashka, squint and CLJS, and the regular `render` now hydrates that page by adopting the existing DOM instead of clearing the root. There is also `npm create reagami-app`, which scaffolds a Vite project with hot reload and a browser nREPL.
+ - The SQLite create-function! snippet, if you want it here rather
+   than leaving it to the FFI post:
+
+   (require '[babashka.sqlite :as sq])
+
+   (sq/with-conn [db nil]
+     (sq/create-function! db "initials"
+       (fn [s] (apply str (map first (clojure.string/split s #" ")))))
+     (sq/query db ["select initials(?) i" "gerald jay sussman"]))
+   ;;=> [{:i "gjs"}]
+
+============================================================ -->
 
 Here are some highlights per project. See each project's `CHANGELOG.md` for the full list.
 
