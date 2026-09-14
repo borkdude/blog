@@ -7,8 +7,9 @@ Babashka 1.13.222 is the "conj" release! I'll be giving a [babashka workshop](ht
 
 ## Dependencies without a JVM
 
-Babashka now resolves dependencies without a JVM by default. To demonstrate this, save the following example as `deps-example.clj`. We will use an alternative `:mvn/local-repo` such that we force downloading deps and will load `medley`.
+Babashka now resolves dependencies without a JVM by default. Here's a demo: We will use an alternative `:mvn/local-repo` such that we force downloading deps.
 
+`deps-example.clj`:
 ```clojure
 (require '[babashka.deps :as deps]
          '[babashka.fs :as fs])
