@@ -178,6 +178,6 @@ readable.
 ## Wrapping up
 
 As you can see, we can write server-side rendered HTML applications and have
-some fun using ClojureScript in the shape of Squint too, while getting very
+some fun using ClojureScript in the form of Squint too, while getting very
 reasonable JS compilation sizes. And we don't have to think about it at all,
 just deploy to production with `:tree-shake? true` and done! No build process.
