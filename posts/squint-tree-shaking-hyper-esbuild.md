@@ -155,8 +155,6 @@ The page records its current version in a data attribute:
 If a server update contains a different version, the page reloads to fetch the
 new bundle.
 
-## Using it
-
 To enable tree shaking in hyper, add the esbuild dependency and enable native
 access for the JVM:
 
