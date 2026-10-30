@@ -74,7 +74,7 @@ Here are some personal favorite highlights from the last two months.
 
 - [Antq](https://github.com/clj-commons/antq), a tool to update outdated deps, now runs with bb!
 
-- You can now run `build.clj` in babashka with `tools.build` (which comes bundled with bb) and get `--help` and shell completions for your build tasks. Sean Corfield has been adopting this in projects he maintains. See for example: [next.jdbc](https://github.com/seancorfield/next-jdbc/blob/develop/bb.edn), [HoneySQL](https://github.com/seancorfield/honeysql/blob/develop/bb.edn), [logging4j2](https://github.com/seancorfield/logging4j2/blob/develop/bb.edn) and [rephrase](https://github.com/seancorfield/rephrase/blob/main/bb.edn) by [Sean Corfield](https://github.com/seancorfield)
+- You can now run `build.clj` in babashka with `tools.build` (which comes bundled with bb) and get `--help` and shell completions for your build tasks. [Sean Corfield](https://github.com/seancorfield) has been adopting this in projects he maintains. See for example: [next.jdbc](https://github.com/seancorfield/next-jdbc/blob/develop/bb.edn), [HoneySQL](https://github.com/seancorfield/honeysql/blob/develop/bb.edn), [logging4j2](https://github.com/seancorfield/logging4j2/blob/develop/bb.edn) and [rephrase](https://github.com/seancorfield/rephrase/blob/main/bb.edn)
 
 - [Babashka.ffi](https://github.com/babashka/ffi)
   - First Clojars release on 2026-09-18, for the JVM, native image, CLJS and nbb. Node.js 26.1+ through `node:ffi`
