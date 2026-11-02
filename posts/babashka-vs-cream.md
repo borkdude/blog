@@ -12,7 +12,7 @@ virtually any Clojure program without changes. This is exciting.
 
 Crema is an impressive piece of engineering. Native-image could not define classes
 at run time before, which is the reason SCI exists. With Crema, `eval`, `require`
-and Java libraries from jars just work in a native binary, and cream starts as
+and Java libraries just work in a native binary, and cream starts as
 fast as babashka.
 
 But it has serious downsides compared to using SCI.
