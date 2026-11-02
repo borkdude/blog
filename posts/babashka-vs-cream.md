@@ -86,6 +86,21 @@ Crema and the binary goes up from 75MB to about 200MB. Cream itself is about
 double or triple in CI, which isn't fun at all when you build a binary for
 several OSes. SCI is just way more light weight here too.
 
+## Combining SCI and Crema
+
+Another option is to combine both approaches: SCI keeps interpreting Clojure and
+Crema only loads Java classes from jars. I tried this on the
+[crema-hybrid](https://github.com/babashka/babashka/tree/crema-hybrid) branch and
+it works. commons-codec, commons-lang3, jsoup, gson and joda-time load from the
+classpath and you can call them through normal interop, without reflection config.
+
+The binary size and build time above were measured on this hybrid. Crema needs
+metadata for everything in the image, so every user pays for it, even for scripts
+that never load a class. A JDK package that wasn't preserved at build time aborts
+the process instead of throwing an exception, and you only find out by running
+the library. If GraalVM shrinks that metadata or turns the abort into an exception,
+I'll look at this again.
+
 ## What bb gives up
 
 Code that needs real JVM classes, or a Java library that bb doesn't ship, stays
