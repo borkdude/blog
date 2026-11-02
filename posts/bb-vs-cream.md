@@ -57,8 +57,7 @@ Performance of cream is better than bb for hot JIT-ed code, but worse than a JVM
 | 100k `DigestUtils/sha256Hex` | | 124ms | 42ms |
 | `fib 27`, cold | 25ms | 43ms | |
 
-For a long-running process you want the JVM anyway. For a script, the code does
-not run long enough for the JIT to pay off. Since the core feature of bb is
+For a script, the code does not run long enough for the JIT to pay off. Since the core feature of bb is
 scripting with good startup time, bb + SCI wins here.
 
 ## Binary size and build time
