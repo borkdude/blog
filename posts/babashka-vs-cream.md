@@ -92,12 +92,11 @@ several OSes. SCI is just way more light weight here too.
 Another option is to combine both approaches: SCI keeps interpreting Clojure and
 Crema is only used to load Java classes that are not in the image. I tried this on the
 [crema-hybrid](https://github.com/babashka/babashka/tree/crema-hybrid) branch and
-it works for many libraries. In cream, which loads Java classes the same way, a
-tiny script with BouncyCastle, commons-compress or Caffeine takes 40 to 65ms for
-the whole process, against about 320ms on the JVM. Loading malli is slow because
-Clojure compiles every form and defines about 1670 classes. A Java library is
-already compiled, and a single call only loads the classes it needs. The hybrid
-should be similar.
+it works for many libraries. A tiny script with BouncyCastle, commons-compress or
+Caffeine takes about 40ms for the whole process, against about 320ms on the JVM.
+Loading malli is slow in cream because Clojure compiles every form and defines
+about 1670 classes. A Java library is already compiled, and a single call only
+loads the classes it needs.
 
 Load time of Clojure code is not the problem here, since SCI still does that. The
 main downside of this hybrid is that a JDK package that wasn't preserved at build
