@@ -8,8 +8,14 @@ should affect babashka. Cream is based on [Crema](https://github.com/oracle/graa
 bytecode interpreter, basically a JVM inside of native-image.
 
 What it concretely would mean to move babashka to Crema is that we could run
-virtually any Clojure program without changes. This is exciting. But it has serious downsides
-compared to using SCI.
+virtually any Clojure program without changes. This is exciting.
+
+Crema is an impressive piece of engineering. Native-image could not define classes
+at run time before, which is the reason SCI exists. With Crema, `eval`, `require`
+and Java libraries from jars just work in a native binary, and cream starts as
+fast as babashka.
+
+But it has serious downsides compared to using SCI.
 
 ## Load time
 
@@ -87,6 +93,11 @@ out of reach. Pods cover part of that. For the rest there is the JVM, or cream,
 which sits in the gray area between babashka and JVM Clojure.
 
 ## Conclusion
+
+This is not a verdict on Crema, which is still experimental and improving fast. A
+native binary with full Clojure and a working JIT is great for many programs. Most
+of the load time comes from the Clojure compiler, which the JVM pays for too. It's
+just not the right trade-off for babashka today.
 
 For a while I thought SCI would be replaced with Crema in bb, but it still wins
 for the scripting use case. And babashka is all about scripting. I will keep
