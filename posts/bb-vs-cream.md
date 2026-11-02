@@ -64,9 +64,9 @@ scripting with good startup time, bb + SCI wins here.
 
 Another major downside of including Crema is the binary size. I built bb with
 Crema and the binary goes up from 75MB to about 200MB. Cream itself is about
-225MB. Maybe this isn't that important, but the build also takes about 1.6 times
-longer, 64s instead of 40s on my machine, which isn't fun at all when you build a
-binary in CI for several OSes. SCI is just way more light weight.
+225MB. Maybe this isn't that important, but compile times also go up, 64s instead of 40s
+on my machine, and I expect double or triple in CI, which isn't fun at all when
+you build a binary for several OSes. SCI is just way more light weight.
 
 ## What bb gives up
 
