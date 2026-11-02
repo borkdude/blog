@@ -80,8 +80,9 @@ scripting with good startup time, bb + SCI wins here.
 
 ## Binary size and build time
 
-Another major downside of including Crema is the binary size. I built `bb` with
-Crema and the binary goes up from 75MB to about 200MB. Cream itself is about
+Another major downside of including Crema is the binary size. Even when I only
+use Crema for loading Java classes, as described below, the binary goes up from
+75MB to about 200MB. Cream itself is about
 225MB. Maybe this isn't that important, but compile times also go up. I expect
 double or triple in CI, which isn't fun at all when you build a binary for
 several OSes. SCI is just way more light weight here too.
@@ -89,17 +90,32 @@ several OSes. SCI is just way more light weight here too.
 ## Combining SCI and Crema
 
 Another option is to combine both approaches: SCI keeps interpreting Clojure and
-Crema only loads Java classes from jars. I tried this on the
+Crema is only used to load Java classes that are not in the image. I tried this on the
 [crema-hybrid](https://github.com/babashka/babashka/tree/crema-hybrid) branch and
-it works. commons-codec, commons-lang3, jsoup, gson and joda-time load from the
-classpath and you can call them through normal interop, without reflection config.
+it works for many libraries. In cream, which loads Java classes the same way, a
+tiny script with BouncyCastle, commons-compress or Caffeine takes 40 to 65ms for
+the whole process, against about 320ms on the JVM. Loading malli is slow because
+Clojure compiles every form and defines about 1670 classes. A Java library is
+already compiled, and a single call only loads the classes it needs. The hybrid
+should be similar.
 
-The binary size and build time above were measured on this hybrid. Crema needs
-metadata for everything in the image, so every user pays for it, even for scripts
-that never load a class. A JDK package that wasn't preserved at build time aborts
-the process instead of throwing an exception, and you only find out by running
-the library. If GraalVM shrinks that metadata or turns the abort into an exception,
-I'll look at this again.
+Load time of Clojure code is not the problem here, since SCI still does that. The
+main downside of this hybrid is that a JDK package that wasn't preserved at build
+time aborts the process instead of throwing an exception, and you only find out
+by running the library. Of course we can protect users from this with extensive
+testing.
+
+The two other downsides are the same as for cream:
+
+- Binary size: this hybrid is what goes from 75MB to about 200MB, for every user,
+  even for scripts that never load a class. A class loaded from a jar calls JDK
+  methods by name. In a native image those names are normally gone, and methods
+  bb doesn't use are not compiled in at all. So Crema has to keep a table of all
+  compiled classes and methods, and whole JDK packages have to be preserved.
+- Build time: compile times go up as well, as described above.
+
+If GraalVM shrinks that table or turns the abort into an exception, I'll look at
+this again.
 
 ## What bb gives up
 
@@ -116,6 +132,10 @@ not the right trade-off for babashka today. Perhaps with an experimental fork of
 Clojure that reduces the number of emitted classes, this picture will change. I
 do use a fork of Clojure for cream, but it only has very mild changes to make it
 work with Crema. I haven't changed anything significant in the compiler.
+
+The hybrid is more tempting, since it keeps SCI's load time and loads Java
+libraries faster than a JVM. But today it costs every user about 125MB and slower
+builds, and a library can still abort the process. So for now it stays on a branch.
 
 For a while I thought SCI would be replaced with Crema in bb, but it still wins
 for the scripting use case. And babashka is all about scripting. I will keep
