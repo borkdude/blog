@@ -17,21 +17,23 @@ The main downside is the load time of Clojure sources. Evaluating a fn in cream
 emits a class, which just takes more work. Loading malli defines about 1670
 classes, at about 0.2ms per class. SCI interprets the forms and skips that step.
 
-Here is the time to load malli 0.16.4 from source, with the same classpath for
-all three:
+Here is the time to load malli 0.16.4 from source:
 
 ```bash
+DEPS='{:deps {metosin/malli {:mvn/version "0.16.4"}}}'
+CP=$(clojure -Spath -Sdeps "$DEPS")
 E="(time (require 'malli.core 'malli.generator))"
+
 bb -cp "$CP" -e "$E"
-java -cp "$CP" clojure.main -e "$E"
+clojure -Sdeps "$DEPS" -M -e "$E"
 ./cream -Scp "$CP" -M -e "$E"
 ```
 
 | | `require` | whole process |
 |---|---|---|
-| bb | 52ms | 0.06s |
-| JVM | 550ms | 0.85s |
-| cream | 1280ms | 1.30s |
+| bb | 55ms | 0.06s |
+| JVM | 610ms | 0.93s |
+| cream | 1310ms | 1.34s |
 
 bb + SCI is just way faster for loading bigger libraries from source and then
 executing some expressions, which is commonly called "scripting". When loading a
