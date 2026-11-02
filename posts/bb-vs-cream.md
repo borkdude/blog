@@ -94,10 +94,13 @@ which sits in the gray area between babashka and JVM Clojure.
 
 ## Conclusion
 
-This is not a verdict on Crema, which is still experimental and improving fast. A
-native binary with full Clojure and a working JIT is great for many programs. Most
-of the load time comes from the Clojure compiler, which the JVM pays for too. It's
-just not the right trade-off for babashka today.
+This is not a verdict on Crema, which is still experimental and improving
+fast. A native binary with full Clojure and a working JIT is very interesting
+and exciting. Most of the load time comes from the Clojure compiler. It's just
+not the right trade-off for babashka today. Perhaps with an experimental fork of
+Clojure that reduces the number of emitted classes, this picture will change. I
+do use a fork of Clojure for cream, but it only has very mild changes to make it
+work with Crema. I haven't changed anything significant in the compiler.
 
 For a while I thought SCI would be replaced with Crema in bb, but it still wins
 for the scripting use case. And babashka is all about scripting. I will keep
