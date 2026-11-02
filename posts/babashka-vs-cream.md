@@ -58,8 +58,13 @@ loads [medley](https://github.com/weavejester/medley) 9x faster than cream and
 
 Startup is the same in both babashka and cream: about 10ms.
 
-Cream loads malli in about 330ms from AOT-compiled classes, and a cache could do
-that for you. But caches are a hassle, and babashka is faster than the AOT case anyway.
+With AOT-compiled classes, malli loads in about 300ms in both cream and the JVM.
+Cream spends 10ms on startup and 290ms on loading classes, the JVM 200ms on
+startup and 100ms on loading classes. Run-time performance is worse in cream, so
+if you AOT anyway, the JVM is the better choice. Cream could AOT-compile
+libraries on first use and cache the classes, but caches are a hassle, and
+babashka is faster than the AOT case anyway. So it seems something Crema-based
+in between bb and a JVM doesn't offer us much benefit here.
 
 ## Performance
 
