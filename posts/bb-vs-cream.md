@@ -40,12 +40,10 @@ bigger lib like malli, you might as well just use a normal JVM instead of cream.
 The gap shrinks with smaller libraries, but it stays large. bb loads medley 9
 times faster than cream and camel-snake-kebab 15 times faster.
 
-Startup itself is not the difference. Both start in about 10ms. It's what happens
-after startup that counts.
+Startup alone is a tie: both start in about 10ms.
 
-Compiled classes help. Cream loads malli in about 330ms from AOT-compiled classes
-and a cache could do that for you. But scripting doesn't want caches, they are a
-hassle.
+Cream loads malli in about 330ms from AOT-compiled classes, and a cache could do
+that for you. But scripting doesn't want caches, they are a hassle.
 
 ## Performance
 
