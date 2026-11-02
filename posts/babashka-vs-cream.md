@@ -20,9 +20,8 @@ But it has serious downsides compared to using SCI.
 ## Load time
 
 The main downside is the load time of Clojure sources. Evaluating a fn in cream
-runs the Clojure compiler and emits a class, which just takes more work.
-Compilation accounts for about 1000ms of the load. Defining the 1670 classes takes
-the rest. SCI interprets the forms and skips both steps.
+runs the Clojure compiler and emits a class which then has to be loaded by a
+classloader. This takes longer than it takes SCI to construct an interpreted function.
 
 Here is the time to load malli 0.16.4 from source:
 
