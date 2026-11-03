@@ -10,10 +10,12 @@ bytecode interpreter, basically a JVM inside of native-image.
 What it concretely would mean to move babashka to Crema is that we could run
 virtually any Clojure program without changes. This is exciting.
 
-Crema is an impressive piece of engineering. Native-image could not define classes
-at run time before, which is the reason SCI exists. With Crema, `eval`, `require`
-and Java libraries just work in a native binary, and cream starts as
-fast as babashka.
+Crema is an impressive piece of engineering. Native-image could not define
+classes at run time before, which is the reason
+[SCI](https://github.com/babashka/sci) exists. Instead of using `eval`, SCI allows you
+to interpret Clojure code inside of a native image. With Crema, `eval`,
+`require` and Java libraries just work in a native binary using the normal Clojure compiler (with mild patches).
+That's the approach that cream takes.
 
 But it has serious downsides compared to using SCI.
 
