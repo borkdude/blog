@@ -108,27 +108,24 @@ time aborts the process instead of throwing an exception, and you only find out
 by running the library. Of course we can protect users from this with extensive
 testing.
 
-The two other downsides are the same as for cream:
-
-- Binary size: this hybrid is what goes from 75MB to about 200MB, for every user,
-  even for scripts that never load a class. A class loaded from a jar calls JDK
-  methods by name. In a native image those names are normally gone, and methods
-  bb doesn't use are not compiled in at all. So Crema has to keep a table of all
-  compiled classes and methods, and whole JDK packages have to be preserved.
-- Build time: compile times go up as well, as described above.
+The binary size and build time downsides are the same as for cream. The 200MB
+applies to every user, even for scripts that never load a class, because Crema
+needs a table of all compiled methods and whole preserved JDK packages.
 
 If GraalVM shrinks that table or turns the abort into an exception, I'll look at
 this again.
 
-## What bb gives up
+## Babashka + SCI's trade-off
 
-Code that needs real JVM classes, or a Java library that bb doesn't ship, stays
-out of reach. Pods cover part of that. For the rest there is the JVM, or cream,
-which sits in the gray area between babashka and JVM Clojure.
+Without Crema, babashka can't load JVM classes that aren't baked into the native
+image. However, babashka is extensible via pods and more recently
+[FFI](https://github.com/babashka/ffi). Babashka code is fully portable with
+JVM Clojure so it should always be easy to migrate a bb scripting project to a
+full-blown Clojure JVM project, when a project outgrows the light-weight babashka runtime.
 
 ## Conclusion
 
-This is not a verdict on Crema, which is still experimental and improving
+This article is not a verdict on Crema, which is still experimental and improving
 fast. A native binary with full Clojure and a working JIT is very interesting
 and exciting. Most of the load time comes from the Clojure compiler. It's just
 not the right trade-off for babashka today. Perhaps with an experimental fork of
@@ -143,8 +140,8 @@ builds, and a library can still abort the process. So for now it stays on a bran
 For a while I thought SCI would be replaced with Crema in bb, but it still wins
 for the scripting use case. And babashka is all about scripting. I will keep
 improving SCI to make it both load and run faster over time. I was planning to
-do that anyway. Now that SCI isn't going away any time soon, I'm even more
-determined to make babashka the best possible scripting experience for Clojure.
+do that anyway but the above gives me even more determination to make the
+babashka + SCI combination the best possible scripting experience for Clojure.
 
 You can view more numbers in the
 [cream README](https://github.com/borkdude/cream#cream-vs-babashka).
