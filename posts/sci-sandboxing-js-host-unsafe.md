@@ -1,4 +1,4 @@
-Title: Sandboxing SCI on a JavaScript host
+Title: SCI sandboxing on JS host considered unsafe
 Date: 2026-11-17
 Tags: clojure, clojurescript, SCI, security
 Description: SCI sandbox on JavaScript considered unsafe
