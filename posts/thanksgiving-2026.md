@@ -1,5 +1,5 @@
 Title: Thanksgiving OSS sponsor appreciation post!
-Date: 2026-11-25
+Date: 2026-11-23
 Tags: sponsors
 Description: Thanksgiving OSS sponsor appreciation post!
 
