@@ -49,7 +49,7 @@ I've also applied for Clojurists Together again for 2027. If you're a CT sponsor
 Here are the main ideas I want to explore in 2027:
 
 <!--
-- Which 2025 ideas carry over? Not yet done as far as the OSS posts show:
+- Which 2025 ideas landed and which carry over? The 2026 OSS posts mention work on source maps, ClojureDart, Jank and classpath configs. Check each:
   - Clj-kondo: run macros directly from source code
   - Clj-kondo: run exported configs/hooks directly from classpath
   - Clj-kondo: first-class support for ClojureDart and Jank
