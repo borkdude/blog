@@ -12,6 +12,15 @@ and all other related projects are thriving so far thanks to your ongoing suppor
 Your contributions make a real difference: my Clojure projects wouldn't be nearly as polished, maintained, or ambitious without your help.
 I will **apply for Clojurists Together long-term funding for 2027**. If you're a CT sponsor, a vote in the next long-term funding round would be really appreciated.
 
+Current top tier sponsors:
+
+- [Clojurists Together](https://clojuriststogether.org/)
+- [Roam Research](https://roamresearch.com/)
+- [Nextjournal](https://nextjournal.com/)
+- [Nubank](https://nubank.com.br)
+
+You can find all my sponsors on my [GitHub Sponsors page](https://github.com/sponsors/borkdude). Thank you all!
+
 ## Highlights of 2026
 
 2026 felt like a really productive year to me. On the 1st of January I started hacking on **async/await support in ClojureScript**. Since Squint supported this feature, I had a vision of how it could work in ClojureScript. It turned out to be manageable and I got 95% working within a day. I know that a lot of people can say this in 2026 with Claude helping them to code, but I assure you no LLMs were used (or hurt) in this process. Of course it took some back and forth with maintainer David Nolen, but the **patch was merged** March 6th of 2026. A new release came out on May 7th 2026. It felt great to contribute something significant back to ClojureScript that benefits all of its users in the ecosystem and not just squint users.
