@@ -10,16 +10,17 @@ and in particular on my activities in Clojure open source. I'm very grateful
 that my main projects babashka, clj-kondo, SCI, squint
 and all other related projects are thriving so far thanks to your ongoing support through GitHub Sponsors and Clojurists Together.
 Your contributions make a real difference: my Clojure projects wouldn't be nearly as polished, maintained, or ambitious without your help.
+I will **apply for Clojurists Together long-term funding for 2027**. If you're a CT sponsor, a vote in the next long-term funding round would be really appreciated.
 
 ## Highlights of 2026
 
-2026 felt like a really productive year to me. On the 1st of January I started hacking on async/await support in ClojureScript. Since Squint supported this feature, I had a vision of how it could work in ClojureScript. It turned out to be manageable and I got 95% working within a day. I know that a lot of people can say this in 2026 with Claude helping them to code, but I assure you no LLMs were used (or hurt) in this process. Of course it took some back and forth with maintainer David Nolen, but the patch was merged March 6th of 2026. A new release came out on May 7th 2026. It felt great to contribute something significant back to ClojureScript that benefits all of its users in the ecosystem and not just squint users.
+2026 felt like a really productive year to me. On the 1st of January I started hacking on **async/await support in ClojureScript**. Since Squint supported this feature, I had a vision of how it could work in ClojureScript. It turned out to be manageable and I got 95% working within a day. I know that a lot of people can say this in 2026 with Claude helping them to code, but I assure you no LLMs were used (or hurt) in this process. Of course it took some back and forth with maintainer David Nolen, but the **patch was merged** March 6th of 2026. A new release came out on May 7th 2026. It felt great to contribute something significant back to ClojureScript that benefits all of its users in the ecosystem and not just squint users.
 
-Three years ago the first Babashka Conf took place. This was mainly organized by volunteers other than myself and was hosted at Pitch. I did the keynote that year. This year I decided to organize [Babashka Conf 2026](https://babashka.org/conf/) myself which took place on May 8th at the OBA Oosterdok library in Amsterdam. What prompted me to organize this was that the Dutch ClojureDays were resurrected after four years. Since many people would come over anyway, an extra conference the day before would align well with people's traveling plans. David Nolen, who came over all the way from New York, was our keynote speaker. You can watch all the videos [here](https://www.youtube.com/watch?v=c5RTAtodh3M&list=PLaN-rC-CjQqCClhXmwzE7XhGWbrbB-A7u). The conference was only possible thanks to the kind companies and persons who decided to sponsor this event: Nubank, Exoscale, Flexiana, Bob and Itonomi. The day after, at Dutch ClojureDays, I presented the async/await support in ClojureScript, so it was quite a busy weekend.
+Three years ago the first Babashka Conf took place. This was mainly organized by volunteers other than myself and was hosted at Pitch. I did the keynote that year. This year I decided to organize **[Babashka Conf 2026](https://babashka.org/conf/)** myself, which took place on May 8th at the OBA Oosterdok library in Amsterdam. What prompted me to organize this was that the Dutch ClojureDays were resurrected after four years. Since many people would come over anyway, an extra conference the day before would align well with people's traveling plans. David Nolen, who came over all the way from New York, was our keynote speaker. You can **watch all the videos [here](https://www.youtube.com/watch?v=c5RTAtodh3M&list=PLaN-rC-CjQqCClhXmwzE7XhGWbrbB-A7u)**. The conference was only possible thanks to the kind companies and persons who decided to sponsor this event: Nubank, Exoscale, Flexiana, Bob and Itonomi. The day after, at Dutch ClojureDays, I presented the async/await support in ClojureScript, so it was quite a busy weekend.
 
 <img src="assets/babashka-conf-2026.jpg" width="70%" align="center" alt="Babashka Conf 2026 speakers and organizers">
 
-Another highlight this year was my visit to the [Clojure Conj](https://2026.clojure-conj.org) together with Rahul Dé, where we organized a Babashka workshop. It was great seeing lots of familiar and new faces over there. Rahul and I will give this workshop at [EuroClojure 2027](https://2027.euroclojure.org/) as well. Make sure to be there!
+Another highlight this year was my visit to the [Clojure Conj](https://2026.clojure-conj.org) together with Rahul Dé, where we organized a **Babashka workshop**. It was great seeing lots of familiar and new faces over there. Rahul and I will give this workshop at **[EuroClojure 2027](https://2027.euroclojure.org/)** as well. Make sure to be there!
 
 <img src="assets/conj-2026-workshop.jpg" width="70%" align="center" alt="Babashka workshop at Clojure/conj 2026, seen from the back of the room">
 
@@ -31,7 +32,7 @@ To give people at the workshop the best experience possible, lots of improvement
 - Better nREPL support: popular nREPL middleware like CIDER's test middleware, the CIDER inspector, etc.
 - TUI support via JLine
 
-Rich Hickey told me in person that he considers babashka an official Clojure dialect, alongside ClojureScript, ClojureCLR, ClojureDart and Jank. That really means a lot to me. I'm allowed to use "Clojure" in the name if I want, but at this point, changing the name of babashka would probably lead to confusion? Let me know what you think.
+Rich Hickey told me in person that he considers **babashka an official Clojure dialect**, alongside ClojureScript, ClojureCLR, ClojureDart and Jank. That really means a lot to me. I'm allowed to use "Clojure" in the name if I want, but at this point, changing the name of babashka would probably lead to confusion? Let me know what you think.
 
 <img src="assets/dialects.webp" width="733" style="max-width: 100%" alt="Alex Miller on Clojurians Slack: the official dialects from Rich's perspective are Clojure, ClojureScript, ClojureCLR, ClojureDart, Babashka, and Jank">
 
@@ -47,7 +48,7 @@ https://blog.michielborkent.nl/tags/oss-updates.html. A few things that stand ou
 
 ## Plans for 2027
 
-I will apply for Clojurists Together long-term funding for 2027. If you're a CT sponsor, a vote in the next long-term funding round would be really appreciated.
+As I said, I will apply for Clojurists Together long-term funding for 2027. If you're a CT sponsor, a vote in the next long-term funding round would be really appreciated.
 
 Here are the main items I want to focus on in 2027.
 
@@ -89,6 +90,5 @@ so:
 - [GitHub Sponsors](https://github.com/sponsors/borkdude)
 - The [Babashka](https://opencollective.com/babashka) or [Clj-kondo](https://opencollective.com/clj-kondo) OpenCollective
 - [Ko-fi](https://ko-fi.com/borkdude)
-- [Patreon](https://www.patreon.com/borkdude)
 - [Clojurists Together](https://www.clojuriststogether.org/)
 </details>
